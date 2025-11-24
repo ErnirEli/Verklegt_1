@@ -33,8 +33,7 @@ Hönunarskýrsla (Ívar, Nökkvi, Olgeir) Priority: A
 State of group:
 
 Samantekt:
-Í dag var settur focus á því að mappa út verkefnaflæðið fyrir komandi daga. Megináhersluatriði voru það að fá góðan grunn á því hvernig á flæði og hvernig á að nýta Git. einnig komu fram margar spurningar varðandi hönnunarskýrsluna, útkomann frá því var að við nýtum daginn í að setja upp töflurnar fyrir öll A-list requirements, fyrir classa. Spurt var til TA um notkun branches og hvernig ætti að nýta þau, við fengum innsýn á hvernig ætti að merga breytingum í branches inn í main.
-
+Í dag var settur focus á því að mappa út verkefnaflæðið fyrir komandi daga. Megináhersluatriðin voru það að fá góðan grunn á Git, hvernig á að nýta Git ásamt því að setja upp Git repository. einnig komu fram margar spurningar varðandi hönnunarskýrsluna, útkomann frá því var að við nýtum daginn í að setja upp A-list requirements. Spurt var til TA um notkun branches og hvernig ætti að nýta þau, við fengum innsýn á hvernig ætti að merg'a breytingum í branches inn í main og hversu nýtanlegt það er að hafa góðann skilning á notkun þess.
 
 Spurningar til TA: 
 - spyrja út í user flow hvernig taflann er sett upp.
