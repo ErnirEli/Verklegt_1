@@ -1,5 +1,5 @@
 # 24.11.2025
 þetta er dagók
-jslkjdflskj
+jslkjdfls
 
 ![ernir](download.jfif)
