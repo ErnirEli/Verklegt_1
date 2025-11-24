@@ -2,4 +2,4 @@
 þetta er dagók
 jslkjdfls
 
-![ernir](download.jfif)
+![Mynd](Image.jpg)
