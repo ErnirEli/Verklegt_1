@@ -10,7 +10,7 @@ Ernir , 9:00 - 19:00<br>
 Nökkvi, 11:40 - 16:00<br>
 Olgeir, 8:30 - 18:00<br>
 
-### Remote: <b>
+### Remote: <br>
 Enginn
 
 Seinir: Ívar & Nökkvi
