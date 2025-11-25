@@ -49,11 +49,13 @@ Use cases: Use case-in eru byrjuð og komin langt.
 ### Ívar
 Use cases: Use case-in eru byrjuð og komin langt.
 
+---
 
 ## To do:
 Three layer diagram: ekki byrjað
 State diagram: ekki byrjað.
 
+---
 
 ## Samningur:
 1. Truflar hávaði þig?<br>
@@ -81,6 +83,8 @@ State diagram: ekki byrjað.
 ### Alexander:<br>
 ### Ívar:<br>
 ### Nökkvi:<br>
+
+---
 
 ## State of group: <br>
 Samantekt: Í dag var klárað að gera git handbókina og requirements, einnig var byrjað á use cases fyrir requirementin og er komið langt. Síðan er class diagramið byrjað og búið að plana allt varðandi classa. Samningurinn var ræddur og við svöruðum spurningum varðandi hvað hentar okkur þegar við erum að vinna í verkefninu.
