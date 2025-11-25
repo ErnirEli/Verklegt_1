@@ -43,8 +43,8 @@ samningur:
 6. Eitthvað annað sem þú þú villt að komi fram?
 
 svör við samningsspurningum:<br>
-Olgeir:1. nei, já, já, 9:00 - 19:00, nei, nei.<br>
-Ernir: 1. nei, 2. já, 3. já, 4. 8:30-19:00, Nei, Bara lock in.<br>
+Olgeir: 1. nei, 2. já, 3, já, 4. 9:00 - 19:00, 5. nei, 6. nei.<br>
+Ernir: 1. nei, 2. já, 3. já, 4. 8:30-19:00, 5. Nei, 6. Bara lock in.<br>
 Alexander:<br>
 Ívar:<br>
 Nökkvi:<br>
