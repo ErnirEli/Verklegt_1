@@ -1,8 +1,8 @@
 # 25.11.25
 
-## Þriðjudagur Attendance:<br>
+## Þriðjudagur Attendance:
 
-### Í persónu:<br> 
+### Í persónu:
 Tilsettur mætingartími, **8:30**<br>
 Alexander, 8:30 - 15:30<br> 
 Ernir , 9:00 - 19:00<br>
@@ -10,14 +10,14 @@ Ernir , 9:00 - 19:00<br>
 Nökkvi, 11:40 - 16:00<br>
 Olgeir, 8:30 - 18:00<br>
 
-### Remote: <br>
+### Remote:
 Enginn
 
 Seinir: Ívar & Nökkvi
 
 ---
 
-## State of project: <br>
+## State of project:
 Engin vandamál kominn upp, Requirements listinn er búinn í bili.
 
 Planið í dag: (priority)<br>
