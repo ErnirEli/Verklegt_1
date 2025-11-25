@@ -3,7 +3,7 @@
 ## Þriðjudagur Attendance:<br>
 
 ### Í persónu:<br> 
-Tilsettur mætingartími, 8:30<b>
+Tilsettur mætingartími, **8:30**<br>
 Alexander, 8:30 - 15:30<br> 
 Ernir , 9:00 - 19:00<br>
 Ívar, 11:20 - 16:30<br>
