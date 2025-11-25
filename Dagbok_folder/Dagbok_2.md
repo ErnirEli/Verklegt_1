@@ -28,6 +28,10 @@ klára requirements (Olgeir): ___
 State diagram (Ernir): ____
 
 
+
+samningur:<br>
+________
+
 fundur:<br>
 Á fundinum í dag var ____
 
