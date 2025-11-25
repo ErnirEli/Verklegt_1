@@ -14,6 +14,7 @@ Klára Use cases, (A)<br>
 State diagram, (A)<br>
 Gera samning (A).<br>
 Dagbók fyrir daginn í dag, (A)<br> 
+Gera UI (A)<br>
 skila skýrslunni fyrir viku 1 (A)
 
 
