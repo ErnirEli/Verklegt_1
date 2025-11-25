@@ -19,18 +19,20 @@ Use cases, (B)<br>
 Gera samning (A).
 
 
-Dagbók (Olgeir): ___
+Dagbók (Olgeir): ____
 
 klára Git Handbók (Ernir): ____
 
-klára requirements (Olgeir): ___ 
+klára requirements (Olgeir): Búið að gera requirements frá verkefnalýsingunni.
 
 State diagram (Ernir): ____
+
+Use cases (Olgeir): 
 
 
 
 samningur:<br>
-________
+______
 
 fundur:<br>
 Á fundinum í dag var ____
@@ -43,4 +45,4 @@ Samantekt: Í dag var ____
 
 
 Spurningar til TA:
-___
+__
