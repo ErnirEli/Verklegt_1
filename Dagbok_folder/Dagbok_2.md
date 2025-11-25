@@ -45,7 +45,7 @@ Samantekt útfrá svörum við samningsspurningum:_________
 
 
 State of group: <br>
-Samantekt: Í dag var klárað að gera requirements, einnig var byrjað á use cases fyrir requirementin og er komið langt. Síðan er class diagramið byrjað. Samningurinn var ræddur og við svöruðum spurningum varðandi hvað hentar okkur þegar við erum að vinna í verkefninu.
+Samantekt: Í dag var klárað að gera git handbókina og requirements, einnig var byrjað á use cases fyrir requirementin og er komið langt. Síðan er class diagramið byrjað og búið að plana allt varðandi classa. Samningurinn var ræddur og við svöruðum spurningum varðandi hvað hentar okkur þegar við erum að vinna í verkefninu.
 
 
 
