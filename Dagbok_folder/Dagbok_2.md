@@ -35,14 +35,19 @@ State diagram: ekki byrjað.
 
 
 samningur:
-Truflar hávaði þig?<br>
-Er þér sama að það sé truflað þig þegar þú ert með heyrnartól?<br>
-Er í lagi að borða á meðan þú lærir?<br>
-Hvenær villtu helst læra? klukan hvað ca?<br>
-Einhverjir dagar sem henta ekki?<br>
-Eitthvað annað sem þú þú villt að komi fram?
+1. Truflar hávaði þig?<br>
+2. Er þér sama að það sé truflað þig þegar þú ert með heyrnartól?<br>
+3. Er í lagi að borða á meðan þú lærir?<br>
+4. Hvenær villtu helst læra? klukan hvað ca?<br>
+5. Einhverjir dagar sem henta ekki?<br>
+6. Eitthvað annað sem þú þú villt að komi fram?
 
-Samantekt útfrá svörum við samningsspurningum:_________
+svör við samningsspurningum:<br>
+Olgeir:1. nei, já, já, 9:00 - 19:00, nei, nei.<br>
+Ernir: 1. nei, 2. já, 3. já, 4. 8:30-19:00, Nei, Bara lock in.<br>
+Alexander:<br>
+Ívar:<br>
+Nökkvi:<br>
 
 
 
