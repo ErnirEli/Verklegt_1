@@ -3,7 +3,7 @@
 Þriðjudagur Attendance: Í persónu: Alexander, Ernir, Nökkvi, Ívar og Olgeir. <br>
 Remote: Enginn
 
-"Seinir": Ívar & Nökkvi
+Seinir: Ívar & Nökkvi
 
 State of project: <br>
 Engin vandamál kominn upp, Requirements listinn er búinn í bili.
