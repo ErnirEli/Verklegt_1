@@ -8,7 +8,7 @@ State of project: <br>
 
 
 
-Planið fyrir daginn í dag: (priority)<br>
+Planið í dag: (priority)<br>
 Klára Class diagram, (A) <br>
 Klára Use cases, (A)<br>
 State diagram, (A)<br>

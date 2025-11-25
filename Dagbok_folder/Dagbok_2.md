@@ -8,17 +8,15 @@ Engin vandamál kominn upp, Requirements listinn er búinn í bili.
 
 
 
-Planið fyrir daginn í dag: (priority)<br>
-Dagbók fyrir daginn í dag, (A)<br> 
+Planið í dag: (priority)<br>
 Klára git handbook, (A) <br> 
 Klára requirements, (A)<br> 
 Class diagram, (B) <br>
 Use cases, (B)<br>
 State diagram, (B)<br>
 Gera samning (A).
+Dagbók fyrir daginn í dag, (A)<br> 
 
-
-Dagbók (Olgeir)
 
 klára Git Handbók (Ernir): Búið að klára handbókina.
 
@@ -27,6 +25,8 @@ klára requirements (Olgeir): Búið að gera öll requirements, gæti verið a�
 Class diagram (Ernir):Class diagramið er byrjað og öll beinagrindin komin á bara eftir að klára að skrifa upp í tölvunni.
 
 Use cases (Alexander, Nökkvi, Ívar): Use case-in eru byrjuð og komin langt.
+
+Dagbók (Olgeir)
 
 State diagram: ekki byrjað.
 
