@@ -1,6 +1,13 @@
 #25.11.25
 
-Þriðjudagur Attendance: Í persónu: Alexander, Ernir, Nökkvi, Ívar og Olgeir. <br>
+Þriðjudagur Attendance: 
+Tilsettur mætingartími<br>
+Í persónu:<br> 
+Alexander, 8:30 - 15:30<br> 
+Ernir , 9:00 - 19:00<br>
+Ívar, 11:20 - 16:30<br>
+Nökkvi, 11:40 - 16:00<br>
+Olgeir, 8:30 - 18:00<br>
 Remote: Enginn
 
 Seinir: Ívar & Nökkvi
@@ -52,5 +59,6 @@ Samantekt: Í dag var klárað að gera git handbókina og requirements, einnig 
 
 
 Spurningar til TA:<br>
-þegar slökkt er á forritinu og kveikt aftur, þarf þá forritið að vera ennþá með allar upplýsingarnar geymdar?
+þegar slökkt er á forritinu og kveikt aftur, þarf þá forritið að vera ennþá með allar upplýsingarnar geymdar?<br>
+Já það þarf
 
