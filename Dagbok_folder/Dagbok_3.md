@@ -1,15 +1,16 @@
-#26.11.25
+# 26.11.25
 
-##Miðvikudagur Attendance: 
-###Í persónu:  <br>
+## Miðvikudagur Attendance: 
+### Í persónu:  <br>
 Ásettur mætingartími milli 8:30 - 9:00<br>
 
-###Remote: 
+### Remote: 
 
-##State of project: <br>
+---
 
+## State of project: <br>
 
-
+---
 
 Planið í dag: (priority)<br>
 Klára Class diagram, (A) <br>
@@ -32,11 +33,11 @@ Dagbók ()
 
 
 
-##State of group: <br>
+## State of group: <br>
 
 
 
 
-##Spurningar til TA:<br>
+## Spurningar til TA:<br>
 
 
