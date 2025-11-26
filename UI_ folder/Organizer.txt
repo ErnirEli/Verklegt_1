@@ -1,0 +1,12 @@
+Organizer
+---------------
+1. View Teams
+2. See Tournament
+3. See match schedule
+4. Create a player
+5. Create a Tournament
+6. Create a Club
+
+9. Change role
+---------------
+Enter number for action:

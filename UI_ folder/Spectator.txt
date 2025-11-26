@@ -1,0 +1,10 @@
+Spectator
+---------------
+1. View Teams
+2. See Tournament
+3. See match schedule
+4. See resaults
+
+9. Change role
+---------------
+Enter number for action:

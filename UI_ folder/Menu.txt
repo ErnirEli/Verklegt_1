@@ -1,0 +1,8 @@
+Choose your role
+-------------
+1. Spectator
+2. Captain
+3. Organizer
+
+9. Cancel
+-------------

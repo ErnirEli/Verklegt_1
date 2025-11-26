@@ -1,0 +1,13 @@
+Teams
+-------------
+Team 1
+-------------
+Team 2
+-------------
+...
+-------------
+Team n
+-------------
+enter team name 
+to view details.
+Enter "q" to go back

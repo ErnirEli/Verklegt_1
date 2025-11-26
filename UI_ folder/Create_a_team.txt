@@ -1,0 +1,8 @@
+Create a team
+---------------
+Team name:
+Url (optional):
+Team players:
+Captain:
+---------------
+Enter "q" to cancel

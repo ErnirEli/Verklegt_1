@@ -1,0 +1,11 @@
+Create a player
+--------------
+Name:
+Date of birth:
+Home address:
+Phone Number:
+Handle:
+Email:
+Url (Optional):
+--------------
+Enter "q" to cancel
