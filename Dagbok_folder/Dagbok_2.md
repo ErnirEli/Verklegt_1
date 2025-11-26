@@ -26,7 +26,7 @@ Klára requirements, (A)<br>
 Class diagram, (B) <br>
 Use cases, (B)<br>
 State diagram, (B)<br>
-Gera samning (A).
+Gera samning (A).<br>
 Dagbók fyrir daginn í dag, (A)<br> 
 
 ---
