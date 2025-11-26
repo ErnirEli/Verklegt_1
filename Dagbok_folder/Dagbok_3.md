@@ -16,8 +16,8 @@ Planið í dag: (priority)<br>
 Klára Use cases, (A)<br>
 State diagram, (A)<br>
 Dagbók fyrir daginn í dag, (A)<br> 
-Gera UI (A)<br>
-
+Gera UI layer(A)<br>
+Gera storage layer(A)<br>
 skila skýrslunni fyrir viku 1 (A)
 
 
