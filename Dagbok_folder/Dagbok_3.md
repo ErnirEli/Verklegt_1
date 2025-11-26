@@ -6,7 +6,7 @@
 Tilsettur mætingartími, **8:30-9:00**<br>
 Alexander, - <br> 
 Ernir ,  - <br>
-Ívar,  - <br>
+Ívar,  10:30 - <br>
 Nökkvi,  - <br>
 Olgeir, 9:10 - <br>
 
