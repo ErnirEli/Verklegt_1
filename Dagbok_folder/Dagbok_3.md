@@ -20,9 +20,9 @@ Engin vandamál kominn upp.
 
 ## To do
 Planið í dag: (priority)<br> 
-Class diagram, (B) <br>
-Use cases, (B)<br>
-State diagram, (B)<br>
+Class diagram, (A) <br>
+Use cases, (A)<br>
+State diagram, (A)<br>
 Dagbók fyrir daginn í dag, (A)<br>
 3 way diagram (A)<br>
 
@@ -34,7 +34,7 @@ Dagbók fyrir daginn í dag, (A)<br>
 <br>
 
 ### Olgeir
-<br>
+Klára state diagram<br>
 
 ### Alexander
 
@@ -50,7 +50,7 @@ Dagbók fyrir daginn í dag, (A)<br>
 
 
 ## State of group: <br>
-Samantekt: Í dag var k
+Samantekt: Í dag var klárað að gera state diagram, class idagram, dagbókina, use cases og 3 way diagram. Þetta gékk allt vel og við enduðum á því að skila svo inn skýsrlunni fyrir viku 1 af því að við erum allir að fara með tvíund til danmerkur 
 ## Spurningar til TA:<br>
 
 
