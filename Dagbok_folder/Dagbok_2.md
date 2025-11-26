@@ -81,6 +81,12 @@ State diagram: ekki byrjað.
 5. Nei<br>
 6. Bara lock in.<br>
 ### Alexander:<br>
+1. nei<br>
+2. já<br>
+3. já<br>
+4. 8:30-16:30<br>
+5. nei<br>
+6. nei<br>
 ### Ívar:<br>
 ### Nökkvi:<br>
 
