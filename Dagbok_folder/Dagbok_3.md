@@ -16,7 +16,7 @@ Enginn
 ---
 
 ## State of project:
-Engin vandamál kominn upp.
+Engin vandamál kominn upp. verkefnin: Rrquirements og git handbókin kláruð
 
 ## To do
 Planið í dag: (priority)<br> 
@@ -31,19 +31,19 @@ Dagbók fyrir daginn í dag, (A)<br>
 
 ## Verkefni Dagsins
 ### Ernir
-<br>
+klára 3 way diagram, class diagram og use cases. <br>
 
 ### Olgeir
-Klára state diagram<br>
+Klára state diagram og dagbók.<br>
 
 ### Alexander
-
+klára use cases og happy path. Skrifa texta í skýrsluna eins og inngang og fleira.
 
 ### Nökkvi
-
+Klára use cases og gera happy path. <br>
 
 ### Ívar
-
+Klára use cases.<br>
 
 ---
 
@@ -52,5 +52,5 @@ Klára state diagram<br>
 ## State of group: <br>
 Samantekt: Í dag var klárað að gera state diagram, class idagram, dagbókina, use cases og 3 way diagram. Þetta gékk allt vel og við enduðum á því að skila svo inn skýsrlunni fyrir viku 1 af því að við erum allir að fara með tvíund til danmerkur 
 ## Spurningar til TA:<br>
-
+Engar spurningar í dag.
 
