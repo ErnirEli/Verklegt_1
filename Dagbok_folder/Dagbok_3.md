@@ -1,42 +1,56 @@
 # 26.11.25
 
-## Miðvikudagur Attendance: 
-### Í persónu:  <br>
-Ásettur mætingartími milli 8:30 - 9:00<br>
+## Miðvikudagur Attendance:
 
-### Remote: 
+### Í persónu:
+Tilsettur mætingartími, **8:30-9:00**<br>
+Alexander, - <br> 
+Ernir ,  - <br>
+Ívar,  - <br>
+Nökkvi,  - <br>
+Olgeir, 9:10 - <br>
+
+### Remote:
+Enginn
+
+---
+
+## State of project:
+Engin vandamál kominn upp.
+
+## To do
+Planið í dag: (priority)<br> 
+Class diagram, (B) <br>
+Use cases, (B)<br>
+State diagram, (B)<br>
+Dagbók fyrir daginn í dag, (A)<br>
+3 way diagram (A)<br>
+
 
 ---
 
-## State of project: <br>
+## Verkefni Dagsins
+### Ernir
+<br>
+
+### Olgeir
+<br>
+
+### Alexander
+
+
+### Nökkvi
+
+
+### Ívar
+
 
 ---
 
-Planið í dag: (priority)<br>
-Klára Use cases, (A)<br>
-State diagram, (A)<br>
-Dagbók fyrir daginn í dag, (A)<br> 
-Gera UI layer(A)<br>
-Gera storage layer(A)<br>
-skila skýrslunni fyrir viku 1 (A)
-
-
-Klára Class diagram ()
-
-Klára Use cases (): 
-
-State diagram():
-
-Dagbók ()
-
----
 
 
 ## State of group: <br>
-
-
-
-
+Samantekt: Í dag var k
 ## Spurningar til TA:<br>
 
 
