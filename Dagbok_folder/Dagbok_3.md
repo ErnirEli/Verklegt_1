@@ -24,14 +24,15 @@ Class diagram, (A) <br>
 Use cases, (A)<br>
 State diagram, (A)<br>
 Dagbók fyrir daginn í dag, (A)<br>
-3 way diagram (A)<br>
+3 dimentional diagram (A)<br>
+Mölvun í dk(AA)<br> 
 
 
 ---
 
 ## Verkefni Dagsins
 ### Ernir
-klára 3 way diagram, class diagram og use cases. <br>
+klára 3 dimentional diagram, class diagram og use cases. <br>
 
 ### Olgeir
 Klára state diagram og dagbók.<br>
