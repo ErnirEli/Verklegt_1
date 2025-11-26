@@ -67,29 +67,40 @@ State diagram: ekki byrjað.
 
 ## Svör við samningsspurningum:<br>
 ### Olgeir:
-1. nei<br>
+1. Nei<br>
 2. já<br> 
-3. já<br>
+3. Já<br>
 4. 9:00 - 19:00<br>
-5. nei<br>
-6. nei<br>
+5. Nei<br>
+6. Nei<br>
 ### Ernir: 
-1. nei<br>
-2. já<br>
-3. já<br>
+1. Nei<br>
+2. Já<br>
+3. Já<br>
 4. 8:30-19:00<br>
 5. Nei<br>
 6. Bara lock in.<br>
 ### Alexander:<br>
-1. nei<br>
-2. já<br>
-3. já<br>
+1. Nei<br>
+2. Já<br>
+3. Já<br>
 4. 8:30-16:30<br>
-5. nei<br>
-6. nei<br>
+5. Nei<br>
+6. Nei<br>
 ### Ívar:<br>
+1.  Nei<br>
+2. Já<br>
+3. Já<br>
+4. 9:00-17<br>
+5. Nei<br>
+6. Nei<br>
 ### Nökkvi:<br>
-
+1. Nei <br>
+2. Já<br>
+3. Já<br>
+4. 930-17:00<br>
+5. Helst helgar<br>
+6. Nei<br>
 ---
 
 ## State of group: <br>
