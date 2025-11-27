@@ -5,7 +5,7 @@
 ### Í persónu:
 Tilsettur mætingartími, **8:30-9:00**<br>
 Alexander, - <br> 
-Ernir ,  - <br>
+Ernir , 8:50 - 23.00<br>
 Ívar,  10:30 - <br>
 Nökkvi,  - <br>
 Olgeir, 9:10 - <br>
@@ -32,7 +32,7 @@ Mölvun í dk(AA)<br>
 
 ## Verkefni Dagsins
 ### Ernir
-klára 3 dimentional diagram, class diagram og use cases. <br>
+klára 3 dimentional diagram, class diagram og use cases. Gera happy path.<br>
 
 ### Olgeir
 Klára state diagram og dagbók.<br>
