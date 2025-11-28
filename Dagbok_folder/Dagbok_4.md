@@ -1,0 +1,35 @@
+# 26.11.25
+
+## State of project:
+Engin vandamál kominn upp.
+
+## To do
+Planið í dag: (priority)<br> 
+Class diagram, (A) <br>
+Dagbók fyrir daginn í dag, (A)<br>
+3 way diagram (A)<br>
+
+---
+
+## Verkefni Dagsins
+### Ernir
+Kláraði 3 layer diagram, Model class diagram, Lagaði use cases, lagaði requirements og setti upp skýrsluna<br>
+
+### Olgeir
+
+
+### Alexander
+
+
+### Nökkvi
+
+
+### Ívar
+
+---
+
+## State of group: <br>
+
+## Spurningar til TA:<br>
+
+
