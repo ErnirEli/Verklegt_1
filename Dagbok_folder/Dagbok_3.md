@@ -4,7 +4,7 @@
 
 ### Í persónu:
 Tilsettur mætingartími, **8:30-9:00**<br>
-Alexander, - <br> 
+Alexander, 9:20 - 18:30 <br> 
 Ernir , 8:50 - 23.00<br>
 Ívar,  10:30 - <br>
 Nökkvi,  - <br>

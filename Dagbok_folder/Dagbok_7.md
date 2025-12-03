@@ -1,30 +1,48 @@
 # 2.12.25
 
+## Vika 2 | Þriðjudagur 
+
+### Attendance:
+Tilsettur mætingartími, **8:30-9:00**<br>
+### Onsite:
+Alexander, 8:50 - 13:00 <br> 
+Ívar,   - <br>
+Nökkvi, 9:05 - 13:00 <br>
+Olgeir, 9:15 - <br>
+### Remote:
+Ernir (Veikindi)
+
 ## State of project:
 Engin vandamál kominn upp.
 
 ## To do
-Fundur á Discord, ræða plan um framhald, hlutverk og annað
-
+Fundur á Discord, ræða plan um framhald, hlutverk og annað.
+Bæta hönnunarskýrslu meðal annars bæta við lokaorð og
+bæta við status á requirements (Implemented, in process, not started)
 ---
 
 ## Verkefni Dagsins
 ### Ernir
-<br>
+Fundur - Vinna í Database
 
 ### Olgeir
-
+Fundur
 
 ### Alexander
-
+Fundur
 
 ### Nökkvi
-
+Fundur
 
 ### Ívar
-
+Fundur
 ---
 
 ## State of group: <br>
+Í dag var tekinn fundur um skiptingu verka milli aðla í hópnum þar á meðal
+Hver tekur Database Layer, Logic Layer og UI, því verður skipt 1-2-2
+Í.Ö.O. Einn að vinna í Database Layer (Ernir), Tveir í Logic Layer (Alexander og Olgeir)
+og Tveir í UI (Nökkvi og Ívar)
 
 ## Spurningar til TA:<br>
+Aðalega spurningar um hönnunarskýrsluna hvað hefði mátt bæta og hvað er næsta skref
