@@ -7,7 +7,7 @@ Tilsettur mætingartími, **8:30-9:00**<br>
 ### Onsite:
 Alexander, 8:45 -  <br> 
 Ívar,   - <br>
-Nökkvi,  -  <br>
+Nökkvi, 9:00 -  <br>
 Olgeir, - <br>
 Ernir, - <br>
 ### Remote:
