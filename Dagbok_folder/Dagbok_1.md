@@ -1,5 +1,5 @@
 # 24.11.2025
-Dagbók - Vika 1
+
 
 Meðlimir
 Alexander Björnsson
