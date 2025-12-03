@@ -1,8 +1,7 @@
-from ___ import __
-from __ import __
-from __ import __
+from typing import List
+from data.data_api import DataAPI 
+from models.team import Team
 from models.exceptions import ValidationError
-
 
 
 # Requirements:
@@ -22,7 +21,7 @@ class TeamLogic:
     def __init__(self, data_api: DataAPI) -> None:
         self._data_api = data_api
     
-    def list_all_teams(self) -> list[Team]:
+    def list_all_teams(self) -> List[Team]:
         """Returns a list of all teams"""
         return self._data_api.read_all_teams()
 
@@ -32,7 +31,7 @@ class TeamLogic:
             raise ValidationError("Team needs to have a name")
         if not captain:
             raise ValidationError("Team needs to have a captain")
-        if name.strip() in ALL_TEAMS_DATA:
+        if name.strip() in team_list:
             raise ValidationError("Team already exists")
         if captain != str:
             raise ValidationError("Can't have more than one captain")
@@ -42,12 +41,12 @@ class TeamLogic:
         
 
     
-    def add_player(self, team: list, new_player: str):
+    def add_player(self, team: List[Team], new_player: List[Player]):
         team.append(new_player)
         self._data_api.save_team(team)
         return team
     
-    def remove_player(self, team: list, unwanted_player: str):
+    def remove_player(self, team: List[Team], unwanted_player: List[Player]):
         team.remove(unwanted_player)
         self._data_api.save_team(team)
         return team
