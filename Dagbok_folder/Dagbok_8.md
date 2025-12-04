@@ -25,7 +25,7 @@ Ernir, - <br>
 
 
 ### Olgeir
-
+vinna í logic layer
 
 ### Alexander
 
