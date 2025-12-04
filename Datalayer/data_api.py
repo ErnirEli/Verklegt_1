@@ -2,6 +2,7 @@ from Datalayer.player_data import PlayerFiles
 from Datalayer.team_data import TeamFiles
 from Datalayer.temporary import Player
 from Datalayer.temporary import Team
+
 class DataAPI():
     def __init__(self):
         self.player_files: PlayerFiles = PlayerFiles()
