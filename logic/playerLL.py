@@ -44,7 +44,7 @@ class PlayerLL:
                          new_address=None, new_link=None):
 
 
-        if not self._is_editor(role):
+        if not self.is_editor(role):
             return False, "Only captains or organizers can edit players."
 
         players = self.data.get_all_players()
