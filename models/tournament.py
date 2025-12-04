@@ -7,17 +7,19 @@ class Tournament:
     name: str
     venue: str
     contract: str 
-    contact_person: tuple 
+    contact_person_email:str,
+    contact_person_number:str
     team_list: list
        
     
-    def __init__(self, start_date: int, end_date: str, name: str, venue: str, contract: str, contact_person: tuple, team_list: list) -> None:
+    def __init__(self, start_date: int, end_date: str, name: str, venue: str, contract: str, contact_person_email:str, contact_person_number:str, team_list: list) -> None:
         self.start_date = start_date
         self.end_date = end_date
         self.name = name
         self.venue = venue
         self.contract = contract
-        self.contact_person = contact_person
+        self.contact_person_email = contact_person_email
+        self.contact_person_number = contact_person_number
         self.team_list = team_list
 
         self.teams: List[Team] = []

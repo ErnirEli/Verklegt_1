@@ -12,12 +12,9 @@
 # anyone can viwe tournaments per player
 
 from typing import List
-from datetime import datetime
 from data.data_api import DataAPI
 from models.tournament import Tournament
-from models.exceptions import ValidationError
 from logic.tournament_logic import Team
-from datetime import datetime
 
 
 class TournamentLogic:
@@ -30,39 +27,10 @@ class TournamentLogic:
     def list_all_tournaments(self)-> List[Tournament]:
         return self._data_api.read_all_Tournaments
 
-    def create_tournaments(self, start_date: int, end_date: int, name: str, venue: str, contract: str, contact_person: tuple, team_list: list) -> Tournament:
-        
-        #Check if start date is before end date
-        start_date_checker:datetime = datetime.strptime(start_date, "%d.%m.%y")
-        end_date_checker: datetime = datetime.strptime(end_date, "%d.%m.%y")
-        
-        self._validate_tournament(start_date_checker, end_date_checker, name, venue,contract, contact_person, team_list)
-        
-        tournament: Tournament = Tournament(start_date, end_date, name, venue, contract, contact_person)
+    def create_tournaments(self, start_date: int, end_date: int, name: str, venue: str, contract: str, contact_person_email:str, contact_person_number:str, team_list: list) -> Tournament:     
+        tournament: Tournament = Tournament(start_date, end_date, name, venue, contract, contact_person_email, contact_person_number, team_list)
         self._data_api.save_tournament(tournament)
         return tournament
-
-
-#check if everything is valid for a tournament to start
-    def _validate_tournament(self,start_date: datetime, end_date: datetime, name: str, venue: str, contract: str, contact_person:tuple, team_list: list ):
-        if not start_date or not end_date:
-            raise ValidationError("Tournament needs to have a start date and an end date")
-        if not name:
-            raise ValidationError("Tournament needs to have a name")
-        if start_date >= end_date:
-            raise ValidationError("Start date needs to be before the end date")
-        if not venue:
-            raise  ValidationError("Tournament needs a venue")
-        if not contract:
-            raise ValidationError("Tournament needs a contract")
-        if not contact_person:
-            raise ValidationError("Tournament needs a contact person)")
-        if len[team_list] < 16:
-            raise ValidationError("Tournament needs to have at least 16 teams")
-        
-    # def tournament_teams(self,):
-    #     tournament_list = []
-    #     tournament_list.append()
 
 
     def add_team(self, team: Team, tournament: Tournament):
@@ -70,7 +38,8 @@ class TournamentLogic:
         self._data_api.save_tournament(tournament)
         return tournament
     
-    def tournament_schedule(self):
+    def tournament_schedule(self, tournament: Tournament):
+
         return
     
     def tournament_results(self):

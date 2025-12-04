@@ -26,14 +26,6 @@ class TeamLogic:
 
 
     def create_team(self, name: str, captain: str, team_list: list, web_link: str = None, ASCII: str = None) -> Team:
-        if not name:
-            raise ValidationError("Team needs to have a name")
-        if not captain:
-            raise ValidationError("Team needs to have a captain")
-        if name.strip() in team_list:
-            raise ValidationError("Team already exists")
-        if not isinstance(captain, str):
-            raise ValidationError("Can't have more than one captain")
         team: Team = Team(name, captain, web_link, ASCII)
         self._data_api.save_team(team)
         return team
@@ -62,7 +54,7 @@ class TeamLogic:
             "name": team.name,
             "Captain": team.captain,
             "Players": team.players,
-            "Weblink": team.web_link,
+            "Web link": team.web_link,
             "ASCIIlogo": team.ASCII
         }
         
