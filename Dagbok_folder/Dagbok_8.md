@@ -8,8 +8,8 @@ Tilsettur mætingartími, **8:30-9:00**<br>
 Alexander, 8:45 -  <br> 
 Ívar, 12:40 - 17:10 <br>
 Nökkvi, 9:00 - 17:40 <br>
-Olgeir, - <br>
-Ernir, - <br>
+Olgeir, 9:30 - 18.30<br>
+Ernir, 9:15 - 18:30 <br>
 ### Remote:
 
 
