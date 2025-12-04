@@ -25,7 +25,7 @@ Ernir, - <br>
 
 
 ### Olgeir
-halda áfram í logic layer. <br>
+halda áfram í logic layer <br>
 
 ### Alexander
 
