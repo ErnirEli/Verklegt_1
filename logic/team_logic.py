@@ -1,7 +1,6 @@
 from typing import List
-from data.data_api import DataAPI 
+from Datalayer.data_api import DataAPI 
 from models.team import Team
-from models.exceptions import ValidationError
 from models.player import Player
 
 
@@ -22,24 +21,24 @@ class TeamLogic:
     
     def list_all_teams(self) -> List[Team]:
         """Returns a list of all teams"""
-        return self._data_api.read_all_teams()
+        return self._data_api.get_all_teams()
 
 
-    def create_team(self, name: str, captain: str, team_list: list, web_link: str = None, ASCII: str = None) -> Team:
+    def create_team(self, name: str, captain: str, web_link: str = None, ASCII: str = None) -> Team:
         team: Team = Team(name, captain, web_link, ASCII)
-        self._data_api.save_team(team)
+        self._data_api.add_team(team)
         return team
         
 
     
     def add_player(self, team: Team, new_player: Player):
         team.players.append(new_player)
-        self._data_api.save_team(team)
+        self._data_api.add_team(team)
         return team
     
     def remove_player(self, team: Team, unwanted_player: Player):
         team.players.remove(unwanted_player)
-        self._data_api.save_team(team)
+        self._data_api.add_team(team)
         return team
     
     def team_stats(self):
