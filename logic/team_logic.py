@@ -2,6 +2,7 @@ from typing import List
 from data.data_api import DataAPI 
 from models.team import Team
 from models.exceptions import ValidationError
+from models.player import Player
 
 
 # Requirements:
@@ -9,9 +10,7 @@ from models.exceptions import ValidationError
 # Organizer can register new teams
 # team data: name, captain, link to web page, ASCII logo.
 # captains add and or change players info
-class Team:
-    def __init__(self):
-        pass
+
 
 
 class TeamLogic:
@@ -26,14 +25,14 @@ class TeamLogic:
         return self._data_api.read_all_teams()
 
 
-    def create_team(self, name: str, captain: str, web_link: str = None, ASCII: str = None ) -> Team:
+    def create_team(self, name: str, captain: str, team_list: list, web_link: str = None, ASCII: str = None) -> Team:
         if not name:
             raise ValidationError("Team needs to have a name")
         if not captain:
             raise ValidationError("Team needs to have a captain")
         if name.strip() in team_list:
             raise ValidationError("Team already exists")
-        if captain != str:
+        if not isinstance(captain, str):
             raise ValidationError("Can't have more than one captain")
         team: Team = Team(name, captain, web_link, ASCII)
         self._data_api.save_team(team)
@@ -41,18 +40,30 @@ class TeamLogic:
         
 
     
-    def add_player(self, team: List[Team], new_player: List[Player]):
-        team.append(new_player)
+    def add_player(self, team: Team, new_player: Player):
+        team.players.append(new_player)
         self._data_api.save_team(team)
         return team
     
-    def remove_player(self, team: List[Team], unwanted_player: List[Player]):
-        team.remove(unwanted_player)
+    def remove_player(self, team: Team, unwanted_player: Player):
+        team.players.remove(unwanted_player)
         self._data_api.save_team(team)
         return team
     
     def team_stats(self):
+        #Tournaments won, second and third
+        #Tournemnts played in
+        
+        
         return
     
-    def team_info(self):
-        return
+    def team_info(self, team: Team):
+        return {
+            "name": team.name,
+            "Captain": team.captain,
+            "Players": team.players,
+            "Weblink": team.web_link,
+            "ASCIIlogo": team.ASCII
+        }
+        
+    

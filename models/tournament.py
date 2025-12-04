@@ -1,3 +1,6 @@
+from models.team import Team
+from typing import List
+
 class Tournament:
     start_date: int
     end_date: int
@@ -16,6 +19,8 @@ class Tournament:
         self.contract = contract
         self.contact_person = contact_person
         self.team_list = team_list
+
+        self.teams: List[Team] = []
         
     def __str__(self) ->str:
         return(
