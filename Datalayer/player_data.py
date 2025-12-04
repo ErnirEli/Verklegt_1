@@ -3,6 +3,7 @@ from Datalayer.temporary import Player
 from Datalayer.team_data import TeamFiles
 from Datalayer.temporary import Team
 #skdmflskmd
+
 class PlayerFiles():
     FILE_NAME: str = "Verklegt_1\Datalayer\player_file.csv"
 
