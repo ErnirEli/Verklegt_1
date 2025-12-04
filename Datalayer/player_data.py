@@ -1,52 +1,46 @@
 import csv
-from data_API import Player
-from read import TeamFiles
-from data_API import Team
+from Datalayer.temporary import Player
+from Datalayer.team_data import TeamFiles
+from Datalayer.temporary import Team
 
 class PlayerFiles():
+    FILE_NAME: str = "Verklegt_1\Datalayer\player_file.csv"
 
-    def write_player(players: list):
-        with open("player_file.csv", "w", encoding = "utf-8", newline = "") as file:
+    def write_player(self, players: list):
+        with open(self.FILE_NAME, "w", encoding = "utf-8", newline = "") as file:
             for player in players:
-                player: list = player.player_to_csv()
+                player: Player
+                csv_player: list = player.player_to_csv()
                 file_writer = csv.writer(file)
-                file_writer.writerow(player)
+                file_writer.writerow(csv_player)
 
-    def add_player(players: list):
-        with open("player_file.csv", "a", encoding = "utf-8", newline = "") as file:
-            for player in players:
-                player: list = player.player_to_csv()
-                file_writer = csv.writer(file)
-                file_writer.writerow(player)
+    def add_player(self, player: Player):
+        with open(self.FILE_NAME, "a", encoding = "utf-8", newline = "") as file:
+            csv_player: list = player.player_to_csv()
+            file_writer = csv.writer(file)
+            file_writer.writerow(csv_player)
 
-    def read_player():
-        with open("player_file.csv", "r", encoding = "utf-8", newline = "") as file:
-            file_reader = csv.reader(file)
-            players = []
-            for line in file_reader:
-                print(line)
-                player: Player = Player(line[0], line[1], line[2])
-                players.append(player)
-            return players
+    def read_player(self):
+        try:
+            with open(self.FILE_NAME, "r", encoding = "utf-8", newline = "") as file:
+                file_reader = csv.reader(file)
+                players: list = []
+                for player_info in file_reader:
+                    player_info: list
+                    name: str = player_info[0]
+                    birthdate: str = player_info[1]
+                    home: str = player_info[2]
+                    phone: str = int(player_info[3])
+                    mail: str = player_info[4]
+                    link: str = player_info[5]
+                    handle: str = player_info[6]
+                    team: str = player_info[7]
+                    tournaments: int = int(player_info[8])
+                    wins: int = int(player_info[9])
+                    player: Player = Player(name, birthdate, home, phone, mail, link, handle, team, tournaments, wins)
+                    players.append(player)
+                return players
             
-
-
-
-k = [["Ernir Elí Ellertsson", 21, "Noobmaster69", 
-    3, 1],
-    ["Hafþór Huginn", 19, "NPC", 
-    9, 0]]
-Ernir = []
-for x in k:
-    Ernir.append(Player(x[0], x[1], x[2]))
-
-PlayerFiles.write_player(Ernir)
-
-leikmenn = PlayerFiles.read_player()
-
-Birna = Team("GoonSquad", [leikmenn[0].handle, leikmenn[1].handle])
-
-TeamFiles.write_team([Birna])
-
-TeamFiles.read_team()
-
+        except FileNotFoundError:
+            return []
+                
