@@ -29,14 +29,17 @@ class ValidateTournament:
     def validate_name(self, name: str):
         if not name:
             return (False, "Tournament needs to have a name")
+        return True,
 
     def validate_venue(self, venue: str):
         if not venue:
             return (False, "Tournament needs a venue")
+        return True,
     
     def validate_contract(self, contract: str):
         if not contract:
             return (False, "Tournament needs a contract")
+        return True,
     
     def validate_contact_person(self, email: str, number: str):
         if not email:
