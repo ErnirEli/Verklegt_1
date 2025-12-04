@@ -5,6 +5,12 @@ class ValidateTournament:
     def __init__(self):
             pass
     
+
+    def is_organizer(self):
+         #Eftir að implementa
+         return
+
+
     def validate_start_date_and_end_date(self, start_date:int, end_date:int):
         if not start_date or not end_date:
             return (False, "Tournament needs to have a start date and an end date")
@@ -46,7 +52,7 @@ class ValidateTournament:
 
     def validate_number_of_teams(self):
         team_list: list = DataAPI.get_all_teams
-               
+
         if len[team_list] < 16:
             return (False, "Tournament needs to have at least 16 teams")
         return True,

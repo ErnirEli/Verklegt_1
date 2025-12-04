@@ -2,17 +2,17 @@ from models.team import Team
 from typing import List
 
 class Tournament:
-    start_date: int
-    end_date: int
+    start_date: str
+    end_date: str
     name: str
     venue: str
     contract: str 
-    contact_person_email:str,
+    contact_person_email:str
     contact_person_number:str
     team_list: list
        
     
-    def __init__(self, start_date: int, end_date: str, name: str, venue: str, contract: str, contact_person_email:str, contact_person_number:str, team_list: list) -> None:
+    def __init__(self, start_date: str, end_date: str, name: str, venue: str, contract: str, contact_person_email:str, contact_person_number:str, team_list: list) -> None:
         self.start_date = start_date
         self.end_date = end_date
         self.name = name

@@ -1,8 +1,8 @@
 
-from player import Player
+from models.player import Player
 
 
-class PlayerLL:
+class PlayerLogic:
 
     def __init__(self, data_wrapper):
         self._data = data_wrapper

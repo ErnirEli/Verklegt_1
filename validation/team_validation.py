@@ -4,6 +4,10 @@ class ValidateTeam:
     def __init__(self):
         pass
     
+    def is_captain_or_organizer(self):
+        #Á eftir að implementa
+        return
+
     def name_validation(self, name: str):
         if not name:
             return (False, "Team needs to have a name")
