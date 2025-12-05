@@ -25,7 +25,7 @@ class ValidatePlayer:
     def validate_name(self, name:str):
         if not name or name.strip() == "":
             return (False, "PLayer needs to have a name")
-        return True
+        return True,
     
     def validate_age(self, age: str):
         try:
@@ -34,7 +34,7 @@ class ValidatePlayer:
             return (False, "Age must be a number")
         if age < 18 or age > 65: #-----------------------------------------> Ætlum við að hafa age limit??  bæði of amall of ungur?
             return (False, "Player is too young or old to participate")
-        return True
+        return True,
 
     def validate_home_adress(self, adress: str):
         if not adress or adress.strip() == "":
@@ -54,7 +54,7 @@ class ValidatePlayer:
             return (False, "Player needs to have a link")
         if link.startswith("https://") == False:
             return (False, "Link is not valid try again")
-        return True
+        return True,
         #eitthvað fleira??
 
     def validate_handle(self, handle: str):
@@ -66,5 +66,5 @@ class ValidatePlayer:
         for line in players:
             if line.handle == handle:
                 return (False, "Player handle needs to be unique")
-        return True, ""
+        return True,
             
