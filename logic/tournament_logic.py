@@ -1,16 +1,3 @@
-#Requirements:
-# Organizer creates the tournaments
-# Stored inof on tournaaments: 
-# start date, 
-# end date,
-# unique name,
-# venue
-# contract,
-# contact person (email or phone)
-
-# Anyone can view tournaments per team
-# anyone can viwe tournaments per player
-
 from typing import List
 from Datalayer.data_api import DataAPI
 from models.tournament import Tournament

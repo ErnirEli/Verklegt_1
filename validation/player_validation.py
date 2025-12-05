@@ -49,7 +49,7 @@ class ValidatePlayer:
         #eitthvað fleira??
 
     def validate_handle(self, handle: str):
-         handle_list = DataAPI.get_all_handles()
+         handle_list = DataAPI.get_all_players()
          if handle in handle_list:
              return (False, "Player handle needs to be unique")
          if not handle:
