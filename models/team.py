@@ -17,8 +17,9 @@ class Team:
 
     #Ekki viss um að þurfi
 
-    #def to_list(self) -> list[str, str]:
-     #   return [self.name, self.captain, self.web_link, self.ASCII]
+    
+    def team_to_csv(self) -> list:
+        return [self.name, self.captain, self.web_link, self.ASCII]
     
 
 
