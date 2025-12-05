@@ -7,18 +7,26 @@ class Team:
     web_link: str
     ASCII = str
 
-    def __init__(self,name: str, captain: str, web_link: str = None, ASCII: str = None):
+    def __init__(self,name: str, captain: str, web_link: str = None, ASCII: str = None, tournaments: int = 0, wins: int = 0):
         self.name = name
         self.captain =  captain
         self.web_link = web_link
         self.ASCII = ASCII
+        self.tournament = tournaments
+        self.wins = wins
 
         self.players: List[Player] = []
 
     #Ekki viss um að þurfi
 
+<<<<<<< Updated upstream
     #def to_list(self) -> list[str, str]:
      #   return [self.name, self.captain, self.web_link, self.ASCII]
+=======
+    
+    def team_to_csv(self) -> list:
+        return [self.name, self.captain, self.web_link, self.ASCII, self.tournament, self.wins]
+>>>>>>> Stashed changes
     
 
 
@@ -29,6 +37,8 @@ class Team:
             f"Team captain: [{self.captain}] "
             f"Team's link to web page [{self.web_link}] "
             f"Team's ASCII logo: [{self.ASCII}] "
+            f"Team has played in {self.tournament} tournaments"
+            f"Team has won {self.wins} tournaments"
         )
 
 
