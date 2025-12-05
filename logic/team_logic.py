@@ -26,7 +26,11 @@ class TeamLogic:
 
     def create_team(self, name: str, captain: str, web_link: str = None, ASCII: str = None) -> Team:
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         '''creates a team only if all validation condition have been met'''
+=======
+        '''creaetes a team only if all validation condition have been met'''
+>>>>>>> Stashed changes
 =======
         '''creaetes a team only if all validation condition have been met'''
 >>>>>>> Stashed changes
@@ -43,11 +47,14 @@ class TeamLogic:
     
     
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     def remove_player(self, unwanted_player: Player):
         '''Removes a selected player out of selected team'''
         unwanted_player.team_name = None
         return unwanted_player
     
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
    
