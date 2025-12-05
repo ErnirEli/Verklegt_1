@@ -12,6 +12,8 @@ from Datalayer.data_api import DataAPI
 
 class ValidatePlayer:
 
+    
+
     def __init__(self):
         pass
 

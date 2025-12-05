@@ -13,10 +13,11 @@ class PlayerLogic:
     def is_editor(self, role):
         return role == "organizer" or role == "captain"
 
-    def find_player(self, players, handle):
-        for p in players:
-            if p == handle:
-                return p
+    def find_player(self, handle):
+        players = DataAPI.get_all_players()
+        for line in players:
+            if handle in line:
+                return line
         return None
 
 
@@ -27,8 +28,6 @@ class PlayerLogic:
                             phone, email, link, team_name, tournaments, wins)
         DataAPI.add_player(new_player)
         
-
-       ##TODO somehow save this to database
 
         return "Player created."
 
@@ -56,8 +55,8 @@ class PlayerLogic:
 
     def player_info(self, handle, role=None, private=False):
         
-        players = self._data.get_all_players()
-        player = DataAPI.find_player(players, handle)
+        players = DataAPI.get_all_players()
+        player = self.find_player(players, handle)
         if player is None:
             return None
 
