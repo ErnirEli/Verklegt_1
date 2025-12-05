@@ -8,7 +8,7 @@ Tilsettur mætingartími, **8:30-9:00**<br>
 Alexander, 8:20 -  <br> 
 Ívar,   - <br>
 Nökkvi, -  <br>
-Olgeir, - <br>
+Olgeir, 10:00- 16:00<br>
 Ernir, - <br>
 ### Remote:
 
@@ -25,7 +25,7 @@ Ernir, - <br>
 
 
 ### Olgeir
-<br>
+Halda áfram í Logic layer<br>
 
 ### Alexander
 

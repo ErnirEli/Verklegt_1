@@ -1,5 +1,7 @@
 import csv
 from models.player import Player
+from Datalayer.team_data import TeamFiles
+from models.team import Team
 
 class PlayerFiles():
     FILE_NAME: str = "Datalayer\player_file.csv"

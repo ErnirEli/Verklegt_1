@@ -1,11 +1,13 @@
 from typing import List
 from logic.team_logic import TeamLogic
 from models.team import Team
-from data.data_api import DataAPI
+from Datalayer.data_api import DataAPI
 from logic.tournament_logic import TournamentLogic
 from logic.match_logic import MatchLogic
 from models.tournament  import Tournament
 from models.match import Match
+from logic.club_logic import ClubLogic
+from models.club import Club
 
 
 class logicAPI:
@@ -15,6 +17,7 @@ class logicAPI:
         self._team_logic = TeamLogic(data_api)
         self._tournament_logic = TournamentLogic(data_api)
         self._match_logic = MatchLogic(data_api)
+        self._club_logic = ClubLogic(data_api)
 #Teams
     def list_teams(self) -> list[Team]:
         return self._team_logic.list_all_teams()
@@ -25,7 +28,7 @@ class logicAPI:
 #Tournaments
 
     def list_tournaments(self) -> None:
-        return self.tournament_logic.list_all_tournaments()
+        return self._tournament_logic.list_all_tournaments()
     
     def create_tournament(self, start_date: int, end_date: int, name: str, venue: str, contract: str, contact_person: tuple, team_list: list) -> List[Tournament]:
         return self._tournament_logic.create_tournaments(start_date, end_date, name, venue, contract, contact_person, team_list)
@@ -33,5 +36,13 @@ class logicAPI:
     
     def list_matches(self) -> None:
         return self._match_logic.list_all_matches()
-    def create_match(self,teams: tuple):
-        return self._match_logic.create_match(teams)
+    # def create_match(self,teams: tuple):
+    #     return self._match_logic.create_match(teams)
+    
+#Clubs
+
+    def list_clubs(self) -> None:
+        return self._club_logic.list_all_clubs()
+    
+    def create_club(self, name: str, colors: str, hometown: str, country: str) -> List:
+        return self._club_logic.create_club(name, colors, hometown, country)

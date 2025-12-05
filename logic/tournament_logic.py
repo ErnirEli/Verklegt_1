@@ -1,16 +1,3 @@
-#Requirements:
-# Organizer creates the tournaments
-# Stored inof on tournaaments: 
-# start date, 
-# end date,
-# unique name,
-# venue
-# contract,
-# contact person (email or phone)
-
-# Anyone can view tournaments per team
-# anyone can viwe tournaments per player
-
 from typing import List
 from Datalayer.data_api import DataAPI
 from models.tournament import Tournament
@@ -34,15 +21,16 @@ class TournamentLogic:
 
 
     def add_team(self, team: Team, tournament: Tournament):
-        tournament.teams.append(team)
-        self._data_api.save_tournament(tournament)
-        return tournament
-    
-    def tournament_schedule(self, tournament: Tournament, star_date: str, end_date: str):
+        team.Tournament = tournament.name
+        return team
+        
+        
+    def tournament_schedule(self):
         #torunament name    start date      end date
+        tournaments = self.get_all_tournaments()
+        return tournaments
 
 
-        return
     
     def tournament_results(self):
         return
