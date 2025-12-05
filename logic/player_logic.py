@@ -36,7 +36,7 @@ class PlayerLogic:
                          new_address=None, new_link=None):
 
 
-        players = self.data.get_all_players()
+        players = self._data.get_all_players()
         player = self.find_player(players, handle)
         if player is None:
             return False, "Player not found."
