@@ -1,7 +1,7 @@
 from Datalayer.player_data import PlayerFiles
 from Datalayer.team_data import TeamFiles
-from Datalayer.temporary import Player
-from Datalayer.temporary import Team
+from models.player import Player
+from models.team import Team
 
 class DataAPI():
     def __init__(self):

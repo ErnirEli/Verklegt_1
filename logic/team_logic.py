@@ -25,7 +25,7 @@ class TeamLogic:
 
 
     def create_team(self, name: str, captain: str, web_link: str = None, ASCII: str = None) -> Team:
-        '''creaetes a team only if all validation condition have been met'''
+        '''creates a team only if all validation condition have been met'''
         team: Team = Team(name, captain, web_link, ASCII)
         self._data_api.add_team(team)
         return team
@@ -33,17 +33,19 @@ class TeamLogic:
 
     
     def add_player(self, team: Team, new_player: Player):
-        team.players.append(new_player)
-        self._data_api.add_team(team)
-        return team
+        '''Adds a selected player to selected team'''
+        new_player.team_name = team.name
+        return new_player
     
-    def remove_player(self, team: Team, unwanted_player: Player):
-        team.players.remove(unwanted_player)
-        self._data_api.add_team(team)
-        return team
+    
+    def remove_player(self, unwanted_player: Player):
+        '''Removes a selected player out of selected team'''
+        unwanted_player.team_name = None
+        return unwanted_player
     
    
     def team_info(self, team: Team):
+         '''Gives all info on team'''
 <<<<<<< Updated upstream
         return {
             "name": team.name,
@@ -62,6 +64,7 @@ class TeamLogic:
         return (
             f"name: {team.name} \n"
             f"Captain: {team.captain} \n"
+            f"Club: {team.club}"
             f"Players: {team_players} \n"
             f"Web link: {team.web_link} \n"
             f"ASCIIlogo: {team.ASCII} \n"

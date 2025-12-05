@@ -30,6 +30,6 @@ class Tournament:
             f"The tournament ends:[{self.end_date}]"
             f"The tournament name is [{self.name}]"
             f"The tournament is at [{self.venue}]"
-            f"If you need more information contact: [{self.contact_person}]"
+            f"If you need more information contact: [{self.contact_person_email}, phone: {self.contact_person_number}]"
             f"The teams in the tournament:[{self.team_list}]"
         )

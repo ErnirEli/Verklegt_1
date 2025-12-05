@@ -5,7 +5,7 @@
 
 
 from typing import List
-from data.data_api import DataAPI
+from Datalayer.data_api import DataAPI
 from models.match import Match
 
 
@@ -23,11 +23,8 @@ class MatchLogic:
 
         
     def create_match(self, tournament_teams: list)-> Match:
-        for i in tournament_teams:
-            match: Match = Match(tournament_teams[i], tournament_teams[-i])
-        list_of_matches = []
-        list_of_matches.append(match)
-        return list_of_matches
+        
+        return 
     
 
     def game_results(self):
