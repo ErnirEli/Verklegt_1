@@ -1,14 +1,14 @@
-# 4.12.25
+# 5.12.25
 
-## Vika 2 | Fimmtudagur
+## Vika 2 | Föstudagur
 
 ### Attendance:
 Tilsettur mætingartími, **8:30-9:00**<br>
 ### Onsite:
-Alexander,  -  <br> 
+Alexander, 8:20 -  <br> 
 Ívar,   - <br>
 Nökkvi, -  <br>
-Olgeir, 9:20 - <br>
+Olgeir, - <br>
 Ernir, - <br>
 ### Remote:
 
@@ -25,7 +25,7 @@ Ernir, - <br>
 
 
 ### Olgeir
-halda áfram í logic layer <br>
+<br>
 
 ### Alexander
 
@@ -41,4 +41,3 @@ halda áfram í logic layer <br>
 
 
 ## Spurningar til TA:<br>
-
