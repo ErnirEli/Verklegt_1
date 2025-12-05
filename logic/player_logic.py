@@ -20,35 +20,22 @@ class PlayerLogic:
         return None
 
 
-    def create_player(self, role, name, dob, address,
-                      phone, email, link, handle, team_name):
+    def create_player(self, name, dob, address,
+                      phone, email, link, handle, team_name, tournaments, wins):
 
-        if not self.is_editor(role):
-            return False, "Only captains or organizers can create players."
-
-        if not self.data.team_exists(team_name):
-            return "Team does not exist"
-
-        if handle.strip() == "" or name.strip() == "":
-            return "Name and handle cannot be empty."
-
-        ##TODO implement Handle checker here
-
-        players = self._data.get_all_players()
         new_player = Player(handle, name, dob, address,
-                            phone, email, link, team_name)
-        players.append(new_player)
+                            phone, email, link, team_name, tournaments, wins)
+        DataAPI.add_player(new_player)
+        
+
        ##TODO somehow save this to database
 
         return "Player created."
 
-    def edit_player_info(self, role, handle,
+    def edit_player_info(self, handle,
                          new_phone=None, new_email=None,
                          new_address=None, new_link=None):
 
-
-        if not self.is_editor(role):
-            return False, "Only captains or organizers can edit players."
 
         players = self.data.get_all_players()
         player = self.find_player(players, handle)
@@ -64,13 +51,13 @@ class PlayerLogic:
         if new_link is not None:
             player.link = new_link
 
-        self._data.save_all_players(players)
+        DataAPI.rewrite_players(players)
         return True, "Player info updated."
 
     def player_info(self, handle, role=None, private=False):
         
         players = self._data.get_all_players()
-        player = self.find_player(players, handle)
+        player = DataAPI.find_player(players, handle)
         if player is None:
             return None
 
@@ -96,7 +83,7 @@ class PlayerLogic:
 
     def list_players_public(self):
 
-        players = self._data.get_all_players()
+        players = DataAPI.get_all_players()
         result = []
         for p in players:
             result.append({

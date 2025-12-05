@@ -1,10 +1,8 @@
 import csv
-from Datalayer.temporary import Player
-from Datalayer.team_data import TeamFiles
-from Datalayer.temporary import Team
+from models.player import Player
 
 class PlayerFiles():
-    FILE_NAME: str = "Verklegt_1\Datalayer\player_file.csv"
+    FILE_NAME: str = "Datalayer\player_file.csv"
 
     def write_player(self, players: list):
         with open(self.FILE_NAME, "w", encoding = "utf-8", newline = "") as file:
