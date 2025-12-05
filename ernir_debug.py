@@ -9,6 +9,7 @@ print(""
 "4. Bæta við liði\n"
 "5. Sýna öll lið\n"
 "6. Breyta einu liði\n"
+"7. Sýna alla leiki\n"
 )
 
 action = int(input())
@@ -66,7 +67,7 @@ if action == 4:
 if action == 5:
     teams = files.get_all_teams()
     for team in teams:
-        print(team)
+        print(team.name)
 
 if action == 6:
     teams = files.get_all_teams()
@@ -80,7 +81,10 @@ if action == 6:
 
     files.rewrite_teams(teams)
 
-
+if action == 7:
+    matches = files.show_matches()
+    for match in matches:
+        print(match)
 
 
 
