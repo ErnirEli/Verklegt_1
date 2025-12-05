@@ -1,8 +1,11 @@
 
 from models.player import Player
+from Datalayer.data_api import DataAPI
 
 
 class PlayerLogic:
+
+    _data_api = DataAPI
 
     def __init__(self, data_wrapper):
         self._data = data_wrapper
@@ -37,7 +40,7 @@ class PlayerLogic:
         players.append(new_player)
        ##TODO somehow save this to database
 
-        return True, "Player created."
+        return "Player created."
 
     def edit_player_info(self, role, handle,
                          new_phone=None, new_email=None,
