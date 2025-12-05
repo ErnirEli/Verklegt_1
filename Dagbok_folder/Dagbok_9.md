@@ -9,12 +9,12 @@ Alexander,  -  <br>
 Ívar,   - <br>
 Nökkvi, -  <br>
 Olgeir, 9:20 - <br>
-Ernir, - <br>
+Ernir, 9:00-16:40, 18:00-0:00 <br>
 ### Remote:
 
 
 ## State of project:
-
+Erum á ágætu róli
 
 ## To do
 
