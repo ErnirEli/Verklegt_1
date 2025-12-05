@@ -5,18 +5,16 @@ from Datalayer.data_api import DataAPI
 
 class PlayerLogic:
 
-    _data_api = DataAPI
 
-    def __init__(self, data_wrapper):
+    def __init__(self, data_wrapper: DataAPI):
         self._data = data_wrapper
 
     def is_editor(self, role):
         return role == "organizer" or role == "captain"
 
-    def find_player(self, handle):
-        players = DataAPI.get_all_players()
+    def find_player(self, players, handle):
         for line in players:
-            if handle in line:
+            if line.handle == handle:
                 return line
         return None
 
@@ -26,7 +24,7 @@ class PlayerLogic:
 
         new_player = Player(handle, name, dob, address,
                             phone, email, link, team_name, tournaments, wins)
-        DataAPI.add_player(new_player)
+        self._data.add_player(new_player)
         
 
         return "Player created."
@@ -39,7 +37,7 @@ class PlayerLogic:
         players = self._data.get_all_players()
         player = self.find_player(players, handle)
         if player is None:
-            return False, "Player not found."
+            return "Player not found."
 
         if new_phone is not None:
             player.phone = new_phone
@@ -50,12 +48,12 @@ class PlayerLogic:
         if new_link is not None:
             player.link = new_link
 
-        DataAPI.rewrite_players(players)
+        self._data.rewrite_players(players)
         return True, "Player info updated."
 
     def player_info(self, handle, role=None, private=False):
         
-        players = DataAPI.get_all_players()
+        players = self._data.get_all_players()
         player = self.find_player(players, handle)
         if player is None:
             return None
@@ -82,7 +80,7 @@ class PlayerLogic:
 
     def list_players_public(self):
 
-        players = DataAPI.get_all_players()
+        players = self._data.get_all_players()
         result = []
         for p in players:
             result.append({
