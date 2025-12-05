@@ -1,16 +1,16 @@
-SegFault Spartans,SegFaultSam,https://example.com/segfault_spartans,ASCII_SPARTAN_HELMET
-NullPointer Ninjas,NullPointerNina,https://example.com/nullpointer_ninjas,ASCII_NINJA_SHADOW
-OffByOne Offense,OffByOneOlaf,https://example.com/offbyone_offense,ASCII_FENCEPOST_BUG
-Pepsi Max Punishers,PepsiMaxPalli,https://example.com/pepsimax_punishers,ASCII_PEPSI_CAN
-Chuck Norris Fan Club,RoundhouseRik,https://example.com/chuck_fan_club,ASCII_ROUNDHOUSE_KICK
-IndentationError Invaders,IndentationErrorIna,https://example.com/indent_invaders,ASCII_INDENT_ICON
-Assembly Avengers,MovAxMaria,https://example.com/assembly_avengers,ASCII_OPCODES
-Datalab Dominators,BitTwiddlerBjarni,https://example.com/datalab_dominators,ASCII_BITMASK
-Bomblab Bombers,BombDefusalDori,https://example.com/bomblab_bombers,ASCII_BOMB_WIRE
-StackOverflow Stackers,CopyPasteKalli,https://example.com/stackoverflow_stackers,ASCII_STACK_FRAME
-CacheHit Crusaders,L1CacheLara,https://example.com/cachehit_crusaders,ASCII_CACHE_LINES
-WhileTrue Tryhards,WhileTrueWendy,https://example.com/whiletrue_tryhards,ASCII_LOOP_ICON
-Segmentation Foul,SegmentationFoulStebbi,https://example.com/segmentation_foul,ASCII_RED_CARD
-RaceCondition Racers,RaceConditionRagnhildur,https://example.com/racecondition_racers,ASCII_CHECKERED_FLAG
-Undefined Behavior United,UBUnitedUlfar,https://example.com/ub_united,ASCII_GLITCHED_LOGO
-Pepsi Max Overflow,PepsiMaxOverflowPetra,https://example.com/pepsimax_overflow,ASCII_OVERFLOWING_CAN
+SegFault Spartans,SegFaultSam,KA Gaming,https://example.com/segfault_spartans,ASCII_SPARTAN_HELMET,1,0
+NullPointer Ninjas,NullPointerNina,Barcelona,https://example.com/nullpointer_ninjas,ASCII_NINJA_SHADOW1,0
+OffByOne Offense,OffByOneOlaf,Liverpool,https://example.com/offbyone_offense,ASCII_FENCEPOST_BUG,1,0
+Pepsi Max Punishers,PepsiMaxPalli,KA Gaming,https://example.com/pepsimax_punishers,ASCII_PEPSI_CAN,1,0
+Chuck Norris Fan Club,RoundhouseRik,Liverpool,https://example.com/chuck_fan_club,ASCII_ROUNDHOUSE_KICK,1,1
+IndentationError Invaders,IndentationErrorIna,Liverpool,https://example.com/indent_invaders,ASCII_INDENT_ICON,1,0
+Assembly Avengers,MovAxMaria,,https://example.com/assembly_avengers,ASCII_OPCODES,1,0
+Datalab Dominators,BitTwiddlerBjarni,,https://example.com/datalab_dominators,ASCII_BITMASK,1,0
+Bomblab Bombers,BombDefusalDori,,https://example.com/bomblab_bombers,ASCII_BOMB_WIRE,1,0
+StackOverflow Stackers,CopyPasteKalli,Barcelona,https://example.com/stackoverflow_stackers,ASCII_STACK_FRAME,1,0
+CacheHit Crusaders,L1CacheLara,,https://example.com/cachehit_crusaders,ASCII_CACHE_LINES,1,0
+WhileTrue Tryhards,WhileTrueWendy,,https://example.com/whiletrue_tryhards,ASCII_LOOP_ICON,1,0
+Segmentation Foul,SegmentationFoulStebbi,KA Gaming,https://example.com/segmentation_foul,ASCII_RED_CARD,1,0
+RaceCondition Racers,RaceConditionRagnhildur,,https://example.com/racecondition_racers,ASCII_CHECKERED_FLAG,1,0
+Undefined Behavior United,UBUnitedUlfar,,https://example.com/ub_united,ASCII_GLITCHED_LOGO,1,0
+Pepsi Max Overflow,PepsiMaxOverflowPetra,KA Gaming,https://example.com/pepsimax_overflow,ASCII_OVERFLOWING_CAN,1,0
