@@ -12,7 +12,7 @@
 # anyone can viwe tournaments per player
 
 from typing import List
-from data.data_api import DataAPI
+from Datalayer.data_api import DataAPI
 from models.tournament import Tournament
 from logic.tournament_logic import Team
 
