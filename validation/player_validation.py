@@ -7,7 +7,7 @@
 # handle
 # team
 
-from data.data_api import DataAPI
+from Datalayer.data_api import DataAPI
 
 
 class ValidatePlayer:

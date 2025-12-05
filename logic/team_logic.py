@@ -49,12 +49,18 @@ class TeamLogic:
         return
     
     def team_info(self, team: Team):
-        return {
-            "name": team.name,
-            "Captain": team.captain,
-            "Players": team.players,
-            "Web link": team.web_link,
-            "ASCIIlogo": team.ASCII
-        }
+        players = DataAPI().get_all_players()
+        team_players = []
+        for player in players:
+            if player.team_name == team.name:
+                team_players.append(player.handle)
+        
+        return (
+            f"name: {team.name} \n"
+            f"Captain: {team.captain} \n"
+            f"Players: {team_players} \n"
+            f"Web link: {team.web_link} \n"
+            f"ASCIIlogo: {team.ASCII}"
+        )
         
     
