@@ -1,16 +1,53 @@
-SegFault Spartans,SegFaultSam,KA Gaming,https://example.com/segfault_spartans,ASCII_SPARTAN_HELMET,1,0
-NullPointer Ninjas,NullPointerNina,Barcelona,https://example.com/nullpointer_ninjas,ASCII_NINJA_SHADOW1,0
-OffByOne Offense,OffByOneOlaf,Liverpool,https://example.com/offbyone_offense,ASCII_FENCEPOST_BUG,1,0
-Pepsi Max Punishers,PepsiMaxPalli,KA Gaming,https://example.com/pepsimax_punishers,ASCII_PEPSI_CAN,1,0
-Chuck Norris Fan Club,RoundhouseRik,Liverpool,https://example.com/chuck_fan_club,ASCII_ROUNDHOUSE_KICK,1,1
-IndentationError Invaders,IndentationErrorIna,Liverpool,https://example.com/indent_invaders,ASCII_INDENT_ICON,1,0
-Assembly Avengers,MovAxMaria,,https://example.com/assembly_avengers,ASCII_OPCODES,1,0
-Datalab Dominators,BitTwiddlerBjarni,,https://example.com/datalab_dominators,ASCII_BITMASK,1,0
-Bomblab Bombers,BombDefusalDori,,https://example.com/bomblab_bombers,ASCII_BOMB_WIRE,1,0
-StackOverflow Stackers,CopyPasteKalli,Barcelona,https://example.com/stackoverflow_stackers,ASCII_STACK_FRAME,1,0
-CacheHit Crusaders,L1CacheLara,,https://example.com/cachehit_crusaders,ASCII_CACHE_LINES,1,0
-WhileTrue Tryhards,WhileTrueWendy,,https://example.com/whiletrue_tryhards,ASCII_LOOP_ICON,1,0
-Segmentation Foul,SegmentationFoulStebbi,KA Gaming,https://example.com/segmentation_foul,ASCII_RED_CARD,1,0
-RaceCondition Racers,RaceConditionRagnhildur,,https://example.com/racecondition_racers,ASCII_CHECKERED_FLAG,1,0
-Undefined Behavior United,UBUnitedUlfar,,https://example.com/ub_united,ASCII_GLITCHED_LOGO,1,0
-Pepsi Max Overflow,PepsiMaxOverflowPetra,KA Gaming,https://example.com/pepsimax_overflow,ASCII_OVERFLOWING_CAN,1,0
+SegFault Spartans,SegFaultSam,KA Gaming,https://example.com/segfault_spartans,ASCII_SPARTAN_HELMET,RGeE2,1,0
+NullPointer Ninjas,NullPointerNina,Barcelona,https://example.com/nullpointer_ninjas,ASCII_NINJA_SHADOW,RGeE2,1,0
+OffByOne Offense,OffByOneOlaf,Liverpool,https://example.com/offbyone_offense,ASCII_FENCEPOST_BUG,RGeE2,1,0
+Pepsi Max Punishers,PepsiMaxPalli,KA Gaming,https://example.com/pepsimax_punishers,ASCII_PEPSI_CAN,RGeE2,1,0
+Chuck Norris Fan Club,RoundhouseRik,Liverpool,https://example.com/chuck_fan_club,ASCII_ROUNDHOUSE_KICK,RGeE2,1,1
+IndentationError Invaders,IndentationErrorIna,Liverpool,https://example.com/indent_invaders,ASCII_INDENT_ICON,RGeE2,1,0
+Assembly Avengers,MovAxMaria,,https://example.com/assembly_avengers,ASCII_OPCODES,RGeE2,1,0
+Datalab Dominators,BitTwiddlerBjarni,,https://example.com/datalab_dominators,ASCII_BITMASK,RGeE2,1,0
+Bomblab Bombers,BombDefusalDori,,https://example.com/bomblab_bombers,ASCII_BOMB_WIRE,RGeE2,1,0
+StackOverflow Stackers,CopyPasteKalli,Barcelona,https://example.com/stackoverflow_stackers,ASCII_STACK_FRAME,RGeE2,1,0
+CacheHit Crusaders,L1CacheLara,,https://example.com/cachehit_crusaders,ASCII_CACHE_LINES,RGeE2,1,0
+WhileTrue Tryhards,WhileTrueWendy,,https://example.com/whiletrue_tryhards,ASCII_LOOP_ICON,RGeE2,1,0
+Segmentation Foul,SegmentationFoulStebbi,KA Gaming,https://example.com/segmentation_foul,ASCII_RED_CARD,RGeE2,1,0
+RaceCondition Racers,RaceConditionRagnhildur,,https://example.com/racecondition_racers,ASCII_CHECKERED_FLAG,RGeE2,1,0
+Undefined Behavior United,UBUnitedUlfar,,https://example.com/ub_united,ASCII_GLITCHED_LOGO,RGeE2,1,0
+Pepsi Max Overflow,PepsiMaxOverflowPetra,KA Gaming,https://example.com/pepsimax_overflow,ASCII_OVERFLOWING_CAN,RGeE2,1,0
+Heisenbug Hitmen,HeisenbugHelgi,KA Gaming,https://example.com/heisenbug_hitmen,ASCII_QUANTUM_BUG,RGeE2,1,0
+Syntax Terror Squad,SyntaxTerrorSara,Barcelona,https://example.com/syntax_terror_squad,ASCII_SYNTAX_TREE,RGeE2,1,0
+BufferOverflow Battalion,BufferBragi,Liverpool,https://example.com/bufferoverflow_battalion,ASCII_MEMORY_DUMP,RGeE2,1,0
+CoreDump Crusade,CoreDumpKristjan,,https://example.com/coredump_crusade,ASCII_CORE_FILE,RGeE2,1,0
+InfiniteLoop Legends,LoopLordLiam,,https://example.com/infiniteloop_legends,ASCII_LOOP_SPIRAL,RGeE2,1,0
+Pipeline Pioneers,PipelinePalla,KA Gaming,https://example.com/pipeline_pioneers,ASCII_PIPE_STAGES,RGeE2,1,0
+BranchPrediction Bandits,BrittleBranchBrynja,,https://example.com/branchprediction_bandits,ASCII_BRANCH_GRAPH,RGeE2,1,0
+FloatingPoint Fanatics,FloatPointFannar,Liverpool,https://example.com/floatingpoint_fanatics,ASCII_IEEE754,RGeE2,1,0
+GarbageCollector Guild,GC_Gudrun,Barcelona,https://example.com/gc_guild,ASCII_RECYCLE_ICON,RGeE2,1,0
+Quantum Quirks,QuantumQuentin,,https://example.com/quantum_quirks,ASCII_QUBIT_ICON,RGeE2,1,0
+Deadlock Dragons,DeadlockDanni,KA Gaming,https://example.com/deadlock_dragons,ASCII_MUTEX_CHAIN,RGeE2,1,0
+Goonsquad,ErriFemboy,KA Gaming,Ernir.com,ASCII_lego_bricked_up,RGeE2,1,0
+SegFault Sirens,SegFaultSigrun,Barcelona,https://example.com/segfault_sirens,ASCII_SIREN_ICON,RGeE2,1,0
+Mutex Marauders,MutexMatti,KA Gaming,https://example.com/mutex_marauders,ASCII_LOCK_ICON,RGeE2,1,0
+PacketSniffer Pirates,SnifferSvali,,https://example.com/packetsniffer_pirates,ASCII_PACKET_ICON,RGeE2,1,0
+Hexadecimal Heroes,HexHeroHildur,Liverpool,https://example.com/hexadecimal_heroes,ASCII_HEX_GRID,RGeE2,1,0
+BusError Buccaneers,BusErrorBogi,,https://example.com/buserror_buccaneers,ASCII_BUS_ICON,RGeE2,1,0
+Kernel Panic Knights,KernelPanicKari,KA Gaming,https://example.com/kernelpanic_knights,ASCII_KERNEL_CRASH,RGeE2,1,0
+LogicGate Legion,LogicGateLukka,Barcelona,https://example.com/logicgate_legion,ASCII_GATE_DIAGRAM,RGeE2,1,0
+ThermalThrottle Titans,ThrottleThor,,https://example.com/thermalthrottle_titans,ASCII_THERMAL_ICON,RGeE2,1,0
+BitFlip Bandits,BitFlipBinni,Liverpool,https://example.com/bitflip_bandits,ASCII_BIT_FLIP,RGeE2,1,0
+StackSmash Squad,StackSmashSteinar,,https://example.com/stacksmash_squad,ASCII_STACK_CRASH,RGeE2,1,0
+CrossSite Crusaders,XSS_Xandra,Barcelona,https://example.com/crosssite_crusaders,ASCII_SCRIPT_TAG,RGeE2,1,0
+Overflow Ogres,OgreOverflowOri,,https://example.com/overflow_ogres,ASCII_OGRE_ICON,RGeE2,1,0
+Segmentation Sorcerers,SegSorcerySiggi,KA Gaming,https://example.com/segmentation_sorcerers,ASCII_MAGIC_BUG,RGeE2,1,0
+DataRace Dynamos,RaceDynoDofri,Liverpool,https://example.com/datarace_dynamos,ASCII_RACE_ICON,RGeE2,1,0
+Bitwise Barbarians,BitwiseBaldur,,https://example.com/bitwise_barbarians,ASCII_MASK_ICON,RGeE2,1,0
+Compiler Conquerors,CompilerKolla,KA Gaming,https://example.com/compiler_conquerors,ASCII_COMPILER_LOGO,RGeE2,1,0
+Runtime Renegades,RuntimeRikki,,https://example.com/runtime_renegades,ASCII_CLOCK_ICON,RGeE2,1,0
+Boolean Berserkers,BooleanBera,Liverpool,https://example.com/boolean_berserkers,ASCII_BOOL_TABLE,RGeE2,1,0
+CacheMiss Cowboys,CacheMissKormakur,,https://example.com/cachemiss_cowboys,ASCII_EMPTY_CACHE,RGeE2,1,0
+Protocol Paladins,ProtoPalla,Barcelona,https://example.com/protocol_paladins,ASCII_PACKET_FLOW,RGeE2,1,0
+Algorithm Avengers,AlgoAron,KA Gaming,https://example.com/algorithm_avengers,ASCII_SORT_GRAPH,RGeE2,1,0
+Throughput Thieves,ThroughThiefTinna,,https://example.com/throughput_thieves,ASCII_BANDWIDTH_ICON,RGeE2,1,0
+MemoryLeak Monarchs,LeakLeo,Liverpool,https://example.com/memoryleak_monarchs,ASCII_WATER_DROP,RGeE2,1,0
+QuantumQueue Queens,QuantumQueueQuinn,,https://example.com/quantumqueue_queens,ASCII_QUEUE_ICON,RGeE2,1,0
+CyclicShift Samurai,CyclicSammy,Barcelona,https://example.com/cyclicshift_samurai,ASCII_SHIFT_CIRCLE,RGeE2,1,0

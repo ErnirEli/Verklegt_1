@@ -1,6 +1,8 @@
 from Datalayer.data_api import DataAPI
-from Datalayer.temporary import Team
-from Datalayer.temporary import Player
+from models.team import Team
+from models.team import Player
+from models.tournament import Tournament
+from logic.tournament_logic import TournamentLogic
 
 print(""
 "1. Bæta við player\n"
@@ -10,10 +12,13 @@ print(""
 "5. Sýna öll lið\n"
 "6. Breyta einu liði\n"
 "7. Sýna alla leiki\n"
+"8. Sýna schedule\n"
+"9. Create A tournament\n"
 )
 
 action = int(input())
 files = DataAPI()
+tour = TournamentLogic()
 if action == 1:
     name = input("Name: ")
     birth = input("Birthdate: ")
@@ -49,7 +54,7 @@ if action == 3:
             print("Team:   ", player.team)
             print("Link:   ", player.link)
             break
-    files.rewrite_players(players)
+    files.write_players(players)
     
 if action == 4:
     name = input("Team name: ")
@@ -79,13 +84,37 @@ if action == 6:
             team.name = new
             print("New name:", team.name)
 
-    files.rewrite_teams(teams)
+    files.write_teams(teams)
 
 if action == 7:
-    matches = files.show_matches()
+    matches = files.get_all_matches()
     for match in matches:
         print(match)
 
+if action == 8:
+    tour.create_tournament_schedule()
+
+if action == 9:
+    _id = "Ervert"
+    name = "Gaming Gleði Ernis"
+    venue = "Sólinn RU"
+    start = "12/12/2025"
+    end = "23/12/2025"
+    contact = "Ernir"
+    mail = "ernir@gmial.com"
+    number = 6998146
+    servers = 3
+
+    tour.create_a_tournament(_id, name, venue, start, end, contact, mail, number, servers)
+
+if action == 10:
+    tournaments = files.get_all_tournaments()
+    for tournament in tournaments:
+        tournament: Tournament
+        print("____________________")
+        print(f"ID = {tournament.id}")
+        print(f"Servers = {tournament.servers}")
+        print("____________________")
 
 
 

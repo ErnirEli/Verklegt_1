@@ -2,30 +2,35 @@ from models.team import Team
 from typing import List
 
 class Tournament:
-    start_date: str
-    end_date: str
-    name: str
-    venue: str
-    contract: str 
-    contact_person_email:str
-    contact_person_number:str
-    team_list: list
-       
     
-    def __init__(self, start_date: str, end_date: str, name: str, venue: str, contract: str, contact_person_email:str, contact_person_number:str, team_list: list) -> None:
-        self.start_date = start_date
-        self.end_date = end_date
-        self.name = name
-        self.venue = venue
-        self.contract = contract
-        self.contact_person_email = contact_person_email
-        self.contact_person_number = contact_person_number
-        self.team_list = team_list
+    def __init__(self, tournament_id: str, name: str, venue: str, start_date: str,
+                end_date: str, contact: str, contact_email:str,
+                contact_number:str, servers: int) -> None:
+        
+        self.id:str = tournament_id
+        self.name:str = name
+        self.venue:str = venue
+        self.start_date:str = start_date
+        self.end_date:str = end_date
+        self.contact:str = contact
+        self.contact_email:str = contact_email
+        self.contact_number:int = contact_number
 
-        self.teams: List[Team] = []
-
+        self.servers:list = self.generate_server_names(servers)
+        
+    
     def tournament_to_csv(self)->list:
-        return [self.start_date, self.end_date, self.venue, self.contract, self.contact_person_email, self.contact_person_number, self.team_list]
+        return [self.id, self.name, self.venue, self.start_date, self.end_date,
+                self.contact, self.contact_email, self.contact_number, len(self.servers)]
+    
+    def generate_server_names(self, number_of_servers):
+        servers = []
+        
+        for number in range(number_of_servers):
+            servers.append(f"{self.id}_{number}")
+
+        return servers
+
         
     def __str__(self) ->str:
         return(

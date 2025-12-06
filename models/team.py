@@ -7,22 +7,26 @@ class Team:
     web_link: str
     ASCII = str
 
-    def __init__(self,name: str, captain: str, web_link: str = None, ASCII: str = None, tournaments: int = 0, wins: int = 0):
-        self.name = name
-        self.captain =  captain
-        self.club = club
-        self.web_link = web_link
-        self.ASCII = ASCII
-        self.tournament = tournaments
-        self.wins = wins
+    def __init__(self, name: str, captain: str, club: str = 'None', web_link: str = 'None',
+                ASCII: str = 'None', tour_IDs: str = 'None', tournaments: int = 0, wins: int = 0):
+        
+        self.name: str = name
+        self.captain: str =  captain
+        self.club: str = club
+        self.web_link: str = web_link
+        self.ASCII: str = ASCII
+        self.tournament: int = tournaments
+        self.wins: int = wins
+        self.tour_IDs: list = tour_IDs.split()
 
         self.players: List[Player] = []
 
     
     
     def team_to_csv(self) -> list:
-        return [self.name, self.captain, self.web_link, self.ASCII, self.tournament, self.wins]
- 
+        self.tour_IDs = " ".join(self.tour_IDs)
+        return [self.name, self.captain, self.club, self.web_link,
+                self.ASCII, self.tour_IDs, self.tournament, self.wins]
 
 
     def __str__(self) -> str:

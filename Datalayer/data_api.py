@@ -65,51 +65,51 @@ class DataAPI():
     def add_match(self, match: Match):
         '''Takes in a match, of type "Match",
         adds the match to the bottom of match file'''
-
+        
         self.match_files.add_match(match)
 
     def write_match(self, teams: list):
         '''Takes in a list of matches, of type "Match",
         rewrites the match file with all matches in the list'''
-
+        
         self.match_files.write_match(teams)
 
 
     def get_all_clubs(self) -> list:
         '''Returns a list of all clubs in club file,
         clubs are of type "Club"'''
-
+        
         return self.club_files.read_club()
     
     def add_club(self, club: Club):
         '''Takes in a club, of type "Club",
         adds the club to the bottom of club file'''
-
+        
         self.club_files.add_club(club)
 
     def write_clubs(self, clubs: list):
         '''Takes in a list of clubs, of type "Club"
         rewrites the club file with all clubs in the list'''
-
+        
         self.club_files.write_club(clubs)
 
 
     def get_all_tournaments(self):
         '''Returns a list of all tournaments in tournament file,
         tournaments are of type "Tournament"'''
-
+        
         return self.tournament_files.read_tournament()
 
     def add_tournament(self, tournament: Tournament):
         '''Takes in a tournament, of type "Tournament",
         adds the tournament to the bottom of the tournament file'''
-
+        
         self.tournament_files.add_tournament(tournament)
 
-    def write_clubs(self, tournaments: list):
+    def write_tournament(self, tournaments: list):
         '''Takes in a list of tournaments, of type "Tournament",
         rewrites the tournament file with all tournaments in the list'''
-
+        
         self.tournament_files.write_tournament(tournaments)
 
 
