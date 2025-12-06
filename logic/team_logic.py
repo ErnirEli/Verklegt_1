@@ -46,14 +46,14 @@ class TeamLogic:
     
 
     def team_info(self, team: Team):
-         '''Gives all info on team'''
-            players = DataAPI().get_all_players()
-            team_players = []
-            for player in players:
-                if player.team_name == team.name:
-                    team_players.append(player.handle)
+        '''Gives all info on team'''
+        players = DataAPI().get_all_players()
+        team_players = []
+        for player in players:
+            if player.team_name == team.name:
+                team_players.append(player.handle)
         
-            return (
+        return (
                 f"name: {team.name} \n"
                 f"Captain: {team.captain} \n"
                 f"Club: {team.club}"
