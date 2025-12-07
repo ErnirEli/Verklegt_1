@@ -9,14 +9,14 @@ Alexander, 8:20 -  <br>
 Ívar,   - <br>
 Nökkvi, <br>
 Olgeir, 10:00- 16:00<br>
-Ernir, - <br>
+Ernir, 9:00 - 22:00 <br>
 ### Remote:
 Nökkvi (veikur) 
 Ívar ?
 
 
 ## State of project:
-
+Mikið eftir til að ná fullu áætluðu functionality
 
 ## To do
 
@@ -24,7 +24,7 @@ Nökkvi (veikur)
 
 ## Verkefni Dagsins
 ### Ernir
-
+Fékk gott functionality í datalayerinn og er byrjaður í logic layer
 
 ### Olgeir
 Halda áfram í Logic layer<br>
