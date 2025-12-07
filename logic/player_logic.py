@@ -22,6 +22,8 @@ class PlayerLogic:
     def create_player(self, name, dob, address,
                       phone, email, link, handle, team_name, tournaments, wins):
 
+        """Using player model to get the right format before adding the created player
+        to Database"""
         new_player = Player(handle, name, dob, address,
                             phone, email, link, team_name, tournaments, wins)
         self._data.add_player(new_player)
@@ -34,10 +36,13 @@ class PlayerLogic:
                          new_address=None, new_link=None):
 
 
-        players = self._data.get_all_players()
-        player = self.find_player(players, handle)
-        if player is None:
+        players = self._data.get_all_players()          # Gets data from the data layer
+        player = self.find_player(players, handle)      # Use the definition above to find the player by 
+        if player is None:                              # Scouring each line until it finds a match 
             return "Player not found."
+
+        """Override checks here: where if a change is
+        made then its saved and overrides its original data"""
 
         if new_phone is not None:
             player.phone = new_phone
@@ -48,24 +53,26 @@ class PlayerLogic:
         if new_link is not None:
             player.link = new_link
 
-        self._data.rewrite_players(players)
+        self._data.rewrite_players(players)             # Changes saved to database
         return True, "Player info updated."
 
     def player_info(self, handle, role=None, private=False):
         
-        players = self._data.get_all_players()
-        player = self.find_player(players, handle)
+        players = self._data.get_all_players()          # Pulling player data
+        player = self.find_player(players, handle)      # Finding if the searched player available
         if player is None:
             return None
 
-        if not private:
-            return {
+        if not private:                                 # Privacy is determined by role
+            return {                                    # Returns only player and handle if privacy is still false
                 "handle": player.handle,
                 "team_name": player.team_name,
             }
 
         if not self.is_editor(role):
             return {"error": "Private data only for captains/organizers."}
+
+        """ Returns all Player data if all requirements are met"""
 
         return {
             "name": player.name,
@@ -87,6 +94,6 @@ class PlayerLogic:
                 "handle": p.handle,
                 "team_name": p.team_name
             })
-        return result
+        return result           # Returns all info on all players handle and their name
 
 

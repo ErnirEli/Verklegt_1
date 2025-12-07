@@ -9,6 +9,8 @@
 from models.player import Player
 from Datalayer.data_api import DataAPI
 
+""" Validation Class to make all the checks before making
+changes or creating players"""
 
 class ValidatePlayer:
 
@@ -32,7 +34,7 @@ class ValidatePlayer:
             age = int(age)
         except ValueError():
             return (False, "Age must be a number")
-        if age < 18 or age > 65: #-----------------------------------------> Ætlum við að hafa age limit??  bæði of amall of ungur?
+        if age < 18 or age > 65: 
             return (False, "Player is too young or old to participate")
         return True,
 
