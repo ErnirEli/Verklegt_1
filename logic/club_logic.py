@@ -13,7 +13,7 @@ class ClubLogic:
     
     def list_all_clubs(self) -> List[Club]:
         '''returns a list of all teams'''
-        return self._data_api.gett_all_clubs
+        return self._data_api.get_all_clubs
 
     def create_club(self, name: str, colors: str, hometown: str, country: str) -> Club:
         club: Club = Club(name, colors, hometown, country)
@@ -21,18 +21,18 @@ class ClubLogic:
         return club
     
     def add_team(self, club: Club, new_team: Team):
-        new_team.club_name = club.name
+        new_team.club = club.name
         return new_team
     
-    def remove_team(self, unwanted_team):
-        unwanted_team.club_name = None
+    def remove_team(self, unwanted_team: Team):
+        unwanted_team.club = None
         return unwanted_team
     
     def club_info(self, club: Club):
         teams = DataAPI().get_all_teams()
         club_teams = []
         for team in teams:
-            if team.club_name == club.name:
+            if team.club == club.name:
                 club_teams.append(club.name)
         
         return (
@@ -40,4 +40,5 @@ class ClubLogic:
             f"colors{club.colors} \n"
             f"Hometown: {club.hometown}\n"
             f"Country: {club.country}"
+            f"Teams in club: {club_teams}"
         )
