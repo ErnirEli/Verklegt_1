@@ -24,15 +24,15 @@ class ValidatePlayer:
     
     def validate_name(self, name:str):
         if not name or name.strip() == "":
-            raise EmptyInput
+            raise EmptyInput                    # We raise the EmptyInput Exception class only when nothing is input
         return True,
     
     def validate_age(self, age: str):
         try:
             age = int(age)
         except ValueError():
-            raise WrongAgeException
-        if age < 18 or age > 65: #-----------------------------------------> Ætlum við að hafa age limit??  bæði of amall of ungur?
+            raise WrongAgeException             # Only raised when ValueError is 
+        if age < 18 or age > 65:
             raise InvalidAgeException
         return True,
 
