@@ -29,24 +29,17 @@ Skýrsla (B)
 Database, function og annað
 
 ### Olgeir
-Logic Layer
+vinna í logic layer
 
 ### Alexander
 Logic Layer, dagbók og laga skýrslu
 
 ### Nökkvi
-<<<<<<< HEAD
 Vinna í ui með Ivari
 
 
 ### Ívar
 Vinna í ui með Nökkva
-=======
-UI
-
-### Ívar
-UI
->>>>>>> 66bbbef8c8d0e65581a35150f284061e8f205906
 ---
 
 ## State of group: <br>
