@@ -20,18 +20,21 @@ class PlayerLogic:
 
 
     def create_player(self, name, dob, address,
-                      phone, email, link, handle, team_name, tournaments, wins):
+                    phone, email, link, handle, 
+                    team_name, tournaments, wins, runner_up):
 
         new_player = Player(handle, name, dob, address,
-                            phone, email, link, team_name, tournaments, wins)
+                            phone, email, link, team_name, 
+                            tournaments, wins)
+        
         self._data.add_player(new_player)
         
 
         return "Player created."
 
     def edit_player_info(self, handle,
-                         new_phone=None, new_email=None,
-                         new_address=None, new_link=None):
+                        new_phone=None, new_email=None,
+                        new_address=None, new_link=None):
 
 
         players = self._data.get_all_players()

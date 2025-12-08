@@ -1,6 +1,6 @@
 from Datalayer.data_api import DataAPI
 from models.tournament import Tournament
-from logic.schedule_logic import Schedule
+from logic.schedule_logic import ScheduleLogic
 from models.team import Team
 from models.match import Match
 from datetime import date
@@ -11,6 +11,7 @@ class TournamentLogic:
     
     def __init__(self) -> None:
         self._data_api = DataAPI()
+        self._schedule = ScheduleLogic()
 
     def list_all_tournaments(self)-> list:
         return self._data_api.get_all_tournaments()
@@ -26,14 +27,9 @@ class TournamentLogic:
         return team
         
     def tournament_schedule(self):
-        #torunament name    start date      end date
-        tournaments = self.get_all_tournaments()
-        return tournaments
-
-
+        return
     
-    def tournament_results(self, ):
-        
+    def tournament_results(self):
         return
     
     def create_a_tournament(self, tournament_id: str, name: str, venue: str, start_date: str,
@@ -43,19 +39,10 @@ class TournamentLogic:
         new_tournament = Tournament(tournament_id, name, venue, start_date, end_date,
                                     contact, contact_email, contact_number, servers)
         self._data_api.add_tournament(new_tournament)
+        self._schedule.create_tournament_schedule(new_tournament)
         return
     
     def tournament_bracket(self):
         return
     
-
-    def create_tournament_schedule(self) -> list:
-        tournaments = self._data_api.get_all_tournaments()
-        tournament = tournaments[0]
-
-        tournament_schedule = Schedule(tournament)
-
-        tournament_schedule.create_playoffs()
-        tournament_schedule.create_rounds()
-        
         

@@ -3,6 +3,8 @@ from models.team import Team
 from models.team import Player
 from models.tournament import Tournament
 from logic.tournament_logic import TournamentLogic
+from logic.match_logic import MatchLogic
+from models.match import Match
 
 print(""
 "1. Bæta við player\n"
@@ -19,6 +21,7 @@ print(""
 action = int(input())
 files = DataAPI()
 tour = TournamentLogic()
+match_logic = MatchLogic()
 if action == 1:
     name = input("Name: ")
     birth = input("Birthdate: ")
@@ -91,11 +94,9 @@ if action == 7:
     for match in matches:
         print(match)
 
-if action == 8:
-    tour.create_tournament_schedule()
 
 if action == 9:
-    _id = "Ervert"
+    _id = "RGeE2"
     name = "Gaming Gleði Ernis"
     venue = "Sólinn RU"
     start = "12/12/2025"
@@ -115,6 +116,36 @@ if action == 10:
         print(f"ID = {tournament.id}")
         print(f"Servers = {tournament.servers}")
         print("____________________")
+
+
+if action == 11:
+    games = files.get_all_matches()
+    valid = []
+    
+    for match in games:
+        match: Match
+        if match.round == "Playoffs":
+            print("━" * 72)
+            print(f"║{match.match_number:^70}║")
+            print("║", " " * 68, "║")
+            print(f"║{match.team_a:^33} vs {match.team_b:^33}║")
+            print(f"║{match.a_score:^33}    {match.b_score:^33}║")
+            print("║", " " * 68, "║")
+            print("━" * 72)
+
+            valid.append(match)
+
+
+    id = int(input("Number of game to change: "))
+
+    for match in valid:
+
+        if match.match_number == id:
+            a = int(input(f"{match.team_a} score: "))
+            b = int(input(f"{match.team_b} score: "))
+            break
+
+    match_logic.update_game_results(id, "RGeE2", a, b)
 
 
 

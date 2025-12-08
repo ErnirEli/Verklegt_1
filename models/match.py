@@ -22,6 +22,7 @@ class Match:
                 self.team_a, self.team_b, self.date, self.time,
                 self.server, self.a_score, self.b_score,
                 self.winner, self.state]
+        
 
     
     def __str__(self) -> str:

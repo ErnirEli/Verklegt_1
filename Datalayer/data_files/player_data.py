@@ -53,10 +53,11 @@ class PlayerFiles():
                     team: str = player_info[7]
                     tournaments: int = int(player_info[8])
                     wins: int = int(player_info[9])
+                    runner_up: int = int(player_info[10])
 
                     players.append(Player(name, birthdate, home,
                                         phone, mail, link, handle,
-                                        team, tournaments, wins))
+                                        team, tournaments, wins, runner_up))
                     
                 return players
             

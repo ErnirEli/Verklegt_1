@@ -2,7 +2,10 @@
 class Player:
 
 
-    def __init__(self,name, dob, address, phone, email, link, handle, team_name = None, tournament = 0, wins = 0):
+    def __init__(self,name, dob, address, phone, 
+                email, link, handle, team_name = None, 
+                tournament = 0, wins = 0, runner_up = 0):
+        
         self.handle = handle
         self.name = name
         self.dob = dob
@@ -13,6 +16,7 @@ class Player:
         self.team_name = team_name
         self.tournaments = tournament
         self.wins = wins
+        self.runner_up = runner_up
 
     def player_to_csv(self):
         parts = [
@@ -25,8 +29,9 @@ class Player:
             self.handle,
             self.team_name,
             self.tournaments,
-            self.wins
-
-        ]
+            self.wins,
+            self.runner_up,
+            ]
+        
         return parts
 

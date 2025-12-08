@@ -6,7 +6,7 @@ class Tournament:
     def __init__(self, tournament_id: str, name: str, venue: str, start_date: str,
                 end_date: str, contact: str, contact_email:str,
                 contact_number:str, servers: int) -> None:
-        
+
         self.id:str = tournament_id
         self.name:str = name
         self.venue:str = venue
@@ -30,6 +30,9 @@ class Tournament:
             servers.append(f"{self.id}_{number}")
 
         return servers
+    
+    def get_tournament_matches():
+        pass
 
         
     def __str__(self) ->str:
