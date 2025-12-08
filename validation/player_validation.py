@@ -9,7 +9,6 @@
 from models.player import Player
 from Datalayer.data_api import DataAPI
 
-
 class ValidatePlayer:
 
 
