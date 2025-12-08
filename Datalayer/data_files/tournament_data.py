@@ -1,5 +1,5 @@
 import csv
-from models import Tournament
+from models.tournament import Tournament
 
 
 class TournamentFiles():
