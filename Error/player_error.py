@@ -16,6 +16,10 @@ class InvalidEmailException(Exception):
     """Raise if Email necessary"""
     pass
 
+class invalidNumberException(Exception):
+    '''Raise if phone number is invalid'''
+    pass
+
 class InvalidCharacterHandle(Exception):
     """Raise if invalid characters are in handle"""
     pass

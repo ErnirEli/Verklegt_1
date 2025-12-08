@@ -48,6 +48,13 @@ class ValidatePlayer:
             raise InvalidEmailException
         return True,
 
+    def validate_number(self, number: str):
+        if not number:
+            raise EmptyInput
+        if not number.isnumeric() or len(number) != 10:
+            raise invalidNumberException
+        return True
+
     def validate_link(self, link: str):
         if not link or link.strip() == "":
             raise EmptyInput
