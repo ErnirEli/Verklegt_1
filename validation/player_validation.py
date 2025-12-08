@@ -8,6 +8,7 @@
 # team
 from models.player import Player
 from Datalayer.data_api import DataAPI
+from Error.player_error import *
 
 class ValidatePlayer:
 
@@ -23,47 +24,44 @@ class ValidatePlayer:
     
     def validate_name(self, name:str):
         if not name or name.strip() == "":
-            return (False, "PLayer needs to have a name")
+            raise EmptyInput
         return True,
     
     def validate_age(self, age: str):
         try:
             age = int(age)
         except ValueError():
-            return (False, "Age must be a number")
+            raise WrongAgeException
         if age < 18 or age > 65: #-----------------------------------------> Ætlum við að hafa age limit??  bæði of amall of ungur?
-            return (False, "Player is too young or old to participate")
+            raise InvalidAgeException
         return True,
 
     def validate_home_adress(self, adress: str):
         if not adress or adress.strip() == "":
-            return (False, "Player needs to have a home adress")
+            raise EmptyInput
         return True,
 
     def validate_email(self, email: str):
         if not email or email.strip() == "":
-            return (False, "Player needs to have an email")
+            raise EmptyInput
         if "@" not in email or "." not in email:
-            return False, "Email is invalid"
-
+            raise InvalidEmailException
         return True,
 
     def validate_link(self, link: str):
         if not link or link.strip() == "":
-            return (False, "Player needs to have a link")
-        if link.startswith("https://") == False:
-            return (False, "Link is not valid try again")
+            raise EmptyInput
         return True,
         #eitthvað fleira??
 
     def validate_handle(self, handle: str):
         if not handle or handle.strip() == "":
-            return (False, "Player needs to have a handle")
+            raise EmptyInput
         players = self._data.get_all_players()
         if "," in handle or "/" in handle:
-            return (False, "Handle contains illegal characters like ',' and '/'")
+            raise InvalidCharacterHandle
         for line in players:
             if line.handle == handle:
-                return (False, "Player handle needs to be unique")
+                raise HandleExistsException
         return True,
             
