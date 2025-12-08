@@ -5,7 +5,7 @@
 ### Attendance:
 Tilsettur mætingartími, **8:30-9:00**<br>
 ### Onsite:
-Alexander, 8:20 -  <br> 
+Alexander, 8:20 - 17:30  <br> 
 Ívar,   - <br>
 Nökkvi, <br>
 Olgeir, 10:00- 16:00<br>
@@ -30,7 +30,7 @@ Fékk gott functionality í datalayerinn og er byrjaður í logic layer
 Halda áfram í Logic layer<br>
 
 ### Alexander
-
+Klára playerLL
 
 ### Nökkvi
 Hugsa fallega með þakklæti til strákana
