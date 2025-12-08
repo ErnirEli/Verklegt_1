@@ -8,6 +8,7 @@
 # team
 from models.player import Player
 from Datalayer.data_api import DataAPI
+from enum import Enum
 
 """ Validation Class to make all the checks before making
 changes or creating players
@@ -65,12 +66,41 @@ class ValidatePlayer:
 
     def validate_handle(self, handle: str):
         if not handle or handle.strip() == "":
+            raise EmptyHandleException
+            return ErrorState.PLAYER_NEEDS_HANDLE
             return (False, "Player needs to have a handle")
         players = self._data.get_all_players()
-        if "," in handle or "/" in handle:                  # Make sure some characters are not in the handle to not confuse the database
+        if "," in handle or "\"" in handle: 
+                             # Make sure some characters are not in the handle to not confuse the database
+            raise IllegalCharactersException
             return (False, "Handle contains illegal characters like ',' and '/'")
         for line in players:
             if line.handle == handle:                       # Making sure the Handle that has been inputed isnt already in use
                 return (False, "Player handle needs to be unique")
         return True,
             
+
+class ErrorState(Enum):
+
+    PLAYER_NEEDS_HANDLE = 1
+    PLAYER_HANDLE_CONTAINS_ILLEGAL_CHARACTERS = 2
+
+try:
+    validate_handle...
+except EmptyHandleException:
+    print("must not be empty")
+except IllegalCharactersException:
+    print("Handle contains illegal characters")
+except Exception:
+    print("durrp")
+
+
+
+if validate_handle == ErrorState.PLAYER_NEEDS_HANDLE:
+    print("error name cannot empty")
+
+class EmptyHandleException(Exception):
+    pass
+
+class IllegalCharactersException(Exception):
+    pass
