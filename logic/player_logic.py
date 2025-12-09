@@ -6,8 +6,8 @@ from Datalayer.data_api import DataAPI
 class PlayerLogic:
 
 
-    def __init__(self, data_wrapper: DataAPI):
-        self._data = data_wrapper
+    def __init__(self):
+        self._data = DataAPI()
 
     def is_editor(self, role):
         return role == "organizer" or role == "captain"

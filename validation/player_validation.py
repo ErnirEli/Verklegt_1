@@ -14,8 +14,8 @@ class ValidatePlayer:
 
 
 
-    def __init__(self, data_wrapper: DataAPI):
-        self._data = data_wrapper
+    def __init__(self):
+        self._data = DataAPI()
     
 
     def is_captain_or_organizer():

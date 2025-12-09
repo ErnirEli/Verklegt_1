@@ -1,17 +1,17 @@
 from validation.player_validation import ValidatePlayer
 from logic.player_logic import PlayerLogic
 from Error.player_error import *
-from validation.tournament_validation import ValidateTournament
-from logic.tournament_logic import TournamentLogic
-from Error.tournament_error import *
+#from validation.tournament_validation import ValidateTournament
+#from logic.tournament_logic import TournamentLogic
+#from Error.tournament_error import *
 
 
 class OrganizerUI:
     def __init__(self):
         self.validate_player = ValidatePlayer()  
-        self.validate_tournament = ValidateTournament()
+        #self.validate_tournament = ValidateTournament()
         self.player_logic = PlayerLogic()  
-        self.tournament_logic = TournamentLogic()
+        #self.tournament_logic = TournamentLogic()
         
     def __str__(self):
         return (
@@ -22,6 +22,7 @@ class OrganizerUI:
             "4. Create a player\n"
             "5. Create a tournament\n"
             "6. Create a club\n\n"
+            "7. Edit player\n\n"
             "9. Change role\n\n"
         )
 
@@ -31,7 +32,7 @@ class OrganizerUI:
             print(self)
             choice = input("Enter number for action: ").strip()
 
-            if choice in {"1", "2", "3", "4", "5", "6" "9"}:
+            if choice in {"1", "2", "3", "4", "5", "6", "7", "9"}:
                 return choice
         
             print("Invalid choice. Try again.\n")
@@ -224,7 +225,7 @@ class OrganizerUI:
 
 
         #Tournamnet
-
+"""
     def create_tournoment(self):
         '''Organizer gets asked for information one by one and then information gets sent to logic layer'''
         #name
@@ -354,7 +355,7 @@ class OrganizerUI:
 
         self.tournament_logic.create_tournaments(id, name, start_date, end_date, venue, contract, contact_email, contact_number, num_of_servers, teams_in_tournament )
 
-
+"""
                     
 
 
