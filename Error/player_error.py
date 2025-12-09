@@ -4,8 +4,12 @@ class EmptyInput(Exception):
     """Raise if input is empty"""
     pass
 
-class WrongAgeException(Exception):
-    """Raise if age gets caught by ValueError"""
+class TooYoungError(Exception):
+    """Raise if player is too youngr"""
+    pass
+
+class TooOldError(Exception):
+    '''Raise if player is too old'''
     pass
 
 class InvalidAgeException(Exception):

@@ -9,6 +9,7 @@
 from models.player import Player
 from Datalayer.data_api import DataAPI
 from Error.player_error import *
+from datetime import *
 
 class ValidatePlayer:
 
@@ -25,16 +26,28 @@ class ValidatePlayer:
         
         return True
     
-    def validate_age(self, age: str):
-        if not age:
-            raise EmptyInput        
-        try:
-            age = int(age)
-        except ValueError:
-            raise WrongAgeException             # Only raised when ValueError is 
-        if age < 18 or age > 65:
+    def validate_age(self, dob: str):
+        if not dob:
+            raise EmptyInput 
+                    
+        if "/" not in dob:
             raise InvalidAgeException
+        
+        
+        dob = dob.split("/")
+        dob = date(int(dob[0]), int(dob[1]), int(dob[2]))
+        today = datetime.today().date()
+        age = today - dob
+        age = (age/365.25).days
+        if age < 18:
+            raise TooYoungError
+        if age > 99:
+            raise TooOldError
+        
         return True
+
+
+
 
     def validate_home_adress(self, adress: str):
         if not adress or adress.strip() == "":

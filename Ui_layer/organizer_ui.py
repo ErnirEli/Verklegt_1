@@ -70,21 +70,23 @@ class OrganizerUI:
             
 
 
-        #Age
+        #Date of Birth
         state = False 
         while state == False: 
-            age = input("Age: ") 
+            dob = input("Date of birth: in format(Year/month/day): ") 
             try: 
-                state = self.validate_player.validate_age(age) 
+                state = self.validate_player.validate_age(dob) 
             except EmptyInput:
-                print("Player needs to have an age")
-            except WrongAgeException: 
-                print("Age has to be a number") 
+                print("Player needs to have a date of birth")
+            except TooYoungError:
+                print("Player is too young") 
+            except TooOldError:
+                print("Player is too old")
             except InvalidAgeException: 
-                print("Player is too old or too young") 
+                print("Date of birth needs to be in the format: year/month/day") 
+
 
         #Home address 
-
         state = False 
         while state == False: 
             address = input("Address: ") 
@@ -148,7 +150,7 @@ class OrganizerUI:
             except HandleExistsException: 
                 print("Handle already exists") 
 
-        self.player_logic.create_player(name, age, address, number, email, link, handle)
+        self.player_logic.create_player(name, dob, address, number, email, link, handle)
 
 
 
@@ -297,7 +299,7 @@ class OrganizerUI:
             name = input("Name: ")
             try:
                 state = self.validate_team.validate_name(name)
-            except Emptyinput:
+            except EmptyInput:
                 print("Team needs to have a name")
             except TeamExistsError:
                 print("Team name already exit, team needs an unique name")
@@ -309,14 +311,14 @@ class OrganizerUI:
             try:
                 state = self.validate_team.validate_captain(captain)
             except EmptyInput:
-                print("Team needs 1 captain")
+                print("Team needs a captain")
             except CaptainNotExistError:
                 print("Player does not exist")
 
         # Web link
         state = False
         while state == False:
-            web_link = "https://" + input("Eb link: https://")
+            web_link = "https://" + input("Web link: https://")
             try:
                 state = self.validate_team.validate_web_link(web_link)
             except EmptyInput:
@@ -332,6 +334,8 @@ class OrganizerUI:
                 state = self.validate_team.validate_ascii_logo(ascii)
             except EmptyInput:
                 print("Team needs a ASCII logo")
+        
+        self.team_logic.create_team(name, captain, web_link, ascii)
 
 
 

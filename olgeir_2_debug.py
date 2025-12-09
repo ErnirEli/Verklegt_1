@@ -12,7 +12,7 @@ if choice == "4":
 
 
 if choice == "5":
-    yo.create_tournoment
+    yo.create_tournoment()
 
 
 if choice == "7":

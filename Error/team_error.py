@@ -1,4 +1,4 @@
-class Emptyinput(Exception):
+class EmptyInput(Exception):
     '''Raise if input is empty'''
 
 class TeamExistsError(Exception):

@@ -12,7 +12,7 @@ class ValidateTeam:
 
     def validate_name(self, name: str):
         if not name:
-            raise Emptyinput
+            raise EmptyInput
         
         team_list = self._data.get_all_teams()
 
@@ -24,14 +24,14 @@ class ValidateTeam:
 
     def validate_captain(self, captain: str):
         if not captain:
-            raise Emptyinput
+            raise EmptyInput
         
         all_players = self._data.get_all_players()
-        player_names = []
+        player_handles = []
 
         for player in all_players:
-            player_names.append(player.handle)
-        if captain not in player_names:
+            player_handles.append(player.handle)
+        if captain not in player_handles:
             raise CaptainNotExistError
         
     
@@ -39,13 +39,13 @@ class ValidateTeam:
 
     def validate_web_link(self, web_link: str):
         if web_link == "https://":
-            raise Emptyinput
+            raise EmptyInput
         if "." not in web_link:
             raise InvalidWebLink
         return True
 
     def validate_ascii_logo(self, ascii):
         if not ascii:
-            raise Emptyinput
+            raise EmptyInput
         return True
         

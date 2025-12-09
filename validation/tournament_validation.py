@@ -19,11 +19,11 @@ class ValidateTournament:
         
         start_date_checker:datetime = datetime.strptime(start_date, "%d.%m.%y")
         end_date_checker: datetime = datetime.strptime(end_date, "%d.%m.%y")
-        if start_date_checker >= end_date_checker:
+        if start_date_checker > end_date_checker:
            raise InvalidStartDateBefore
         
     
-        today = datetime.today()
+        today = datetime.today().date()
         if start_date_checker > today:
             raise InvalidStartDateInPast
                 
