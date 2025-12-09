@@ -7,7 +7,7 @@ class Team:
     web_link: str
     ASCII = str
 
-    def __init__(self,name: str, captain: str, web_link: str = None, ASCII: str = None, tournaments: int = 0, wins: int = 0):
+    def __init__(self,name: str, captain: str, club: str, web_link: str = None, ASCII: str = None, tournaments: int = 0, wins: int = 0):
         self.name = name
         self.captain =  captain
         self.club = club

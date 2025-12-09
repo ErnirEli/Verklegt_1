@@ -1,18 +1,30 @@
+#Player imports
 from validation.player_validation import ValidatePlayer
 from logic.player_logic import PlayerLogic
 from Error.player_error import *
-from validation.tournament_validation import ValidateTournament
-from logic.tournament_logic import TournamentLogic
-from Error.tournament_error import *
+
+#Tournaments imports
+# from validation.tournament_validation import ValidateTournament
+# from logic.tournament_logic import TournamentLogic
+# from Error.tournament_error import *
+
+#team imports
+from logic.team_logic import TeamLogic
+from validation.team_validation import ValidateTeam
+from Error.team_error import *
 
 
 class OrganizerUI:
     def __init__(self):
         self.validate_player = ValidatePlayer()  
-        self.validate_tournament = ValidateTournament()
         self.player_logic = PlayerLogic()  
-        self.tournament_logic = TournamentLogic()
         
+        # self.validate_tournament = ValidateTournament()
+        # self.tournament_logic = TournamentLogic()
+        
+        self.validate_team = ValidateTeam()
+        self.team_logic = TeamLogic()
+
     def __str__(self):
         return (
             "Organiser\n\n"
@@ -21,7 +33,8 @@ class OrganizerUI:
             "3. See match schedule\n"
             "4. Create a player\n"
             "5. Create a tournament\n"
-            "6. Create a club\n\n"
+            "6. Create a club\n"
+            "7. create a team\n\n"
             "9. Change role\n\n"
         )
 
@@ -31,7 +44,7 @@ class OrganizerUI:
             print(self)
             choice = input("Enter number for action: ").strip()
 
-            if choice in {"1", "2", "3", "4", "5", "6" "9"}:
+            if choice in {"1", "2", "3", "4", "5", "6", "7", "9"}:
                 return choice
         
             print("Invalid choice. Try again.\n")
@@ -143,144 +156,182 @@ class OrganizerUI:
 
 
 
-        #Tournamnet
+    #     #Tournamnet
 
-    def create_tournoment(self):
-        '''Organizer gets asked for information one by one and then information gets sent to logic layer'''
-        #name
+    # def create_tournoment(self):
+    #     '''Organizer gets asked for information one by one and then information gets sent to logic layer'''
+    #     #name
+    #     state = False
+    #     while state == False:
+    #         name = input("Name: ")
+    #         try:
+    #             state = self.validate_tournament.validate_name(name)
+    #         except EmptyInput:
+    #             print("Tournament needs a name")
+            
+    #     #Id
+    #     state = False
+    #     while state == False:
+    #         id = ("Tournament id: ")
+    #         try:
+    #             state = self.validate_tournament.validate_id(id)
+    #         except EmptyInput:
+    #             print("Tournament needs an id")
+    #         except IdAlreadyExists:
+    #             print("Id already exists")
+            
+
+
+
+
+        
+    #     #Start and End date
+    #     state = False
+    #     while state == False:
+    #         start_date = input("Start date: ")
+    #         end_date = input("End date: ")
+    #         try:
+    #             state = self.validate_tournament.validate_start_date_and_end_date(start_date, end_date)
+    #         except EmptyInput:
+    #             print("Tournament needs to have a start date and an end date")
+    #         except InvalidStartDateInPast:
+    #             print("Start date is in the past")
+    #         except InvalidStartDateBefore:
+    #             print("Start date is before end date")
+        
+        
+
+    #     #Venue
+    #     state = False
+    #     while state == False:
+    #         venue = input("Venue: ")
+    #         try:
+    #             state = self.validate_tournament.validate_venue(venue)
+    #         except EmptyInput:
+    #             print("Tournament needs to have a venue")
+            
+        
+    #     #Contract
+    #     state = False
+    #     while state == False:
+    #         contract = input("Contract: ")
+    #         try:
+    #             state = self.validate_tournament.validate_contract(contract)
+    #         except EmptyInput:
+    #             print("Tournament needs to have a contract")
+            
+        
+    #     #Contact person email
+    #     state = False
+    #     while state == False:
+    #         contact_email = input("Contact persons email: ")
+    #         try:
+    #             self.validate_tournament.validate_contact_email(contact_email)
+    #         except EmptyInput:
+    #             print("Tournament needs a contact persons email")
+    #         except InvalidContactEmail:
+    #             print("Contact persons email is invalid, try again")
+
+    #     #Contact persons Phone number
+    #     state = False
+    #     while state == False:
+    #         contact_number = "354" + input("Contact persons phone number: +354")
+    #         try:
+    #             self.validate_tournament.validate_contact_numer(contact_number)
+    #         except EmptyInput:
+    #             print("Tournament needs a contact persons phone number")
+    #         except InvalidContactNumber:
+    #             print("Contact persons phone number is invalid, try again")
+            
+
+    #     #Number of servers
+    #     state = False
+    #     while state == False:
+    #         num_of_servers = ("Number of servers: ")
+    #         try:
+    #             state = self.validate_tournament.validate_servers(num_of_servers)
+    #         except ValueError:
+    #             print("Number of servers has to be a digit")
+    #         except InvalidServers:
+    #             print("Servers have to be between 1-9")
+
+
+
+    #     #Number of teams
+    #     state = False
+    #     while state == False:
+    #         num_of_teams = input("Number of teams: ")
+    #         try:
+    #             state = self.validate_tournament.validate_number_of_teams(num_of_teams)
+    #         except WrongNumOfTeams:
+    #             print("Tournament can't have less than 16 teams and can't have more than 64 teams")
+
+    #     #Teams in tournament
+               
+    #     for _ in range(num_of_teams):
+    #         teams_in_tournament = []
+            
+    #         state = False
+    #         while state == False:
+    #             team_to_tournament = input("Add team to tournament: ")
+    #             try:
+    #                 state = self.validate_tournament.validate_teams_in_tournament(team_to_tournament, teams_in_tournament)
+    #             except TeamAlreadyInTournament:
+    #                 print("Team is already in tournament")
+    #             except TeamDoesNotExist:
+    #                 print("Team does not exist")
+
+    #         teams_in_tournament.append(team_to_tournament) #Adds the team to the list of teams in the tournement after going through validation     
+
+
+
+    #     self.tournament_logic.create_tournaments(id, name, start_date, end_date, venue, contract, contact_email, contact_number, num_of_servers, teams_in_tournament )
+
+
+
+
+    def create_team(self):
+        #Name
         state = False
         while state == False:
             name = input("Name: ")
             try:
-                state = self.validate_tournament.validate_name(name)
-            except EmptyInput:
-                print("Tournament needs a name")
+                state = self.validate_team.validate_name(name)
+            except Emptyinput:
+                print("Team needs to have a name")
+            except TeamExistsError:
+                print("Team name already exit, team needs an unique name")
             
-        #Id
+        #captain
         state = False
         while state == False:
-            id = ("Tournament id: ")
+            captain = input("Choose a captain (handle): ")
             try:
-                state = self.validate_tournament.validate_id(id)
+                state = self.validate_team.validate_captain(captain)
             except EmptyInput:
-                print("Tournament needs an id")
-            except IdAlreadyExists:
-                print("Id already exists")
-            
+                print("Team needs 1 captain")
+            except CaptainNotExistError:
+                print("Player does not exist")
 
-
-
-
+        # Web link
+        state = False
+        while state == False:
+            web_link = "https://" + input("Eb link: https://")
+            try:
+                state = self.validate_team.validate_web_link(web_link)
+            except EmptyInput:
+                print("Team needs to have a web link")
+            except InvalidWebLink:
+                print("Web link needs to contain a dot")
         
-        #Start and End date
+        #ASCII logo
         state = False
         while state == False:
-            start_date = input("Start date: ")
-            end_date = input("End date: ")
+            ascii = input("ASCII logo: ")
             try:
-                state = self.validate_tournament.validate_start_date_and_end_date(start_date, end_date)
+                state = self.validate_team.validate_ascii_logo(ascii)
             except EmptyInput:
-                print("Tournament needs to have a start date and an end date")
-            except InvalidStartDateInPast:
-                print("Start date is in the past")
-            except InvalidStartDateBefore:
-                print("Start date is before end date")
-        
-        
-
-        #Venue
-        state = False
-        while state == False:
-            venue = input("Venue: ")
-            try:
-                state = self.validate_tournament.validate_venue(venue)
-            except EmptyInput:
-                print("Tournament needs to have a venue")
-            
-        
-        #Contract
-        state = False
-        while state == False:
-            contract = input("Contract: ")
-            try:
-                state = self.validate_tournament.validate_contract(contract)
-            except EmptyInput:
-                print("Tournament needs to have a contract")
-            
-        
-        #Contact person email
-        state = False
-        while state == False:
-            contact_email = input("Contact persons email: ")
-            try:
-                self.validate_tournament.validate_contact_email(contact_email)
-            except EmptyInput:
-                print("Tournament needs a contact persons email")
-            except InvalidContactEmail:
-                print("Contact persons email is invalid, try again")
-
-        #Contact persons Phone number
-        state = False
-        while state == False:
-            contact_number = "354" + input("Contact persons phone number: +354")
-            try:
-                self.validate_tournament.validate_contact_numer(number)
-            except EmptyInput:
-                print("Tournament needs a contact persons phone number")
-            except InvalidContactNumber:
-                print("Contact persons phone number is invalid, try again")
-            
-
-        #Number of servers
-        state = False
-        while state == False:
-            num_of_servers = ("Number of servers: ")
-            try:
-                state = self.validate_tournament.validate_servers(num_of_servers)
-            except ValueError:
-                print("Number of servers has to be a digit")
-            except InvalidServers:
-                print("Servers have to be between 1-9")
-
-
-
-        #Number of teams
-        state = False
-        while state == False:
-            num_of_teams = input("Number of teams: ")
-            try:
-                state = self.validate_tournament.validate_number_of_teams(num_of_teams)
-            except WrongNumOfTeams:
-                print("Tournament can't have less than 16 teams and can't have more than 64 teams")
-
-        #Teams in tournament
-               
-        for _ in range(num_of_teams):
-            teams_in_tournament = []
-            
-            state = False
-            while state == False:
-                team_to_tournament = input("Add team to tournament: ")
-                try:
-                    state = self.validate_tournament.validate_teams_in_tournament(team_to_tournament, teams_in_tournament)
-                except TeamAlreadyInTournament:
-                    print("Team is already in tournament")
-                except TeamDoesNotExist:
-                    print("Team does not exist")
-
-            teams_in_tournament.append(team_to_tournament) #Adds the team to the list of teams in the tournement after going through validation     
-
-
-
-        self.tournament_logic.create_tournaments(id, name, start_date, end_date, venue, contract, contact_email, contact_number, num_of_servers, teams_in_tournament )
-
-
-                    
-
-
-
-
-
+                print("Team needs a ASCII logo")
 
 
 

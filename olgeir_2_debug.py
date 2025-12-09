@@ -9,5 +9,11 @@ yo = OrganizerUI()
 choice = yo.get_choice()
 if choice == "4":
     yo.create_player()
+
+
 if choice == "5":
     yo.create_tournoment
+
+
+if choice == "7":
+    yo.create_team()

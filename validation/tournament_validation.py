@@ -68,8 +68,8 @@ class ValidateTournament:
         team_names = []
         all_teams = self._data.get_all_teams()
 
-        for i in all_teams:
-            team_names.append(i.name)
+        for team in all_teams:
+            team_names.append(team.name)
 
         if team_to_tournament not in team_names:
             raise TeamDoesNotExist
