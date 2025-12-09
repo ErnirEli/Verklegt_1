@@ -1,6 +1,8 @@
 from Datalayer.data_api import DataAPI
 from datetime import datetime
 from Error.tournament_error import *
+from datetime import *
+
 class ValidateTournament:
     def __init__(self):
             self._data = DataAPI()
@@ -15,17 +17,36 @@ class ValidateTournament:
     def validate_start_date_and_end_date(self, start_date:int, end_date:int):
         if not start_date or not end_date:
             raise EmptyInput
+        
+        if "/" not in start_date or "/" not in end_date:
+             raise InvalidFormat
             
         
         start_date_checker:datetime = datetime.strptime(start_date, "%d.%m.%y")
         end_date_checker: datetime = datetime.strptime(end_date, "%d.%m.%y")
         if start_date_checker > end_date_checker:
            raise InvalidStartDateBefore
-        
+             
     
         today = datetime.today().date()
         if start_date_checker > today:
             raise InvalidStartDateInPast
+        
+        2-7 
+        start_date = start_date.split("/")
+        start_date = date(int(start_date[0]), int(start_date[1]), int(start_date[2]))
+        end_date =  end_date.split("/")
+        end_date = date(int(end_date[0]), int(end_date[1]), int(end_date[2]))
+        
+        days = start_date - end_date
+        if days < 2:
+             raise InvalidAmountOfDays
+        if days > 7:
+             raise InvalidAmountOfDays
+        
+        return True
+
+
                 
         return True
 
@@ -93,7 +114,9 @@ class ValidateTournament:
     
     def validate_servers(self, servers: str):
         int(servers)
-        if servers > 9 and servers < 1:
+        if servers > 9:
+             raise InvalidServers
+        if servers < 3:
              raise InvalidServers
         return True
         

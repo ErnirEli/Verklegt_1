@@ -32,3 +32,11 @@ class IdAlreadyExists(Exception):
     pass
 class InvalidServers(Exception):
     '''Raise if number of servers are not betwenn 1-9'''
+
+class InvalidFormat(Exception):
+    '''Raised if format for start and end date is wrong'''
+    pass
+
+class InvalidAmountOfDays:
+    '''Raised if tournament has an invalid amount of days'''
+    pass

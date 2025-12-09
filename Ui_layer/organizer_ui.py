@@ -187,19 +187,23 @@ class OrganizerUI:
 
 
         
-    #     #Start and End date
-    #     state = False
-    #     while state == False:
-    #         start_date = input("Start date: ")
-    #         end_date = input("End date: ")
-    #         try:
-    #             state = self.validate_tournament.validate_start_date_and_end_date(start_date, end_date)
-    #         except EmptyInput:
-    #             print("Tournament needs to have a start date and an end date")
-    #         except InvalidStartDateInPast:
-    #             print("Start date is in the past")
-    #         except InvalidStartDateBefore:
-    #             print("Start date is before end date")
+        # #Start and End date
+        # state = False
+        # while state == False:
+        #     start_date = input("Start date: in the format (year/month/day): ")
+        #     end_date = input("End date: in the format (year/month/day): ")
+        #     try:
+        #         state = self.validate_tournament.validate_start_date_and_end_date(start_date, end_date)
+        #     except EmptyInput:
+        #         print("Tournament needs to have a start date and an end date")
+        #     except InvalidStartDateInPast:
+        #         print("Start date is in the past")
+        #     except InvalidStartDateBefore:
+        #         print("Start date is before end date")
+        #     except InvalidAmountOfDays:
+        #         print("Tournament has to be between 2-7 days")
+        #     except InvalidFormat:
+        #         print("Invalid format, start and end date have to contain "/" and in the format year/month/day")
         
         
 
@@ -337,6 +341,15 @@ class OrganizerUI:
         
         self.team_logic.create_team(name, captain, web_link, ascii)
 
+
+    def create_club(self):
+
+        #name
+        state = False
+        while state == False:
+            name = input("Name: ")
+            try:
+                state = self.
 
 
 
