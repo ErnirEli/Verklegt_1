@@ -7,7 +7,7 @@ Tilsettur mætingartími, 8:30 - 9:00*<br>
 ### Onsite:
 Alexander, 9:30 -  <br> 
 Ívar,  - <br>
-Nökkvi,  - <br>
+Nökkvi 11:30  - <br>
 Olgeir, -  <br>
 Ernir, 9:00 -  <br>
 ### Remote:
@@ -32,6 +32,7 @@ Ernir, 9:00 -  <br>
 
 
 ### Nökkvi
+skipta upp ui í files og tengja við logicapi
 
 ### Ívar
 
