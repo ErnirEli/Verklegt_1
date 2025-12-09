@@ -52,7 +52,7 @@ class ValidatePlayer:
         if not link or link.strip() == "":
             raise EmptyInput
         if "." not in link:
-            raise InvalidlinkException
+            raise InvalidLinkException
         return True,
         #eitthvað fleira??
 
