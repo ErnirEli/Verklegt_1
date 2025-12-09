@@ -116,7 +116,7 @@ class OrganizerUI:
                 state = self.validate_player.validate_link(link) 
             except EmptyInput: 
                 print("Player neeeds to have a link") 
-            except InvaldlinkException:
+            except InvalidLinkException:
                 print("Link has to contain a dot")
 
 
@@ -197,7 +197,7 @@ class OrganizerUI:
 
         #New link
         while True:
-            raw_link = "https://" + input("New link: https://")
+            raw_link = input("New link: https://")
             if raw_link == "":
                 new_link = None
                 break
