@@ -51,6 +51,8 @@ class ValidatePlayer:
     def validate_link(self, link: str):
         if not link or link.strip() == "":
             raise EmptyInput
+        if "." not in link:
+            raise InvalidlinkException
         return True,
         #eitthvað fleira??
 
