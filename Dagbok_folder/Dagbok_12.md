@@ -9,7 +9,7 @@ Alexander,  -  <br>
 Ívar,  - <br>
 Nökkvi,  - <br>
 Olgeir, 9:10 - 01:00 <br>
-Ernir, - <br>
+Ernir, 9:00 - 01:00 <br>
 ### Remote:
 
 
@@ -36,6 +36,6 @@ Gera ui fyrir organizer og validation til að create tournament/player
 ---
 
 ## State of group: <br>
-
+Þetta kemur allt með kalda vatninu
 
 ## Spurningar til TA:<br>
