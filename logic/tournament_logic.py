@@ -14,7 +14,7 @@ class TournamentLogic:
     def list_all_tournaments(self)-> List[Tournament]:
         return self._data_api.read_all_Tournaments
 
-    def create_tournaments(self, start_date: str, end_date: str, name: str, venue: str, contract: str, contact_person_email:str, contact_person_number:str, team_list: list) -> Tournament:     
+    def create_tournaments(self, id, start_date: str, end_date: str, name: str, venue: str, contract: str, contact_person_email:str, contact_person_number:str, team_list: list) -> Tournament:     
         tournament: Tournament = Tournament(start_date, end_date, name, venue, contract, contact_person_email, contact_person_number, team_list)
         self._data_api.save_tournament(tournament)
         return tournament

@@ -6,6 +6,8 @@ from Ui_layer.organizer_ui import *
 
 yo = OrganizerUI()
 
-choice = yo.get_choice
+choice = yo.get_choice()
 if choice == "4":
     yo.create_player()
+if choice == "5":
+    yo.create_tournoment

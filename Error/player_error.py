@@ -1,7 +1,7 @@
 
 
 class EmptyInput(Exception):
-    """Raise if name is empty"""
+    """Raise if input is empty"""
     pass
 
 class WrongAgeException(Exception):
@@ -22,6 +22,10 @@ class invalidNumberException(Exception):
 
 class InvalidCharacterHandle(Exception):
     """Raise if invalid characters are in handle"""
+    pass
+
+class InvaldlinkException(Exception):
+    '''Raise if link is invalid'''
     pass
 
 class HandleExistsException(Exception):
