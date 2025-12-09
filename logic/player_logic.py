@@ -27,7 +27,7 @@ class PlayerLogic:
         self._data.add_player(new_player)
         
 
-        return "Player created."
+        return True
 
     def edit_player_info(self, handle,
                          new_phone=None, new_email=None,
@@ -37,7 +37,7 @@ class PlayerLogic:
         players = self._data.get_all_players()
         player = self.find_player(players, handle)
         if player is None:
-            return "Player not found."
+            return None
 
         if new_phone is not None:
             player.phone = new_phone
