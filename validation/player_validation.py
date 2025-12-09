@@ -25,7 +25,7 @@ class ValidatePlayer:
     def validate_name(self, name:str):
         if not name or name.strip() == "":
             raise EmptyInput                    # We raise the EmptyInput Exception class only when nothing is input
-        return True,
+        return True
     
     def validate_age(self, age: str):
         try:
@@ -34,19 +34,19 @@ class ValidatePlayer:
             raise WrongAgeException             # Only raised when ValueError is 
         if age < 18 or age > 65:
             raise InvalidAgeException
-        return True,
+        return True
 
     def validate_home_adress(self, adress: str):
         if not adress or adress.strip() == "":
             raise EmptyInput
-        return True,
+        return True
 
     def validate_email(self, email: str):
         if not email or email.strip() == "":
             raise EmptyInput
         if "@" not in email or "." not in email:
             raise InvalidEmailException
-        return True,
+        return True
 
     def validate_number(self, number: str):
         if number == "354":
@@ -60,7 +60,7 @@ class ValidatePlayer:
             raise EmptyInput
         if "." not in link:
             raise InvalidLinkException
-        return True,
+        return True
         #eitthvað fleira??
 
     def validate_handle(self, handle: str):
@@ -72,5 +72,5 @@ class ValidatePlayer:
         for line in players:
             if line.handle == handle:
                 raise HandleExistsException
-        return True,
+        return True
             
