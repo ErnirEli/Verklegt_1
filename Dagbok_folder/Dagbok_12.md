@@ -5,7 +5,7 @@
 ### Attendance:
 Tilsettur mætingartími, 8:30 - 9:00*<br>
 ### Onsite:
-Alexander,  -  <br> 
+Alexander, 9:20 - 20:20 <br> 
 Ívar,  - <br>
 Nökkvi,  - <br>
 Olgeir, 9:10 - 01:00 <br>
@@ -27,7 +27,9 @@ Hélt áfram með logic layer. Náði að koma góðu functionality í tounament
 
 ### Olgeir
 Gera ui fyrir organizer og validation til að create tournament/player
+
 ### Alexander
+Uppfæra Player Validation með Exception classa í stað fyrir True or False Tuplur
 
 ### Nökkvi
 
