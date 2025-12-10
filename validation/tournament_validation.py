@@ -14,42 +14,34 @@ class ValidateTournament:
             raise EmptyInput
         return True
 
-    def validate_start_date_and_end_date(self, start_date:int, end_date:int):
+    def validate_start_date_and_end_date(self, start_date:str, end_date:str):
         if not start_date or not end_date:
             raise EmptyInput
         
-        if "/" not in start_date or "/" not in end_date:
-             raise InvalidFormat
-            
+        if start_date.count("-") != 2 or end_date.count("-") != 2:
+             raise InvalidFormat    
         
-        start_date_checker:datetime = datetime.strptime(start_date, "%d.%m.%y")
-        end_date_checker: datetime = datetime.strptime(end_date, "%d.%m.%y")
-        if start_date_checker > end_date_checker:
-           raise InvalidStartDateBefore
-             
     
+        start_date = start_date.split("-")
+        start_date = date(int(start_date[2]), int(start_date[1]), int(start_date[0]))
+        end_date =  end_date.split("-")
+        end_date = date(int(end_date[2]), int(end_date[1]), int(end_date[0]))
+        
+        if start_date > end_date:
+           raise InvalidStartDateBefore
+        
         today = datetime.today().date()
-        if start_date_checker > today:
+        if start_date < today:
             raise InvalidStartDateInPast
         
-        2-7 
-        start_date = start_date.split("/")
-        start_date = date(int(start_date[0]), int(start_date[1]), int(start_date[2]))
-        end_date =  end_date.split("/")
-        end_date = date(int(end_date[0]), int(end_date[1]), int(end_date[2]))
-        
-        days = start_date - end_date
-        if days < 2:
+        days = (end_date - start_date).days
+        if days < 2 or days > 7:
              raise InvalidAmountOfDays
-        if days > 7:
-             raise InvalidAmountOfDays
-        
+    
         return True
 
 
                 
-        return True
-
 
     def validate_venue(self, venue: str):
         if not venue:
@@ -78,9 +70,10 @@ class ValidateTournament:
         return True
 
     def validate_number_of_teams(self, num_of_teams: str):
+        int(num_of_teams)
         
 
-        if len(num_of_teams) < 16 and len(num_of_teams) > 64:
+        if num_of_teams < 16 and num_of_teams > 64:
             raise WrongNumOfTeams
         
         return True

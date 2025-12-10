@@ -1,0 +1,29 @@
+class EmtptyInput(Exception):
+    ''''Raise if input is empty'''
+    pass
+
+class ClubNameExistsError(Exception):
+    '''Raise if created club does not have a unique name'''
+    pass
+
+
+class ColorNotAvailable(Exception):
+    '''Raise if created club wants a color that is not valid'''
+    pass
+
+class TeamAlreadyInClubError(Exception):
+    '''Raise if team is already in club'''
+    pass
+
+
+class TeamDoesNotExistError(Exception):
+    '''Raise if wanted team to a club does not exist'''
+    pass
+
+class InvalidNumOfTeams(Exception):
+    '''Raise if cllub wants more than 10 teams or less than 1 team'''
+    pass
+
+class TeamNotAvailableError:
+    '''Raise if a club wants a team that is already in a club'''
+    pass

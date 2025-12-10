@@ -1,23 +1,25 @@
-# requirements:
-# clubs, players, teams get rewards (points) for winning
-from typing import List
 from Datalayer.data_api import DataAPI
 from models.club import Club
 from models.team import Team
+from typing import List
 
 
 class ClubLogic:
-    def __init__(self, data_api: DataAPI) -> None:
-        self._data_api = data_api
+    def __init__(self) -> None:
+        self._data_api = DataAPI()
     
     
-    def list_all_clubs(self) -> List[Club]:
+    def list_all_clubs(self):
         '''returns a list of all teams'''
-        return self._data_api.get_all_clubs
+        return self._data_api.get_all_clubs()
 
-    def create_club(self, name: str, colors: str, hometown: str, country: str) -> Club:
-        club: Club = Club(name, colors, hometown, country)
-        self._data_api.add_club
+    def create_club(self, name: str, color: str, hometown: str, country: str, num_of_teams: str, teams_in_club: List[Team]) -> Club:
+        
+        for team in teams_in_club:
+            team.club = name
+
+        club: Club = Club(name, color, hometown, country)
+        self._data_api.add_club(club)
         return club
     
     def add_team(self, club: Club, new_team: Team):
@@ -37,7 +39,7 @@ class ClubLogic:
         
         return (
             f"name: {club.name} \n"
-            f"colors{club.colors} \n"
+            f"color{club.color} \n"
             f"Hometown: {club.hometown}\n"
             f"Country: {club.country}"
             f"Teams in club: {club_teams}"

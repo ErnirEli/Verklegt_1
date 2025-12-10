@@ -5,6 +5,9 @@ class Team:
     captain: str
     web_link: str
     ASCII = str
+    club: str
+    tournaments: int
+    wins: int
 
     def __init__(self,name: str, captain: str, web_link: str, ASCII: str, club: str = "", tournaments: int = 0, wins: int = 0):
         self.name = name

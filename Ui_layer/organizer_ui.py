@@ -1,3 +1,5 @@
+#from logic.logic_api import logicAPI
+
 #Player imports
 from validation.player_validation import ValidatePlayer
 from logic.player_logic import PlayerLogic
@@ -13,9 +15,15 @@ from logic.team_logic import TeamLogic
 from validation.team_validation import ValidateTeam
 from Error.team_error import *
 
+#Club imports
+from logic.club_logic import ClubLogic
+from validation.club_validation import ValidateClub
+from Error.club_error import *
 
 class OrganizerUI:
     def __init__(self):
+        #self._logic = logicAPI()
+
         self.validate_player = ValidatePlayer()  
         self.player_logic = PlayerLogic()  
         
@@ -24,6 +32,9 @@ class OrganizerUI:
         
         self.validate_team = ValidateTeam()
         self.team_logic = TeamLogic()
+
+        self.validate_club = ValidateClub()
+        self.club_logic = ClubLogic()
 
     def __str__(self):
         return (
@@ -49,7 +60,26 @@ class OrganizerUI:
         
             print("Invalid choice. Try again.\n")
     
-        
+    
+    # def view_teams(self):
+    #     return
+    
+    # def view_player_info(self):
+    #     handle = input("Enter player handle: ").strip()
+    #     player = self._logic.get_full_player_info(handle)
+    #     if player is None:
+    #         print("No player found with that handle.")
+    #     else:
+    #         print("\n--- Player info ---")
+    #         print(f"Handle: {player.handle}")
+    #         print(f"Team name: {player.team_name}")
+    #         print(f"Date og birht: {player.dob}")
+    #         print(f"Address: {player.address}")
+    #         print(f"Phone number: {player.phone}")
+    #         print(f"Email: {player.email}")
+    #         print(F"Link: {player.link}")
+    #         print(f"Total tournaments played in: {player.tournaments}")
+    #         print(f"Tournamnets won: {player.wins}")
 
      
    
@@ -190,8 +220,8 @@ class OrganizerUI:
         # #Start and End date
         # state = False
         # while state == False:
-        #     start_date = input("Start date: in the format (year/month/day): ")
-        #     end_date = input("End date: in the format (year/month/day): ")
+        #     start_date = input("Start date: in the format (day-month-year): ")
+        #     end_date = input("End date: in the format (day-month-year): ")
         #     try:
         #         state = self.validate_tournament.validate_start_date_and_end_date(start_date, end_date)
         #     except EmptyInput:
@@ -203,8 +233,7 @@ class OrganizerUI:
         #     except InvalidAmountOfDays:
         #         print("Tournament has to be between 2-7 days")
         #     except InvalidFormat:
-        #         print("Invalid format, start and end date have to contain "/" and in the format year/month/day")
-        
+        #         print("Invalid format, start and end date have to contain "-" and in the format day-month-year")
         
 
     #     #Venue
@@ -263,31 +292,34 @@ class OrganizerUI:
 
 
 
-    #     #Number of teams
-    #     state = False
-    #     while state == False:
-    #         num_of_teams = input("Number of teams: ")
-    #         try:
-    #             state = self.validate_tournament.validate_number_of_teams(num_of_teams)
-    #         except WrongNumOfTeams:
-    #             print("Tournament can't have less than 16 teams and can't have more than 64 teams")
+        #Number of teams
+        # state = False
+        # while state == False:
+        #     num_of_teams = input("Number of teams: ")
+        #     try:
+        #         state = self.validate_tournament.validate_number_of_teams(num_of_teams)
+        #     except ValueError:
+        #         print("Number of teams has to be a digit")
 
-    #     #Teams in tournament
+        #     except WrongNumOfTeams:
+        #         print("Tournament can't have less than 16 teams and can't have more than 64 teams")
+
+        #Teams in tournament
                
-    #     for _ in range(num_of_teams):
-    #         teams_in_tournament = []
+        # for _ in range(num_of_teams):
+        #     teams_in_tournament = []
             
-    #         state = False
-    #         while state == False:
-    #             team_to_tournament = input("Add team to tournament: ")
-    #             try:
-    #                 state = self.validate_tournament.validate_teams_in_tournament(team_to_tournament, teams_in_tournament)
-    #             except TeamAlreadyInTournament:
-    #                 print("Team is already in tournament")
-    #             except TeamDoesNotExist:
-    #                 print("Team does not exist")
+        #     state = False
+        #     while state == False:
+        #         team_to_tournament = input("Add team to tournament: ")
+        #         try:
+        #             state = self.validate_tournament.validate_teams_in_tournament(team_to_tournament, teams_in_tournament)
+        #         except TeamAlreadyInTournament:
+        #             print("Team is already in tournament")
+        #         except TeamDoesNotExist:
+        #             print("Team does not exist")
 
-    #         teams_in_tournament.append(team_to_tournament) #Adds the team to the list of teams in the tournement after going through validation     
+        #     teams_in_tournament.append(team_to_tournament) #Adds the team to the list of teams in the tournement after going through validation     
 
 
 
@@ -308,16 +340,6 @@ class OrganizerUI:
             except TeamExistsError:
                 print("Team name already exit, team needs an unique name")
             
-        #captain
-        state = False
-        while state == False:
-            captain = input("Choose a captain (handle): ")
-            try:
-                state = self.validate_team.validate_captain(captain)
-            except EmptyInput:
-                print("Team needs a captain")
-            except CaptainNotExistError:
-                print("Player does not exist")
 
         # Web link
         state = False
@@ -339,7 +361,63 @@ class OrganizerUI:
             except EmptyInput:
                 print("Team needs a ASCII logo")
         
-        self.team_logic.create_team(name, captain, web_link, ascii)
+        #Number of players in team
+        #3-5
+        state = False
+        while state == False:
+            num_of_players = input("Number of players in team: ")
+            try:
+                state = self.validate_team.validate_number_of_players(num_of_players)
+            except ValueError:
+                print("Number of players has to be a digit")
+
+            except EmtptyInput:
+                print("Team must have 3-5 players")
+            except TooManyPlayersError:
+                print("Team can not have more than 5 players")
+            except NotEnoughPlayersError:
+                print("Team needs to have at least 3 players")
+        int(num_of_players)
+            
+
+        #Players in team
+        num_of_players = int(num_of_players)
+        Players_in_team = []
+        for _ in range(num_of_players):
+            state = False
+            while state == False:
+                player_handle = input("Player handle to add to team: ")
+                try:
+                    state = self.validate_team.validate_players_in_team(player_handle, Players_in_team)
+                except PlayerDoesNotExistError:
+                    print("Player does not exist")
+                except PlayerAlreadyInTeamError:
+                    print("Player already in Team")
+                except playerNotAvailableError:
+                    print("Player is already in an another team")
+
+            Players_in_team.append(player_handle)
+
+        #captain
+        state = False
+        while state == False:
+            captain = input("Choose a captain (handle): ")
+            try:
+                state = self.validate_team.validate_captain(captain, Players_in_team)
+            except EmptyInput:
+                print("Team needs a captain")
+            except CaptainNotExistError:
+                print("Player does not exist")
+            except CaptainNotInTeamError:
+                print("Captain is not in the team")
+
+
+        self.team_logic.create_team(name, captain, web_link, ascii, num_of_players, Players_in_team)
+
+
+
+
+
 
 
     def create_club(self):
@@ -349,12 +427,82 @@ class OrganizerUI:
         while state == False:
             name = input("Name: ")
             try:
-                state = self.
+                state = self.validate_club.name_validation(name)
+            except EmtptyInput:
+                print("Club needs to have a name")
+            except ClubNameExistsError:
+                print("Name already exissts, club needs to have an unique name")
+
+
+        #Colors
+        state = False
+        print("Available colors: [blue, light blue, red, light red, orange, green, light green, yellow, black, white, brown, purple, light purple, cyan, light cyan, light gray, dark gray]")
+        while state == False:
+            color = input("Choose 1 color: ")
+            try:
+                state = self.validate_club.validate_colors(color)
+            except EmtptyInput:
+                print("Club needs to have at least one color")
+            except ColorNotAvailable:
+                print("Color not available")
+           
+        #Hometown
+        state = False
+        while state == False:
+            hometown = input("Hometown: ")
+            try:
+                state = self.validate_club.validate_hometown(hometown)
+            except EmtptyInput:
+                print("Club needs to have a hometown")
+        
+        #Country
+        state = False
+        while state == False:
+            country = input("Country: ")
+            try:
+                state = self.validate_club.validate_country(country)
+            except EmtptyInput:
+                print("Club needs to have a country")
+            
+
+        #Number of tems in club
+        state = False
+        while state == False:
+            num_of_teams = input("Number of teams in club:")
+            try:
+                state = self.validate_club.validate_num_of_teams(num_of_teams)
+            except ValueError:
+                print("Number of teams have to be a digit")
+            except InvalidNumOfTeams:
+                print("Club can only have 1-10 teams")
+        num_of_teams = int(num_of_teams)
+        #Bæta við fleiri validation ---->> hvað má og má ekki?
+        
+        
+        
+
+        #Teams in club
+        for _ in range(num_of_teams):
+            teams_in_club = []
+            
+            state = False
+            while state == False:
+                team_to_club = input("Team in club: ")
+                try:
+                    state = self.validate_club.validate_teams_in_club(team_to_club, teams_in_club)
+                except TeamDoesNotExistError:
+                    print("Team does not exist")
+                except TeamAlreadyInClubError:
+                    print("Team is already in the club")
+                except TeamNotAvailableError:
+                    print("Team is already in an another club")
+            teams_in_club.append(team_to_club)
+            
+           
 
 
 
-
-
+        self.club_logic.create_club(name, color, hometown, country, num_of_teams, teams_in_club)
 
 
 

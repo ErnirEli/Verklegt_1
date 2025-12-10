@@ -2,7 +2,7 @@ from typing import List
 from Datalayer.data_api import DataAPI 
 from models.team import Team
 from models.player import Player
-
+from typing import List
 
 # Requirements:
 # Sama lið bara búið til 1 sinni.
@@ -13,7 +13,6 @@ from models.player import Player
 
 
 class TeamLogic:
-    _data_api: DataAPI
 
 
     def __init__(self) -> None:
@@ -24,8 +23,11 @@ class TeamLogic:
         return self._data_api.get_all_teams()
 
 
-    def create_team(self, name: str, captain: str, web_link: str = None, ASCII: str = None) -> Team:
+    def create_team(self, name: str, captain: str, web_link: str, ASCII: str, num_of_player: str, players_in_team: List[Player]) -> Team:
         '''creaetes a team only if all validation condition have been met'''
+        for player in players_in_team:
+            player.team_name = name
+        
         team: Team = Team(name, captain, web_link, ASCII)
         self._data_api.add_team(team)
         return team
