@@ -1,11 +1,12 @@
 from logic.logic_api import logicAPI
-from Ui_layer.organizer import Organizer 
+from organizer_ui import OrganizerUI
  
 
 class Spectator:
     "(Áhorfandi) getur séð allt eins og t.d leikjadagskrá, úrslit, liðin, upplysíngar um lið, leikmenn, upplysíngar um leikmenn " 
     def __init__(self):
         self._logic = logicAPI()
+        self._organizer = OrganizerUI
 
     def __str__(self):
         return (

@@ -1,15 +1,14 @@
 from logic.logic_api import logicAPI
+from organizer_ui import OrganizerUI
 
 class Captain:
-    """Captain getur búið til lið, mót og búið til leikmann."""
 
     def __init__(self) -> None:
-       
+        self._organizer = OrganizerUI()
         self._logic = logicAPI()
-        print("Captain class running!")
 
     def __str__(self) -> str:
-        """Skilar streng sem sýnir valmynd fyrir fyrirliða."""
+
         return (
             "Captain\n"
             "---------------\n"
@@ -36,7 +35,18 @@ class Captain:
             print("Invalid choice. Try again.\n")
 
     def run(self):
-        if self.get_choice == 1:
+        if self.get_choice == "1":
             teams = self._logic.list_teams()
             print(teams)
+
+        elif self.get_choice == "2":
+            tournament = self._logic.list_tournaments()
+            print(tournament)
+        
+        elif self.get_choice == "3":
+            match_schedule = self._logic.list_matches()
+            print(match_schedule)
+        
+        elif self.get_choice == "4":
+            self._organizer.create_player()
 
