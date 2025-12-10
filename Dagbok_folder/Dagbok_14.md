@@ -26,13 +26,13 @@ Ernir,  -  <br>
 
 
 ### Olgeir
-
+Organizer ui og validation
 
 ### Alexander
 
 
 ### Nökkvi
-
+skipta upp ui í files og tengja við logicapi
 
 ### Ívar
 
