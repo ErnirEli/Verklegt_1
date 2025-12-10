@@ -46,7 +46,6 @@ class Spectator:
                 players = self._logic.list_players_public()
                 print("\n--- Players ---")
                 for p in players:
-            # p is a dict: {'handle': '...', 'team_name': '...'}
                     print(f"Handle: {p['handle']}")
                     print(f"Team name: {p['team_name']}")
                     print("-" * 35)
@@ -57,7 +56,6 @@ class Spectator:
                 if player is None:
                     print("No player found with that handle.")
                 else:
-        
                     print("\n--- Player info ---")
                     print(f"Handle: {player['handle']}")
                     print(f"Team name: {player['team_name']}")
