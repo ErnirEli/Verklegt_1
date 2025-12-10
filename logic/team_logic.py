@@ -16,8 +16,8 @@ class TeamLogic:
     _data_api: DataAPI
 
 
-    def __init__(self, data_api: DataAPI) -> None:
-        self._data_api = data_api
+    def __init__(self) -> None:
+        self._data_api = DataAPI
     
     def list_all_teams(self) -> List[Team]:
         """Returns a list of all teams"""
