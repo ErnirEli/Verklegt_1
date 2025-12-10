@@ -3,8 +3,8 @@ from logic.logic_api import logicAPI
 
 class SpectatorUI:
 
-    def __init__(self, logic: logicAPI):
-        self._logic = logic
+    def __init__(self):
+        self._logic = logicAPI()
 
     def run(self):
         while True:

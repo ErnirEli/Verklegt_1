@@ -4,7 +4,7 @@ from alexander_debug import SpectatorUI
 
 def main():
     logic = logicAPI()
-    spec_ui = SpectatorUI(logic)
+    spec_ui = SpectatorUI()
     spec_ui.run()
 
 
