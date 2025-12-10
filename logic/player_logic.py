@@ -78,6 +78,8 @@ class PlayerLogic:
             "link": player.link,
             "handle": player.handle,
             "team_name": player.team_name,
+            "tournaments": player.tournament,
+            "wins": player.wins
         }
 
     def list_players_public(self):
@@ -87,7 +89,8 @@ class PlayerLogic:
         for p in players:
             result.append({
                 "handle": p.handle,
-                "team_name": p.team_name
+                "team_name": p.team_name,
+                "tournaments": p.tournaments
             })
         return result
 

@@ -7,7 +7,7 @@ Tilsettur mætingartími, 8:30 - 9:00*<br>
 ### Onsite:
 Alexander, 9:20 - 20:20 <br> 
 Ívar,  - <br>
-Nökkvi,  - <br>
+Nökkvi 9:15 - 18:00 <br>
 Olgeir, 9:10 - 01:00 <br>
 Ernir, 9:00 - 01:00 <br>
 ### Remote:
@@ -32,6 +32,7 @@ Gera ui fyrir organizer og validation til að create tournament/player
 Uppfæra Player Validation með Exception classa í stað fyrir True or False Tuplur
 
 ### Nökkvi
+Vinna í ui
 
 ### Ívar
 
