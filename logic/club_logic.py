@@ -7,13 +7,13 @@ from models.team import Team
 
 
 class ClubLogic:
-    def __init__(self, data_api: DataAPI) -> None:
-        self._data_api = data_api
+    def __init__(self) -> None:
+        self._data_api = DataAPI()
     
     
     def list_all_clubs(self) -> List[Club]:
         '''returns a list of all teams'''
-        return self._data_api.gett_all_clubs
+        return self._data_api.gett_all_clubs()
 
     def create_club(self, name: str, colors: str, hometown: str, country: str, team_list: list) -> None:
         '''Creates a instance of Club and saves it'''
@@ -65,7 +65,6 @@ class ClubLogic:
     def club_info(self, club: Club):
 
         club_teams = self.get_club_teams(club)
-        
         return (
             f"name: {club.name} \n"
             f"colors{club.colors} \n"

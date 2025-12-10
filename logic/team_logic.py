@@ -2,7 +2,7 @@ from typing import List
 from Datalayer.data_api import DataAPI 
 from models.team import Team
 from models.player import Player
-
+from typing import List
 
 # Requirements:
 # Sama lið bara búið til 1 sinni.
@@ -21,22 +21,10 @@ class TeamLogic:
         '''Returns a list of all teams'''
 
         return self._data_api.get_all_teams()
-    
-    def get_team(self, team_name: str) -> Team:
-        '''Returns a single team based on team name'''
 
-        teams = self._data_api.get_all_teams()
 
-        for team in teams:
-            team: Team
-
-            if team.name == team_name:
-                return team
-
-    def create_team(self, name: str, captain: str, web_link: str = None, ASCII: str = None, team_players: list = []) -> Team:
-        '''Creates a team only if all validation condition have been met'''
-
-        # Create an instance of team
+    def create_team(self, name: str, captain: str, web_link: str = None, ASCII: str = None, team_players) -> Team:
+        '''creaetes a team only if all validation condition have been met'''
         team: Team = Team(name, captain, web_link, ASCII)
 
         # Adds team name to player
@@ -83,25 +71,15 @@ class TeamLogic:
         return 
     
 
-    def get_all_players_on_team(self, team: Team) -> list[Player]:
-        '''Returns a list of players handles in a team'''
-
-        players = DataAPI().get_all_players()
-        team_players = []
-
-        # Adds player handle to list
-        for player in players:
-            player: Player
-
-            if player.team_name == team.name:
-                team_players.append(player.handle)
-
-        return team_players
-
-    def team_info(self, team: Team) -> str:
+    def team_info(self, team: Team):
         '''Gives all info on team'''
+            players = self._data_api.get_all_players()
+            team_players = []
+            for player in players:
+                player: Player
 
-        team_players = self.get_all_players_on_team(team)
+                if player.team_name == team.name:
+                    team_players.append(player.handle)
         
         return (
                 f"name: {team.name} \n"

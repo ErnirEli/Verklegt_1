@@ -6,8 +6,8 @@ from Datalayer.data_api import DataAPI
 class PlayerLogic:
 
 
-    def __init__(self, data_wrapper: DataAPI):
-        self._data = data_wrapper
+    def __init__(self):
+        self._data = DataAPI()
 
     def is_editor(self, role):
         return role == "organizer" or role == "captain"
@@ -24,14 +24,10 @@ class PlayerLogic:
 
 
     def create_player(self, name, dob, address,
-                    phone, email, link, handle, 
-                    team_name, tournaments, wins, runner_up):
-        '''Creates an instance of Player'''
+                      phone, email, link, handle):
 
         new_player = Player(handle, name, dob, address,
-                            phone, email, link, team_name, 
-                            tournaments, wins, runner_up)
-        
+                            phone, email, link)
         self._data.add_player(new_player)
         
         return 

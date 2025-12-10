@@ -46,7 +46,7 @@ class PlayerFiles():
                     name: str = player_info[0]
                     birthdate: str = player_info[1]
                     home: str = player_info[2]
-                    phone: str = int(player_info[3])
+                    phone: str = player_info[3]
                     mail: str = player_info[4]
                     link: str = player_info[5]
                     handle: str = player_info[6]
