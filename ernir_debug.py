@@ -1,9 +1,10 @@
 from Datalayer.data_api import DataAPI
 from models.team import Team
-from models.team import Player
+from models.player import Player
 from models.tournament import Tournament
 from logic.tournament_logic import TournamentLogic
 from logic.match_logic import MatchLogic
+from logic.schedule_logic import ScheduleLogic
 from models.match import Match
 
 print(""
@@ -22,6 +23,7 @@ action = int(input())
 files = DataAPI()
 tour = TournamentLogic()
 match_logic = MatchLogic()
+schedule_logic = ScheduleLogic()
 if action == 1:
     name = input("Name: ")
     birth = input("Birthdate: ")
@@ -79,34 +81,39 @@ if action == 5:
 
 if action == 6:
     teams = files.get_all_teams()
-    name = input("Team Name for change: ")
+    name = input("Team Name te see: ")
     for team in teams:
         if name == team.name:
-            print("Name: ", team.name)
-            new = input("New name: ")
-            team.name = new
-            print("New name:", team.name)
-
-    files.write_teams(teams)
+            print(team)
+            break
 
 if action == 7:
     matches = files.get_all_matches()
     for match in matches:
-        print(match)
+        print(match.date)
+
+    files.write_match(matches)
 
 
 if action == 9:
     _id = "RGeE2"
     name = "Gaming Gleði Ernis"
     venue = "Sólinn RU"
-    start = "12/12/2025"
-    end = "23/12/2025"
+    start = "12-12-2025"
+    end = "19-12-2025"
     contact = "Ernir"
     mail = "ernir@gmial.com"
     number = 6998146
-    servers = 3
+    servers = 9
 
-    tour.create_a_tournament(_id, name, venue, start, end, contact, mail, number, servers)
+    num = int(input("number of teams: "))
+    team_list = []
+
+    for k in range(num):
+        team = input("Team name: ")
+        team_list.append(team)
+
+    tour.create_a_tournament(_id, name, venue, start, end, contact, mail, number, servers, team_list)
 
 if action == 10:
     tournaments = files.get_all_tournaments()
@@ -116,36 +123,41 @@ if action == 10:
         print(f"ID = {tournament.id}")
         print(f"Servers = {tournament.servers}")
         print("____________________")
+        print('karen er best')
 
 
 if action == 11:
-    games = files.get_all_matches()
-    valid = []
-    
-    for match in games:
-        match: Match
-        if match.round == "Playoffs":
+
+    while True:
+        tourny = files.get_all_tournaments()[1]
+        matches = schedule_logic.get_active_matches(tourny)
+
+        for match in matches:
+            match: Match
+
             print("━" * 72)
             print(f"║{match.match_number:^70}║")
             print("║", " " * 68, "║")
             print(f"║{match.team_a:^33} vs {match.team_b:^33}║")
             print(f"║{match.a_score:^33}    {match.b_score:^33}║")
             print("║", " " * 68, "║")
+            print(f"║{match.date:^70}║")
+            print(f"║{match.time:^70}║")
+            print("║", " " * 68, "║")
             print("━" * 72)
 
-            valid.append(match)
-
-
-    id = int(input("Number of game to change: "))
-
-    for match in valid:
-
-        if match.match_number == id:
-            a = int(input(f"{match.team_a} score: "))
-            b = int(input(f"{match.team_b} score: "))
+        id = int(input("Number of game to change: "))
+        if id == 67:
             break
 
-    match_logic.update_game_results(id, "RGeE2", a, b)
+        for match in matches:
+
+            if match.match_number == id:
+                a = int(input(f"{match.team_a} score: "))
+                b = int(input(f"{match.team_b} score: "))
+                break
+
+        match_logic.update_game_results(match, a, b)
 
 
 

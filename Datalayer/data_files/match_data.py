@@ -15,7 +15,6 @@ class MatchFiles():
 
             for match in matches:
                 match: Match
-
                 csv_match: list = match.match_to_csv()
                 writer.writerow(csv_match)
 

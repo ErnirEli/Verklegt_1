@@ -3,7 +3,7 @@ class Player:
 
 
     def __init__(self,name, dob, address, phone, 
-                email, link, handle, team_name = None, 
+                email, link, handle, team_name = "None", 
                 tournament = 0, wins = 0, runner_up = 0):
         
         self.handle = handle
@@ -19,6 +19,8 @@ class Player:
         self.runner_up = runner_up
 
     def player_to_csv(self):
+        '''Turns a player into a list of values for easy csv handeling'''
+
         parts = [
             self.name,
             self.dob,

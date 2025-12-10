@@ -43,9 +43,10 @@ class TeamFiles():
                     club: str = line[2]
                     mail: str = line[3]
                     logo: str = line[4]
-                    tour_IDs = line[5]
+                    tour_IDs: str = line[5]
                     tournaments: int = int(line[6])
                     wins: int = int(line[7])
+                    runner_up: int = int(line[8])
 
                     teams.append(Team(name, captain, club, mail,
                                     logo, tour_IDs, tournaments, wins))

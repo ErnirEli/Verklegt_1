@@ -18,6 +18,7 @@ class Match:
         self.state = state
 
     def match_to_csv(self):
+        '''Turns match into list of values for easy CSV handeling'''
         return [self.match_number, self.tournament_id, self.round,
                 self.team_a, self.team_b, self.date, self.time,
                 self.server, self.a_score, self.b_score,

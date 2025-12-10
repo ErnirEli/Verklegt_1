@@ -49,9 +49,10 @@ class ClubFiles():
                     country: str = club_info[3]
                     tournaments: int = int(club_info[4])
                     wins: int = int(club_info[5])
+                    runner_up = int(club_info[6])
                     
-                    clubs.append(Club(name, colors, town,
-                                    country, tournaments, wins))
+                    clubs.append(Club(name, colors, town, country,
+                                    tournaments, wins, runner_up))
                     
                 return clubs
             

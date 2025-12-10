@@ -5,9 +5,6 @@ from models.team import Team
 from models.match import Match
 from models.player import Player
 from models.club import Club
-from datetime import date
-from datetime import time
-
 
 class TournamentLogic:
     
@@ -16,12 +13,16 @@ class TournamentLogic:
         self._schedule = ScheduleLogic()
 
 
-    def list_all_tournaments(self)-> list:
+    def list_all_tournaments(self)-> list[Tournament]:
+        '''Returns a list of all tournaments, of type Tournament'''
+
         return self._data_api.get_all_tournaments()
 
 
     def get_tournament(self, tournament_id: str) -> Tournament:
-        tournaments = self._data_api.get_all_tournaments()
+        '''Takes in a tournament id, and returns given tournament, of type Tournament'''
+
+        tournaments: list = self._data_api.get_all_tournaments()
 
         for tournament in tournaments:
             tournament: Tournament
@@ -31,22 +32,60 @@ class TournamentLogic:
 
 
     def add_teams(self, teams: list, tournament: Tournament) -> Team:
-        all_teams = self._data_api.get_all_teams()
+        '''Adds tournament ID to al teams in tournament'''
 
-        for team in teams:
+        # Gets a list of all players, teams and clubs
+        all_teams: list = self._data_api.get_all_teams()
+        players: list = self._data_api.get_all_players()
+        clubs: list = self._data_api.get_all_clubs()
+
+        tournament_teams = []
+
+        for team in all_teams:
             team: Team
 
-            if team.tour_IDs == 'None':
-                team.tour_IDs = tournament.name
+            if team.name in teams:
+
+                # Gets a list of all teams in the tournament
+                tournament_teams.append(team)
+
+
+        for team in tournament_teams:
+            team: Team
+
+            # Adds tournament ID to team
+            if team.tour_ID == "None":
+                team.tour_ID = tournament.id
 
             else:
-                team.tour_IDs += f" {tournament}"
+                team.tour_ID += " " + tournament.id
+
+            # Adds 1 to total tournaments of all teams in the tournament
+            team.tournament += 1
+
+
+            # Adds 1 to total tournaments of all players in the tournament
+            for player in players:
+                player: Player
+
+                if player.team_name == team.name:
+                    player.tournaments += 1
+
+
+            # Adds 1 to total tournaments of all clubs in the tournament
+            for club in clubs:
+                club: Club
+
+                if team.club == club.name:
+                    club.tournaments += 1
 
         self._data_api.write_teams(all_teams)
 
         return
         
-    def tournament_schedule(self, tournament: Tournament) -> list:
+    def tournament_schedule(self, tournament: Tournament) -> list[Match]:
+        '''Returns a list of all matches in a tournament'''
+
         matches: list = self._data_api.get_all_matches()
 
         tournament_matches = []
@@ -54,49 +93,46 @@ class TournamentLogic:
         for match in matches:
             match: Match
 
+            # Checks if mathc is in tournament
             if match.tournament_id == tournament.id:
                 tournament_matches.append(match)
 
         return tournament_matches
     
-    def active_round_schedule(self, tournament: Tournament) -> list:
-        round_match: Match = self._schedule.get_active_round()
-        all_matches:list = self._data_api.get_all_matches
-
-        active_round_matches: list = []
-
-        for match in all_matches:
-            match: Match
-
-            if match.round == round_match.round:
-                active_round_matches.append(match)
-
-
-        return active_round_matches
-
-
-
-
     def create_a_tournament(self, tournament_id: str, name: str, venue: str, start_date: str,
                 end_date: str, contact: str, contact_email:str,
-                contact_number:str, servers: int):
+                contact_number:str, servers: int, team_list: list = None):
+        '''Creates a Torunament'''
         
+        # Create an instance of the Tournament Class
         new_tournament = Tournament(tournament_id, name, venue, start_date, end_date,
                                     contact, contact_email, contact_number, servers)
+        
+        # Add teams to tournament
+        self.add_teams(team_list, new_tournament)
+
+        #Update tournametn CSV
         self._data_api.add_tournament(new_tournament)
+
+        #Create torunament Schedule
         self._schedule.create_tournament_schedule(new_tournament)
         return
-    
+
 
     def tournament_bracket(self):
+        '''?????'''
         return
-    
 
     def tournament_results(self, match: Match):
+        '''Finished tournament and updates winners'''
+
+        # Gets a list of all players, teams, clubs and tournaments
         players = self._data_api.get_all_players()
         teams = self._data_api.get_all_teams()
         clubs = self._data_api.get_all_clubs()
+        tournaments = self._data_api.get_all_tournaments()
 
+        # Updates win and runner up numbers for players
         for player in players:
             player: Player
 
@@ -107,8 +143,8 @@ class TournamentLogic:
                 else:
                     player.runner_up += 1
 
-                break
 
+        # Updats win and runner up numbers for teams
         for team in teams:
             team: Team
 
@@ -119,14 +155,22 @@ class TournamentLogic:
                 else:
                     team.runner_up += 1
 
+                # Updates win and runner up numbers for clubs
                 for club in clubs:
                         club: Club
 
                         if team.club == club.name:
                             club.wins += 1
 
-                        break
+        for tournament in tournaments:
+            tournament: Tournament
 
-                break
+            if tournament.id == match.tournament_id:
+                tournament.state = True
 
+        
+        self._data_api.write_players(players)
+        self._data_api.write_teams(teams)
+        self._data_api.write_clubs(clubs)
+        self._data_api.write_tournament(tournaments)
         return

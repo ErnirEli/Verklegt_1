@@ -29,12 +29,14 @@ class DataAPI():
         adds the player to the bottom of player file'''
 
         self.player_files.add_player(player)
+        return
 
     def write_players(self, players: list):
         '''Takes in a list of players, of type "Player",
         rewrites the player file with all players in the list'''
 
         self.player_files.write_player(players)
+        return
 
 
     def get_all_teams(self) -> list:
@@ -48,12 +50,14 @@ class DataAPI():
         adds the team to the bottom of team file'''
 
         self.team_files.add_team(team)
+        return
 
     def write_teams(self, teams: list):
         '''Takes in a list of tems, of type "Team",
         rewrites the team file with all teams in the list'''
 
         self.team_files.write_team(teams)
+        return
 
 
     def get_all_matches(self):
@@ -67,12 +71,14 @@ class DataAPI():
         adds the match to the bottom of match file'''
         
         self.match_files.add_match(match)
+        return
 
     def write_match(self, teams: list):
         '''Takes in a list of matches, of type "Match",
         rewrites the match file with all matches in the list'''
         
         self.match_files.write_match(teams)
+        return
 
 
     def get_all_clubs(self) -> list:
@@ -86,12 +92,14 @@ class DataAPI():
         adds the club to the bottom of club file'''
         
         self.club_files.add_club(club)
+        return
 
     def write_clubs(self, clubs: list):
         '''Takes in a list of clubs, of type "Club"
         rewrites the club file with all clubs in the list'''
         
         self.club_files.write_club(clubs)
+        return
 
 
     def get_all_tournaments(self):
@@ -105,11 +113,12 @@ class DataAPI():
         adds the tournament to the bottom of the tournament file'''
         
         self.tournament_files.add_tournament(tournament)
+        return
 
     def write_tournament(self, tournaments: list):
         '''Takes in a list of tournaments, of type "Tournament",
         rewrites the tournament file with all tournaments in the list'''
         
         self.tournament_files.write_tournament(tournaments)
-
+        return
 

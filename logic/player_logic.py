@@ -13,46 +13,52 @@ class PlayerLogic:
         return role == "organizer" or role == "captain"
 
     def find_player(self, players, handle):
-        for line in players:
-            if line.handle == handle:
-                return line
+        '''Finds a single player based on handle'''
+
+        for player in players:
+            player: Player
+
+            if player.handle == handle:
+                return player
         return None
 
 
     def create_player(self, name, dob, address,
                     phone, email, link, handle, 
                     team_name, tournaments, wins, runner_up):
+        '''Creates an instance of Player'''
 
         new_player = Player(handle, name, dob, address,
                             phone, email, link, team_name, 
-                            tournaments, wins)
+                            tournaments, wins, runner_up)
         
         self._data.add_player(new_player)
         
-
-        return "Player created."
+        return 
 
     def edit_player_info(self, handle,
-                        new_phone=None, new_email=None,
-                        new_address=None, new_link=None):
+                        new_phone = False, new_email = False,
+                        new_address = False, new_link = False):
+        '''Edits desired player info'''
 
 
         players = self._data.get_all_players()
         player = self.find_player(players, handle)
-        if player is None:
-            return "Player not found."
+        
+        # if player is None:
+        #     return
 
-        if new_phone is not None:
+        if new_phone:
             player.phone = new_phone
-        if new_email is not None:
+        if new_email:
             player.email = new_email
-        if new_address is not None:
+        if new_address:
             player.address = new_address
-        if new_link is not None:
+        if new_link:
             player.link = new_link
 
-        self._data.rewrite_players(players)
-        return True, "Player info updated."
+        self._data.write_players(players)
+        return
 
     def player_info(self, handle, role=None, private=False):
         

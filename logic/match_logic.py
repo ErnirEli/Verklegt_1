@@ -6,7 +6,7 @@
 from Datalayer.data_api import DataAPI
 from models.match import Match
 from logic.schedule_logic import ScheduleLogic
-from tournament_logic import TournamentLogic
+from logic.tournament_logic import TournamentLogic
 
 
 class MatchLogic:
@@ -14,19 +14,23 @@ class MatchLogic:
     def __init__(self) -> None:
 
         self._data_api = DataAPI()
-        self._schedule = ScheduleLogic()
-        self._tournament = TournamentLogic()
+        self._schedule_logic = ScheduleLogic()
+        self._tournament_logic = TournamentLogic()
 
     def list_all_matches(self) -> list:
 
         return self._data_api.get_all_matches()
 
-    def update_game_results(self, match_id, tour_id, score_a, score_b) -> None:
+    def update_game_results(self, change_match: Match, score_a, score_b) -> None:
+        '''Updates game resaults'''
+
         matches: list = self._data_api.get_all_matches()
 
         for match in matches:
             match: Match
-            if match.match_number == match_id and match.tournament_id == tour_id:
+
+            # Finds the correct match
+            if match.match_number == change_match.match_number and match.tournament_id == change_match.tournament_id:
                 match.a_score = score_a
                 match.b_score = score_b
                 match.state = True
@@ -39,12 +43,11 @@ class MatchLogic:
 
                 break
 
-        self._data_api.write_match(matches)
-        self._schedule.update_schedule(match)
+        self._schedule_logic.update_schedule(match)
 
-
+        # Fininshes tournament
         if match.round == "Final":
-            self._tournament.tournament_results(match)
+            self._tournament_logic.tournament_results(match)
 
 
         return

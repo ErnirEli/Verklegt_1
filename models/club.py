@@ -16,6 +16,8 @@ class Club:
 
 
     def club_to_csv(self) -> list:
+        '''Turns Club into list of values for easy CSV handeling'''
+        
         return [self.name, self.colors, self.hometown, self.country,
                 self.tournaments, self.wins, self.runner_up]
     
