@@ -57,24 +57,26 @@ class PlayerLogic:
         if new_link:
             player.link = new_link
 
-        self._data.write_players(players)
-        return
+        self._data.rewrite_players(players)
+        return True
 
-    def player_info(self, handle, role=None, private=False):
-        
+    def get_public_player_info(self, handle: str):
         players = self._data.get_all_players()
         player = self.find_player(players, handle)
         if player is None:
             return None
 
-        if not private:
-            return {
-                "handle": player.handle,
-                "team_name": player.team_name,
-            }
+        return {
+            "handle": player.handle,
+            "team_name": player.team_name,
+        }
+            
 
-        if not self.is_editor(role):
-            return {"error": "Private data only for captains/organizers."}
+    def get_full_player_info(self, handle: str):
+        players = self._data.get_all_players()
+        player = self.find_player(players, handle)
+        if player is None:
+            return None
 
         return {
             "name": player.name,
@@ -85,6 +87,8 @@ class PlayerLogic:
             "link": player.link,
             "handle": player.handle,
             "team_name": player.team_name,
+            "tournaments": player.tournament,
+            "wins": player.wins
         }
 
     def list_players_public(self):
@@ -94,7 +98,8 @@ class PlayerLogic:
         for p in players:
             result.append({
                 "handle": p.handle,
-                "team_name": p.team_name
+                "team_name": p.team_name,
+                "tournaments": p.tournaments
             })
         return result
 
