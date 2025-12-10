@@ -1,12 +1,5 @@
 from logic.logic_api import logicAPI
-from random import choice
-from typing import Dict, Type, Optional
-
-from lagaui import Captain, ChangeRole, CreateAClub, CreateAPlayer, CreateATournament, Organiser, SeeMatchResult, SeeMatchSchedule, SeeTournament, UIlayer, ViewTeams
-from ui2 import players
-#import validation að hvert og allt virkar from import validation...
-from validation.player_validation import ValidatePlayer
-from logic.player_logic import PlayerLogic
+from Ui_layer.organizer import Organizer 
  
 
 class Spectator:
@@ -40,22 +33,21 @@ class Spectator:
             print("Invalid choice. Try again.\n")
 
     def run(self):
-        while True:
 
-            if Spectator.get_choice == "1":
-                players = self._logic.list_players_public()
-                print("\n--- Players ---")
-                for p in players:
-                    print(f"Handle: {p['handle']}")
-                    print(f"Team name: {p['team_name']}")
-                    print("-" * 35)
+        if self.get_choice == "1":
+            players = self._logic.list_players_public()
+            print("\n--- Players ---")
+            for p in players:
+                print(f"Handle: {p['handle']}")
+                print(f"Team name: {p['team_name']}")
+                print("-" * 35)
             
-            elif choice == "2":
-                handle = input("Enter player handle: ").strip()
-                player = self._logic.get_player_public_info(handle)
-                if player is None:
-                    print("No player found with that handle.")
-                else:
-                    print("\n--- Player info ---")
-                    print(f"Handle: {player['handle']}")
-                    print(f"Team name: {player['team_name']}")
+        elif self.get_choice == "2":
+            handle = input("Enter player handle: ").strip()
+            player = self._logic.get_player_public_info(handle)
+            if player is None:
+                print("No player found with that handle.")
+            else:
+                print("\n--- Player info ---")
+                print(f"Handle: {player['handle']}")
+                print(f"Team name: {player['team_name']}")
