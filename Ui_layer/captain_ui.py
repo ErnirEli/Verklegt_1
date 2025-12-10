@@ -1,15 +1,11 @@
-from typing import Optional
-from lagaui import ChangeRole, CreateAPlayer, SeeMatchSchedule, SeeTournament, ViewTeams
-from validation.player_validation import ValidatePlayer
-from logic.player_logic import PlayerLogic
-
+from logic.logic_api import logicAPI
 
 class Captain:
     """Captain getur búið til lið, mót og búið til leikmann."""
 
     def __init__(self) -> None:
        
-        self.validate_player = ValidatePlayer()
+        self._logic = logicAPI()
         print("Captain class running!")
 
     def __str__(self) -> str:
@@ -39,24 +35,8 @@ class Captain:
 
             print("Invalid choice. Try again.\n")
 
-    def run(self) -> Optional[ChangeRole]:
-        """
-        Keyrir valmyndina fyrir Captain.
-        Skilar ChangeRole ef notandi velur að skipta um hlutverk, annars None.
-        """
-        choice = self.get_choice()
-
-        if choice == "1":
-            ViewTeams()
-        elif choice == "2":
-            SeeTournament()
-        elif choice == "3":
-            SeeMatchSchedule()
-        elif choice == "4":
-            CreateAPlayer()
-
-        elif choice == "9":
-            return ChangeRole()
-
-        return None
+    def run(self):
+        if self.get_choice == 1:
+            teams = self._logic.list_teams()
+            print(teams)
 
