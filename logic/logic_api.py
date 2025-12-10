@@ -71,3 +71,7 @@ class logicAPI:
     def list_players_public(self):
         """Returns list of all players"""
         return self._player_logic.list_players_public()
+    
+    def get_player_private_info(self, handle: str):
+        """Displays private player"""
+        return self._player_logic.get_full_player_info(handle)

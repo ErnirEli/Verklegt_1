@@ -11,7 +11,7 @@ class Player:
         self.email = email
         self.link = link
         self.team_name = team_name
-        self.tournaments = tournament
+        self.tournament = tournament
         self.wins = wins
 
     def player_to_csv(self):

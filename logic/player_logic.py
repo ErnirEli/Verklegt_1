@@ -78,6 +78,8 @@ class PlayerLogic:
             "link": player.link,
             "handle": player.handle,
             "team_name": player.team_name,
+            "tournament": player.tournament,
+            "wins": player.wins
         }
 
     def list_players_public(self):
