@@ -6,7 +6,7 @@
 # link
 # handle
 # team
-from models.player import Player
+
 from Datalayer.data_api import DataAPI
 from Error.player_error import *
 from datetime import *
@@ -30,12 +30,12 @@ class ValidatePlayer:
         if not dob:
             raise EmptyInput 
                     
-        if "/" not in dob:
+        if dob.count("-") != 2:
             raise InvalidAgeException
         
-        
-        dob = dob.split("/")
-        dob = date(int(dob[0]), int(dob[1]), int(dob[2]))
+
+        dob = dob.split("-")
+        dob = date(int(dob[2]), int(dob[1]), int(dob[0]))
         today = datetime.today().date()
         age = today - dob
         age = (age/365.25).days
@@ -50,7 +50,7 @@ class ValidatePlayer:
 
 
     def validate_home_adress(self, adress: str):
-        if not adress or adress.strip() == "":
+        if not adress:
             raise EmptyInput
         return True
 
@@ -79,6 +79,7 @@ class ValidatePlayer:
     def validate_handle(self, handle: str):
         if not handle or handle.strip() == "":
             raise EmptyInput
+        
         players = self._data.get_all_players()
         if "," in handle or "/" in handle:
             raise InvalidCharacterHandle

@@ -103,7 +103,7 @@ class OrganizerUI:
         #Date of Birth
         state = False 
         while state == False: 
-            dob = input("Date of birth: in format(Year/month/day): ") 
+            dob = input("Date of birth: in format(Day-month-year): ") 
             try: 
                 state = self.validate_player.validate_age(dob) 
             except EmptyInput:
@@ -113,7 +113,7 @@ class OrganizerUI:
             except TooOldError:
                 print("Player is too old")
             except InvalidAgeException: 
-                print("Date of birth needs to be in the format: year/month/day") 
+                print("Date of birth needs to be in the format: day-month-year") 
 
 
         #Home address 
@@ -371,7 +371,7 @@ class OrganizerUI:
             except ValueError:
                 print("Number of players has to be a digit")
 
-            except EmtptyInput:
+            except EmptyInput:
                 print("Team must have 3-5 players")
             except TooManyPlayersError:
                 print("Team can not have more than 5 players")
@@ -428,7 +428,7 @@ class OrganizerUI:
             name = input("Name: ")
             try:
                 state = self.validate_club.name_validation(name)
-            except EmtptyInput:
+            except EmptyInput:
                 print("Club needs to have a name")
             except ClubNameExistsError:
                 print("Name already exissts, club needs to have an unique name")
@@ -441,7 +441,7 @@ class OrganizerUI:
             color = input("Choose 1 color: ")
             try:
                 state = self.validate_club.validate_colors(color)
-            except EmtptyInput:
+            except EmptyInput:
                 print("Club needs to have at least one color")
             except ColorNotAvailable:
                 print("Color not available")
@@ -452,7 +452,7 @@ class OrganizerUI:
             hometown = input("Hometown: ")
             try:
                 state = self.validate_club.validate_hometown(hometown)
-            except EmtptyInput:
+            except EmptyInput:
                 print("Club needs to have a hometown")
         
         #Country
@@ -461,7 +461,7 @@ class OrganizerUI:
             country = input("Country: ")
             try:
                 state = self.validate_club.validate_country(country)
-            except EmtptyInput:
+            except EmptyInput:
                 print("Club needs to have a country")
             
 
@@ -476,7 +476,7 @@ class OrganizerUI:
             except InvalidNumOfTeams:
                 print("Club can only have 1-10 teams")
         num_of_teams = int(num_of_teams)
-        #Bæta við fleiri validation ---->> hvað má og má ekki?
+        
         
         
         

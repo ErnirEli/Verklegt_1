@@ -1,7 +1,7 @@
 
 
 class EmptyInput(Exception):
-    """Raise if input is empty"""
+    '''Raise if input is empty'''
     pass
 
 class TooYoungError(Exception):
@@ -13,7 +13,7 @@ class TooOldError(Exception):
     pass
 
 class InvalidAgeException(Exception):
-    """Raise if age is not in the valid range"""
+    """Raise if age is not in the correct format"""
     pass
 
 class InvalidEmailException(Exception):

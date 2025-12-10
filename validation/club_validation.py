@@ -1,5 +1,6 @@
 from Datalayer.data_api import DataAPI
 from Error.club_error import *
+from models.team import Team
 
 class ValidateClub:
     def __init__(self):
@@ -7,7 +8,7 @@ class ValidateClub:
 
     def name_validation(self, name: str):
         if not name:
-            raise EmtptyInput
+            raise EmptyInput
         
         club_list = self._data.get_all_clubs()
 
@@ -20,7 +21,7 @@ class ValidateClub:
 
     def validate_colors(self, color: str): #colors string eða list?
         if not color:
-            raise EmtptyInput
+            raise EmptyInput
         
         color_list = ["blue", "light blue", "red", "light red", "orange", "green", "light green", "yellow", "black", "white", "brown", "purple", "light purple", "cyan", "light cyan", "light gray", "dark gray"]      
         
@@ -31,33 +32,33 @@ class ValidateClub:
 
     def validate_hometown(self, hometown: str):
         if not hometown:
-            raise EmtptyInput
+            raise EmptyInput
         return True
 
 
     def validate_country(self, country: str):
         if not country:
-            raise EmtptyInput
+            raise EmptyInput
         
         return True
     
     def validate_num_of_teams(self, num_of_teams):
-        int(num_of_teams)
+        num_of_teams = int(num_of_teams)
         if num_of_teams > 10 or num_of_teams < 1:
             raise InvalidNumOfTeams
         
         return True
   
         
-    def validate_teams_in_club(self, team_to_club, teams_in_club):
+    def validate_teams_in_club(self, team_to_club: Team, teams_in_club):
         all_teams = self._data.get_all_teams()
         all_team_names = []
-        
-        
+    
         for team in all_teams:
-            all_team_names.append(team.name)
-            if team.name == team_to_club:
-                raise TeamNotAvailableError
+             all_team_names.append(team.name)
+        
+        if team_to_club.club != "":
+            raise TeamNotAvailableError
          
         
         if team_to_club in teams_in_club:

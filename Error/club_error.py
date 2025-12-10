@@ -1,4 +1,4 @@
-class EmtptyInput(Exception):
+class EmptyInput(Exception):
     ''''Raise if input is empty'''
     pass
 
@@ -24,6 +24,6 @@ class InvalidNumOfTeams(Exception):
     '''Raise if cllub wants more than 10 teams or less than 1 team'''
     pass
 
-class TeamNotAvailableError:
+class TeamNotAvailableError(Exception):
     '''Raise if a club wants a team that is already in a club'''
     pass
