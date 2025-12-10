@@ -23,7 +23,7 @@ class TeamLogic:
         return self._data_api.get_all_teams()
 
 
-    def create_team(self, name: str, captain: str, web_link: str = None, ASCII: str = None, team_players) -> Team:
+    def create_team(self, name: str, captain: str, web_link: str, ASCII: str, team_players) -> Team:
         '''creaetes a team only if all validation condition have been met'''
         team: Team = Team(name, captain, web_link, ASCII)
 
@@ -73,13 +73,13 @@ class TeamLogic:
 
     def team_info(self, team: Team):
         '''Gives all info on team'''
-            players = self._data_api.get_all_players()
-            team_players = []
-            for player in players:
-                player: Player
+        players = self._data_api.get_all_players()
+        team_players = []
+        for player in players:
+            player: Player
 
-                if player.team_name == team.name:
-                    team_players.append(player.handle)
+            if player.team_name == team.name:
+                team_players.append(player.handle)
         
         return (
                 f"name: {team.name} \n"
