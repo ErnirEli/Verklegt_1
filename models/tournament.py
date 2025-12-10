@@ -1,38 +1,45 @@
-from models.team import Team
-from typing import List
 
 class Tournament:
+    
+    tournament_id: str
+    name: str
+    venaue: str
     start_date: str
     end_date: str
-    name: str
-    venue: str
-    contract: str 
-    contact_person_email:str
-    contact_person_number:str
-    team_list: list
-       
-    
-    def __init__(self, start_date: str, end_date: str, name: str, venue: str, contract: str, contact_person_email:str, contact_person_number:str, team_list: list) -> None:
-        self.start_date = start_date
-        self.end_date = end_date
-        self.name = name
-        self.venue = venue
-        self.contract = contract
-        self.contact_person_email = contact_person_email
-        self.contact_person_number = contact_person_number
-        self.team_list = team_list
+    contact: str
+    contact_email: str
+    contact_number: str
 
-        self.teams: List[Team] = []
+    def __init__(self, tournament_id: str, name: str, venue: str, start_date: str,
+                end_date: str, contact: str, contact_email: str,
+                contact_number:str, servers: int, state = False) -> None:
 
-    def tournament_to_csv(self)->list:
-        return [self.start_date, self.end_date, self.venue, self.contract, self.contact_person_email, self.contact_person_number, self.team_list]
+        self.id: str = tournament_id
+        self.name: str = name
+        self.venue: str = venue
+        self.start_date: str = start_date
+        self.end_date: str = end_date
+        self.contact: str = contact
+        self.contact_email: str = contact_email
+        self.contact_number: str = contact_number
+        self.state: bool = state
+
+        self.servers: list = self.generate_server_names(servers)
         
-    def __str__(self) ->str:
-        return(
-            f"The tournament begins: [{self.start_date}]"
-            f"The tournament ends:[{self.end_date}]"
-            f"The tournament name is [{self.name}]"
-            f"The tournament is at [{self.venue}]"
-            f"If you need more information contact email: [{self.contact_person_email}], phone: {self.contact_person_number}"
-            f"The teams in the tournament:[{self.team_list}]"
-        )
+    
+    def tournament_to_csv(self) -> list:
+        '''Turns a Tournament into list of values for easy csv handeling'''
+
+        return [self.id, self.name, self.venue, self.start_date, self.end_date, self.contact,
+                self.contact_email, self.contact_number, len(self.servers), self.state]
+    
+    def generate_server_names(self, number_of_servers):
+        '''Creates names for Tournament servers'''
+
+        servers = []
+        
+        for number in range(number_of_servers):
+
+            servers.append(f"{self.id}_Server_{number + 1}")
+
+        return servers
