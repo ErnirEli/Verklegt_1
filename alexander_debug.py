@@ -16,12 +16,12 @@ class SpectatorUI:
             choice = input("Choose an option: ").strip()
 
             if choice == "1":
-                self.list_players()
+                self._logic.list_players_public()
             elif choice == "2":
-                self.view_player()
-            elif choice == "3":
-                self.list_tournaments()
-            elif choice == "0":
-                break
-            else:
-                print("Invalid choice, try again.")
+                self._logic.get_player_full_info()
+            #
+
+def main():
+    runnning = SpectatorUI.run()
+    runnning = True
+
