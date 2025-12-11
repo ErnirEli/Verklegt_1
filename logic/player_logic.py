@@ -7,44 +7,50 @@ class PlayerLogic:
 
 
     def __init__(self):
-        self._data = DataAPI()
+        self._data_api = DataAPI()
 
     def is_editor(self, role):
         return role == "organizer" or role == "captain"
 
-    def find_player(self, players, handle):
-        '''Finds a single player based on handle'''
+    def find_player(self, handle: str) -> Player:
+        '''Takes in a player handle of type string.
+        Returns the player with same handle of type "Player".
+        Only runs after all Validation checks are valid.'''
+
+        players: list[Player] = self._data_api.get_all_players()
 
         for player in players:
-            player: Player
 
             if player.handle == handle:
                 return player
-        return None
 
+    def create_player(self, name: str, dob: str, address: str,
+                    phone: str, email: str, link: str, handle: str) -> None:
+        '''Takes in name, date of birth, adress, phone number, email, link, and hadle.
+        Creates a player of type "Club" and saves him in the player CSV file.
+        Only runs after all Validation checks are valid'''
 
-    def create_player(self, name, dob, address,
-                    phone, email, link, handle):
-
-        new_player = Player(name, dob, address,
-                            phone, email, link, handle)
-        self._data.add_player(new_player)
+        new_player = Player(name, dob, address, phone, email, link, handle)
+        self._data_api.add_player(new_player)
         
-
         return True
 
     def edit_player_info(self, handle,
                         new_phone = False, new_email = False,
-                        new_address = False, new_link = False):
-        '''Edits desired player info'''
+                        new_address = False, new_link = False) -> Player:
+        '''Takes in a player handle and 1-4 of the following arguments: 
+        phone number, email, address, link and changes the info for the player.
+        Only runs if all Validation checks are valid.'''
 
+        players: list[Player] = self._data_api.get_all_players()
 
-        players = self._data.get_all_players()
-        player = self.find_player(players, handle)
-        if player is None:
-            return None
+        # Find the correct player
+        for player in players:
+            if player.handle == handle:
+                break
 
-        if new_phone is not None:
+        # Change desired things
+        if new_phone:
             player.phone = new_phone
         if new_email:
             player.email = new_email
@@ -53,11 +59,11 @@ class PlayerLogic:
         if new_link:
             player.link = new_link
 
-        self._data.rewrite_players(players)
-        return True
+        self._data_api.write_players(players)
+        return player
 
     def get_public_player_info(self, handle: str):
-        players = self._data.get_all_players()
+        players = self._data_api.get_all_players()
         player = self.find_player(players, handle)
         if player is None:
             return None
@@ -69,7 +75,7 @@ class PlayerLogic:
             
 
     def get_full_player_info(self, handle: str):
-        players = self._data.get_all_players()
+        players = self._data_api.get_all_players()
         player = self.find_player(players, handle)
         if player is None:
             return None
@@ -89,7 +95,7 @@ class PlayerLogic:
 
     def list_players_public(self):
 
-        players = self._data.get_all_players()
+        players = self._data_api.get_all_players()
         result = []
         for p in players:
             result.append({
