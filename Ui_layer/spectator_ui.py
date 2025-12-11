@@ -1,20 +1,13 @@
-
-from random import choice 
-
-
-
-from ui2 import players
-#import validation að hvert og allt virkar from import validation...
-from validation.player_validation import ValidatePlayer
-from logic.player_logic import PlayerLogic
+from logic.logic_api import logicAPI
+from organizer_ui import OrganizerUI
  
 
 class Spectator:
     "(Áhorfandi) getur séð allt eins og t.d leikjadagskrá, úrslit, liðin, upplysíngar um lið, leikmenn, upplysíngar um leikmenn " 
     def __init__(self):
-        self.validate_player = ValidatePlayer()
+        self._logic = logicAPI()
+        self._organizer = OrganizerUI
 
-    
     def __str__(self):
         return (
             "Spectator\n"
