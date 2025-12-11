@@ -316,8 +316,8 @@ class OrganizerUI:
 
         #Teams in tournament
         num_of_teams = int(num_of_teams)      
+        teams_in_tournament = []
         for _ in range(num_of_teams):
-            teams_in_tournament = []
             
             state = False
             while state == False:
