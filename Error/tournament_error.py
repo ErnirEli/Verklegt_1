@@ -1,6 +1,4 @@
-class EmptyInput(Exception):
-    '''Raise if input is empty'''
-    pass
+
 
 class InvalidStartDateInPast(Exception):
     '''Raise if start date is in the past'''
@@ -32,11 +30,12 @@ class IdAlreadyExists(Exception):
     pass
 class InvalidServers(Exception):
     '''Raise if number of servers are not betwenn 1-9'''
+    pass
 
 class InvalidFormat(Exception):
     '''Raised if format for start and end date is wrong'''
     pass
 
-class InvalidAmountOfDays:
+class InvalidAmountOfDays(Exception):
     '''Raised if tournament has an invalid amount of days'''
     pass

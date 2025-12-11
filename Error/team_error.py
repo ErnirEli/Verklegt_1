@@ -1,5 +1,3 @@
-class EmptyInput(Exception):
-    '''Raise if input is empty'''
 
 class TeamExistsError(Exception):
     '''Raise if created team does not have a unique name'''

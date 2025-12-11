@@ -49,6 +49,7 @@ class Schedule():
 
         start = self._tournament.start_date.split("-")
         end = self._tournament.end_date.split("-")
+       
 
         # Turn string date into datetime object
         start_date = date(int(start[2]), int(start[1]), int(start[0]))
@@ -108,10 +109,10 @@ class Schedule():
                 
                 team_a: str = self._teams[team]
                 team_b: str = self._teams[team - 1]
-                server: str = self._tournament.servers[(self._game_number % len(self.tournament.servers)) - 1]
+                server: str = self._tournament.servers[(self._game_number % len(self._tournament.servers)) - 1]
 
-                _match = Match(self._game_number + 1, self.tournament.id, "Playoffs", team_a, team_b,
-                            self.current_date, self.slot_times[self.time_location], server,
+                _match = Match(self._game_number + 1, self._tournament.id, "Playoffs", team_a, team_b,
+                            self.current_date, self._slot_times[self.time_location], server,
                             )
 
                 self._data_api.add_match(_match)
