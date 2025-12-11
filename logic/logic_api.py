@@ -1,14 +1,23 @@
-from typing import List
-from logic.team_logic import TeamLogic
+# Models
 from models.team import Team
-from logic.tournament_logic import TournamentLogic
-from logic.match_logic import MatchLogic
 from models.tournament  import Tournament
 from models.match import Match
-from logic.club_logic import ClubLogic
 from models.club import Club
-from logic.player_logic import PlayerLogic
 from models.player import Player
+
+# Logic
+from logic.team_logic import TeamLogic
+from logic.tournament_logic import TournamentLogic
+from logic.match_logic import MatchLogic
+from logic.club_logic import ClubLogic
+from logic.player_logic import PlayerLogic
+
+# Validations
+from validation.player_validation import ValidatePlayer
+from validation.team_validation import ValidateTeam
+from validation.club_validation import ValidateClub
+from validation.tournament_validation import ValidateTournament
+from validation.match_validation import ValidateMatch
 
 
 class logicAPI:
@@ -19,8 +28,15 @@ class logicAPI:
         self._match_logic = MatchLogic()
         self._club_logic = ClubLogic()
         self._player_logic = PlayerLogic()
+        self._player_validation = ValidatePlayer()
+        self._team_validation = ValidateTeam()
+        self._club_validation = ValidateClub()
+        self._tournament_validation = ValidateTournament()
+        self._match_validation = ValidateMatch()
 
-# Teams
+# Logic
+
+    # Teams
 
     def list_teams(self) -> list[Team]:
         '''Takes in nothing and returns a list of all existing teams of type Team'''
@@ -62,8 +78,12 @@ class logicAPI:
 
         return self._team_logic.get_team(team_name)
     
+    def get_team_players(self, name: str) -> list[Player]:
+        '''Takes in a team name of type string, returns a list of all players in the team, of type Player'''
 
-# Tournaments
+        return self._team_logic.get_team_players(name)
+
+    # Tournaments
 
     def list_tournaments(self) -> list[Tournament]:
         '''Takes in nothing and returns a list of all existing tournaments of type Tournament'''
@@ -85,9 +105,10 @@ class logicAPI:
 
         return self._tournament_logic.create_tournament(tournament_id, name, venue, end_date, start_date,
                                                         contact, contact_email, contact_number, servers, team_list)
+    
 
 
-# Matches
+    # Matches
     
     def list_matches(self) -> list[Match]:
         '''Takes in nothing and returns a list of all existing amtches of type Match'''
@@ -104,7 +125,7 @@ class logicAPI:
         return
 
 
-# Clubs
+    # Clubs
 
     def list_clubs(self) -> list[Club]:
         '''Takes in nothing and returns a list of all existing clubs of type Club'''
@@ -146,7 +167,7 @@ class logicAPI:
         return self._club_logic.get_club(club_name)
 
 
-# Player
+    # Player
 
     def create_player(self, name: str, dob: str, address: str, phone: str, email: str,
                     link: str, handle: str, team_name: str) -> None:
@@ -178,3 +199,11 @@ class logicAPI:
 
 
 # Validations   
+
+    def validate_player_name(self, name: str) -> bool:
+        '''Takes a player name of type string and checks if it is valid,
+        Raises an error if name is invalid'''
+
+        return self._player_validation.validate_name()
+    
+
