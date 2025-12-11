@@ -56,7 +56,7 @@ class TournamentFiles():
 
                     tournaments.append(Tournament(id, name, venue,
                                                 start_date, end_date, contact,
-                                                mail, number, servers))
+                                                mail, number, servers, state))
                 
                 return tournaments
         
