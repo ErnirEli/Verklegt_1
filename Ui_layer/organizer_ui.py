@@ -358,6 +358,7 @@ class OrganizerUI:
             "1. create team\n"
             "2. See all teams\n"
             "3. See team info\n"
+            "4. Add player/s to a team"
             "9. Go back\n\n"
         )
         while True:
@@ -385,7 +386,7 @@ class OrganizerUI:
             except TeamExistsError:
                 print("Team name already exit, team needs an unique name")
             except BackButton:
-                return self.Team_menu()
+                return self.t()
 
         # Web link
         state = False
@@ -398,7 +399,7 @@ class OrganizerUI:
             except InvalidWebLink:
                 print("Web link needs to contain a dot")
             except BackButton:
-                return self.Team_menu()
+                return self.t()
         #ASCII logo
         state = False
         while state == False:
@@ -408,7 +409,7 @@ class OrganizerUI:
             except EmptyInput:
                 print("Team needs a ASCII logo")
             except BackButton:
-                return self.Team_menu()
+                return self.team_menu()
         
         #Number of players in team
         #3-5
@@ -427,7 +428,7 @@ class OrganizerUI:
             except NotEnoughPlayersError:
                 print("Team needs to have at least 3 players")
             except BackButton:
-                return self.Team_menu()
+                return self.team_menu()
         int(num_of_players)
             
 
@@ -447,7 +448,7 @@ class OrganizerUI:
                 except playerNotAvailableError:
                     print("Player is already in an another team")
                 except BackButton:
-                    return self.Team_menu()
+                    return self.t()
                 
             Players_in_team.append(player_handle)
 
@@ -464,10 +465,10 @@ class OrganizerUI:
             except CaptainNotInTeamError:
                 print("Captain is not in the team")
             except BackButton:
-                return self.Team_menu()
+                return self.team_menu()
 
 
-        self.team_logic.create_team(name, captain, web_link, ascii, num_of_players, Players_in_team)
+        self.team_logic.create_team(name, captain, web_link, ascii, Players_in_team)
 
     
     def see_all_teams(self):
@@ -485,9 +486,12 @@ class OrganizerUI:
 
     
     def see_team_info(self):
+        
         name = ""
         while name.lower() != "q":
             name = input("Enter team name(q/Q to quit): ").strip()
+            players:list[Player] = self._logic.get_team_players(name)
+
             team: Team = self._logic.get_team(name)
             if team is None:
                 print("No team found with that name.")
@@ -502,7 +506,43 @@ class OrganizerUI:
                 print(f"{"Tournaments Played in:":<25} {team.tournament:>45}")
                 print(f"{"Tournaments won:":<25} {team.wins:>45}")
                 print(f"{"Total tournaments second places:":<25} {team.runner_up:>38}\n")
+                print(f"\n{self.ui_helper.BOLD}{self.ui_helper.RED}{"-"*30} Players in team {"-"*30}{self.ui_helper.RESET}")
+                for player in players:
+                    print(f"{"Name:":<25} {player.name:>45}")
+       
         return self.team_menu()
+
+    def add_player_to_team(self):
+        
+        team_name = input("Enter team name to add players to (q/Q to quit)")
+        if team_name.lower() == "q":
+            return self.team_menu
+        
+        team: Team = self._logic.get_team(team_name)
+
+        players_in_team = self._logic.get_team_players(team)
+        if len(players_in_team) > 5:
+            print("Team is full")
+            return self.add_player_to_team()
+            
+        state = False
+        while state == False:
+            player_name = input("Enter player name to add to team (q/Q to quit)")
+        try:
+            state = self.validate_team.validate_players_in_team(player_name)
+        except PlayerDoesNotExistError:
+            print("Player does not exist")
+        except PlayerAlreadyInTeamError:
+            print("Player is already in a team")
+        except BackButton:
+            return self.team_menu()
+        
+        player: Player= self._logic.find_player(player_name)
+
+        self._logic.add_player(team, player)
+        return self.team_menu()
+
+
 
 #--------------------------------------------------------------------------
 #Club
@@ -512,6 +552,7 @@ class OrganizerUI:
             "1. Create a club\n"
             "2. See all clubs\n"
             "3. See club info\n"
+            "4. Add team/s to a club"
             "9. Go back\n\n"
         )
         while True:
@@ -839,7 +880,7 @@ class OrganizerUI:
 
 
 
-        self.tournament_logic.create_a_tournament(id, name, venue, start_date, end_date, contract, contact_email, contact_number, num_of_servers, teams_in_tournament )
+        self.tournament_logic.create_tournament(id, name, venue, start_date, end_date, contract, contact_email, contact_number, num_of_servers, teams_in_tournament )
 
 
 

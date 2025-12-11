@@ -82,6 +82,17 @@ class ClubLogic:
                 break
         return
     
+    def get_club(self, name: str) -> Club:
+        '''Takes in a club name as a string, 
+        finds the club with the right name and
+        returns it of the type Club'''
+
+        clubs: list[Club] = self._data_api.get_all_clubs()
+
+        for club in clubs:
+            if club.name == name:
+                return club
+    
     def club_info(self, club: Club):
 
         club_teams = self.get_club_teams(club)
@@ -91,3 +102,4 @@ class ClubLogic:
             f"Hometown: {club.hometown}\n"
             f"Country: {club.country}"
         )
+    

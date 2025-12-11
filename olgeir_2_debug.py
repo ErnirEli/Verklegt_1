@@ -51,10 +51,14 @@ def organizer_main():
                 
         
         if first_choice == "2":
-            choice = organizer_ui.Team_menu()
+            choice = organizer_ui.team_menu()
             if choice == "1":
                 organizer_ui.create_team()
-        
+            if choice == "2":
+                organizer_ui.see_all_teams()
+            if choice == "3":
+                organizer_ui.see_team_info()
+
         if first_choice == "3":
             choice = organizer_ui.club_menu()
             if choice == "1":

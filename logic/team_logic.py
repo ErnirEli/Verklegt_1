@@ -29,7 +29,7 @@ class TeamLogic:
         Returns the team of type Team.
         Only runs after all validation checks are valid.'''
 
-        team: Team = Team(name, captain, web_link, ASCII)
+        team: Team = Team(name, captain, web_link = web_link, ASCII = ASCII)
 
         # Adds team name to player
         self.add_players(team, team_players)

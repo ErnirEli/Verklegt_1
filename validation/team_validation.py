@@ -73,7 +73,7 @@ class ValidateTeam:
         
         return True
     
-    def validate_players_in_team(self, player_to_team: str, players_in_team):
+    def validate_players_in_team(self, player_to_team: str, players_in_team: list = []):
         if player_to_team.lower() == "q":
             raise BackButton
         
