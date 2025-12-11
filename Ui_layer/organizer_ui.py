@@ -222,8 +222,8 @@ class OrganizerUI:
 
         player = self.player_logic.get_full_player_info(handle)
        
-
-        print("Current player info:\n")
+        print()
+        print("--- Current player info ---")
         for key, value in player.items():
             print(f"  {key}: {value}")
 
