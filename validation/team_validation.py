@@ -60,21 +60,23 @@ class ValidateTeam:
         
         return True
     
-    def validate_players_in_team(self, player_to_team: Player, players_in_team):
+    def validate_players_in_team(self, player_to_team: str, players_in_team):
         all_players = self._data.get_all_players()
-        all_player_handles = []
 
         for player in all_players:
-            all_player_handles.append(player.handle)
+            player: Player
+
+            if player.handle == player_to_team:
+                break
         
-        if player_to_team not in all_player_handles:
+        else:
             raise PlayerDoesNotExistError
     
-        
+
         if player_to_team in players_in_team:
             raise PlayerAlreadyInTeamError
         
-        if player_to_team.team_name != "":
+        if player.team_name != "None":
             raise playerNotAvailableError
         
         

@@ -4,7 +4,7 @@ class Club:
     hometown: str
     country: str
     
-    def __init__(self, name: str, colors: str, hometown: str, country: str,
+    def __init__(self, name: str, color: str, hometown: str, country: str,
                 tournaments: int = 0, wins: int = 0, runner_up: int = 0):
         self.name = name
         self.color = color
@@ -18,7 +18,7 @@ class Club:
     def club_to_csv(self) -> list:
         '''Turns Club into list of values for easy CSV handeling'''
         
-        return [self.name, self.colors, self.hometown, self.country,
+        return [self.name, self.color, self.hometown, self.country,
                 self.tournaments, self.wins, self.runner_up]
     
     def __str__(self) -> str:
