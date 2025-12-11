@@ -8,7 +8,10 @@
 # team
 
 from Datalayer.data_api import DataAPI
-
+from Error.player_error import *
+from datetime import *
+from Error.general_error import EmptyInput
+from Error.general_error import DateDoesNotExistError
 
 class ValidatePlayer:
 
@@ -18,63 +21,78 @@ class ValidatePlayer:
         self._data = DataAPI()
     
 
-    def is_captain_or_organizer():
-        #Á eftir að implementa
-        return
     
     def validate_name(self, name:str):
         if not name or name.strip() == "":
-            return (False, "Player needs to have a name")
-        return True,
-    
-    def validate_age(self, age: str):
-        #if not age.isnumeric():
+            raise EmptyInput                    # We raise the EmptyInput Exception class only when nothing is input
         
+        return True
+    
+    def validate_age(self, dob: str):
+        if not dob:
+            raise EmptyInput 
+                    
+        if dob.count("-") != 2:
+            raise InvalidAgeException
+        
+
+        dob = dob.split("-")
         try:
-             age = int(age)
+            dob = date(int(dob[2]), int(dob[1]), int(dob[0]))
         except ValueError:
-            return (False, "Age must be a number, try again")
-        if age < 18 or age > 65: #-----------------------------------------> Ætlum við að hafa age limit??  bæði of amall of ungur?
-            return (False, "Player is too young or old to participate")
-        return True,
+            raise DateDoesNotExistError
+
+        today = datetime.today().date()
+        age = today - dob
+        age = (age/365.25).days
+        if age < 18:
+            raise TooYoungError
+        if age > 99:
+            raise TooOldError
+        
+        return True
+
+
+
 
     def validate_home_adress(self, adress: str):
-        if not adress or adress.strip() == "":
-            return (False, "Player needs to have a home adress")
-        return True,
-
-    def validate_phone(self, phone: str):
-        if phone == "354":
-            return (False, "Player needs to have a phone number")
-        if not phone.isnumeric() or len(phone) != 10:
-            return (False, "Phone number is ivalid, try again")
-        return True,
+        if not adress:
+            raise EmptyInput
+        return True
+        return True
 
     def validate_email(self, email: str):
         if not email or email.strip() == "":
-            return (False, "Player needs to have an email")
+            raise EmptyInput
         if "@" not in email or "." not in email:
-            return (False, "Email is invalid, try again")
+            raise InvalidEmailException
+        return True
 
-        return True,
+    def validate_number(self, number: str):
+        if number == "354":
+            raise EmptyInput
+        if not number.isnumeric() or len(number) != 10:
+            raise invalidNumberException
+        return True
 
     def validate_link(self, link: str):
-        if not link or link.strip() == "":
-            return (False, "Player needs to have a link")
-        if link.startswith("https://") == False:
-            return (False, "Link is not valid, try again")
+        if link.strip() == "https://":
+            raise EmptyInput
         if "." not in link:
-            return (False, "Link is not valid, try again")
-        return True,
+            raise InvaldlinkException
+        return True
         #eitthvað fleira??
 
     def validate_handle(self, handle: str):
         if not handle or handle.strip() == "":
-            return (False, "Player needs to have a handle")
+            raise EmptyInput
+        
         players = self._data.get_all_players()
         if "," in handle or "/" in handle:
-            return (False, "Handle contains illegal characters like ',' and '/', try again")
+            raise InvalidCharacterHandle
         for line in players:
             if line.handle == handle:
-                return (False, "Player handle needs to be unique, try again")
-        return True,
+                raise HandleExistsException
+        return True
+        return True
+            

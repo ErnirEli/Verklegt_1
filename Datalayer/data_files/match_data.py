@@ -15,8 +15,7 @@ class MatchFiles():
 
             for match in matches:
                 match: Match
-
-                csv_match: list = match.player_to_csv()
+                csv_match: list = match.match_to_csv()
                 writer.writerow(csv_match)
 
 
@@ -43,22 +42,21 @@ class MatchFiles():
                 for match_info in file_reader:
                     match_info: list
 
-                    match_id: int = int(match_info[0])
-                    tournament_id: int = int(match_info[1])
+                    match_number: int = int(match_info[0])
+                    tournament_id: str = match_info[1]
                     round: str = match_info[2]
-                    match_number = match_info[3]
-                    team_a: str = match_info[4]
-                    team_b: str = match_info[5]
-                    date: str = match_info[6]
-                    time: str = match_info[7]
-                    server: str = match_info[8]
-                    a_score: int = int(match_info[9])
-                    b_score: int = int(match_info[10])
-                    winner: str = match_info[11]
-                    state: bool = (match_info[12] == "TRUE")
+                    team_a: str = match_info[3]
+                    team_b: str = match_info[4]
+                    date: str = match_info[5]
+                    time: str = match_info[6]
+                    server: str = match_info[7]
+                    a_score: int = int(match_info[8])
+                    b_score: int = int(match_info[9])
+                    winner: str = match_info[10]
+                    state: bool = (match_info[11] == "True")
 
-                    matches.append(Match(match_id, tournament_id, round,
-                                        match_number, team_a, team_b,
+                    matches.append(Match(match_number, tournament_id, round,
+                                        team_a, team_b,
                                         date, time, server, a_score,
                                         b_score, winner, state))
 

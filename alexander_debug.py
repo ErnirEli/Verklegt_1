@@ -11,7 +11,7 @@ class SpectatorUI:
             print("\n=== Spectator Menu ===")
             print("1. List players")
             print("2. View player info")
-            print("3. List tournaments (not implemented yet)")
+            print("3. View private player info")
             print("0. Back / exit")
             choice = input("Choose an option: ").strip()
 
@@ -36,11 +36,25 @@ class SpectatorUI:
                     print(f"Team name: {player['team_name']}")
 
             elif choice == "3":
-                print("Listing tournaments not implemented yet.")
-
+                handle = input("Enter player handle: ").strip()
+                player = self._logic.get_player_full_info(handle)
+                if player is None:
+                    print("No player found with that handle.")
+                else:
+                    print("\n--- Player info ---")
+                    print(f"Handle: {player['handle']}")
+                    print(f"Team name: {player['team_name']}")
+                    print(f"Date of birth: {player['dob']}")
+                    print(f"Address: {player['address']}")
+                    print(f"Phone: {player['phone']}")
+                    print(f"Email: {player['email']}")
+                    print(f"Link: {player['link']}")
+                    print(f"Tournaments played: {player['tournament']}")
+                    print(f"Wins: {player['wins']}")
             elif choice == "0":
                 print("Exiting spectator UI.")
                 break
 
             else:
                 print("Invalid option, try again.")
+

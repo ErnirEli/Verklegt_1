@@ -1,71 +1,15 @@
-1,1,R16,1,SegFault Spartans,NullPointer Ninjas,2025-12-06,10:00,SRV-PEPSI,2,0,SegFault Spartans,TRUE
-2,1,R16,2,OffByOne Offense,Pepsi Max Punishers,2025-12-06,10:00,SRV-CHUCK,1,2,Pepsi Max Punishers,TRUE
-3,1,R16,3,Chuck Norris Fan Club,IndentationError Invaders,2025-12-06,10:00,SRV-DATALAB,2,0,Chuck Norris Fan Club,TRUE
-4,1,R16,4,Assembly Avengers,Datalab Dominators,2025-12-06,10:00,SRV-BOMBLAB,2,1,Assembly Avengers,TRUE
-5,1,R16,5,Bomblab Bombers,StackOverflow Stackers,2025-12-06,11:30,SRV-PEPSI,0,2,StackOverflow Stackers,TRUE
-6,1,R16,6,CacheHit Crusaders,WhileTrue Tryhards,2025-12-06,11:30,SRV-CHUCK,2,1,CacheHit Crusaders,TRUE
-7,1,R16,7,Segmentation Foul,RaceCondition Racers,2025-12-06,11:30,SRV-DATALAB,0,2,RaceCondition Racers,TRUE
-8,1,R16,8,Undefined Behavior United,Pepsi Max Overflow,2025-12-06,11:30,SRV-BOMBLAB,1,2,Pepsi Max Overflow,TRUE
-9,1,QF,1,SegFault Spartans,Pepsi Max Punishers,2025-12-06,14:00,SRV-PEPSI,2,1,SegFault Spartans,TRUE
-10,1,QF,2,Chuck Norris Fan Club,Assembly Avengers,2025-12-06,14:00,SRV-CHUCK,2,0,Chuck Norris Fan Club,TRUE
-11,1,QF,3,StackOverflow Stackers,CacheHit Crusaders,2025-12-06,14:00,SRV-DATALAB,0,2,CacheHit Crusaders,TRUE
-12,1,QF,4,RaceCondition Racers,Pepsi Max Overflow,2025-12-06,14:00,SRV-BOMBLAB,2,1,RaceCondition Racers,TRUE
-13,1,SF,1,SegFault Spartans,Chuck Norris Fan Club,2025-12-07,10:00,SRV-PEPSI,0,2,Chuck Norris Fan Club,TRUE
-14,1,SF,2,CacheHit Crusaders,RaceCondition Racers,2025-12-07,10:00,SRV-CHUCK,1,2,RaceCondition Racers,TRUE
-<<<<<<< Updated upstream
-15,1,Final,1,Chuck Norris Fan Club,RaceCondition Racers,2025-12-07,13:00,SRV-PEPSI,3,2,Chuck Norris Fan Club,TRUE
-=======
-15,1,Final,1,Chuck Norris Fan Club,RaceCondition Racers,2025-12-07,13:00,SRV-PEPSI,3,2,Chuck Norris Fan Club,TRUE
-1,RGeE2,Playoffs,LogicGate Legion,MemoryLeak Monarchs,None,None,Server 1,-1,-1,None,False
-2,RGeE2,Playoffs,QuantumQueue Queens,Pipeline Pioneers,None,None,Server 1,-1,-1,None,False
-3,RGeE2,Playoffs,BufferOverflow Battalion,InfiniteLoop Legends,None,None,Server 1,-1,-1,None,False
-4,RGeE2,Playoffs,StackOverflow Stackers,RaceCondition Racers,None,None,Server 1,-1,-1,None,False
-5,RGeE2,Playoffs,Algorithm Avengers,PacketSniffer Pirates,None,None,Server 1,-1,-1,None,False
-6,RGeE2,Playoffs,SegFault Sirens,StackSmash Squad,None,None,Server 1,-1,-1,None,False
-7,RGeE2,Playoffs,CacheMiss Cowboys,Datalab Dominators,None,None,Server 1,-1,-1,None,False
-8,RGeE2,Playoffs,BusError Buccaneers,Mutex Marauders,None,None,Server 1,-1,-1,None,False
-9,RGeE2,Playoffs,IndentationError Invaders,CoreDump Crusade,None,None,Server 1,-1,-1,None,False
-10,RGeE2,Playoffs,Syntax Terror Squad,ThermalThrottle Titans,None,None,Server 1,-1,-1,None,False
-11,RGeE2,Playoffs,Compiler Conquerors,Overflow Ogres,None,None,Server 1,-1,-1,None,False
-12,RGeE2,Playoffs,Quantum Quirks,Boolean Berserkers,None,None,Server 1,-1,-1,None,False
-13,RGeE2,Playoffs,CacheHit Crusaders,Heisenbug Hitmen,None,None,Server 1,-1,-1,None,False
-14,RGeE2,Playoffs,Goonsquad,NullPointer Ninjas,None,None,Server 1,-1,-1,None,False
-15,RGeE2,Playoffs,Hexadecimal Heroes,SegFault Spartans,None,None,Server 1,-1,-1,None,False
-16,RGeE2,Playoffs,Chuck Norris Fan Club,Segmentation Sorcerers,None,None,Server 1,-1,-1,None,False
-17,RGeE2,Playoffs,DataRace Dynamos,BitFlip Bandits,None,None,Server 1,-1,-1,None,False
-18,RGeE2,Playoffs,OffByOne Offense,Protocol Paladins,None,None,Server 1,-1,-1,None,False
-19,RGeE2,Playoffs,Segmentation Foul,Assembly Avengers,None,None,Server 1,-1,-1,None,False
-20,RGeE2,Playoffs,WhileTrue Tryhards,Undefined Behavior United,None,None,Server 1,-1,-1,None,False
-21,RGeE2,Playoffs,CrossSite Crusaders,GarbageCollector Guild,None,None,Server 1,-1,-1,None,False
-22,RGeE2,Round of 32,Winner of game 1,Winner of game 2,None,None,Server 1,-1,-1,None,False
-23,RGeE2,Round of 32,Winner of game 3,Winner of game 4,None,None,Server 1,-1,-1,None,False
-24,RGeE2,Round of 32,Winner of game 5,Winner of game 6,None,None,Server 1,-1,-1,None,False
-25,RGeE2,Round of 32,Winner of game 7,Winner of game 8,None,None,Server 1,-1,-1,None,False
-26,RGeE2,Round of 32,Winner of game 9,Winner of game 10,None,None,Server 1,-1,-1,None,False
-27,RGeE2,Round of 32,Winner of game 11,Winner of game 12,None,None,Server 1,-1,-1,None,False
-28,RGeE2,Round of 32,Winner of game 13,Winner of game 14,None,None,Server 1,-1,-1,None,False
-29,RGeE2,Round of 32,Winner of game 15,Winner of game 16,None,None,Server 1,-1,-1,None,False
-30,RGeE2,Round of 32,Winner of game 17,Winner of game 18,None,None,Server 1,-1,-1,None,False
-31,RGeE2,Round of 32,Winner of game 19,Winner of game 20,None,None,Server 1,-1,-1,None,False
-32,RGeE2,Round of 32,Winner of game 21,Runtime Renegades,None,None,Server 1,-1,-1,None,False
-33,RGeE2,Round of 32,FloatingPoint Fanatics,Kernel Panic Knights,None,None,Server 1,-1,-1,None,False
-34,RGeE2,Round of 32,CyclicShift Samurai,Bomblab Bombers,None,None,Server 1,-1,-1,None,False
-35,RGeE2,Round of 32,BranchPrediction Bandits,Pepsi Max Punishers,None,None,Server 1,-1,-1,None,False
-36,RGeE2,Round of 32,Deadlock Dragons,Bitwise Barbarians,None,None,Server 1,-1,-1,None,False
-37,RGeE2,Round of 32,Throughput Thieves,Pepsi Max Overflow,None,None,Server 1,-1,-1,None,False
-38,RGeE2,Round of 16,Winner of game 22,Winner of game 23,None,None,Server 1,-1,-1,None,False
-39,RGeE2,Round of 16,Winner of game 24,Winner of game 25,None,None,Server 1,-1,-1,None,False
-40,RGeE2,Round of 16,Winner of game 26,Winner of game 27,None,None,Server 1,-1,-1,None,False
-41,RGeE2,Round of 16,Winner of game 28,Winner of game 29,None,None,Server 1,-1,-1,None,False
-42,RGeE2,Round of 16,Winner of game 30,Winner of game 31,None,None,Server 1,-1,-1,None,False
-43,RGeE2,Round of 16,Winner of game 32,Winner of game 33,None,None,Server 1,-1,-1,None,False
-44,RGeE2,Round of 16,Winner of game 34,Winner of game 35,None,None,Server 1,-1,-1,None,False
-45,RGeE2,Round of 16,Winner of game 36,Winner of game 37,None,None,Server 1,-1,-1,None,False
-46,RGeE2,Quarterfinal,Winner of game 38,Winner of game 39,None,None,Server 1,-1,-1,None,False
-47,RGeE2,Quarterfinal,Winner of game 40,Winner of game 41,None,None,Server 1,-1,-1,None,False
-48,RGeE2,Quarterfinal,Winner of game 42,Winner of game 43,None,None,Server 1,-1,-1,None,False
-49,RGeE2,Quarterfinal,Winner of game 44,Winner of game 45,None,None,Server 1,-1,-1,None,False
-50,RGeE2,Semifinal,Winner of game 46,Winner of game 47,None,None,Server 1,-1,-1,None,False
-51,RGeE2,Semifinal,Winner of game 48,Winner of game 49,None,None,Server 1,-1,-1,None,False
-52,RGeE2,Final,Winner of game 50,Winner of game 51,None,None,Server 1,-1,-1,None,False
->>>>>>> Stashed changes
+1,1,R16,SegFault Spartans,NullPointer Ninjas,06-12-2025,10:00,SRV-PEPSI,2,0,SegFault Spartans,True
+2,1,R16,OffByOne Offense,Pepsi Max Punishers,06-12-2025,10:00,SRV-CHUCK,1,2,Pepsi Max Punishers,True
+3,1,R16,Chuck Norris Fan Club,IndentationError Invaders,06-12-2025,10:00,SRV-DATALAB,2,0,Chuck Norris Fan Club,True
+4,1,R16,Assembly Avengers,Datalab Dominators,06-12-2025,10:00,SRV-BOMBLAB,2,1,Assembly Avengers,True
+5,1,R16,Bomblab Bombers,StackOverflow Stackers,06-12-2025,11:30,SRV-PEPSI,0,2,StackOverflow Stackers,True
+6,1,R16,CacheHit Crusaders,WhileTrue Tryhards,06-12-2025,11:30,SRV-CHUCK,2,1,CacheHit Crusaders,True
+7,1,R16,Segmentation Foul,RaceCondition Racers,06-12-2025,11:30,SRV-DATALAB,0,2,RaceCondition Racers,True
+8,1,R16,Undefined Behavior United,Pepsi Max Overflow,06-12-2025,11:30,SRV-BOMBLAB,1,2,Pepsi Max Overflow,True
+9,1,QF,SegFault Spartans,Pepsi Max Punishers,06-12-2025,14:00,SRV-PEPSI,2,1,SegFault Spartans,True
+10,1,QF,Chuck Norris Fan Club,Assembly Avengers,06-12-2025,14:00,SRV-CHUCK,2,0,Chuck Norris Fan Club,True
+11,1,QF,StackOverflow Stackers,CacheHit Crusaders,06-12-2025,14:00,SRV-DATALAB,0,2,CacheHit Crusaders,True
+12,1,QF,RaceCondition Racers,Pepsi Max Overflow,06-12-2025,14:00,SRV-BOMBLAB,2,1,RaceCondition Racers,True
+13,1,SF,SegFault Spartans,Chuck Norris Fan Club,07-12-2025,10:00,SRV-PEPSI,0,2,Chuck Norris Fan Club,True
+14,1,SF,CacheHit Crusaders,RaceCondition Racers,07-12-2025,10:00,SRV-CHUCK,1,2,RaceCondition Racers,True
+15,1,Final,Chuck Norris Fan Club,RaceCondition Racers,07-12-2025,13:00,SRV-PEPSI,3,2,Chuck Norris Fan Club,True

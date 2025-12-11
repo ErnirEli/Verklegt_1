@@ -46,17 +46,18 @@ class PlayerFiles():
                     name: str = player_info[0]
                     birthdate: str = player_info[1]
                     home: str = player_info[2]
-                    phone: str = int(player_info[3])
+                    phone: str = player_info[3]
                     mail: str = player_info[4]
                     link: str = player_info[5]
                     handle: str = player_info[6]
                     team: str = player_info[7]
                     tournaments: int = int(player_info[8])
                     wins: int = int(player_info[9])
+                    runner_up: int = int(player_info[10])
 
                     players.append(Player(name, birthdate, home,
                                         phone, mail, link, handle,
-                                        team, tournaments, wins))
+                                        team, tournaments, wins, runner_up))
                     
                 return players
             
