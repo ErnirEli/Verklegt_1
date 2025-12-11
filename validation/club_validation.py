@@ -1,6 +1,7 @@
 from Datalayer.data_api import DataAPI
 from Error.club_error import *
 from models.team import Team
+from Error.general_error import EmptyInput
 
 class ValidateClub:
     def __init__(self):

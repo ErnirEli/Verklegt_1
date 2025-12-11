@@ -26,8 +26,8 @@ class PlayerLogic:
     def create_player(self, name, dob, address,
                       phone, email, link, handle):
 
-        new_player = Player(handle, name, dob, address,
-                            phone, email, link)
+        new_player = Player(name, dob, address,
+                            phone, email, link, handle)
         self._data.add_player(new_player)
         
         return 

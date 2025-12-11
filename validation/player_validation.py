@@ -10,6 +10,8 @@
 from Datalayer.data_api import DataAPI
 from Error.player_error import *
 from datetime import *
+from Error.general_error import EmptyInput
+from Error.general_error import DateDoesNotExistError
 
 class ValidatePlayer:
 
@@ -35,7 +37,11 @@ class ValidatePlayer:
         
 
         dob = dob.split("-")
-        dob = date(int(dob[2]), int(dob[1]), int(dob[0]))
+        try:
+            dob = date(int(dob[2]), int(dob[1]), int(dob[0]))
+        except ValueError:
+            raise DateDoesNotExistError
+
         today = datetime.today().date()
         age = today - dob
         age = (age/365.25).days

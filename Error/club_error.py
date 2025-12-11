@@ -1,6 +1,3 @@
-class EmptyInput(Exception):
-    ''''Raise if input is empty'''
-    pass
 
 class ClubNameExistsError(Exception):
     '''Raise if created club does not have a unique name'''

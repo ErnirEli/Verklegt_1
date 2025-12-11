@@ -1,6 +1,6 @@
 
 
-class EmptyInput(Exception):
+class PlayerEmptyInputError(Exception):
     '''Raise if input is empty'''
     pass
 
@@ -35,6 +35,7 @@ class InvaldlinkException(Exception):
 class HandleExistsException(Exception):
     """Raise if handle is already in use"""
     pass
+
 
 
     

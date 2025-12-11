@@ -1,6 +1,7 @@
 from Datalayer.data_api import DataAPI
 from Error.team_error import *
 from models.player import Player
+from Error.general_error import EmptyInput
 
 
 class ValidateTeam:

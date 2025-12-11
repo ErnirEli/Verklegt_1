@@ -11,8 +11,8 @@ if choice == "4":
     yo.create_player()
 
 
-# if choice == "5":
-#     yo.create_tournoment()
+if choice == "5":
+    yo.create_tournoment()
 
 
 if choice == "7":

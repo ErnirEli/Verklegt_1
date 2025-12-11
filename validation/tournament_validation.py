@@ -2,6 +2,8 @@ from Datalayer.data_api import DataAPI
 from datetime import datetime
 from Error.tournament_error import *
 from datetime import *
+from Error.general_error import EmptyInput
+from Error.general_error import DateDoesNotExistError
 
 class ValidateTournament:
     def __init__(self):
@@ -23,10 +25,20 @@ class ValidateTournament:
         
     
         start_date = start_date.split("-")
-        start_date = date(int(start_date[2]), int(start_date[1]), int(start_date[0]))
         end_date =  end_date.split("-")
-        end_date = date(int(end_date[2]), int(end_date[1]), int(end_date[0]))
-        
+
+         
+
+        try:
+             start_date = date(int(start_date[2]), int(start_date[1]), int(start_date[0]))
+        except ValueError:
+            raise DateDoesNotExistError
+        try:
+            end_date = date(int(end_date[2]), int(end_date[1]), int(end_date[0]))
+        except ValueError:
+             raise DateDoesNotExistError 
+
+
         if start_date > end_date:
            raise InvalidStartDateBefore
         
@@ -56,24 +68,24 @@ class ValidateTournament:
     def validate_contact_email(self, email: str):
         if not email:
             raise EmptyInput
-        if "." and "@" in email and not isinstance(email, str):
-                raise InvalidContactEmail
+        if "." not in email or "@" not in email:
+            raise InvalidContactEmail
         
         return True
         
     def validate_contact_numer(self, number: str):
         if not number:
                 return EmptyInput
-        if not number.isnumeric() and len(number) != 10:
+        if not number.isnumeric() or len(number) != 10:
                 raise InvalidContactNumber
         
         return True
 
     def validate_number_of_teams(self, num_of_teams: str):
-        int(num_of_teams)
+        num_of_teams = int(num_of_teams)
         
 
-        if num_of_teams < 16 and num_of_teams > 64:
+        if num_of_teams < 16 or num_of_teams > 64:
             raise WrongNumOfTeams
         
         return True
@@ -106,7 +118,7 @@ class ValidateTournament:
         return True
     
     def validate_servers(self, servers: str):
-        int(servers)
+        servers = int(servers)
         if servers > 9:
              raise InvalidServers
         if servers < 3:
