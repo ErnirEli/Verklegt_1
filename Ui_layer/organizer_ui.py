@@ -455,7 +455,7 @@ class OrganizerUI:
                 print("Club needs to have at least one color")
             except ColorNotAvailable:
                 print("Color not available")
-           
+
         #Hometown
         state = False
         while state == False:
@@ -492,8 +492,9 @@ class OrganizerUI:
         
 
         #Teams in club
+        teams_in_club = []
         for _ in range(num_of_teams):
-            teams_in_club = []
+            
             
             state = False
             while state == False:
@@ -508,11 +509,11 @@ class OrganizerUI:
                     print("Team is already in an another club")
             teams_in_club.append(team_to_club)
             
-           
 
 
 
         self.club_logic.create_club(name, color, hometown, country, teams_in_club)
+        return
 
 
 

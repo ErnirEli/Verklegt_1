@@ -19,6 +19,8 @@ class ClubLogic:
         '''Creates a instance of Club and saves it'''
         club: Club = Club(name, colors, hometown, country)
 
+
+        self.add_teams(team_list, club)
         self._data_api.add_club(club)
         return 
     
@@ -33,7 +35,7 @@ class ClubLogic:
             if team.name in team_list:
                 team.club = club.name
 
-        self._data_api.write_teams(team)
+        self._data_api.write_teams(teams)
 
     def get_club_teams(self, club: Club):
         '''Gets all teams that are a part of a club'''

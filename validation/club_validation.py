@@ -49,22 +49,24 @@ class ValidateClub:
             raise InvalidNumOfTeams
         
         return True
-  
+
         
-    def validate_teams_in_club(self, team_to_club: Team, teams_in_club):
+    def validate_teams_in_club(self, team_to_club: str, teams_in_club: list):
         all_teams = self._data.get_all_teams()
-        all_team_names = []
     
         for team in all_teams:
-             all_team_names.append(team.name)
+            team: Team
+
+            if team.name == team_to_club:
+                break
+        else:
+            raise TeamDoesNotExistError
         
-        if team_to_club.club != "":
+        if team.club != "None":
             raise TeamNotAvailableError
-         
         
         if team_to_club in teams_in_club:
             raise TeamAlreadyInClubError
-        if team_to_club not in all_team_names:
-            raise TeamDoesNotExistError
+
         
         return True
