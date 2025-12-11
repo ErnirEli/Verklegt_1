@@ -40,7 +40,7 @@ class InvalidLinkException(Exception):
     '''Raise if link is invalid'''
     pass
 
-class InvalidNumberException(Exception):
+class InvalidNumberError(Exception):
     '''Raise if number is invalid'''
     pass
 class PlayerNotExist(Exception):

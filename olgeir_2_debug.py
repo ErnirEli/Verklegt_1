@@ -12,12 +12,20 @@ while True:
     first_choice = yo.get_choice()
     if first_choice == "1":
         choice = yo.player_settings()
-        if choice == "1":
-            yo.create_player()
-        if choice == "4":
-            yo.view_player_info()
+        while choice != "9":
+            if choice == "1":
+                choice = yo.create_player()
+            if choice == "2":        
+                choice = yo.edit_player_info()
+            if choice == "3":
+                choice = yo.see_all_players()
+            if choice == "4":
+                choice = yo.view_player_info()
+                
+            if choice not in ("1", "2", "3", "4", "9"):
+                print("Invalid option")
 
-        
+            
     
     if first_choice == "2":
         choice = yo.Team_menu()
