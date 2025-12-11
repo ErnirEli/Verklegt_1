@@ -2,8 +2,7 @@ from Datalayer.data_api import DataAPI
 from datetime import datetime
 from Error.tournament_error import *
 from datetime import *
-from Error.general_error import EmptyInput
-from Error.general_error import DateDoesNotExistError
+from Error.general_error import EmptyInput, DateDoesNotExistError, BackButton
 
 class ValidateTournament:
     def __init__(self):
@@ -12,11 +11,18 @@ class ValidateTournament:
 
 
     def validate_name(self, name: str):
+        if name.lower() == "q":
+             raise BackButton
         if not name:
             raise EmptyInput
+        
         return True
 
+
     def validate_start_date_and_end_date(self, start_date:str, end_date:str):
+        if start_date.lower() == "q" or end_date.lower() == "q":
+             raise BackButton
+        
         if not start_date or not end_date:
             raise EmptyInput
         
@@ -26,9 +32,7 @@ class ValidateTournament:
     
         start_date = start_date.split("-")
         end_date =  end_date.split("-")
-
          
-
         try:
              start_date = date(int(start_date[2]), int(start_date[1]), int(start_date[0]))
         except ValueError:
@@ -56,24 +60,31 @@ class ValidateTournament:
                 
 
     def validate_venue(self, venue: str):
+        if venue.lower() == "q":
+             raise BackButton
         if not venue:
             raise EmptyInput
         return True
     
     def validate_contract(self, contract: str):
+        if contract.lower()  == "q":
+             raise BackButton
         if not contract:
             raise EmptyInput
         return True
     
     def validate_contact_email(self, email: str):
+        if email.lower() == "q":
+             raise BackButton        
         if not email:
             raise EmptyInput
         if "." not in email or "@" not in email:
             raise InvalidContactEmail
-        
         return True
         
     def validate_contact_numer(self, number: str):
+        if number.lower() == "q":
+             raise BackButton
         if not number:
                 return EmptyInput
         if not number.isnumeric() or len(number) != 10:
@@ -82,14 +93,18 @@ class ValidateTournament:
         return True
 
     def validate_number_of_teams(self, num_of_teams: str):
+        if num_of_teams.lower() == "q":
+             raise BackButton
+        
         num_of_teams = int(num_of_teams)
         
-
         if num_of_teams < 16 or num_of_teams > 64:
             raise WrongNumOfTeams
         
         return True
     def validate_teams_in_tournament(self, team_to_tournament: str, teams_in_tournament: list):
+        if team_to_tournament.lower() == "q":
+             raise BackButton
         
         team_names = []
         all_teams = self._data.get_all_teams()
@@ -108,6 +123,9 @@ class ValidateTournament:
     
 
     def validate_id(self, id: str):
+        if id.lower() == "q":
+             raise BackButton
+        
         if not id:
              raise EmptyInput
         
@@ -117,11 +135,18 @@ class ValidateTournament:
                   raise IdAlreadyExists
         return True
     
-    def validate_servers(self, servers: str):
+    def validate_servers(self, servers: str, num_of_teams: int):
+        if servers.lower() == "q":
+             raise BackButton
+        
         servers = int(servers)
-        if servers > 9:
-             raise InvalidServers
-        if servers < 3:
-             raise InvalidServers
+
+        if num_of_teams < 32:
+             if servers < 2 or servers > 4:
+                  raise InvalidServers
+        if num_of_teams >= 32:
+            if servers < 4 or servers > 7:
+                raise InvalidAmountOfDays
+       
         return True
         

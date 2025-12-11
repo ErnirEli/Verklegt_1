@@ -9,9 +9,8 @@
 
 from Datalayer.data_api import DataAPI
 from Error.player_error import *
-from datetime import *
-from Error.general_error import EmptyInput
-from Error.general_error import DateDoesNotExistError
+from datetime import date, datetime
+from Error.general_error import EmptyInput, DateDoesNotExistError, BackButton
 
 class ValidatePlayer:
 
@@ -23,19 +22,23 @@ class ValidatePlayer:
 
     
     def validate_name(self, name:str):
+        if name.lower() == "q":
+            raise BackButton
         if not name or name.strip() == "":
             raise EmptyInput                    # We raise the EmptyInput Exception class only when nothing is input
-        
+
         return True
     
     def validate_age(self, dob: str):
+        if dob.lower() == "q":
+            raise BackButton
+        
         if not dob:
             raise EmptyInput 
                     
         if dob.count("-") != 2:
             raise InvalidAgeException
         
-
         dob = dob.split("-")
         try:
             dob = date(int(dob[2]), int(dob[1]), int(dob[0]))
@@ -55,20 +58,29 @@ class ValidatePlayer:
 
 
 
-    def validate_home_adress(self, adress: str):
-        if not adress:
+    def validate_home_adress(self, address: str):
+        if address.lower() == "q":
+            raise BackButton
+        if not address:
             raise EmptyInput
+        
+        
         return True
-        return True
+    
 
     def validate_email(self, email: str):
+        if email.lower() == "q":
+            raise BackButton
         if not email or email.strip() == "":
             raise EmptyInput
         if "@" not in email or "." not in email:
             raise InvalidEmailException
+
         return True
 
     def validate_number(self, number: str):
+        if number.lower() == "q":
+            raise BackButton
         if number == "354":
             raise EmptyInput
         if not number.isnumeric() or len(number) != 10:
@@ -76,14 +88,19 @@ class ValidatePlayer:
         return True
 
     def validate_link(self, link: str):
+        if link.lower() == "q":
+            raise BackButton
         if link.strip() == "https://":
             raise EmptyInput
         if "." not in link:
             raise InvaldlinkException
         return True
+    
         #eitthvað fleira??
 
     def validate_handle(self, handle: str):
+        if handle.lower() == "q":
+            raise BackButton    
         if not handle or handle.strip() == "":
             raise EmptyInput
         
@@ -94,5 +111,5 @@ class ValidatePlayer:
             if line.handle == handle:
                 raise HandleExistsException
         return True
-        return True
+        
             

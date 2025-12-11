@@ -9,3 +9,6 @@ class DateDoesNotExistError(Exception):
     '''Raise if inputed date does not exist'''
     pass
 
+class BackButton(Exception):
+    '''Raise if user wants to stop creating and go back'''
+    pass

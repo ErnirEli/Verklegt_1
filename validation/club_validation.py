@@ -1,13 +1,16 @@
 from Datalayer.data_api import DataAPI
 from Error.club_error import *
 from models.team import Team
-from Error.general_error import EmptyInput
+from Error.general_error import EmptyInput, BackButton
 
 class ValidateClub:
     def __init__(self):
         self._data = DataAPI()
 
     def name_validation(self, name: str):
+        if name.lower() == "q":
+            raise BackButton
+        
         if not name:
             raise EmptyInput
         
@@ -21,6 +24,8 @@ class ValidateClub:
         return True
 
     def validate_colors(self, color: str): #colors string eða list?
+        if color.lower() == "q":
+            raise BackButton
         if not color:
             raise EmptyInput
         
@@ -32,18 +37,24 @@ class ValidateClub:
         return True
 
     def validate_hometown(self, hometown: str):
+        if hometown.lower() == "q":
+            raise BackButton
         if not hometown:
             raise EmptyInput
         return True
 
 
     def validate_country(self, country: str):
+        if country.lower() == "q":
+            raise BackButton
         if not country:
             raise EmptyInput
         
         return True
     
-    def validate_num_of_teams(self, num_of_teams):
+    def validate_num_of_teams(self, num_of_teams: str):
+        if num_of_teams.lower() == "q":
+            raise BackButton
         num_of_teams = int(num_of_teams)
         if num_of_teams > 10 or num_of_teams < 1:
             raise InvalidNumOfTeams
@@ -52,6 +63,8 @@ class ValidateClub:
 
         
     def validate_teams_in_club(self, team_to_club: str, teams_in_club: list):
+        if team_to_club.lower() == "q":
+            raise BackButton
         all_teams = self._data.get_all_teams()
     
         for team in all_teams:

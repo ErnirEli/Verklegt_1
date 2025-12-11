@@ -30,7 +30,7 @@ class Player:
             self.link,
             self.handle,
             self.team_name,
-            self.tournaments,
+            self.tournament,
             self.wins,
             self.runner_up,
             ]

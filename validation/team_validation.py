@@ -1,7 +1,7 @@
 from Datalayer.data_api import DataAPI
 from Error.team_error import *
 from models.player import Player
-from Error.general_error import EmptyInput
+from Error.general_error import EmptyInput, BackButton
 
 
 class ValidateTeam:
@@ -9,6 +9,9 @@ class ValidateTeam:
         self._data = DataAPI()
     
     def validate_name(self, name: str):
+        if name.lower() == "q":
+            raise BackButton
+        
         if not name:
             raise EmptyInput
         
@@ -21,6 +24,9 @@ class ValidateTeam:
         return True
 
     def validate_captain(self, captain: str, players_in_team: list):
+        if captain.lower() == "q":
+            raise BackButton
+        
         if not captain:
             raise EmptyInput
         
@@ -38,6 +44,9 @@ class ValidateTeam:
         return True
 
     def validate_web_link(self, web_link: str):
+        if web_link.lower() == "q":
+            raise BackButton
+        
         if web_link == "https://":
             raise EmptyInput
         if "." not in web_link:
@@ -50,6 +59,9 @@ class ValidateTeam:
         return True
     
     def validate_number_of_players(self, num_of_players: str):
+        if num_of_players.lower() == "Q":
+            raise BackButton
+        
         num_of_players = int(num_of_players)
         
         if not num_of_players:
@@ -62,6 +74,9 @@ class ValidateTeam:
         return True
     
     def validate_players_in_team(self, player_to_team: str, players_in_team):
+        if player_to_team.lower() == "q":
+            raise BackButton
+        
         all_players = self._data.get_all_players()
 
         for player in all_players:

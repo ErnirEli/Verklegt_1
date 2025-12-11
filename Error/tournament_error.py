@@ -29,7 +29,7 @@ class IdAlreadyExists(Exception):
     '''Raise if inputed id already exists'''
     pass
 class InvalidServers(Exception):
-    '''Raise if number of servers are not betwenn 1-9'''
+    '''Raise if number of servers are invalid'''
     pass
 
 class InvalidFormat(Exception):
