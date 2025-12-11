@@ -40,6 +40,7 @@ while True:
         siggi =organizer_ui.tournament_menu()
         if siggi == "1":
             organizer_ui.create_tournoment()
+            organizer_ui.create_tournoment()
     
     if first_choice == "9":
         main_menu.show_main_menu()

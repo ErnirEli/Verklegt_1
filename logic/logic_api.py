@@ -166,6 +166,11 @@ class logicAPI:
         
         return self._player_logic.edit_player_info(handle, new_phone = new_phone, new_email = new_email, new_address = new_address, new_link=new_link)
     
+    def get_all_players(self) -> list[Player]:
+        '''Takes in nothing and returns a list of all players'''
+
+        return self._player_logic.get_all_players()
+
     def get_player_public_info(self, handle: str):
         """Displays public player info 'Handle' and 'Name'"""
         return self._player_logic.get_public_player_info(handle)

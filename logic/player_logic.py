@@ -23,6 +23,12 @@ class PlayerLogic:
 
             if player.handle == handle:
                 return player
+            
+    def get_all_players(self) -> list[Player]:
+        '''Takes in nothing and returns a list of all players'''
+
+        return self._data_api.get_all_players()
+
 
     def create_player(self, name: str, dob: str, address: str,
                     phone: str, email: str, link: str, handle: str) -> None:
