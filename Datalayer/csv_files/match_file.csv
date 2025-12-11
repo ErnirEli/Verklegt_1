@@ -14,3 +14,18 @@
 14,1,SF,CacheHit Crusaders,RaceCondition Racers,07-12-2025,10:00,SRV-CHUCK,1,2,RaceCondition Racers,True
 15,1,Final,Chuck Norris Fan Club,RaceCondition Racers,07-12-2025,13:00,SRV-PEPSI,3,2,Chuck Norris Fan Club,True
 1,t,Final,Undefined Behavior United,SegFault Spartans,2025-12-12,14:30:00,t_Server_1,-1,-1,None,False
+1,tilli,Round of 16,Datalab Dominators,Bomblab Bombers,2026-01-05,12:20:00,tilli_Server_1,-1,-1,None,False
+2,tilli,Round of 16,Assembly Avengers,Chuck Norris Fan Club,2026-01-05,12:20:00,tilli_Server_2,-1,-1,None,False
+3,tilli,Round of 16,OffByOne Offense,Segmentation Foul,2026-01-05,12:20:00,tilli_Server_3,-1,-1,None,False
+4,tilli,Round of 16,Undefined Behavior United,WhileTrue Tryhards,2026-01-05,12:20:00,tilli_Server_4,-1,-1,None,False
+5,tilli,Round of 16,CacheHit Crusaders,Pepsi Max Punishers,2026-01-05,12:20:00,tilli_Server_5,-1,-1,None,False
+6,tilli,Round of 16,RaceCondition Racers,StackOverflow Stackers,2026-01-05,13:50:00,tilli_Server_1,-1,-1,None,False
+7,tilli,Round of 16,SegFault Spartans,NullPointer Ninjas,2026-01-05,13:50:00,tilli_Server_2,-1,-1,None,False
+8,tilli,Round of 16,Pepsi Max Overflow,IndentationError Invaders,2026-01-05,13:50:00,tilli_Server_3,-1,-1,None,False
+9,tilli,Quarterfinal,Winner of game 1,Winner of game 2,2026-01-06,12:20:00,tilli_Server_4,-1,-1,None,False
+10,tilli,Quarterfinal,Winner of game 3,Winner of game 4,2026-01-06,12:20:00,tilli_Server_5,-1,-1,None,False
+11,tilli,Quarterfinal,Winner of game 5,Winner of game 6,2026-01-06,12:20:00,tilli_Server_1,-1,-1,None,False
+12,tilli,Quarterfinal,Winner of game 7,Winner of game 8,2026-01-06,12:20:00,tilli_Server_2,-1,-1,None,False
+13,tilli,Semifinal,Winner of game 9,Winner of game 10,2026-01-06,13:50:00,tilli_Server_3,-1,-1,None,False
+14,tilli,Semifinal,Winner of game 11,Winner of game 12,2026-01-06,13:50:00,tilli_Server_4,-1,-1,None,False
+15,tilli,Final,Winner of game 13,Winner of game 14,2026-01-07,12:20:00,tilli_Server_5,-1,-1,None,False
