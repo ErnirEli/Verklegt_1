@@ -37,10 +37,14 @@ class HandleExistsException(Exception):
     pass
 
 class InvalidLinkException(Exception):
+    '''Raise if link is invalid'''
     pass
 
 class InvalidNumberException(Exception):
+    '''Raise if number is invalid'''
     pass
+class PlayerNotExist(Exception):
+    '''Raise if Player does not exisst'''
 
 
     

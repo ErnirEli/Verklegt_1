@@ -7,6 +7,7 @@ from Error.general_error import EmptyInput, DateDoesNotExistError, BackButton
 from validation.player_validation import ValidatePlayer
 from logic.player_logic import PlayerLogic
 from Error.player_error import *
+from models.player import Player
 
 #Tournaments imports
 from validation.tournament_validation import ValidateTournament
@@ -136,25 +137,25 @@ class OrganizerUI:
             print("Invalid choice. Try again.\n")
 
     
-    # def view_teams(self):
-    #     return
+    def view_teams(self):
+        return
     
-    # def view_player_info(self):
-    #     handle = input("Enter player handle: ").strip()
-    #     player = self._logic.get_full_player_info(handle)
-    #     if player is None:
-    #         print("No player found with that handle.")
-    #     else:
-    #         print("\n--- Player info ---")
-    #         print(f"Handle: {player.handle}")
-    #         print(f"Team name: {player.team_name}")
-    #         print(f"Date og birht: {player.dob}")
-    #         print(f"Address: {player.address}")
-    #         print(f"Phone number: {player.phone}")
-    #         print(f"Email: {player.email}")
-    #         print(F"Link: {player.link}")
-    #         print(f"Total tournaments played in: {player.tournaments}")
-    #         print(f"Tournamnets won: {player.wins}")
+    def view_player_info(self):
+        handle = input("Enter player handle: ").strip()
+        player: Player = self._logic.find_player(handle)
+        if player is None:
+            print("No player found with that handle.")
+        else:
+            print("\n--- Player info ---")
+            print(f"Handle: {player.handle}")
+            print(f"Team name: {player.team_name}")
+            print(f"Date og birht: {player.dob}")
+            print(f"Address: {player.address}")
+            print(f"Phone number: {player.phone}")
+            print(f"Email: {player.email}")
+            print(F"Link: {player.link}")
+            print(f"Total tournaments played in: {player.tournaments}")
+            print(f"Tournamnets won: {player.wins}")
 
      
    

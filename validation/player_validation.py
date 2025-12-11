@@ -111,5 +111,14 @@ class ValidatePlayer:
             if line.handle == handle:
                 raise HandleExistsException
         return True
+            
+    def does_player_exists(self, handle: str):
+        all_players = self._data.get_all_players()
+        for player in all_players:
+            if player.handle == handle:
+                return True
+        
+        raise PlayerNotExist
+
         
             
