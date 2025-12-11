@@ -11,13 +11,21 @@ main_menu = MainMenu()
 while True:
     first_choice = organizer_ui.get_choice()
     if first_choice == "1":
-        choice = organizer_ui.player_settings()
-        if choice == "1":
-            organizer_ui.create_player()
-        if choice == "4":
-            organizer_ui.view_player_info()
+        choice = yo.player_settings()
+        while choice != "9":
+            if choice == "1":
+                choice = yo.create_player()
+            if choice == "2":        
+                choice = yo.edit_player_info()
+            if choice == "3":
+                choice = yo.see_all_players()
+            if choice == "4":
+                choice = yo.view_player_info()
+                
+            if choice not in ("1", "2", "3", "4", "9"):
+                print("Invalid option")
 
-        
+            
     
     if first_choice == "2":
         choice = organizer_ui.Team_menu()

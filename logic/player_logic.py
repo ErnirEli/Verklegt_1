@@ -82,7 +82,7 @@ class PlayerLogic:
 
     def get_full_player_info(self, handle: str):
         players = self._data_api.get_all_players()
-        player = self.find_player(players, handle)
+        player = self.find_player(handle)
         if player is None:
             return None
 
@@ -107,7 +107,7 @@ class PlayerLogic:
             result.append({
                 "handle": p.handle,
                 "team_name": p.team_name,
-                "tournaments": p.tournaments
+                "tournaments": p.tournament
             })
         return result
 

@@ -64,7 +64,7 @@ class OrganizerUI:
         
             print("Invalid choice. Try again.\n")
     
-    
+    #Player
     def player_settings(self) -> str:
         print(
             "Player settings: \n\n"
@@ -88,85 +88,6 @@ class OrganizerUI:
             "3. See all players\n"
             "4. See player info\n"
             "9. Go back\n\n")
-
-    def Team_menu(self) -> str:
-        print(
-            "Team settings: \n\n"
-            "1. create team\n"
-            "2. See all teams\n"
-            "3. See team info\n"
-            "9. Go back\n\n"
-        )
-        while True:
-            choice = input("Enter number for action: ").strip()
-
-            if choice in {"1", "2", "3", "9"}:
-                return choice
-        
-            print("Invalid choice. Try again.\n")
-
-    
-    def club_menu(self)-> str:
-        print(
-            "Club menu:\n\n"
-            "1. Create a club\n"
-            "2. See all clun\n"
-            "3. See club info\n"
-            "9. Go back\n\n"
-        )
-        while True:
-            choice = input("Enter number for action: ").strip()
-
-            if choice in {"1", "2", "3", "9"}:
-                return choice
-        
-            print("Invalid choice. Try again.\n")
-
-    
-    def tournament_menu(self)-> str:
-        print(
-            "Tournament menu:\n\n"
-            "1. Create a tournament\n"
-            "2. See all tournmanets\n"
-            "3. See tournament info\n"
-            "4. See schedule\n"
-            "5. Input match scores\n"
-            "6. See tournament results\n"
-            "9. Go back\n\n"
-        )
-        while True:
-            choice = input("Enter number for action: ").strip()
-
-            if choice in {"1", "2", "3", "4", "5", "6", "9"}:
-                return choice
-        
-            print("Invalid choice. Try again.\n")
-
-    
-   
-    def view_player_info(self):
-        handle = ""
-        while handle.lower() != "q":
-            handle = input("Enter player handle (q/Q to quit): ").strip()
-            player: Player = self._logic.find_player(handle)
-            if player is None:
-                print("No player found with that handle.")
-            
-            else:
-                print("\n--- Player info ---")
-                print(f"Handle: {player.handle}")
-                print(f"Team name: {player.team_name}")
-                print(f"Date og birht: {player.dob}")
-                print(f"Address: {player.address}")
-                print(f"Phone number: {player.phone}")
-                print(f"Email: {player.email}")
-                print(F"Link: {player.link}")
-                print(f"Total tournaments played in: {player.tournament}")
-                print(f"Tournamnets won: {player.wins}")
-
-        return self.player_settings()
-     
-   
 
     def create_player(self):
         '''Creating a player by asking one information at a time and checking it in Validate Player class'''
@@ -229,7 +150,7 @@ class OrganizerUI:
                 state = self.validate_player.validate_number(number) 
             except EmptyInput: 
                 print("Player needs a phone number") 
-            except invalidNumberException: 
+            except InvalidNumberError: 
                 print("Number is invalid, try again")
             except BackButton:
                 return self.player_settings() 
@@ -284,6 +205,196 @@ class OrganizerUI:
 
         self.player_logic.create_player(name, dob, address, number, email, link, handle)
         print("You successfully created a player")
+        return self.player_settings() #Returns back to the player settings menu
+
+
+    def edit_player_info(self):
+     
+        state = False
+        while state == False:
+            handle = input("Please provide the handle of the player you want to modify (q/q to quit): ").strip()
+            if handle.lower() == "q":
+                return self.player_settings #Go back if user wants
+            try:
+                state = self.validate_player.does_player_exists(handle)
+            except PlayerNotExist:
+                print("Player does not exist")
+
+        player = self.player_logic.get_full_player_info(handle)
+       
+
+        print("Current player info:\n")
+        for key, value in player.items():
+            print(f"  {key}: {value}")
+
+        print("\nLeave edit inputs empty if you don't want to change them.\n")
+
+        #New phone
+        while True:
+            raw_phone = "354" + input("New phone (empty to keep current): +354").strip()
+            if raw_phone == "354":
+                new_phone = None
+                break
+
+            try:
+                self.validate_player.validate_number(raw_phone)
+                new_phone = "354" + raw_phone
+                break
+
+            except InvalidNumberError:
+                print("Number is invalid, try again.")
+        
+
+        #New email
+        while True:
+            raw_email = input("New email (empty to keep current): ")
+            if raw_email == "":
+                new_email = None
+                break
+
+            try:
+                self.validate_player.validate_email(raw_email)
+                new_email = raw_email
+                break
+            except InvalidEmailException:
+                print("Email is invalid, try again.")
+
+        #New address
+        raw_address = input("New address (empty to keep current): ")
+        if raw_address == "":
+            new_address = None
+        else:
+            new_address = raw_address
+
+        #New link
+        while True:
+            raw_link = input("New link: https://")
+            if raw_link == "":
+                new_link = None
+                break
+
+            try:
+                self.validate_player.validate_link(raw_link)
+                new_link = "https://" + raw_link
+                break
+
+            except InvalidLinkException:
+                print("Link is invalid, try again (must start with https:// and contain a dot).")
+
+        state = self.player_logic.edit_player_info(
+            handle,
+            new_phone=new_phone,
+            new_email=new_email,
+            new_address=new_address,
+            new_link=new_link,
+        )
+
+        print("Modifications to player info have been made.")
+        
+        return self.player_settings() #Back to the player settings screen
+
+
+
+
+
+    def see_all_players(self):
+        all_players: list[Player] = self._logic.get_all_players()
+        print("All players:\n")
+        for player in all_players:
+            print(f"{player.name},{player.handle},{player.dob},{player.team_name}")
+       
+        go_back = ""
+        while go_back.lower() != "q":
+            go_back = input("Press q/q to quit")
+            
+        return self.player_settings()
+
+
+
+
+    def view_player_info(self):
+        handle = ""
+        while handle.lower() != "q":
+            handle = input("Enter player handle (q/Q to quit): ").strip()
+            player: Player = self._logic.find_player(handle)
+            if player is None:
+                print("No player found with that handle.")
+            
+            else:
+                print("\n--- Player info ---")
+                print(f"Handle: {player.handle}")
+                print(f"Team name: {player.team_name}")
+                print(f"Date og birht: {player.dob}")
+                print(f"Address: {player.address}")
+                print(f"Phone number: {player.phone}")
+                print(f"Email: {player.email}")
+                print(F"Link: {player.link}")
+                print(f"Total tournaments played in: {player.tournament}")
+                print(f"Tournamnets won: {player.wins}")
+
+        return self.player_settings()
+     
+   
+
+
+
+    #Team
+    def Team_menu(self) -> str:
+        print(
+            "Team settings: \n\n"
+            "1. create team\n"
+            "2. See all teams\n"
+            "3. See team info\n"
+            "9. Go back\n\n"
+        )
+        while True:
+            choice = input("Enter number for action: ").strip()
+
+            if choice in {"1", "2", "3", "9"}:
+                return choice
+        
+            print("Invalid choice. Try again.\n")
+
+    
+    def club_menu(self)-> str:
+        print(
+            "Club menu:\n\n"
+            "1. Create a club\n"
+            "2. See all clun\n"
+            "3. See club info\n"
+            "9. Go back\n\n"
+        )
+        while True:
+            choice = input("Enter number for action: ").strip()
+
+            if choice in {"1", "2", "3", "9"}:
+                return choice
+        
+            print("Invalid choice. Try again.\n")
+
+    
+    def tournament_menu(self)-> str:
+        print(
+            "Tournament menu:\n\n"
+            "1. Create a tournament\n"
+            "2. See all tournmanets\n"
+            "3. See tournament info\n"
+            "4. See schedule\n"
+            "5. Input match scores\n"
+            "6. See tournament results\n"
+            "9. Go back\n\n"
+        )
+        while True:
+            choice = input("Enter number for action: ").strip()
+
+            if choice in {"1", "2", "3", "4", "5", "6", "9"}:
+                return choice
+        
+            print("Invalid choice. Try again.\n")
+
+    
+   
+
 
 
 
