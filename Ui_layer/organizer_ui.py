@@ -25,6 +25,7 @@ from models.team import Team
 from logic.club_logic import ClubLogic
 from validation.club_validation import ValidateClub
 from Error.club_error import *
+from models.club import Club
 
 
 
@@ -327,16 +328,17 @@ class OrganizerUI:
                 print("No player found with that handle.")
             
             else:
-                print("\n--- Player info ---")
-                print(f"Handle: {player.handle}")
-                print(f"Team name: {player.team_name}")
-                print(f"Date og birht: {player.dob}")
-                print(f"Address: {player.address}")
-                print(f"Phone number: {player.phone}")
-                print(f"Email: {player.email}")
-                print(F"Link: {player.link}")
-                print(f"Total tournaments played in: {player.tournament}")
-                print(f"Tournamnets won: {player.wins}")
+                print(f"\n{"-"*30} Player info {"-"*30}")
+                print(f"{"Handle:":<25} {player.handle:>45}")
+                print(f"{"Team name:":<25} {player.team_name:>45}")
+                print(f"{"Date og birht:":<25} {player.dob:>45}")
+                print(f"{"Address:":<25} {player.address:>45}")
+                print(f"{"Phone number:":<25} {player.phone:>45}")
+                print(f"{"Email:":<25} {player.email:>45}")
+                print(F"{"Link:":<25} {player.link:>45}")
+                print(f"{"Total tournaments played in:":<50} {player.tournament:>20}")
+                print(f"{"Tournamnets won:":<25} {player.wins:>45}")
+                print()
 
         return self.player_settings()
      
@@ -470,10 +472,10 @@ class OrganizerUI:
     
     def see_all_teams(self):
         all_teams: list[Team] = self._logic.list_teams()
-        print("All Teams:")
-        print(f"{"Name":<30}{"Club":<20}{"Tournaments":<15}{"Wins":<4}")
+        print("\nAll Teams:")
+        print(f"{"Name":<30}{"Club":<15}{"Tournaments Played":^23}{"Wins":<4}")
         for team in all_teams:
-            print(f"{team.name:<29} {team.club:<19} {team.tournament:^14} {team.wins:^3}")
+            print(f"{team.name:<29} {team.club:<14} {team.tournament:^22} {team.wins:^3}")
        
         go_back = ""
         while go_back.lower() != "q":
@@ -498,18 +500,17 @@ class OrganizerUI:
                 print(f"{"Web link:":<10} {team.web_link:>60}")
                 print(f"{"ASCII logo:":<25} {team.ASCII:>45}")
                 print(f"{"Tournaments Played in:":<25} {team.tournament:>45}")
-                print(F"{"Tournaments won:":<25} {team.wins:>45}")
-                print(f"{"Total tournaments second places:":<25} {team.runner_up:>38}")
-                print()
+                print(f"{"Tournaments won:":<25} {team.wins:>45}")
+                print(f"{"Total tournaments second places:":<25} {team.runner_up:>38}\n")
         return self.team_menu()
 
-
-
+#--------------------------------------------------------------------------
+#Club
     def club_menu(self)-> str:
         print(
             "Club menu:\n\n"
             "1. Create a club\n"
-            "2. See all club\n"
+            "2. See all clubs\n"
             "3. See club info\n"
             "9. Go back\n\n"
         )
@@ -522,15 +523,145 @@ class OrganizerUI:
             print("Invalid choice. Try again.\n")
 
     
+
+    def create_club(self):
+        print("You are creating a club")
+        print("Press q/Q to quit at any time")
+        #name
+        state = False
+        while state == False:
+            name = input("Name: ")
+            try:
+                state = self.validate_club.name_validation(name)
+            except EmptyInput:
+                print("Club needs to have a name")
+            except ClubNameExistsError:
+                print("Name already exissts, club needs to have an unique name")
+            except BackButton:
+                return self.club_menu()
+
+        #Colors
+        state = False
+        print("Available colors: [blue, light blue, red, light red, orange, green, light green, yellow, black, white, brown, purple, light purple, cyan, light cyan, light gray, dark gray]")
+        while state == False:
+            color = input("Choose 1 color: ")
+            try:
+                state = self.validate_club.validate_colors(color)
+            except EmptyInput:
+                print("Club needs to have at least one color")
+            except ColorNotAvailable:
+                print("Color not available")
+            except BackButton:
+                return self.club_menu()
+
+        #Hometown
+        state = False
+        while state == False:
+            hometown = input("Hometown: ")
+            try:
+                state = self.validate_club.validate_hometown(hometown)
+            except EmptyInput:
+                print("Club needs to have a hometown")
+            except BackButton:
+                return self.club_menu()
+        
+        #Country
+        state = False
+        while state == False:
+            country = input("Country: ")
+            try:
+                state = self.validate_club.validate_country(country)
+            except EmptyInput:
+                print("Club needs to have a country")
+            except BackButton:
+                return self.club_menu()
+            
+
+        #Number of tems in club
+        state = False
+        while state == False:
+            num_of_teams = input("Number of teams in club:")
+            try:
+                state = self.validate_club.validate_num_of_teams(num_of_teams)
+            except ValueError:
+                print("Number of teams have to be a digit")
+            except InvalidNumOfTeams:
+                print("Club can only have 1-10 teams")
+            except BackButton:
+                return self.club_menu()
+        num_of_teams = int(num_of_teams)
+        
+        
+        
+        
+
+        #Teams in club
+        teams_in_club = []
+        for _ in range(num_of_teams):
+            
+            
+            state = False
+            while state == False:
+                team_to_club = input("Team in club: ")
+                try:
+                    state = self.validate_club.validate_teams_in_club(team_to_club, teams_in_club)
+                except TeamDoesNotExistError:
+                    print("Team does not exist")
+                except TeamAlreadyInClubError:
+                    print("Team is already in the club")
+                except TeamNotAvailableError:
+                    print("Team is already in an another club")
+                except BackButton:
+                    return self.club_menu()
+            teams_in_club.append(team_to_club)
+            
+
+
+
+        self.club_logic.create_club(name, color, hometown, country, teams_in_club)
+    
+
+    def see_all_clubs(self):
+        all_clubs: list[Club] = self._logic.list_clubs()
+        print("\nAll Clubs:")
+        print(f"{"Name":<30}{"Country":<15}{"Tournaments Played":<23}{"Wins":<4}")
+        for club in all_clubs:
+            print(f"{club.name:<30}{club.country:<15}{club.tournaments:^23}{club.wins:^4}")
+       
+        go_back = ""
+        while go_back.lower() != "q":
+            go_back = input("\nPress q/q to quit")
+            
+        return self.team_menu()
+
+    def see_club_info(self):
+        name = ""
+        while name.lower() != "q":
+            name = input("Enter club name(q/Q to quit): ").strip()
+            club: Club = self._logic.get_club(name)
+            if club is None:
+                print("No team found with that name.")
+            
+            else:
+                print(f"\n{self.ui_helper.BOLD}{self.ui_helper.RED}{"-"*30} Team info {"-"*30}{self.ui_helper.RESET}")
+                print(f"{"Name:":<25} {club.name:>45}")
+                print(f"{"Color:":<25} {club.color:>45}")
+                print(f"{"hometown:":<25} {club.hometown:>45}")
+                print(f"{"country:":<10} {club.country:>60}")
+                print(f"{"Tournaments played in:":<25} {club.tournaments:>45}")
+                print(f"{"Total tournaments second places:":<25} {club.runner_up:>38}\n")
+        return self.team_menu()
+#---------------------------------------------------
+
+#Tournament
     def tournament_menu(self)-> str:
         print(
             "Tournament menu:\n\n"
             "1. Create a tournament\n"
             "2. See all tournmanets\n"
             "3. See tournament info\n"
-            "4. See schedule\n"
-            "5. Input match scores\n"
-            "6. See tournament results\n"
+            "4. Input match scores\n"
+            "5. See tournament results\n"
             "9. Go back\n\n"
         )
         while True:
@@ -543,8 +674,6 @@ class OrganizerUI:
 
     
    
-
-
 
 
 
@@ -716,102 +845,6 @@ class OrganizerUI:
 
 
 
-    def create_club(self):
-        print("You are creating a club")
-        print("Press q/Q to quit at any time")
-        #name
-        state = False
-        while state == False:
-            name = input("Name: ")
-            try:
-                state = self.validate_club.name_validation(name)
-            except EmptyInput:
-                print("Club needs to have a name")
-            except ClubNameExistsError:
-                print("Name already exissts, club needs to have an unique name")
-            except BackButton:
-                return self.club_menu()
-
-        #Colors
-        state = False
-        print("Available colors: [blue, light blue, red, light red, orange, green, light green, yellow, black, white, brown, purple, light purple, cyan, light cyan, light gray, dark gray]")
-        while state == False:
-            color = input("Choose 1 color: ")
-            try:
-                state = self.validate_club.validate_colors(color)
-            except EmptyInput:
-                print("Club needs to have at least one color")
-            except ColorNotAvailable:
-                print("Color not available")
-            except BackButton:
-                return self.club_menu()
-
-        #Hometown
-        state = False
-        while state == False:
-            hometown = input("Hometown: ")
-            try:
-                state = self.validate_club.validate_hometown(hometown)
-            except EmptyInput:
-                print("Club needs to have a hometown")
-            except BackButton:
-                return self.club_menu()
-        
-        #Country
-        state = False
-        while state == False:
-            country = input("Country: ")
-            try:
-                state = self.validate_club.validate_country(country)
-            except EmptyInput:
-                print("Club needs to have a country")
-            except BackButton:
-                return self.club_menu()
-            
-
-        #Number of tems in club
-        state = False
-        while state == False:
-            num_of_teams = input("Number of teams in club:")
-            try:
-                state = self.validate_club.validate_num_of_teams(num_of_teams)
-            except ValueError:
-                print("Number of teams have to be a digit")
-            except InvalidNumOfTeams:
-                print("Club can only have 1-10 teams")
-            except BackButton:
-                return self.club_menu()
-        num_of_teams = int(num_of_teams)
-        
-        
-        
-        
-
-        #Teams in club
-        teams_in_club = []
-        for _ in range(num_of_teams):
-            
-            
-            state = False
-            while state == False:
-                team_to_club = input("Team in club: ")
-                try:
-                    state = self.validate_club.validate_teams_in_club(team_to_club, teams_in_club)
-                except TeamDoesNotExistError:
-                    print("Team does not exist")
-                except TeamAlreadyInClubError:
-                    print("Team is already in the club")
-                except TeamNotAvailableError:
-                    print("Team is already in an another club")
-                except BackButton:
-                    return self.club_menu()
-            teams_in_club.append(team_to_club)
-            
-
-
-
-        self.club_logic.create_club(name, color, hometown, country, teams_in_club)
-        return
 
 
 

@@ -43,6 +43,10 @@ while True:
             choice =organizer_ui.club_menu()
             if choice == "1":
                 organizer_ui.create_club()
+            if choice == "2":
+                organizer_ui.see_all_clubs()
+            if choice == "3":
+                organizer_ui.see_club_info()
         
     if first_choice == "4":
             
