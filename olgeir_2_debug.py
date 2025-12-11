@@ -11,12 +11,18 @@ main_menu = MainMenu()
 Ui = UIHelper()
 
 def main():
-    choice = ""
+    choice = main_menu.show_main_menu()
     while choice != "9":
-        Ui.top_bar()
-        choice = input()
+        if choice == "1":
+            pass
+        if choice == "2":
+            pass
+        if choice == "3":
+            organizer_main()
+        
+        choice = main_menu.show_main_menu()
 
-main()
+
 def organizer_main():
     while True:
         Ui.top_bar()
@@ -36,7 +42,6 @@ def organizer_main():
                     
                 if choice not in ("1", "2", "3", "4", "9"):
                     print("Invalid option")
-
                 
         
         if first_choice == "2":
@@ -55,4 +60,6 @@ def organizer_main():
                 organizer_ui.create_tournoment()
         
         if first_choice == "9":
-            main_menu.show_main_menu()
+            return
+
+main()
