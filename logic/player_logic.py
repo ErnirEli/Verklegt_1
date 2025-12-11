@@ -30,7 +30,8 @@ class PlayerLogic:
                             phone, email, link, handle)
         self._data.add_player(new_player)
         
-        return 
+
+        return True
 
     def edit_player_info(self, handle,
                         new_phone = False, new_email = False,
@@ -40,11 +41,10 @@ class PlayerLogic:
 
         players = self._data.get_all_players()
         player = self.find_player(players, handle)
-        
-        # if player is None:
-        #     return
+        if player is None:
+            return None
 
-        if new_phone:
+        if new_phone is not None:
             player.phone = new_phone
         if new_email:
             player.email = new_email
@@ -83,7 +83,7 @@ class PlayerLogic:
             "link": player.link,
             "handle": player.handle,
             "team_name": player.team_name,
-            "tournaments": player.tournament,
+            "tournament": player.tournament,
             "wins": player.wins
         }
 
