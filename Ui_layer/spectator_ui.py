@@ -1,12 +1,20 @@
-from logic.logic_api import logicAPI
-from Ui_layer.organizer import Organizer 
+
+from random import choice 
+
+
+
+from ui2 import players
+#import validation að hvert og allt virkar from import validation...
+from validation.player_validation import ValidatePlayer
+from logic.player_logic import PlayerLogic
  
 
 class Spectator:
     "(Áhorfandi) getur séð allt eins og t.d leikjadagskrá, úrslit, liðin, upplysíngar um lið, leikmenn, upplysíngar um leikmenn " 
     def __init__(self):
-        self._logic = logicAPI()
+        self.validate_player = ValidatePlayer()
 
+    
     def __str__(self):
         return (
             "Spectator\n"
@@ -33,21 +41,20 @@ class Spectator:
             print("Invalid choice. Try again.\n")
 
     def run(self):
+   
+        choice = self.get_choice()
 
-        if self.get_choice == "1":
-            players = self._logic.list_players_public()
-            print("\n--- Players ---")
-            for p in players:
-                print(f"Handle: {p['handle']}")
-                print(f"Team name: {p['team_name']}")
-                print("-" * 35)
-            
-        elif self.get_choice == "2":
-            handle = input("Enter player handle: ").strip()
-            player = self._logic.get_player_public_info(handle)
-            if player is None:
-                print("No player found with that handle.")
-            else:
-                print("\n--- Player info ---")
-                print(f"Handle: {player['handle']}")
-                print(f"Team name: {player['team_name']}")
+        if choice == "1":
+            ViewTeams()
+        elif choice == "2":
+            SeeTournament()
+        elif choice == "3":
+            SeeMatchSchedule() 
+        elif choice == "4":
+            SeeMatchResult()
+        elif choice == "5":
+            players()      # klasinn sem ég bætti við
+        elif choice == "9":
+            return ChangeRole()   # skilar hlutverki svo main geti skipað um hlutverk
+
+        return None 
