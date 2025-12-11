@@ -20,7 +20,7 @@ class logicAPI:
         self._club_logic = ClubLogic()
         self._player_logic = PlayerLogic()
 
-#Teams
+# Teams
 
     def list_teams(self) -> list[Team]:
         '''Takes in nothing and returns a list of all existing teams of type Team'''
@@ -63,7 +63,7 @@ class logicAPI:
         return self._team_logic.get_team(team_name)
     
 
-#Tournaments
+# Tournaments
 
     def list_tournaments(self) -> list[Tournament]:
         '''Takes in nothing and returns a list of all existing tournaments of type Tournament'''
@@ -87,7 +87,7 @@ class logicAPI:
                                                         contact, contact_email, contact_number, servers, team_list)
 
 
-#Matches
+# Matches
     
     def list_matches(self) -> list[Match]:
         '''Takes in nothing and returns a list of all existing amtches of type Match'''
@@ -104,7 +104,7 @@ class logicAPI:
         return
 
 
-#Clubs
+# Clubs
 
     def list_clubs(self) -> list[Club]:
         '''Takes in nothing and returns a list of all existing clubs of type Club'''
@@ -137,9 +137,16 @@ class logicAPI:
         Only runs after ale validation checks are valid.'''
 
         self._club_logic.remove_team(team)
+        return
+
+    def get_club(self, club_name: str) -> Club:
+        '''Takes in club name of type string and returns club of type Club.
+        Only runs after ale validation checks are valid.'''
+
+        return self._club_logic.get_club(club_name)
 
 
-#Player
+# Player
 
     def create_player(self, name: str, dob: str, address: str, phone: str, email: str,
                     link: str, handle: str, team_name: str) -> None:
@@ -169,18 +176,5 @@ class logicAPI:
 
         return self._player_logic.get_all_players()
 
-    def get_player_public_info(self, handle: str):
-        """Displays public player info 'Handle' and 'Name'"""
-        return self._player_logic.get_public_player_info(handle)
-    
-    def get_player_full_info(self, handle: str):
-        """Displays info on players that captains and organizers can see"""
-        return self._player_logic.get_full_player_info(handle)
-    
-    def list_players_public(self):
-        """Returns list of all players"""
-        return self._player_logic.list_players_public()
-    
-    def get_player_private_info(self, handle: str):
-        """Displays private player"""
-        return self._player_logic.get_full_player_info(handle)
+
+# Validations   

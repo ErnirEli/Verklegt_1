@@ -1,4 +1,4 @@
-#from logic.logic_api import logicAPI
+from logic.logic_api import logicAPI
 
 from Error.general_error import EmptyInput, DateDoesNotExistError, BackButton
 
@@ -8,6 +8,7 @@ from Ui_layer.ui_constants import UIHelper
 from validation.player_validation import ValidatePlayer
 from logic.player_logic import PlayerLogic
 from Error.player_error import *
+from models.player import Player
 
 #Tournaments imports
 from validation.tournament_validation import ValidateTournament
@@ -47,15 +48,13 @@ class OrganizerUI:
     def __str__(self):
         return (
             "Organiser\n\n"
-            "1. View Teams\n"
-            "2. See Tournament\n"
-            "3. See match schedule\n"
-            "4. Create a player\n"
-            "5. Create a tournament\n"
-            "6. Create a club\n"
-            "7. create a team\n\n"
+            "1. Player settings\n"
+            "2. Team menu\n"
+            "3. Club menu\n"
+            "4. Tournament menu\n"
             "9. Change role\n\n"
-        )
+        ) 
+      
 
     def get_choice(self):
         """Ask user and return a validated choice."""
@@ -63,48 +62,53 @@ class OrganizerUI:
             print(self)
             choice = input("Enter number for action: ").strip()
 
-            if choice in {"1", "2", "3", "4", "5", "6", "7", "9"}:
+            if choice in {"1", "2", "3", "4", "9"}:
                 return choice
         
             print("Invalid choice. Try again.\n")
     
-    
-    # def view_teams(self):
-    #     return
-    
-    # def view_player_info(self):
-    #     handle = input("Enter player handle: ").strip()
-    #     player = self._logic.get_full_player_info(handle)
-    #     if player is None:
-    #         print("No player found with that handle.")
-    #     else:
-    #         print("\n--- Player info ---")
-    #         print(f"Handle: {player.handle}")
-    #         print(f"Team name: {player.team_name}")
-    #         print(f"Date og birht: {player.dob}")
-    #         print(f"Address: {player.address}")
-    #         print(f"Phone number: {player.phone}")
-    #         print(f"Email: {player.email}")
-    #         print(F"Link: {player.link}")
-    #         print(f"Total tournaments played in: {player.tournaments}")
-    #         print(f"Tournamnets won: {player.wins}")
+    #Player
+    def player_settings(self) -> str:
+        print(
+            "Player settings: \n\n"
+            "1. Create a Player\n"
+            "2. Edit a Player\n"
+            "3. See all players\n"
+            "4. See player info\n"
+            "9. Go back\n\n"
+        )
+        while True:
+            choice = input("Enter number for action: ").strip()
 
-     
-   
+            if choice in {"1", "2", "3", "4", "9"}:
+                return choice
+        
+            print("Invalid choice. Try again.\n\n")
+            print(
+            "Player settings: \n\n"
+            "1. Create a Player\n"
+            "2. Edit a Player\n"
+            "3. See all players\n"
+            "4. See player info\n"
+            "9. Go back\n\n")
 
     def create_player(self):
         '''Creating a player by asking one information at a time and checking it in Validate Player class'''
 
+        print("You are creating a player")
+        print("Press q/Q to quit at anytime")
+
         #Name
         state = False 
         while state == False: 
-            name = input("Name: ") 
+            name = input("Name: ")            
             try: 
                 state = self.validate_player.validate_name(name) 
 
             except EmptyInput: 
                 print("Player needs to have a name") 
-
+            except BackButton:
+                return self.player_settings()
             
 
 
@@ -124,6 +128,8 @@ class OrganizerUI:
                 print("Date of birth needs to be in the format: day-month-year") 
             except DateDoesNotExistError:
                 print("Date does not exist")
+            except BackButton:
+                return self.player_settings()
 
 
 
@@ -135,7 +141,8 @@ class OrganizerUI:
                 state = self.validate_player.validate_home_adress(address) 
             except EmptyInput: 
                 print("Player needs a home address") 
-        
+            except BackButton:
+                return self.player_settings()
 
         #Phone 
 
@@ -146,8 +153,10 @@ class OrganizerUI:
                 state = self.validate_player.validate_number(number) 
             except EmptyInput: 
                 print("Player needs a phone number") 
-            except invalidNumberException: 
-                print("Number is invalid, try again") 
+            except InvalidNumberError: 
+                print("Number is invalid, try again")
+            except BackButton:
+                return self.player_settings() 
 
 
         #Email 
@@ -161,7 +170,9 @@ class OrganizerUI:
                 print("Player needs to have an email") 
             except InvalidEmailException: 
                 print("Email is invalid, try again") 
-        
+            except BackButton:
+                return self.player_settings()
+
 
         #Link 
 
@@ -174,7 +185,9 @@ class OrganizerUI:
                 print("Player neeeds to have a link") 
             except InvaldlinkException:
                 print("Link has to contain a dot")
-
+            except BackButton:
+                return self.player_settings()
+            
 
 
         #Handle 
@@ -190,6 +203,8 @@ class OrganizerUI:
                 print("Handle is invalid, try again") 
             except HandleExistsException: 
                 print("Handle already exists") 
+            except BackButton:
+                return self.player_settings()
 
         self.player_logic.create_player(name, dob, address, number, email, link, handle)
         print("You successfully created a player")
@@ -334,13 +349,7 @@ class OrganizerUI:
 #------------------------------------------------------------------------------
 
 
-
-
-#------------------------------------------------------------------------------
-
-
     #Team
-    def team_menu(self) -> str:
     def team_menu(self) -> str:
         print(
             "Team settings: \n\n"
@@ -708,7 +717,8 @@ class OrganizerUI:
 
 
     def create_club(self):
-
+        print("You are creating a club")
+        print("Press q/Q to quit at any time")
         #name
         state = False
         while state == False:
@@ -719,7 +729,8 @@ class OrganizerUI:
                 print("Club needs to have a name")
             except ClubNameExistsError:
                 print("Name already exissts, club needs to have an unique name")
-
+            except BackButton:
+                return self.club_menu()
 
         #Colors
         state = False
@@ -732,6 +743,8 @@ class OrganizerUI:
                 print("Club needs to have at least one color")
             except ColorNotAvailable:
                 print("Color not available")
+            except BackButton:
+                return self.club_menu()
 
         #Hometown
         state = False
@@ -741,6 +754,8 @@ class OrganizerUI:
                 state = self.validate_club.validate_hometown(hometown)
             except EmptyInput:
                 print("Club needs to have a hometown")
+            except BackButton:
+                return self.club_menu()
         
         #Country
         state = False
@@ -750,6 +765,8 @@ class OrganizerUI:
                 state = self.validate_club.validate_country(country)
             except EmptyInput:
                 print("Club needs to have a country")
+            except BackButton:
+                return self.club_menu()
             
 
         #Number of tems in club
@@ -762,6 +779,8 @@ class OrganizerUI:
                 print("Number of teams have to be a digit")
             except InvalidNumOfTeams:
                 print("Club can only have 1-10 teams")
+            except BackButton:
+                return self.club_menu()
         num_of_teams = int(num_of_teams)
         
         
@@ -784,6 +803,8 @@ class OrganizerUI:
                     print("Team is already in the club")
                 except TeamNotAvailableError:
                     print("Team is already in an another club")
+                except BackButton:
+                    return self.club_menu()
             teams_in_club.append(team_to_club)
             
 

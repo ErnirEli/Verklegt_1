@@ -6,11 +6,16 @@ from Ui_layer.organizer_ui import OrganizerUI
 from Ui_layer.Main_menu_ui import MainMenu
 from Ui_layer.ui_constants import UIHelper
 
+# organizer_ui = OrganizerUI()
+# main_menu = MainMenu()
+# Ui = UIHelper()
+
 organizer_ui = OrganizerUI()
 main_menu = MainMenu()
-Ui = UIHelper()
+ui_help = UIHelper()
 
 def main():
+    
     choice = main_menu.show_main_menu()
     while choice != "9":
         if choice == "1":
@@ -24,11 +29,12 @@ def main():
 
 
 def organizer_main():
+    global organizer_ui
     while True:
-        Ui.top_bar()
+        ui_help.top_bar()
         first_choice = organizer_ui.get_choice()
         if first_choice == "1":
-            Ui.top_bar()
+            ui_help.top_bar()
             choice = organizer_ui.player_settings()
             while choice != "9":
                 if choice == "1":
