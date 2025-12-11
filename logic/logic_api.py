@@ -108,7 +108,7 @@ class logicAPI:
 
 #Clubs
 
-    def list_clubs(self) -> None:
+    def list_clubs(self) -> list[Club]:
         '''Takes in nothing and returns a list of all existing clubs of type Club'''
 
         return self._club_logic.list_all_clubs()
@@ -166,7 +166,7 @@ class logicAPI:
         
         return self._player_logic.edit_player_info(handle, new_phone = new_phone, new_email = new_email, new_address = new_address, new_link=new_link)
     
-    def get_all_players(self) -> list[Player]:
+    def list_players(self) -> list[Player]:
         '''Takes in nothing and returns a list of all players'''
 
         return self._player_logic.get_all_players()
