@@ -88,6 +88,18 @@ class TeamLogic:
         self._data_api.write_teams(players)
         return 
     
+    def get_team_players(self, team_name: str) -> list[Player]:
+        '''Takes in a team name of type string, returns a list of all players in the team, of type Player'''
+
+        players: list[Player] = list
+        team_players: list[Player] = []
+
+        for player in players:
+            if player.team_name == team_name:
+                team_players.append(player)
+
+        return team_players
+
     def get_team(self, name: str) -> Team:
         '''Takes in a team name as a string,
         finds the team with the right name and
@@ -99,21 +111,3 @@ class TeamLogic:
             if team.name == name:
                 return team
     
-
-    def team_info(self, team: Team):
-        '''Gives all info on team'''
-        players: list[Player] = self._data_api.get_all_players()
-        team_players = []
-        for player in players:
-            if player.team_name == team.name:
-                team_players.append(player.handle)
-        
-        return (
-                f"name: {team.name} \n"
-                f"Captain: {team.captain} \n"
-                f"Club: {team.club}"
-                f"Players: {team_players} \n"
-                f"Web link: {team.web_link} \n"
-                f"ASCIIlogo: {team.ASCII} \n"
-                f"Tournaments played in: {team.tournament} \n"
-                f"Tournaments won: {team.wins}")
