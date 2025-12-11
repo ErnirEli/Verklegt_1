@@ -5,34 +5,34 @@
 from Ui_layer.organizer_ui import OrganizerUI
 from Ui_layer.Main_menu_ui import MainMenu
 
-yo = OrganizerUI()
+organizer_ui = OrganizerUI()
 main_menu = MainMenu()
 
 while True:
-    first_choice = yo.get_choice()
+    first_choice = organizer_ui.get_choice()
     if first_choice == "1":
-        choice = yo.player_settings()
+        choice = organizer_ui.player_settings()
         if choice == "1":
-            yo.create_player()
+            organizer_ui.create_player()
         if choice == "4":
-            yo.view_player_info()
+            organizer_ui.view_player_info()
 
         
     
     if first_choice == "2":
-        choice = yo.Team_menu()
+        choice = organizer_ui.Team_menu()
         if choice == "1":
-            yo.create_team()
-     
+            organizer_ui.create_team()
+    
     if first_choice == "3":
-        choice = yo.club_menu()
+        choice = organizer_ui.club_menu()
         if choice == "1":
-            yo.create_club()
-      
+            organizer_ui.create_club()
+    
     if first_choice == "4":
-        siggi = yo.tournament_menu()
+        siggi = organizer_ui.tournament_menu()
         if siggi == "1":
-            yo.create_tournoment()
+            organizer_ui.create_tournoment()
     
     if first_choice == "9":
         main_menu.show_main_menu()
