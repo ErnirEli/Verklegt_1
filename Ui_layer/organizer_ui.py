@@ -1,4 +1,4 @@
-#from logic.logic_api import logicAPI
+from logic.logic_api import logicAPI
 
 from Error.general_error import EmptyInput, DateDoesNotExistError, BackButton
 
@@ -28,7 +28,7 @@ from Error.club_error import *
 
 class OrganizerUI:
     def __init__(self):
-        #self._logic = logicAPI()
+        self._logic = logicAPI()
 
         self.validate_player = ValidatePlayer()  
         self.player_logic = PlayerLogic()  
@@ -154,7 +154,7 @@ class OrganizerUI:
             print(f"Phone number: {player.phone}")
             print(f"Email: {player.email}")
             print(F"Link: {player.link}")
-            print(f"Total tournaments played in: {player.tournaments}")
+            print(f"Total tournaments played in: {player.tournament}")
             print(f"Tournamnets won: {player.wins}")
 
      
