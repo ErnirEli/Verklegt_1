@@ -2,6 +2,7 @@ from logic.logic_api import logicAPI
 
 from Error.general_error import EmptyInput, DateDoesNotExistError, BackButton
 
+from Ui_layer.ui_constants import UIHelper
 
 #Player imports
 from validation.player_validation import ValidatePlayer
@@ -30,6 +31,7 @@ from Error.club_error import *
 class OrganizerUI:
     def __init__(self):
         self._logic = logicAPI()
+        self.ui_helper = UIHelper()
 
         self.validate_player = ValidatePlayer()  
         self.player_logic = PlayerLogic()  
@@ -300,10 +302,13 @@ class OrganizerUI:
 
     def see_all_players(self):
         all_players: list[Player] = self._logic.get_all_players()
-        print("All players:\n")
+        print("All players:")
+        print(f"{"Name":<30}{"Handle":<32}{"Date of birth":<20}{"Team name":<8}")
         for player in all_players:
-            print(f"{player.name},{player.handle},{player.dob},{player.team_name}")
-       
+            print(f"{player.name:<29} {player.handle:<31} {player.dob:<19} {player.team_name:<7}")
+      
+
+
         go_back = ""
         while go_back.lower() != "q":
             go_back = input("Press q/q to quit")
@@ -465,7 +470,7 @@ class OrganizerUI:
     
     def see_all_teams(self):
         all_teams: list[Team] = self._logic.list_teams()
-        print("All Teams:\n")
+        print("All Teams:")
         print(f"{"Name":<30}{"Club":<20}{"Tournaments":<15}{"Wins":<4}")
         for team in all_teams:
             print(f"{team.name:<29} {team.club:<19} {team.tournament:^14} {team.wins:^3}")
@@ -478,7 +483,25 @@ class OrganizerUI:
 
     
     def see_team_info(self):
-        return
+        name = ""
+        while name.lower() != "q":
+            name = input("Enter team name(q/Q to quit): ").strip()
+            team: Team = self._logic.get_team(name)
+            if team is None:
+                print("No team found with that name.")
+            
+            else:
+                print(f"\n{self.ui_helper.BOLD}{self.ui_helper.RED}{"-"*30} Team info {"-"*30}{self.ui_helper.RESET}")
+                print(f"{"Name:":<25} {team.name:>45}")
+                print(f"{"Captain:":<25} {team.captain:>45}")
+                print(f"{"Club:":<25} {team.club:>45}")
+                print(f"{"Web link:":<10} {team.web_link:>60}")
+                print(f"{"ASCII logo:":<25} {team.ASCII:>45}")
+                print(f"{"Tournaments Played in:":<25} {team.tournament:>45}")
+                print(F"{"Tournaments won:":<25} {team.wins:>45}")
+                print(f"{"Total tournaments second places:":<25} {team.runner_up:>38}")
+                print()
+        return self.team_menu()
 
 
 

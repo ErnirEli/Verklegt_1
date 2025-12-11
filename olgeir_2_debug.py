@@ -28,21 +28,36 @@ while True:
     
     if first_choice == "2":
         choice =organizer_ui.team_menu()
-        if choice == "1":
-            organizer_ui.create_team()
-        if choice == "2":
-            organizer_ui.see_all_teams()
-     
+        while choice != "9":
+
+        
+            if choice == "1":
+                choice = organizer_ui.create_team()
+            if choice == "2":
+                choice = organizer_ui.see_all_teams()
+            if choice == "3":
+                choice = organizer_ui.see_team_info()
+        
     if first_choice == "3":
-        choice =organizer_ui.club_menu()
-        if choice == "1":
-            organizer_ui.create_club()
-      
+            
+            choice =organizer_ui.club_menu()
+            if choice == "1":
+                organizer_ui.create_club()
+        
     if first_choice == "4":
-        siggi =organizer_ui.tournament_menu()
-        if siggi == "1":
-            organizer_ui.create_tournoment()
-            organizer_ui.create_tournoment()
-    
+            
+            siggi =organizer_ui.tournament_menu()
+            if siggi == "1":
+                organizer_ui.create_tournoment()
+                organizer_ui.create_tournoment()
+        
     if first_choice == "9":
         main_menu.show_main_menu()
+
+
+#club info i show all:
+#Name,country, tournament, wins
+
+
+#Tournament info i show all:
+#Name, venue, id
