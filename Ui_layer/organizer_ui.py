@@ -315,9 +315,10 @@ class OrganizerUI:
                 print("Tournament can't have less than 16 teams and can't have more than 64 teams")
 
         #Teams in tournament
-        num_of_teams = int(num_of_teams)      
-        teams_in_tournament = []
+        num_of_teams = int(num_of_teams)  
+        teams_in_tournament = []    
         for _ in range(num_of_teams):
+            
             
             state = False
             while state == False:

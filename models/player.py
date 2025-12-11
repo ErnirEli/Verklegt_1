@@ -14,7 +14,7 @@ class Player:
         self.email = email
         self.link = link
         self.team_name = team_name
-        self.tournaments = tournament
+        self.tournament = tournament
         self.wins = wins
         self.runner_up = runner_up
 

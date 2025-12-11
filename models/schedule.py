@@ -69,9 +69,6 @@ class Schedule():
         server_slots = math.ceil(games_per_day / num_servers)
         round_slots = math.floor(self._number_of_rounds / self._tournament_days)
 
-        print(games_per_day, num_servers, self._number_of_rounds, self._tournament_days)
-        print(server_slots)
-        print(round_slots)
         return server_slots + round_slots
 
     def get_slot_times(self):

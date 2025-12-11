@@ -36,6 +36,11 @@ class HandleExistsException(Exception):
     """Raise if handle is already in use"""
     pass
 
+class InvalidLinkException(Exception):
+    pass
+
+class InvalidNumberException(Exception):
+    pass
 
 
     

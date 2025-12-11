@@ -59,6 +59,7 @@ class ValidatePlayer:
         if not adress:
             raise EmptyInput
         return True
+        return True
 
     def validate_email(self, email: str):
         if not email or email.strip() == "":
@@ -92,5 +93,6 @@ class ValidatePlayer:
         for line in players:
             if line.handle == handle:
                 raise HandleExistsException
+        return True
         return True
             
