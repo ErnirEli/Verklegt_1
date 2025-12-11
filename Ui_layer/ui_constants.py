@@ -37,11 +37,11 @@ class UIHelper():
         b: str = self.BLINKING
         re: str = self.RESET
 
-        print(f"{bg}{"___":^15}\n"
-        f"{"|":>6}{r}{b}{"[_]"}{re}{bg}{"|":<6}\n"
-        f"{"|+ ;|":^15}\n"
-        f"{"`---'":^15}\n"
-        f"{"":^15}{re}\n")
+        print(f"{bg}{"___":^15}{re}")
+        print(f"{bg}{"|":>6}{r}{b}{"[_]"}{re}{bg}{"|":<6}{re}")
+        print(f"{bg}{"|+ ;|":^15}{re}")
+        print(f"{bg}{"`---'":^15}{re}")
+        print(f"{bg}{"":^15}{re}")
 
     def top_bar(self):
         self.clear_screen()
