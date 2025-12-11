@@ -1,7 +1,8 @@
 #from logic.logic_api import logicAPI
 
-from Error.general_error import EmptyInput
-from Error.general_error import DateDoesNotExistError
+from Error.general_error import EmptyInput, DateDoesNotExistError, BackButton
+
+from Ui_layer.ui_constants import UIHelper
 
 #Player imports
 from validation.player_validation import ValidatePlayer
@@ -28,7 +29,8 @@ from Error.club_error import *
 
 class OrganizerUI:
     def __init__(self):
-        #self._logic = logicAPI()
+        self._logic = logicAPI()
+        self.ui_helper = UIHelper()
 
         self.validate_player = ValidatePlayer()  
         self.player_logic = PlayerLogic()  
@@ -285,10 +287,13 @@ class OrganizerUI:
 
     def see_all_players(self):
         all_players: list[Player] = self._logic.get_all_players()
-        print("All players:\n")
+        print("All players:")
+        print(f"{"Name":<30}{"Handle":<32}{"Date of birth":<20}{"Team name":<8}")
         for player in all_players:
-            print(f"{player.name},{player.handle},{player.dob},{player.team_name}")
-       
+            print(f"{player.name:<29} {player.handle:<31} {player.dob:<19} {player.team_name:<7}")
+      
+
+
         go_back = ""
         while go_back.lower() != "q":
             go_back = input("Press q/q to quit")
@@ -329,7 +334,13 @@ class OrganizerUI:
 #------------------------------------------------------------------------------
 
 
+
+
+#------------------------------------------------------------------------------
+
+
     #Team
+    def team_menu(self) -> str:
     def team_menu(self) -> str:
         print(
             "Team settings: \n\n"
@@ -450,7 +461,7 @@ class OrganizerUI:
     
     def see_all_teams(self):
         all_teams: list[Team] = self._logic.list_teams()
-        print("All Teams:\n")
+        print("All Teams:")
         print(f"{"Name":<30}{"Club":<20}{"Tournaments":<15}{"Wins":<4}")
         for team in all_teams:
             print(f"{team.name:<29} {team.club:<19} {team.tournament:^14} {team.wins:^3}")
@@ -463,7 +474,25 @@ class OrganizerUI:
 
     
     def see_team_info(self):
-        return
+        name = ""
+        while name.lower() != "q":
+            name = input("Enter team name(q/Q to quit): ").strip()
+            team: Team = self._logic.get_team(name)
+            if team is None:
+                print("No team found with that name.")
+            
+            else:
+                print(f"\n{self.ui_helper.BOLD}{self.ui_helper.RED}{"-"*30} Team info {"-"*30}{self.ui_helper.RESET}")
+                print(f"{"Name:":<25} {team.name:>45}")
+                print(f"{"Captain:":<25} {team.captain:>45}")
+                print(f"{"Club:":<25} {team.club:>45}")
+                print(f"{"Web link:":<10} {team.web_link:>60}")
+                print(f"{"ASCII logo:":<25} {team.ASCII:>45}")
+                print(f"{"Tournaments Played in:":<25} {team.tournament:>45}")
+                print(F"{"Tournaments won:":<25} {team.wins:>45}")
+                print(f"{"Total tournaments second places:":<25} {team.runner_up:>38}")
+                print()
+        return self.team_menu()
 
 
 
@@ -516,6 +545,9 @@ class OrganizerUI:
 
     def create_tournoment(self):
         '''Organizer gets asked for information one by one and then information gets sent to logic layer'''
+        print("You are creating a Tournament")
+        print("Press q/Q to quit at any time")
+
         #name
         state = False
         while state == False:
@@ -524,6 +556,8 @@ class OrganizerUI:
                 state = self.validate_tournament.validate_name(name)
             except EmptyInput:
                 print("Tournament needs a name")
+            except BackButton:
+                return self.tournament_menu()
             
         #Id
         state = False
@@ -535,6 +569,8 @@ class OrganizerUI:
                 print("Tournament needs an id")
             except IdAlreadyExists:
                 print("Id already exists")
+            except BackButton:
+                return self.tournament_menu()
             
 
 
@@ -560,6 +596,8 @@ class OrganizerUI:
                 print('Invalid format, start and end date have to contain "-" and in the format day-month-year')
             except DateDoesNotExistError:
                 print("Start or end date does not exist")
+            except BackButton:
+                return self.tournament_menu()
 
 
         #Venue
@@ -570,7 +608,8 @@ class OrganizerUI:
                 state = self.validate_tournament.validate_venue(venue)
             except EmptyInput:
                 print("Tournament needs to have a venue")
-            
+            except BackButton:
+                return self.tournament_menu()
         
         #Contract
         state = False
@@ -580,7 +619,8 @@ class OrganizerUI:
                 state = self.validate_tournament.validate_contract(contract)
             except EmptyInput:
                 print("Tournament needs to have a contract")
-            
+            except BackButton:
+                return self.tournament_menu()
         
         #Contact person email
         state = False
@@ -592,6 +632,9 @@ class OrganizerUI:
                 print("Tournament needs a contact persons email")
             except InvalidContactEmail:
                 print("Contact persons email is invalid, try again")
+            except BackButton:
+                return self.tournament_menu()
+
 
         #Contact persons Phone number
         state = False
@@ -603,18 +646,8 @@ class OrganizerUI:
                 print("Tournament needs a contact persons phone number")
             except InvalidContactNumber:
                 print("Contact persons phone number is invalid, try again")
-            
-
-        #Number of servers
-        state = False
-        while state == False:
-            num_of_servers = input("Number of servers: ")
-            try:
-                state = self.validate_tournament.validate_servers(num_of_servers)
-            except ValueError:
-                print("Number of servers has to be a digit")
-            except InvalidServers:
-                print("Servers have to be between 1-9")
+            except BackButton:
+                return self.tournament_menu()
 
 
 
@@ -626,12 +659,28 @@ class OrganizerUI:
                 state = self.validate_tournament.validate_number_of_teams(num_of_teams)
             except ValueError:
                 print("Number of teams has to be a digit")
-
             except WrongNumOfTeams:
                 print("Tournament can't have less than 16 teams and can't have more than 64 teams")
+            except BackButton:
+                return self.tournament_menu()
+        num_of_teams = int(num_of_teams)  
+
+        #Number of servers
+        state = False
+        while state == False:
+            num_of_servers = input("Number of servers: ")
+            try:
+                state = self.validate_tournament.validate_servers(num_of_servers, num_of_teams)
+            except ValueError:
+                print("Number of servers has to be a digit")
+            except InvalidServers:
+                print("Invalid amount of servers\n"
+                "For tournament with less than 32 teams: Servers have to be from 2-4\n"
+                "For tournament with 32 or more teams: Servers have to be from 4-7")
+            except BackButton:
+                return self.tournament_menu()
 
         #Teams in tournament
-        num_of_teams = int(num_of_teams)  
         teams_in_tournament = []    
         for _ in range(num_of_teams):
             
@@ -645,6 +694,8 @@ class OrganizerUI:
                     print("Team is already in tournament")
                 except TeamDoesNotExist:
                     print("Team does not exist")
+                except BackButton:
+                    return self.tournament_menu()
 
             teams_in_tournament.append(team_to_tournament) #Adds the team to the list of teams in the tournement after going through validation     
 

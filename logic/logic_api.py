@@ -60,9 +60,7 @@ class logicAPI:
         returns it of type Team.
         Only runs after all validation checks are valid.'''
 
-        self._team_logic.get_team(team_name)
-
-        return
+        return self._team_logic.get_team(team_name)
     
 
 #Tournaments
