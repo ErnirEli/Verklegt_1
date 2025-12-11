@@ -71,7 +71,7 @@ class OrganizerUI:
             "1. Create a Player\n"
             "2. Edit a Player\n"
             "3. See all players\n"
-            "4. See player info\\n\n"
+            "4. See player info\n"
             "9. Go back\n\n"
         )
         while True:
@@ -80,8 +80,14 @@ class OrganizerUI:
             if choice in {"1", "2", "3", "4", "9"}:
                 return choice
         
-            print("Invalid choice. Try again.\n")
-
+            print("Invalid choice. Try again.\n\n")
+            print(
+            "Player settings: \n\n"
+            "1. Create a Player\n"
+            "2. Edit a Player\n"
+            "3. See all players\n"
+            "4. See player info\n"
+            "9. Go back\n\n")
 
     def Team_menu(self) -> str:
         print(
@@ -137,26 +143,28 @@ class OrganizerUI:
             print("Invalid choice. Try again.\n")
 
     
-    def view_teams(self):
-        return
-    
+   
     def view_player_info(self):
-        handle = input("Enter player handle: ").strip()
-        player: Player = self._logic.find_player(handle)
-        if player is None:
-            print("No player found with that handle.")
-        else:
-            print("\n--- Player info ---")
-            print(f"Handle: {player.handle}")
-            print(f"Team name: {player.team_name}")
-            print(f"Date og birht: {player.dob}")
-            print(f"Address: {player.address}")
-            print(f"Phone number: {player.phone}")
-            print(f"Email: {player.email}")
-            print(F"Link: {player.link}")
-            print(f"Total tournaments played in: {player.tournament}")
-            print(f"Tournamnets won: {player.wins}")
+        handle = ""
+        while handle.lower() != "q":
+            handle = input("Enter player handle (q/Q to quit): ").strip()
+            player: Player = self._logic.find_player(handle)
+            if player is None:
+                print("No player found with that handle.")
+            
+            else:
+                print("\n--- Player info ---")
+                print(f"Handle: {player.handle}")
+                print(f"Team name: {player.team_name}")
+                print(f"Date og birht: {player.dob}")
+                print(f"Address: {player.address}")
+                print(f"Phone number: {player.phone}")
+                print(f"Email: {player.email}")
+                print(F"Link: {player.link}")
+                print(f"Total tournaments played in: {player.tournament}")
+                print(f"Tournamnets won: {player.wins}")
 
+        return self.player_settings()
      
    
 
