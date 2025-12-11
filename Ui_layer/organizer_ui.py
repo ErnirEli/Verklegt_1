@@ -18,6 +18,7 @@ from Error.tournament_error import *
 from logic.team_logic import TeamLogic
 from validation.team_validation import ValidateTeam
 from Error.team_error import *
+from models.team import Team
 
 #Club imports
 from logic.club_logic import ClubLogic
@@ -338,8 +339,13 @@ class OrganizerUI:
 
 
 
+
+
+#------------------------------------------------------------------------------
+
+
     #Team
-    def Team_menu(self) -> str:
+    def team_menu(self) -> str:
         print(
             "Team settings: \n\n"
             "1. create team\n"
@@ -356,11 +362,131 @@ class OrganizerUI:
             print("Invalid choice. Try again.\n")
 
     
+
+    def create_team(self):
+        print("You are creating a team")
+        print("Press q/Q to quit at any time")
+        
+        #Name
+        state = False
+        while state == False:
+            name = input("Name: ")
+            try:
+                state = self.validate_team.validate_name(name)
+            except EmptyInput:
+                print("Team needs to have a name")
+            except TeamExistsError:
+                print("Team name already exit, team needs an unique name")
+            except BackButton:
+                return self.Team_menu()
+
+        # Web link
+        state = False
+        while state == False:
+            web_link = "https://" + input("Web link: https://")
+            try:
+                state = self.validate_team.validate_web_link(web_link)
+            except EmptyInput:
+                print("Team needs to have a web link")
+            except InvalidWebLink:
+                print("Web link needs to contain a dot")
+            except BackButton:
+                return self.Team_menu()
+        #ASCII logo
+        state = False
+        while state == False:
+            ascii = input("ASCII logo: ")
+            try:
+                state = self.validate_team.validate_ascii_logo(ascii)
+            except EmptyInput:
+                print("Team needs a ASCII logo")
+            except BackButton:
+                return self.Team_menu()
+        
+        #Number of players in team
+        #3-5
+        state = False
+        while state == False:
+            num_of_players = input("Number of players in team: ")
+            try:
+                state = self.validate_team.validate_number_of_players(num_of_players)
+            except ValueError:
+                print("Number of players has to be a digit")
+
+            except EmptyInput:
+                print("Team must have 3-5 players")
+            except TooManyPlayersError:
+                print("Team can not have more than 5 players")
+            except NotEnoughPlayersError:
+                print("Team needs to have at least 3 players")
+            except BackButton:
+                return self.Team_menu()
+        int(num_of_players)
+            
+
+        #Players in team
+        num_of_players = int(num_of_players)
+        Players_in_team = []
+        for _ in range(num_of_players):
+            state = False
+            while state == False:
+                player_handle = input("Player handle to add to team: ")
+                try:
+                    state = self.validate_team.validate_players_in_team(player_handle, Players_in_team)
+                except PlayerDoesNotExistError:
+                    print("Player does not exist")
+                except PlayerAlreadyInTeamError:
+                    print("Player already in Team")
+                except playerNotAvailableError:
+                    print("Player is already in an another team")
+                except BackButton:
+                    return self.Team_menu()
+                
+            Players_in_team.append(player_handle)
+
+        #captain
+        state = False
+        while state == False:
+            captain = input("Choose a captain (handle): ")
+            try:
+                state = self.validate_team.validate_captain(captain, Players_in_team)
+            except EmptyInput:
+                print("Team needs a captain")
+            except CaptainNotExistError:
+                print("Player does not exist")
+            except CaptainNotInTeamError:
+                print("Captain is not in the team")
+            except BackButton:
+                return self.Team_menu()
+
+
+        self.team_logic.create_team(name, captain, web_link, ascii, num_of_players, Players_in_team)
+
+    
+    def see_all_teams(self):
+        all_teams: list[Team] = self._logic.list_teams()
+        print("All Teams:\n")
+        print(f"{"Name":<30}{"Club":<20}{"Tournaments":<15}{"Wins":<4}")
+        for team in all_teams:
+            print(f"{team.name:<29} {team.club:<19} {team.tournament:^14} {team.wins:^3}")
+       
+        go_back = ""
+        while go_back.lower() != "q":
+            go_back = input("Press q/q to quit")
+            
+        return self.team_menu()
+
+    
+    def see_team_info(self):
+        return
+
+
+
     def club_menu(self)-> str:
         print(
             "Club menu:\n\n"
             "1. Create a club\n"
-            "2. See all clun\n"
+            "2. See all club\n"
             "3. See club info\n"
             "9. Go back\n\n"
         )
@@ -562,110 +688,6 @@ class OrganizerUI:
 
 
         self.tournament_logic.create_a_tournament(id, name, venue, start_date, end_date, contract, contact_email, contact_number, num_of_servers, teams_in_tournament )
-
-
-
-
-    def create_team(self):
-        print("You are creating a team")
-        print("Press q/Q to quit at any time")
-        
-        #Name
-        state = False
-        while state == False:
-            name = input("Name: ")
-            try:
-                state = self.validate_team.validate_name(name)
-            except EmptyInput:
-                print("Team needs to have a name")
-            except TeamExistsError:
-                print("Team name already exit, team needs an unique name")
-            except BackButton:
-                return self.Team_menu()
-
-        # Web link
-        state = False
-        while state == False:
-            web_link = "https://" + input("Web link: https://")
-            try:
-                state = self.validate_team.validate_web_link(web_link)
-            except EmptyInput:
-                print("Team needs to have a web link")
-            except InvalidWebLink:
-                print("Web link needs to contain a dot")
-            except BackButton:
-                return self.Team_menu()
-        #ASCII logo
-        state = False
-        while state == False:
-            ascii = input("ASCII logo: ")
-            try:
-                state = self.validate_team.validate_ascii_logo(ascii)
-            except EmptyInput:
-                print("Team needs a ASCII logo")
-            except BackButton:
-                return self.Team_menu()
-        
-        #Number of players in team
-        #3-5
-        state = False
-        while state == False:
-            num_of_players = input("Number of players in team: ")
-            try:
-                state = self.validate_team.validate_number_of_players(num_of_players)
-            except ValueError:
-                print("Number of players has to be a digit")
-
-            except EmptyInput:
-                print("Team must have 3-5 players")
-            except TooManyPlayersError:
-                print("Team can not have more than 5 players")
-            except NotEnoughPlayersError:
-                print("Team needs to have at least 3 players")
-            except BackButton:
-                return self.Team_menu()
-        int(num_of_players)
-            
-
-        #Players in team
-        num_of_players = int(num_of_players)
-        Players_in_team = []
-        for _ in range(num_of_players):
-            state = False
-            while state == False:
-                player_handle = input("Player handle to add to team: ")
-                try:
-                    state = self.validate_team.validate_players_in_team(player_handle, Players_in_team)
-                except PlayerDoesNotExistError:
-                    print("Player does not exist")
-                except PlayerAlreadyInTeamError:
-                    print("Player already in Team")
-                except playerNotAvailableError:
-                    print("Player is already in an another team")
-                except BackButton:
-                    return self.Team_menu()
-                
-            Players_in_team.append(player_handle)
-
-        #captain
-        state = False
-        while state == False:
-            captain = input("Choose a captain (handle): ")
-            try:
-                state = self.validate_team.validate_captain(captain, Players_in_team)
-            except EmptyInput:
-                print("Team needs a captain")
-            except CaptainNotExistError:
-                print("Player does not exist")
-            except CaptainNotInTeamError:
-                print("Captain is not in the team")
-            except BackButton:
-                return self.Team_menu()
-
-
-        self.team_logic.create_team(name, captain, web_link, ascii, num_of_players, Players_in_team)
-
-
 
 
 
