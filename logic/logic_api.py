@@ -21,6 +21,7 @@ class logicAPI:
         self._player_logic = PlayerLogic()
 
 #Teams
+
     def list_teams(self) -> list[Team]:
         '''Takes in nothing and returns a list of all existing teams of type Team'''
 
@@ -64,7 +65,6 @@ class logicAPI:
         return
     
 
-
 #Tournaments
 
     def list_tournaments(self) -> list[Tournament]:
@@ -88,6 +88,7 @@ class logicAPI:
         return self._tournament_logic.create_tournament(tournament_id, name, venue, end_date, start_date,
                                                         contact, contact_email, contact_number, servers, team_list)
 
+
 #Matches
     
     def list_matches(self) -> list[Match]:
@@ -98,23 +99,71 @@ class logicAPI:
     def update_game_results(self, match: Match, score_a: int, score_b: int) -> None:
         '''Takes in a match of type "Match" and score for team a & b.
         Updates match winner and status and finishes the tournament if match round in "Final".
+        Returns None
         Only runs after all validation checks are valid.'''
+
+        self._match_logic.update_game_results(match, score_a, score_b)
+        return
+
+
 #Clubs
 
     def list_clubs(self) -> None:
+        '''Takes in nothing and returns a list of all existing clubs of type Club'''
+
         return self._club_logic.list_all_clubs()
     
-    def create_club(self, name: str, colors: str, hometown: str, country: str) -> List:
-        return self._club_logic.create_club(name, colors, hometown, country)
+    def create_club(self, name: str, color: str, hometown: str, country: str, teams: list[str]) -> None:
+        '''Takes in a name, color, hometown, country all of type string, also takes in a list of team names, of type string.
+        Creates a club of type "Club" and adds all teams from list to the club. Returns None.
+        Only runs after all validation checks are valid.'''
+
+        return self._club_logic.create_club(name, color, hometown, country, teams)
+
+    def get_club_teams(self, club: Club) -> list[Team]:
+        '''Takes in a club of type Club and returns a list of all teams in the club, of type "Team".
+        Only runs after all validation checks are Valid'''
+
+        return self._club_logic.get_club_teams(club)
+
+    def add_team(self, club: Club, team: Team) -> None:
+        '''Takes in a club, og type "Club" and a team of type Team.
+        adds team tou the club.
+        Only runs after all validation checks are valid'''
+
+        self._club_logic.add_team(club, team)
+        return
+        
+    def remove_team(self, team: Team) -> None:
+        '''Takes in a team of type "Team" and removes it from club.
+        Only runs after ale validation checks are valid.'''
+
+        self._club_logic.remove_team(team)
+
 
 #Player
+
     def create_player(self, name: str, dob: str, address: str, phone: str, email: str,
-                    link: str, handle: str, team_name: str, tournaments: int, wins: int) -> Player:
-        """Creates a new player and adds them to the database"""
-        return self._player_logic.create_player( name, dob, address, phone, email, link, handle, team_name, tournaments, wins)
+                    link: str, handle: str, team_name: str) -> None:
+        '''Takes in name, date of birth, adress, phone number, email, link, and hadle.
+        Creates a player of type "Club" and saves him in the player CSV file.
+        Only runs after all Validation checks are valid'''
+
+        self._player_logic.create_player(name, dob, address, phone, email, link, handle, team_name)
+        return
     
-    def edit_player_info(self, handle: str, new_phone = None,  new_email = None, new_address = None, new_link = None) -> bool:
-        """Edits player info returns True if the changes have been made"""
+    def find_player(self, handle: str) -> Player:
+        '''Takes in a player handle of type string.
+        Returns the player with same handle of type "Player".
+        Only runs after all Validation checks are valid.'''
+    
+        return self._player_logic.find_player(handle)
+
+    def edit_player_info(self, handle: str, new_phone = None,  new_email = None, new_address = None, new_link = None) -> Player:
+        '''Takes in a player handle and 1-4 of the following arguments: 
+        phone number, email, address, link and changes the info for the player.
+        Only runs if all Validation checks are valid.'''
+        
         return self._player_logic.edit_player_info(handle, new_phone = new_phone, new_email = new_email, new_address = new_address, new_link=new_link)
     
     def get_player_public_info(self, handle: str):
