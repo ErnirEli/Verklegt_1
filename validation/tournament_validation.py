@@ -1,61 +1,127 @@
 from Datalayer.data_api import DataAPI
 from datetime import datetime
+from Error.tournament_error import *
+from datetime import *
+from Error.general_error import EmptyInput
+from Error.general_error import DateDoesNotExistError
 
 class ValidateTournament:
     def __init__(self):
-            pass
+            self._data = DataAPI()
     
 
-    def is_organizer(self):
-         #Eftir að implementa
-         return
-
-
-    def validate_start_date_and_end_date(self, start_date:int, end_date:int):
-        if not start_date or not end_date:
-            return (False, "Tournament needs to have a start date and an end date")
-        
-        start_date_checker:datetime = datetime.strptime(start_date, "%d.%m.%y")
-        end_date_checker: datetime = datetime.strptime(end_date, "%d.%m.%y")
-        if start_date_checker >= end_date_checker:
-            return (False, "Start date needs to be before the end date")
-
-        today = datetime.today()
-        if start_date_checker > today:
-                return (False, "The start date is in the past")
-
-        return True,
 
     def validate_name(self, name: str):
         if not name:
-            return (False, "Tournament needs to have a name")
-        return True,
+            raise EmptyInput
+        return True
+
+    def validate_start_date_and_end_date(self, start_date:str, end_date:str):
+        if not start_date or not end_date:
+            raise EmptyInput
+        
+        if start_date.count("-") != 2 or end_date.count("-") != 2:
+             raise InvalidFormat    
+        
+    
+        start_date = start_date.split("-")
+        end_date =  end_date.split("-")
+
+         
+
+        try:
+             start_date = date(int(start_date[2]), int(start_date[1]), int(start_date[0]))
+        except ValueError:
+            raise DateDoesNotExistError
+        try:
+            end_date = date(int(end_date[2]), int(end_date[1]), int(end_date[0]))
+        except ValueError:
+             raise DateDoesNotExistError 
+
+
+        if start_date > end_date:
+           raise InvalidStartDateBefore
+        
+        today = datetime.today().date()
+        if start_date < today:
+            raise InvalidStartDateInPast
+        
+        days = (end_date - start_date).days
+        if days < 2 or days > 7:
+             raise InvalidAmountOfDays
+    
+        return True
+
+
+                
 
     def validate_venue(self, venue: str):
         if not venue:
-            return (False, "Tournament needs a venue")
-        return True,
+            raise EmptyInput
+        return True
     
     def validate_contract(self, contract: str):
         if not contract:
-            return (False, "Tournament needs a contract")
-        return True,
+            raise EmptyInput
+        return True
     
-    def validate_contact_person(self, email: str, number: str):
+    def validate_contact_email(self, email: str):
         if not email:
-            return (False, "Tournament needs a contact persons email)")
-        if "." and "@" in email and not isinstance(email, str):
-                return (False, "email is not valid")
-        if not number:
-                return (False, "Tournament neeeds a contact persons phone number")
-        if not number.isnumeric()and len(number) != 7:
-                return (False, "Phone number is not valid")
+            raise EmptyInput
+        if "." not in email or "@" not in email:
+            raise InvalidContactEmail
         
-        return True,
+        return True
+        
+    def validate_contact_numer(self, number: str):
+        if not number:
+                return EmptyInput
+        if not number.isnumeric() or len(number) != 10:
+                raise InvalidContactNumber
+        
+        return True
 
-    def validate_number_of_teams(self):
-        team_list: list = DataAPI.get_all_teams
+    def validate_number_of_teams(self, num_of_teams: str):
+        num_of_teams = int(num_of_teams)
+        
 
-        if len[team_list] < 16:
-            return (False, "Tournament needs to have at least 16 teams")
-        return True,
+        if num_of_teams < 16 or num_of_teams > 64:
+            raise WrongNumOfTeams
+        
+        return True
+    def validate_teams_in_tournament(self, team_to_tournament: str, teams_in_tournament: list):
+        
+        team_names = []
+        all_teams = self._data.get_all_teams()
+
+        for team in all_teams:
+            team_names.append(team.name)
+
+        if team_to_tournament not in team_names:
+            raise TeamDoesNotExist
+        
+        
+        if team_to_tournament in teams_in_tournament:
+            raise TeamAlreadyInTournament
+        
+        return True
+    
+
+    def validate_id(self, id: str):
+        if not id:
+             raise EmptyInput
+        
+        all_tournaments = self._data.get_all_tournaments()
+        for i in all_tournaments:
+             if i.id == id:
+                  raise IdAlreadyExists
+        return True
+    
+    def validate_servers(self, servers: str):
+        servers = int(servers)
+        if servers > 9:
+             raise InvalidServers
+        if servers < 3:
+             raise InvalidServers
+        return True
+        

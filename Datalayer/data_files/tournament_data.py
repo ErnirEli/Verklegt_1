@@ -1,5 +1,5 @@
 import csv
-from models import Tournament
+from models.tournament import Tournament
 
 
 class TournamentFiles():
@@ -40,10 +40,10 @@ class TournamentFiles():
                 file_reader = csv.reader(file)
                 tournaments: list = []
 
-                for tournament_info in file_reder:
+                for tournament_info in file_reader:
                     tournament_info: list
 
-                    id: int = int(tournament_info[0])
+                    id: int = tournament_info[0]
                     name: str = tournament_info[1]
                     venue: str = tournament_info[2]
                     start_date: str = tournament_info[3]
@@ -52,10 +52,11 @@ class TournamentFiles():
                     mail: str = tournament_info[6]
                     number: int = int(tournament_info[7])
                     servers: int = int(tournament_info[8])
+                    state: bool = tournament_info[9] == "True"
 
                     tournaments.append(Tournament(id, name, venue,
                                                 start_date, end_date, contact,
-                                                mail, number, servers))
+                                                mail, number, servers, state))
                 
                 return tournaments
         

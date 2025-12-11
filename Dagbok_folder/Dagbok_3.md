@@ -4,10 +4,10 @@
 
 ### Í persónu:
 Tilsettur mætingartími, **8:30-9:00**<br>
-Alexander, 9:20 - 18:30 <br> 
-Ernir , 8:50 - 23.00<br>
-Ívar,  10:30 - <br>
-Nökkvi,  - <br>
+Alexander, - <br> 
+Ernir ,  - <br>
+Ívar, 10:00 <br>
+Nökkvi, 9:30 <br>
 Olgeir, 9:10 - <br>
 
 ### Remote:
@@ -16,42 +16,42 @@ Enginn
 ---
 
 ## State of project:
-Engin vandamál kominn upp. verkefnin: Rrquirements og git handbókin kláruð
+Engin vandamál kominn upp.
 
 ## To do
 Planið í dag: (priority)<br> 
-Class diagram, (A) <br>
-Use cases, (A)<br>
-State diagram, (A)<br>
+Class diagram, (B) <br>
+Use cases, (B)<br>
+State diagram, (B)<br>
 Dagbók fyrir daginn í dag, (A)<br>
-3 dimentional diagram (A)<br>
-Mölvun í dk(AA)<br> 
+3 way diagram (A)<br>
 
 
 ---
 
 ## Verkefni Dagsins
 ### Ernir
-klára 3 dimentional diagram, class diagram og use cases. Gera happy path.<br>
+<br>
 
 ### Olgeir
-Klára state diagram og dagbók.<br>
+<br>
 
 ### Alexander
-klára use cases og happy path. Skrifa texta í skýrsluna eins og inngang og fleira.
+
 
 ### Nökkvi
-Klára use cases og gera happy path. <br>
+Use cases klárað og unnið í happy path
+
 
 ### Ívar
-Klára use cases.<br>
+
 
 ---
 
 
 
 ## State of group: <br>
-Samantekt: Í dag var klárað að gera state diagram, class idagram, dagbókina, use cases og 3 way diagram. Þetta gékk allt vel og við enduðum á því að skila svo inn skýsrlunni fyrir viku 1 af því að við erum allir að fara með tvíund til danmerkur 
+Samantekt: Í dag var k
 ## Spurningar til TA:<br>
-Engar spurningar í dag.
+
 

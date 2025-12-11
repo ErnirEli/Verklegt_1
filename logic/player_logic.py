@@ -6,49 +6,54 @@ from Datalayer.data_api import DataAPI
 class PlayerLogic:
 
 
-    def __init__(self, data_wrapper: DataAPI):
-        self._data = data_wrapper
+    def __init__(self):
+        self._data = DataAPI()
 
     def is_editor(self, role):
         return role == "organizer" or role == "captain"
 
     def find_player(self, players, handle):
-        for line in players:
-            if line.handle == handle:
-                return line
+        '''Finds a single player based on handle'''
+
+        for player in players:
+            player: Player
+
+            if player.handle == handle:
+                return player
         return None
 
 
     def create_player(self, name, dob, address,
-                      phone, email, link, handle, team_name, tournaments, wins):
+                    phone, email, link, handle):
 
-        new_player = Player(handle, name, dob, address,
-                            phone, email, link, team_name, tournaments, wins)
+        new_player = Player(name, dob, address,
+                            phone, email, link, handle)
         self._data.add_player(new_player)
         
 
-        return "Player created."
+        return True
 
     def edit_player_info(self, handle,
-                         new_phone=None, new_email=None,
-                         new_address=None, new_link=None):
+                        new_phone = False, new_email = False,
+                        new_address = False, new_link = False):
+        '''Edits desired player info'''
 
 
         players = self._data.get_all_players()
         player = self.find_player(players, handle)
         if player is None:
-            return "Player not found."
+            return None
 
         if new_phone is not None:
             player.phone = new_phone
-        if new_email is not None:
+        if new_email:
             player.email = new_email
-        if new_address is not None:
+        if new_address:
             player.address = new_address
-        if new_link is not None:
+        if new_link:
             player.link = new_link
 
-        self._data.write_players(players)
+        self._data.rewrite_players(players)
         return True
 
     def get_public_player_info(self, handle: str):
@@ -78,7 +83,7 @@ class PlayerLogic:
             "link": player.link,
             "handle": player.handle,
             "team_name": player.team_name,
-            "tournaments": player.tournament,
+            "tournament": player.tournament,
             "wins": player.wins
         }
 
