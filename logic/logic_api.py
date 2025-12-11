@@ -1,10 +1,9 @@
 from typing import List
 from logic.team_logic import TeamLogic
 from models.team import Team
-from Datalayer.data_api import DataAPI
-#from logic.tournament_logic import TournamentLogic
+from logic.tournament_logic import TournamentLogic
 from logic.match_logic import MatchLogic
-#from models.tournament  import Tournament
+from models.tournament  import Tournament
 from models.match import Match
 from logic.club_logic import ClubLogic
 from models.club import Club
@@ -15,33 +14,91 @@ from models.player import Player
 class logicAPI:
 
     def __init__(self) -> None:
-        data_api: DataAPI = DataAPI()
         self._team_logic = TeamLogic()
-        #self._tournament_logic = TournamentLogic(data_api)
-        self._match_logic = MatchLogic(data_api)
-        self._club_logic = ClubLogic(data_api)
+        self._tournament_logic = TournamentLogic()
+        self._match_logic = MatchLogic()
+        self._club_logic = ClubLogic()
         self._player_logic = PlayerLogic()
+
 #Teams
     def list_teams(self) -> list[Team]:
+        '''Takes in nothing and returns a list of all existing teams of type Team'''
+
+
         return self._team_logic.list_all_teams()
     
-    def create_team(self,name: str, captain: str, web_link: str, ASCII = str) -> Team:
-        return self._team_logic.create_team(name, captain, web_link, ASCII )
+    def create_team(self, name: str, captain: str, web_link: str, ASCII: str, players: list[str]) -> Team:
+        '''Takes in a name, captain handle, web link, ASCII all of string type,
+        also takes in a list of player handles of type string. 
+        Creates a team and adds players to the team.
+        Returns the team of type Team
+        Only runs after all validation checks are valid.'''
+
+        return self._team_logic.create_team(name, captain, web_link, ASCII, players)
+    
+    def add_player(self, team: Team, player: Player) -> None:
+        '''Takes in a team, of type Team, and
+        a player of type Player,
+        adds the player to the team.
+        Only runs after all validation checks are valid.'''
+
+        self._team_logic.add_player(team, player)
+        return
+    
+    def remove_player(self, player: Player) -> None:
+        '''Takes in a player, of type Player, 
+        and removes him from team.
+        Only runs after all validation checks are valid.'''
+
+        self._team_logic.remove_player(player)
+        return
+
+    def get_team(self, team_name: str) -> Team:
+        '''Takes in a team name as a string,
+        finds the team with the right name and
+        returns it of type Team.
+        Only runs after all validation checks are valid.'''
+
+        self._team_logic.get_team(team_name)
+
+        return
+    
+
 
 #Tournaments
 
-    #def list_tournaments(self) -> None:
-        #return self._tournament_logic.list_all_tournaments()
+    def list_tournaments(self) -> list[Tournament]:
+        '''Takes in nothing and returns a list of all existing tournaments of type Tournament'''
+
+        return self._tournament_logic.list_all_tournaments()
     
-    #def create_tournament(self, start_date: int, end_date: int, name: str, venue: str, contract: str, contact_person: tuple, team_list: list) -> List[Tournament]:
-        #return self._tournament_logic.create_tournaments(start_date, end_date, name, venue, contract, contact_person, team_list)
+    def get_tournament(self, tournament_id: str) -> Tournament:
+        '''Takes in tournament ID and returns the torunament of type Torunament.
+        Only runs after all validation checks are valid.'''
+
+        self._tournament_logic.get_tournament(tournament_id)
+
+    def create_tournament(self, tournament_id: str, name: str, venue: str,
+                        start_date: str, end_date: str, contact: str, contact_email: str,
+                        contact_number: str, servers: int, team_list: list[str]) -> Tournament:
+        '''Takes in id, name, venue, start & end dates, contact, mail & number, servers, for a tournament, all of type string.
+        also takes in a list of team names of type string. Creates a tournament using this info and adds all teams from the list to the torunament.
+        Only runs after all validation checks are valid.'''
+
+        return self._tournament_logic.create_tournament(tournament_id, name, venue, end_date, start_date,
+                                                        contact, contact_email, contact_number, servers, team_list)
+
 #Matches
     
-    def list_matches(self) -> None:
+    def list_matches(self) -> list[Match]:
+        '''Takes in nothing and returns a list of all existing amtches of type Match'''
+
         return self._match_logic.list_all_matches()
-    # def create_match(self,teams: tuple):
-    #     return self._match_logic.create_match(teams)
     
+    def update_game_results(self, match: Match, score_a: int, score_b: int) -> None:
+        '''Takes in a match of type "Match" and score for team a & b.
+        Updates match winner and status and finishes the tournament if match round in "Final".
+        Only runs after all validation checks are valid.'''
 #Clubs
 
     def list_clubs(self) -> None:
@@ -52,7 +109,7 @@ class logicAPI:
 
 #Player
     def create_player(self, name: str, dob: str, address: str, phone: str, email: str,
-                      link: str, handle: str, team_name: str, tournaments: int, wins: int) -> Player:
+                    link: str, handle: str, team_name: str, tournaments: int, wins: int) -> Player:
         """Creates a new player and adds them to the database"""
         return self._player_logic.create_player( name, dob, address, phone, email, link, handle, team_name, tournaments, wins)
     

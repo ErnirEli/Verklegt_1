@@ -18,13 +18,17 @@ class TeamLogic:
         self._data_api = DataAPI()
     
     def list_all_teams(self) -> List[Team]:
-        '''Returns a list of all teams'''
+        '''Takes in nothing and returns a list of all existing teams of type Team'''
 
         return self._data_api.get_all_teams()
 
+    def create_team(self, name: str, captain: str, web_link: str, ASCII: str, team_players: list[str]) -> Team:
+        '''Takes in a name, captain handle, web link, ASCII all of string type,
+        also takes in a list of player handles of type string. 
+        Creates a team and adds players to the team.
+        Returns the team of type Team.
+        Only runs after all validation checks are valid.'''
 
-    def create_team(self, name: str, captain: str, web_link: str, ASCII: str, team_players) -> Team:
-        '''creaetes a team only if all validation condition have been met'''
         team: Team = Team(name, captain, web_link, ASCII)
 
         # Adds team name to player
@@ -35,10 +39,12 @@ class TeamLogic:
 
         return team
         
-
-    
-    def add_players(self, team: Team, new_players: list):
-        '''Adds a selected player to selected team'''
+    def add_players(self, team: Team, new_players: list[str]):
+        '''Takes in a team of type Team, 
+        a list of player handles of type string,
+        adds all players to the team. 
+        Only runs when a team is created and 
+        after all validation checks are valid'''
 
         players = self._data_api.get_all_players()
 
@@ -55,29 +61,50 @@ class TeamLogic:
         return 
     
     def add_player(self, team: Team, wanted_player: Player) -> None:
-        '''Adds a Wanted player to a team'''
-        
-        wanted_player.team_name = team.name
+        '''Takes in a team, of type Team,
+        and a player of type Player,
+        and adds the player to the team.
+        Only runs after all validation checks are valid.'''
 
+        players: list[Player] = self._data_api.get_all_players()
+
+        for player in players:
+            if player.handle == wanted_player.handle:
+                player.team_name == team.name
+
+        self._data_api.write_teams(players)
         return
     
-    
-
     def remove_player(self, unwanted_player: Player) -> None:
-        '''Removes a selected player out of selected team'''
+        '''Takes in a player, of type Player, 
+        and removes him from team'''
 
-        unwanted_player.team_name = "None"
+        players: list[Player] = self._data_api.get_all_players()
 
+        for player in players:
+            if player.handle == unwanted_player.handle:
+                player.team_name == "None"
+
+        self._data_api.write_teams(players)
         return 
+    
+    def get_team(self, name: str) -> Team:
+        '''Takes in a team name as a string,
+        finds the team with the right name and
+        returns it of type Team'''
+
+        teams: list[Team] = self._data_api.get_all_teams()
+
+        for team in teams:
+            if team.name == name:
+                return team
     
 
     def team_info(self, team: Team):
         '''Gives all info on team'''
-        players = self._data_api.get_all_players()
+        players: list[Player] = self._data_api.get_all_players()
         team_players = []
         for player in players:
-            player: Player
-
             if player.team_name == team.name:
                 team_players.append(player.handle)
         
