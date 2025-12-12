@@ -920,13 +920,6 @@ class OrganizerUI:
             print("Invalid choice. Try again.\n")
 
     
-   
-
-
-
-
-
-    #     #Tournamnet
 
     def create_tournoment(self):
         '''Organizer gets asked for information one by one and then information gets sent to logic layer'''
@@ -1125,7 +1118,7 @@ class OrganizerUI:
         print(f"{"Contract:":<25} {tournament.contact:>45}\n")
         print(f"{"Contact email:":<25} {tournament.contact_email:>45}")
         print(f"{"Contact Phone number:":<25}{tournament.contact_number:>45}")
-        print(f"{"State:":<24} {tournament.state:>45}")
+        print(f"{"State:":<24} {str(tournament.state):>45}")
         print(f"{"Servers":<25}{len(tournament.servers):>45}")            
         
         print(f"\n{self.ui_helper.BOLD}{self.ui_helper.RED}{"-"*24} Matches in tournament {"-"*24}{self.ui_helper.RESET}")
