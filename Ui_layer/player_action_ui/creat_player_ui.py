@@ -23,7 +23,6 @@ class PlayerCreationUI:
         while True:
             state = False 
             while state == False: 
-                self._ui.top_bar()
                 name = input("Name: ")            
                 try: 
                     state = self._logic_api.validate_player_name(name)
