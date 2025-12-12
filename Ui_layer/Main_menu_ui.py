@@ -9,7 +9,7 @@ class MainMenu:
         '''Ui of main menu, takes in nothing and returns a choice of type str'''
         choice = ""
         while choice not in ("1", "2", "3", "q"):
-            self._ui.top_bar()
+            self._ui.menu_top()
             print (
                 "Choose a role:\n\n"
                 "1. Spectator\n"

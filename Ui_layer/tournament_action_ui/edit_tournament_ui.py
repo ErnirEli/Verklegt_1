@@ -15,7 +15,7 @@ from Error.match_error import InvalidScores, DrawError
 #Model imports
 from models.tournament import Tournament
 from models.match import Match
-s
+
 
 class EditTournamentUI():
     def __init__(self):
