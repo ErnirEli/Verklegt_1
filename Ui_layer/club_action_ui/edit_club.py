@@ -1,12 +1,12 @@
 from logic.logic_api import LogicAPI
-
-from Error.general_error import EmptyInput, DateDoesNotExistError, BackButton
-
 from Ui_layer.ui_constants import UIHelper
+
+from Error.general_error import BackButton
 
 #Club imports
 from Error.club_error import *
 from models.club import Club
+from models.team import Team
 
 
 class EditClubUI():
