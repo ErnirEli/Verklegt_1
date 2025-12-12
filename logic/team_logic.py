@@ -96,7 +96,7 @@ class TeamLogic:
 
         for player in players:
             if player.team_name == team_name:
-                team_players.append(player)
+                team_players.append(player.handle)
 
         return team_players
 

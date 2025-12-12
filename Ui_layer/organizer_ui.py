@@ -14,6 +14,7 @@ from models.player import Player
 from validation.tournament_validation import ValidateTournament
 from logic.tournament_logic import TournamentLogic
 from Error.tournament_error import *
+from models.tournament import Tournament
 
 #team imports
 from logic.team_logic import TeamLogic
@@ -320,29 +321,36 @@ class OrganizerUI:
 
 
     def view_player_info(self):
-        handle = ""
-        while handle.lower() != "q":
-            handle = input("Enter player handle (q/Q to quit): ").strip()
-            player: Player = self._logic.find_player(handle)
-            if player is None:
-                print("No player found with that handle.")
+        state = False
+        while state == False:
+            handle = input("Enter player handle for information (q/Q to quit): ").strip()
+            if handle.lower() == "q":
+                return self.player_settingsu()
+            try:
+                state = self.validate_player.does_player_exists(handle)
+            except PlayerNotExist:
+                print("Player does not exist")
+                return self.view_player_info()
+        
+        player: Player = self._logic.find_player(handle)
+           
             
-            else:
-                print(f"\n{"-"*30} Player info {"-"*30}")
-                print(f"{"Handle:":<25} {player.handle:>45}")
-                print(f"{"Team name:":<25} {player.team_name:>45}")
-                print(f"{"Date og birht:":<25} {player.dob:>45}")
-                print(f"{"Address:":<25} {player.address:>45}")
-                print(f"{"Phone number:":<25} {player.phone:>45}")
-                print(f"{"Email:":<25} {player.email:>45}")
-                print(F"{"Link:":<25} {player.link:>45}")
-                print(f"{"Total tournaments played in:":<50} {player.tournament:>20}")
-                print(f"{"Tournamnets won:":<25} {player.wins:>45}")
-                print()
+    
+        print(f"\n{"-"*30} Player info {"-"*30}")
+        print(f"{"Handle:":<25} {player.handle:>45}")
+        print(f"{"Team name:":<25} {player.team_name:>45}")
+        print(f"{"Date og birht:":<25} {player.dob:>45}")
+        print(f"{"Address:":<25} {player.address:>45}")
+        print(f"{"Phone number:":<25} {player.phone:>45}")
+        print(f"{"Email:":<25} {player.email:>45}")
+        print(F"{"Link:":<25} {player.link:>45}")
+        print(f"{"Total tournaments played in:":<50} {player.tournament:>20}")
+        print(f"{"Tournamnets won:":<25} {player.wins:>45}")
+        print()
 
         return self.player_settings()
-     
-   
+    
+
 
 
 
@@ -488,37 +496,49 @@ class OrganizerUI:
     
     def see_team_info(self):
         
-        name = ""
-        while name.lower() != "q":
-            name = input("Enter team name(q/Q to quit): ").strip()
-            players:list[Player] = self._logic.get_team_players(name)
+        state = False
+        while state == False:
+            name = input("Enter team name for information (q/Q to quit): ").strip()
+            if name.lower() == "q":
+                return self.team_menu()
+            try:
+                state = self.validate_team.does_team_exists(name)
+            except TeamDoesNotExist:
+                print("Team does not exist")
+                return self.see_team_info()
+       
+            players:list[Player] = self._logic.get_team_players(name)#To print players on the bottom
 
             team: Team = self._logic.get_team(name)
-            if team is None:
-                print("No team found with that name.")
             
-            else:
-                print(f"\n{self.ui_helper.BOLD}{self.ui_helper.RED}{"-"*30} Team info {"-"*30}{self.ui_helper.RESET}")
-                print(f"{"Name:":<25} {team.name:>45}")
-                print(f"{"Captain:":<25} {team.captain:>45}")
-                print(f"{"Club:":<25} {team.club:>45}")
-                print(f"{"Web link:":<10} {team.web_link:>60}")
-                print(f"{"ASCII logo:":<25} {team.ASCII:>45}")
-                print(f"{"Tournaments Played in:":<25} {team.tournament:>45}")
-                print(f"{"Tournaments won:":<25} {team.wins:>45}")
-                print(f"{"Total tournaments second places:":<25} {team.runner_up:>38}\n")
-                print(f"\n{self.ui_helper.BOLD}{self.ui_helper.RED}{"-"*27} Players in team {"-"*27}{self.ui_helper.RESET}")
-                for player in players:
-                    print(f"{"Name:":<25} {player.name:>45}")
-       
+        
+        
+            print(f"\n{self.ui_helper.BOLD}{self.ui_helper.RED}{"-"*30} Team info {"-"*30}{self.ui_helper.RESET}")
+            print(f"{"Name:":<25} {team.name:>45}")
+            print(f"{"Captain:":<25} {team.captain:>45}")
+            print(f"{"Club:":<25} {team.club:>45}")
+            print(f"{"Web link:":<10} {team.web_link:>60}")
+            print(f"{"ASCII logo:":<25} {team.ASCII:>45}")
+            print(f"{"Tournaments Played in:":<25} {team.tournament:>45}")
+            print(f"{"Tournaments won:":<25} {team.wins:>45}")
+            print(f"{"Total tournaments second places:":<25} {team.runner_up:>38}\n")
+            print(f"\n{self.ui_helper.BOLD}{self.ui_helper.RED}{"-"*27} Players in team {"-"*27}{self.ui_helper.RESET}")
+            for player in players:
+                print(f"{"Name:":<25} {player:>45}")
+    
         return self.team_menu()
 
     def add_player_to_team(self):
-        
-        team_name = input("Enter team name to add players to (q/Q to quit)")
-        if team_name.lower() == "q":
-            return self.team_menu()
-        
+        state = False
+        while state == False:
+            team_name = input("Enter team name to add players to (q/Q to quit): ")
+            if team_name.lower() == "q":
+                return self.team_menu()
+            try:
+                state = self.validate_team.does_team_exists(team_name)
+            except TeamExistsError:
+                print("Team does not exist")
+
 
         players_in_team = self._logic.get_team_players(team_name)
         
@@ -528,13 +548,13 @@ class OrganizerUI:
             
         state = False
         while state == False:
-            player_name = input("Enter player name to add to team (q/Q to quit): ")
+            player_name = input("Enter player handle to add to team (q/Q to quit): ")
             try:
                 state = self.validate_team.validate_players_in_team(player_name)
             except PlayerDoesNotExistError:
                 print("Player does not exist")
-            except PlayerAlreadyInTeamError:
-                print("Player is already in a team")
+            except playerNotAvailableError:
+                print("Player is Already in a team")
             except BackButton:
                 return self.team_menu()
         
@@ -542,43 +562,68 @@ class OrganizerUI:
         player: Player= self._logic.find_player(player_name)
      
         self._logic.add_player(team, player)
+        print("Player has been added to the team")
 
         return self.team_menu()
 
+
+
+
+
     def remove_player_from_team(self):
-        team_name = input("Enter team name to add players to (q/Q to quit): ")
-        if team_name.lower() == "q":
-            return self.team_menu()
-        
+        state = False
+        while state == False:
+            team_name = input("Enter team name to remove players from (q/Q to quit): ")
+            if team_name.lower() == "q":
+                return self.team_menu()
+            try:
+                state = self.validate_team.does_team_exists(team_name)
+            except TeamExistsError:
+                print("Team does not exist")
         
 
-        players_in_team = self._logic.get_team_players(team_name)
+        players_in_team: list[Player] = self._logic.get_team_players(team_name)
         
         
         if len(players_in_team) < 4:
             print("There are too few players in the team to remove from it")
             return self.remove_player_from_team() #go back to the top
             
-        state = False
-        while state == False:
-            player_name = input("Enter player name to add to team (q/Q to quit): ")
+        team: Team = self._logic.get_team(team_name)#Goes in validation to check if captain is removed
+
+        
+        while True: 
+            player_name = input("Enter player handle to add to team (q/Q to quit): ")
             try:
-                state = self.validate_team.validate_player_to_remove(player_name)
+                self.validate_team.validate_player_to_remove(player_name, team)
                 
             except PlayerDoesNotExistError:
                 print("Player does not exist")
+                continue
             except BackButton:
-                return self.remove_player_from_team()
+                return self.team_menu()
+            except CantRemoveCaptainError:
+                print("Captain can not be removed")
+                continue
+       
+
+            player: Player= self._logic.find_player(player_name)
+            if player.handle not in players_in_team:
+                print(player.name)
+                print(players_in_team)
+                print("player is not in the team")
+            else:
+                break    
+       
+        # team: Team = self._logic.get_team(team_name)
         
-        player: Player= self._logic.find_player(player_name)
-        team: Team = self._logic.get_team(team_name)
-        
-        if team.name != player.team_name:
-            print("Player is not in the team")
-            return self.remove_player_from_team()
+        # if team.name != player.team_name:
+        #     print("Player is not in the team")
+        #     return self.remove_player_from_team()
     
     
         self._logic.remove_player(player)
+        print("Player has been removed from the team")
 
         return self.team_menu()
 
@@ -590,8 +635,8 @@ class OrganizerUI:
             "1. Create a club\n"
             "2. See all clubs\n"
             "3. See club info\n"
-            "4. Add team/s to a club\n"
-            "5. Remove team/s from a club\n"
+            "4. Add team to a club\n"
+            "5. Remove team from a club\n"
             "9. Go back\n\n"
         )
         while True:
@@ -715,53 +760,126 @@ class OrganizerUI:
         return self.team_menu()
 
     def see_club_info(self):
-        name = ""
-        while name.lower() != "q":
-            name = input("Enter club name(q/Q to quit): ").strip()
+        state = False
+        while state == False:
+            name = input("Enter club name for information (q/Q to quit): ").strip()
+            if name.lower() == "q":
+                return self.club_menu()
+            try:
+                state = self.validate_club.does_club_exist(name)
+            except ClubDoesNotExist:
+                print("Club does not exist")
+                return self.see_club_info()
+
             club: Club = self._logic.get_club(name)
-            if club is None:
-                print("No team found with that name.")
+            teams: list[Team] = self._logic.get_club_teams(club)#To print teams on the bottom
             
-            else:
-                print(f"\n{self.ui_helper.BOLD}{self.ui_helper.RED}{"-"*30} Team info {"-"*30}{self.ui_helper.RESET}")
-                print(f"{"Name:":<25} {club.name:>45}")
-                print(f"{"Color:":<25} {club.color:>45}")
-                print(f"{"hometown:":<25} {club.hometown:>45}")
-                print(f"{"country:":<10} {club.country:>60}")
-                print(f"{"Tournaments played in:":<25} {club.tournaments:>45}")
-                print(f"{"Total tournaments second places:":<25} {club.runner_up:>38}\n")
-        return self.team_menu()
+            club: Club = self._logic.get_club(name)
+        
+        
+            print(f"\n{self.ui_helper.BOLD}{self.ui_helper.RED}{"-"*30} Team info {"-"*30}{self.ui_helper.RESET}")
+            print(f"{"Name:":<25} {club.name:>45}")
+            print(f"{"Color:":<25} {club.color:>45}")
+            print(f"{"hometown:":<25} {club.hometown:>45}")
+            print(f"{"country:":<10} {club.country:>60}")
+            print(f"{"Tournaments played in:":<25} {club.tournaments:>45}")
+            print(f"{"Total tournaments second places:":<25} {club.runner_up:>38}\n")
+            print(f"\n{self.ui_helper.BOLD}{self.ui_helper.RED}{"-"*27} Teams in club {"-"*27}{self.ui_helper.RESET}")
+            for team in teams:
+                print(f"{"Name:":<25} {team:>45}\n")
+    
+        return self.see_club_info()
 
     def add_team_to_club(self):
-        club_name = input("Enter club name to add teams to (q/Q to quit): ")
-        if club_name.lower() == "q":
-            return self.add_team_to_club()
+        state = False
+        while state == False:
+            club_name = input("Enter club name to add teams to (q/Q to quit): ")
+            if club_name.lower() == "q":
+                return self.club_menu()
+            
+            try:
+                state = self.validate_club.does_club_exist(club_name)
+            except ClubDoesNotExist:
+                print("Club does not exist")
+        
         
 
-        players_in_team = self._logic.get_club_teams(club_name)
+        club: Club = self._logic.get_club(club_name)
+        teams_in_club: list[Team] = self._logic.get_club_teams(club)
         
-        if len(players_in_team) > 5:
-            print("Team is full")
-            return self.add_player_to_team()
+        if len(teams_in_club) > 5:
+            print("Club is full")
+            return self.add_team_to_club()
             
         state = False
         while state == False:
-            player_name = input("Enter player name to add to team (q/Q to quit): ")
+            team_name = input("Enter team name to add to club (q/Q to quit): ")
             try:
-                state = self.validate_team.validate_players_in_team(player_name)
-            except PlayerDoesNotExistError:
-                print("Player does not exist")
-            except PlayerAlreadyInTeamError:
-                print("Player is already in a team")
+                state = self.validate_club.validate_teams_in_club(team_name)
+            except TeamDoesNotExistError:
+                print("Team does not exist")
             except BackButton:
                 return self.team_menu()
+            except TeamNotAvailableError:
+                print("Team is already in a club")
+            
+
         
         team: Team = self._logic.get_team(team_name)
-        player: Player= self._logic.find_player(player_name)
-     
-        self._logic.add_player(team, player)
+        
+
+        self._logic.add_team(club, team)
+        print("Team added to club")
 
         return self.team_menu()
+
+
+    def remove_team_from_club(self):
+        state = False
+        while state == False:
+            club_name = input("Enter club name to remove teams from(q/Q to quit): ")
+            if club_name.lower() == "q":
+                return self.club_menu()
+            
+            try:
+                state = self.validate_club.does_club_exist(club_name)
+            except ClubDoesNotExist:
+                print("Club does not exist")
+        
+        
+
+        club: Club = self._logic.get_club(club_name)
+        teams_in_club: list[Team] = self._logic.get_club_teams(club)
+        
+        if len(teams_in_club) < 2:
+            print("The club does not have enough teams to remove one")
+            return self.add_team_to_club()
+            
+        state = False
+        while state == False:
+            team_name = input("Enter team name to remove from club (q/Q to quit): ")
+            if team_name.lower() == "q":
+                return self.club_menu()
+            try:
+                state = self.validate_club.validate_club_to_remove(team_name)
+            except TeamDoesNotExistError:
+                print("Team does not exist")
+            
+
+
+        
+        team: Team = self._logic.get_team(team_name)
+        if team.name not in teams_in_club:
+            print("Team is not in the Club")
+            return self.remove_team_from_club()
+       
+      
+    
+        self._logic.remove_team(team)
+        print("Player has been removed from the club")
+
+        return self.team_menu()
+
 
 
 
@@ -956,7 +1074,57 @@ class OrganizerUI:
 
         self.tournament_logic.create_tournament(id, name, venue, start_date, end_date, contract, contact_email, contact_number, num_of_servers, teams_in_tournament )
 
+    def see_all_tournaments(self):
+        all_tournaments: list[Tournament] = self._logic.list_tournaments()
+        print("\nAll Tournamnets:")
+        print(f"{"Name":<60}{"ID":<18}{"State":<15}")
+        for tournament in all_tournaments:
+            print(f"{tournament.name:<60}{tournament.id:<18}{str(tournament.state):<15}")
+       
+        go_back = ""
+        while go_back.lower() != "q":
+            go_back = input("\nPress Q/q to quit")
+            
+        return self.team_menu()
 
+    def see_tournament_info(self):
+        state = False
+        while state == False:
+            id = input("Enter Tournament ID for information (q/Q to quit): ").strip()
+            if id.lower() == "q":
+                return self.tournament_menu()
+            try:
+                state = self.validate_tournament.does_tournament_id_exist(id)
+            except TournamentNotExistError:
+                print("Tournament does not exist")
+                return self.see_tournament_info()
+
+            tournament: Tournament = self._logic.get_tournament(id)
+            
+           
+            print(f"\n{self.ui_helper.BOLD}{self.ui_helper.RED}{"-"*27} Tournament info {"-"*27}{self.ui_helper.RESET}")
+            print(f"{"ID:":<25} {tournament.id:>45}")
+            print(f"{"name:":<25} {tournament.name:>45}")
+            print(f"{"venue:":<25} {tournament.venue:>45}")
+            print(f"{"Start date:":<25} {tournament.start_date:>45}")
+            print(f"{"End date:":<25} {tournament.end_date:>45}")
+            print(f"{"Contract:":<25} {tournament.contact:>45}\n")
+            print(f"{"Contact email:":<25} {tournament.contact_email:>45}")
+            print(f"{"Contact Phone number:":<25}{tournament.contact_number:>45}")
+            print(f"{"State:":<24} {tournament.state:>45}")
+            print(f"{"Servers":<25}{len(tournament.servers):>45}")            
+            
+            #print(f"\n{self.ui_helper.BOLD}{self.ui_helper.RED}{"-"*27} Matches in tournament {"-"*27}{self.ui_helper.RESET}")
+            
+        #     for team in teams:
+        #         print(f"{"Name:":<25} {team:>45}\n")
+
+            go_back = ""
+            while go_back.lower() != "q":
+                go_back =input("\nPress Q/q to quit")
+            return self.tournament_menu()
+
+        
 
 
 

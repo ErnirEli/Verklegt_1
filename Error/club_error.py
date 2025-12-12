@@ -24,3 +24,7 @@ class InvalidNumOfTeams(Exception):
 class TeamNotAvailableError(Exception):
     '''Raise if a club wants a team that is already in a club'''
     pass
+
+class ClubDoesNotExist(Exception):
+    '''Raise if user inputs a club name that does not exist'''
+    pass

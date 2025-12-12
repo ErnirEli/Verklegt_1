@@ -51,7 +51,7 @@ class ClubLogic:
 
         for team in teams:
             if team.club == club.name:
-                club_teams.append(club.name)
+                club_teams.append(team.name)
 
         return club_teams
 
@@ -60,6 +60,8 @@ class ClubLogic:
         adds team tou the club.
         Only runs after all validation checks are valid'''
         
+        
+
         teams: list[Team] = self._data_api.get_all_teams()
 
         for team in teams:
@@ -67,6 +69,8 @@ class ClubLogic:
                 new_team.club = club.name
                 team.club = club.name
                 break
+
+        self._data_api.write_teams(teams)
         return
     
     def remove_team(self, unwanted_team: Team) -> None:
@@ -80,6 +84,7 @@ class ClubLogic:
                 unwanted_team.club = "None"
                 team.club = "None"
                 break
+        self._data_api.write_teams(teams)
         return
     
     def get_club(self, club_name: str) -> Club:

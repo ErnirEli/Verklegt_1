@@ -39,3 +39,7 @@ class InvalidFormat(Exception):
 class InvalidAmountOfDays(Exception):
     '''Raised if tournament has an invalid amount of days'''
     pass
+
+class TournamentNotExistError(Exception):
+    '''Raise if inputed tournament does not exist'''
+    pass

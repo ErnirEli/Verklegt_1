@@ -2,6 +2,7 @@ from Datalayer.data_api import DataAPI
 from Error.club_error import *
 from models.team import Team
 from Error.general_error import EmptyInput, BackButton
+from models.club import Club
 
 class ValidateClub:
     def __init__(self):
@@ -62,7 +63,7 @@ class ValidateClub:
         return True
 
     
-    def validate_teams_in_club(self, team_to_club: str, teams_in_club: list):
+    def validate_teams_in_club(self, team_to_club: str, teams_in_club: list = []):
         if team_to_club.lower() == "q":
             raise BackButton
         all_teams = self._data.get_all_teams()
@@ -81,5 +82,24 @@ class ValidateClub:
         if team_to_club in teams_in_club:
             raise TeamAlreadyInClubError
 
+        
+        return True
+    
+    def does_club_exist(self, club_name: str):
+        all_clubs: list[Club] = self._data.get_all_clubs()
+        for club in all_clubs:
+            if club.name == club_name:
+                return True
+        
+        raise ClubDoesNotExist
+    
+    def validate_club_to_remove(self, team_name: str):
+        all_teams = self._data.get_all_teams()
+        for team in all_teams:
+            team: Team
+            if team.name == team_name:
+                break
+        else: 
+            raise TeamDoesNotExistError
         
         return True

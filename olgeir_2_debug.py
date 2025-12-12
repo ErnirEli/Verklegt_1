@@ -71,11 +71,19 @@ def organizer_main():
                 organizer_ui.see_all_clubs()
             if choice == "3":
                 organizer_ui.see_club_info()
-        
+            if choice == "4":
+                organizer_ui.add_team_to_club()
+            if choice == "5":
+                organizer_ui.remove_team_from_club()
+
         if first_choice == "4":
-            siggi = organizer_ui.tournament_menu()
-            if siggi == "1":
+            choice = organizer_ui.tournament_menu()
+            if choice == "1":
                 organizer_ui.create_tournoment()
+            if choice == "2":
+                organizer_ui.see_all_tournaments()
+            if choice == "3":
+                organizer_ui.see_tournament_info()
         
         if first_choice == "9":
             return

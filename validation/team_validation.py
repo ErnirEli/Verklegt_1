@@ -96,21 +96,35 @@ class ValidateTeam:
         if player.team_name != "None":
             raise playerNotAvailableError
         
-    def validate_player_to_remove(self, player_name: str):
+    def validate_player_to_remove(self, player_handle: str, team: Team):
         
         all_players = self._data.get_all_players()
 
         for player in all_players:
             player: Player
 
-            if player.handle == player_name:
+            if player.handle == player_handle:
                 break
         
         else:
             raise PlayerDoesNotExistError
-
+        
+        if player_handle.lower() == "q":
+            raise BackButton
+        
+        if team.captain == player_handle:
+            raise CantRemoveCaptainError
+        
         return True
         
         
         
+    def does_team_exists(self, name: str):
+        all_teams: list[Team] = self._data.get_all_teams()
+        for team in all_teams:
+            if team.name == name:
+                return True
         
+        raise TeamExistsError
+    
+   
