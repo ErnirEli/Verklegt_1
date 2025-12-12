@@ -5,18 +5,26 @@ from Error.general_error import EmptyInput, DateDoesNotExistError, BackButton
 from Ui_layer.ui_constants import UIHelper
 
 #Player imports
+from validation.player_validation import ValidatePlayer
+from logic.player_logic import PlayerLogic
 from Error.player_error import *
 from models.player import Player
 
 #Tournaments imports
+from validation.tournament_validation import ValidateTournament
+from logic.tournament_logic import TournamentLogic
 from Error.tournament_error import *
 from models.tournament import Tournament
 
 #team imports
+from logic.team_logic import TeamLogic
+from validation.team_validation import ValidateTeam
 from Error.team_error import *
 from models.team import Team
 
 #Club imports
+from logic.club_logic import ClubLogic
+from validation.club_validation import ValidateClub
 from Error.club_error import *
 from models.club import Club
 
@@ -31,6 +39,18 @@ class OrganizerUI:
     def __init__(self):
         self._logic = LogicAPI()
         self.ui_helper = UIHelper()
+
+        self.validate_player = ValidatePlayer()  
+        self.player_logic = PlayerLogic()  
+        
+        self.validate_tournament = ValidateTournament()
+        self.tournament_logic = TournamentLogic()
+        
+        self.validate_team = ValidateTeam()
+        self.team_logic = TeamLogic()
+
+        self.validate_club = ValidateClub()
+        self.club_logic = ClubLogic()
 
     def __str__(self):
         return (
@@ -55,7 +75,244 @@ class OrganizerUI:
             print("Invalid choice. Try again.\n")
     
     #Player
+    def player_settings(self) -> str:
+        print(
+            "Player settings: \n\n"
+            "1. Create a Player\n"
+            "2. Edit a Player\n"
+            "3. See all players\n"
+            "4. See player info\n"
+            "9. Go back\n\n"
+        )
+        while True:
+            choice = input("Enter number for action: ").strip()
 
+            if choice in {"1", "2", "3", "4", "9"}:
+                return choice
+        
+            print("Invalid choice. Try again.\n\n")
+            print(
+            "Player settings: \n\n"
+            "1. Create a Player\n"
+            "2. Edit a Player\n"
+            "3. See all players\n"
+            "4. See player info\n"
+            "9. Go back\n\n")
+
+    def create_player(self):
+        '''Creating a player by asking one information at a time and checking it in Validate Player class'''
+
+        print("You are creating a player")
+        print("Press q/Q to quit at anytime")
+
+        #Name
+        state = False 
+        while state == False: 
+            name = input("Name: ")            
+            try: 
+                state = self.validate_player.validate_name(name) 
+
+            except EmptyInput: 
+                print("Player needs to have a name") 
+            except BackButton:
+                return self.player_settings()
+            
+
+
+        #Date of Birth
+        state = False 
+        while state == False: 
+            dob = input("Date of birth: in format(Day-month-year): ") 
+            try: 
+                state = self.validate_player.validate_age(dob) 
+            except EmptyInput:
+                print("Player needs to have a date of birth")
+            except TooYoungError:
+                print("Player is too young") 
+            except TooOldError:
+                print("Player is too old")
+            except InvalidAgeException: 
+                print("Date of birth needs to be in the format: day-month-year") 
+            except DateDoesNotExistError:
+                print("Date does not exist")
+            except BackButton:
+                return self.player_settings()
+
+
+
+        #Home address 
+        state = False 
+        while state == False: 
+            address = input("Address: ") 
+            try: 
+                state = self.validate_player.validate_home_adress(address) 
+            except EmptyInput: 
+                print("Player needs a home address") 
+            except BackButton:
+                return self.player_settings()
+
+        #Phone 
+
+        state = False 
+        while state == False: 
+            number = "354" + input("Phone number: +354 ") 
+            try: 
+                state = self.validate_player.validate_number(number) 
+            except EmptyInput: 
+                print("Player needs a phone number") 
+            except InvalidNumberError: 
+                print("Number is invalid, try again")
+            except BackButton:
+                return self.player_settings() 
+
+
+        #Email 
+
+        state = False 
+        while state == False: 
+            email = input("Email: ") 
+            try: 
+                state = self.validate_player.validate_email(email) 
+            except EmptyInput: 
+                print("Player needs to have an email") 
+            except InvalidEmailException: 
+                print("Email is invalid, try again") 
+            except BackButton:
+                return self.player_settings()
+
+
+        #Link 
+
+        state = False 
+        while state == False: 
+            link = "https://" + input("Link: https://") 
+            try: 
+                state = self.validate_player.validate_link(link) 
+            except EmptyInput: 
+                print("Player neeeds to have a link") 
+            except InvaldlinkException:
+                print("Link has to contain a dot")
+            except BackButton:
+                return self.player_settings()
+            
+
+
+        #Handle 
+
+        state = False 
+        while state == False: 
+            handle = input("Handle: ") 
+            try: 
+                state = self.validate_player.validate_handle(handle) 
+            except EmptyInput: 
+                print("Player needs to have a handle") 
+            except InvalidCharacterHandle: 
+                print("Handle is invalid, try again") 
+            except HandleExistsException: 
+                print("Handle already exists") 
+            except BackButton:
+                return self.player_settings()
+
+        self.player_logic.create_player(name, dob, address, number, email, link, handle)
+        print("You successfully created a player")
+        return self.player_settings() #Returns back to the player settings menu
+
+
+    def edit_player_info(self):
+     
+        state = False
+        while state == False:
+            handle = input("Please provide the handle of the player you want to modify (q/q to quit): ").strip()
+            if handle.lower() == "q":
+                return self.player_settings #Go back if user wants
+            try:
+                state = self.validate_player.does_player_exists(handle)
+            except PlayerNotExist:
+                print("Player does not exist")
+
+        player = self.player_logic.get_full_player_info(handle)
+       
+        print()
+        print("--- Current player info ---")
+        for key, value in player.items():
+            print(f"  {key}: {value}")
+
+        print("\nLeave edit inputs empty if you don't want to change them.\n")
+
+        #New phone
+        while True:
+            raw_phone = "354" + input("New phone (empty to keep current): +354").strip()
+            if raw_phone == "354":
+                new_phone = None
+                break
+
+            try:
+                self.validate_player.validate_number(raw_phone)
+                new_phone = "354" + raw_phone
+                break
+
+            except InvalidNumberError:
+                print("Number is invalid, try again.")
+        
+
+        #New email
+        while True:
+            raw_email = input("New email (empty to keep current): ")
+            if raw_email == "":
+                new_email = None
+                break
+
+            try:
+                self.validate_player.validate_email(raw_email)
+                new_email = raw_email
+                break
+            except InvalidEmailException:
+                print("Email is invalid, try again.")
+
+        #New address
+        raw_address = input("New address (empty to keep current): ")
+        if raw_address == "":
+            new_address = None
+        else:
+            new_address = raw_address
+
+        #New link
+        while True:
+            raw_link = input("New link: https://")
+            if raw_link == "":
+                new_link = None
+                break
+
+            try:
+                self.validate_player.validate_link(raw_link)
+                new_link = "https://" + raw_link
+                break
+
+            except InvalidLinkException:
+                print("Link is invalid, try again (must start with https:// and contain a dot).")
+
+        state = self.player_logic.edit_player_info(
+            handle,
+            new_phone=new_phone,
+            new_email=new_email,
+            new_address=new_address,
+            new_link=new_link,
+        )
+
+        print("Modifications to player info have been made.")
+        
+        return self.player_settings() #Back to the player settings screen
+
+
+
+
+
+    def see_all_players(self):
+        all_players: list[Player] = self._logic.get_all_players()
+        print("All players:")
+        print(f"{"Name":<30}{"Handle":<32}{"Date of birth":<20}{"Team name":<8}")
+        for player in all_players:
+            print(f"{player.name:<29} {player.handle:<31} {player.dob:<19} {player.team_name:<7}")
       
 
 
@@ -63,7 +320,45 @@ class OrganizerUI:
         while go_back.lower() != "q":
             go_back = input("Press q/q to quit")
             
-        return
+        return self.player_settings()
+
+
+
+
+    def view_player_info(self):
+        state = False
+        while state == False:
+            handle = input("Enter player handle for information (q/Q to quit): ").strip()
+            if handle.lower() == "q":
+                return self.player_settingsu()
+            try:
+                state = self.validate_player.does_player_exists(handle)
+            except PlayerNotExist:
+                print("Player does not exist")
+                return self.view_player_info()
+        
+        player: Player = self._logic.find_player(handle)
+           
+            
+    
+        print(f"\n{"-"*30} Player info {"-"*30}")
+        print(f"{"Handle:":<25} {player.handle:>45}")
+        print(f"{"Team name:":<25} {player.team_name:>45}")
+        print(f"{"Date og birht:":<25} {player.dob:>45}")
+        print(f"{"Address:":<25} {player.address:>45}")
+        print(f"{"Phone number:":<25} {player.phone:>45}")
+        print(f"{"Email:":<25} {player.email:>45}")
+        print(F"{"Link:":<25} {player.link:>45}")
+        print(f"{"Total tournaments played in:":<50} {player.tournament:>20}")
+        print(f"{"Tournamnets won:":<25} {player.wins:>45}")
+        print()
+
+        return self.player_settings()
+    
+
+
+
+
 
 
 #------------------------------------------------------------------------------
@@ -196,7 +491,7 @@ class OrganizerUI:
         print(f"{"Name":<30}{"Club":<15}{"Tournaments Played":^23}{"Wins":<4}")
         for team in all_teams:
             print(f"{team.name:<29} {team.club:<14} {team.tournament:^22} {team.wins:^3}")
-
+       
         go_back = ""
         while go_back.lower() != "q":
             go_back = input("Press q/q to quit")
@@ -248,7 +543,7 @@ class OrganizerUI:
             if team_name.lower() == "q":
                 return self.team_menu()
             try:
-                state = self._logic.does_team_exists(team_name)
+                state = self.validate_team.does_team_exists(team_name)
             except TeamExistsError:
                 print("Team does not exist")
 
