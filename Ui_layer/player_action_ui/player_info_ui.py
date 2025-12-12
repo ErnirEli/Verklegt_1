@@ -18,15 +18,15 @@ class PlayerInfoUi:
         all_players: list[Player] = self._logic.list_players()
         self._ui.top_bar()
         print("All players:")
-        print(f"{"Name":<30}{"Handle":<32}{"Date of birth":<20}{"Team name":<8}")
+        print(f"{"Handle":<32} {"Team name":<8}")
         for player in all_players:
-            print(f"{player.name:<29} {player.handle:<31} {player.dob:<19} {player.team_name:<7}")
+            print(f"{player.handle:<31} {player.team_name:<7}")
 
 
 
         go_back = ""
         while go_back.lower() != "q":
-            go_back = input("Press q/q to quit: ")
+            go_back = input("Press q/Q to quit: ")
             
         return
     

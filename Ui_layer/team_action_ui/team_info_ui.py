@@ -26,7 +26,7 @@ class TeamInfoUI():
 
         go_back = ""
         while go_back.lower() != "q":
-            go_back = input("Press q/q to quit")
+            go_back = input("Press q/Q to quit")
             
         return
 

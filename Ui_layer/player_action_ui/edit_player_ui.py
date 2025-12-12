@@ -29,8 +29,16 @@ class EditPlayerUI():
 
             player = self._logic.find_player(handle)
             self._ui.top_bar()
-            print("--- Current player info ---")
             
+            
+            print(f"\n{"-"*27} Current player info {"-"*27}")
+           
+            print(f"{"Phone number:":<25}{player.phone:>48}")
+            print(f"{"Email:":<25}{player.email:>48}")
+            print(f"{"Address:":<25}{player.address:>48}")
+            print(F"{"Link:":<25}{player.link:>48}")
+            
+        
 
             print("\nLeave edit inputs empty if you don't want to change them (q/q to quit):\n")
 
@@ -85,7 +93,7 @@ class EditPlayerUI():
 
             #New link
             while True:
-                raw_link = input("New link: https://")
+                raw_link = input("New link (empty to keep current): https://")
                 if raw_link == "":
                     new_link = None
                     break

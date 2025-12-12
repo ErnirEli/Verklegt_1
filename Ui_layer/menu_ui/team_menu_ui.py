@@ -66,26 +66,24 @@ class TeamMenuUI:
                 f"{self._ui.M_LINE}{self._ui.RESET}\n"
                 f"{"Teams":^20}\n"
                 f"{self._ui.M_LINE}\n"
-                "1. Create team\n"
-                "2. See all teams\n"
-                "3. See team info\n"
-                "4. Add player to team\n"
-                "5. Remove player from team\n"
-                "q. Back\n\n") 
+                "1. See all teams\n"
+                "2. See team info\n"
+                "3. Add player to team\n"
+                "4. Remove player from team\n"
+                "9. Back\n\n") 
         
-            if action not in ("1", "2", "3", "4", "5"):
+            if action not in ("1", "2", "3", "4", "9"):
                 action = input("Please select a valid action: ")
             else:
                 action = input("Please select an action: ")
+            
             if action == "1":
-                self._create.create_team()
-            if action == "2":
                 self._info.see_all_teams()
-            if action == "3":
+            if action == "2":
                 self._info.see_team_info()
-            if action == "4":
+            if action == "3":
                 self._edit.add_player()
-            if action == "5":
+            if action == "4":
                 self._edit.remove_player()
 
         return
