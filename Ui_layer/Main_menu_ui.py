@@ -14,7 +14,7 @@ class MainMenu:
                 "1. Spectator\n"
                 "2. Captain\n"
                 "3. Organizer\n\n"
-                "9. Quit"
+                "q. Quit"
                 
                 )
             choice = input()

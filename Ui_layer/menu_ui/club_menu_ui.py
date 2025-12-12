@@ -1,6 +1,3 @@
-
-
-
 from logic.logic_api import LogicAPI
 from Ui_layer.ui_constants import UIHelper
 
@@ -83,7 +80,7 @@ class ClubMenuUI:
         return
 
     def spectator(self) -> None:
-        '''Player UI for spectator User. Takes in nothing and returns nothing'''
+        '''Club UI for spectator User. Takes in nothing and returns nothing'''
         action = "1"
         while action != "9":
             self._ui.top_bar()

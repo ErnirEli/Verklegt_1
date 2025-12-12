@@ -121,10 +121,10 @@ class CreateTeamUI():
             print("Team has been created\n")
             print(f"{self._ui.RED}{self._ui.BOLD}{self._ui.M_LINE}{self._ui.RESET}")
             print("1. Create another team\n"
-                    "9. back")
+                    "q. back")
             choice = ""
-            while choice not in ("1", "9"):
+            while choice not in ("1", "q"):
                 choice = input("Action: ")
             
-            if choice == "9":
+            if choice == "q":
                 return

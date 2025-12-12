@@ -373,7 +373,6 @@ class LogicAPI:
 
         return self._tournament_validation.validate_start_date_and_end_date(start_date, end_date)
 
-
     def validate_tournament_venue(self, venue: str) -> bool:
         '''Takes tournament venue of type string and checks if it is valid,
         Raises an error if venue is invalid'''
@@ -422,6 +421,11 @@ class LogicAPI:
 
         return self._tournament_validation.validate_servers(servers, num_of_teams)
     
+    def does_tournament_id_exist(self, id: str) -> bool:
+        '''Takes in tournament id of type str and cheks if a tournament with said in exists.
+        Raises an error if tournament does not exist'''
+
+        return self._tournament_validation.does_tournament_id_exist(id)
 
     
 

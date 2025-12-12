@@ -1,14 +1,11 @@
 from logic.logic_api import LogicAPI
-
-from Error.general_error import EmptyInput, DateDoesNotExistError, BackButton
-
 from Ui_layer.ui_constants import UIHelper
 
-#Player imports
-from models.player import Player
-
-#team imports
+# Error imports
 from Error.team_error import *
+
+# Model imports
+from models.player import Player
 from models.team import Team
 
 

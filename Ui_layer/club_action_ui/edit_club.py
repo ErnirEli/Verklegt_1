@@ -1,10 +1,11 @@
 from logic.logic_api import LogicAPI
 from Ui_layer.ui_constants import UIHelper
 
+# Error
 from Error.general_error import BackButton
-
-#Club imports
 from Error.club_error import *
+
+# Model imports
 from models.club import Club
 from models.team import Team
 
