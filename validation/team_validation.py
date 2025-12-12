@@ -8,7 +8,10 @@ class ValidateTeam:
     def __init__(self):
         self._data = DataAPI()
     
-    def validate_name(self, name: str):
+    def validate_name(self, name: str) -> bool:
+        '''Takes team name of type string and checks if it is valid,
+        Raises an error if name of teams is invalid'''
+
         if name.lower() == "q":
             raise BackButton
         
@@ -23,7 +26,10 @@ class ValidateTeam:
         
         return True
 
-    def validate_captain(self, captain: str, players_in_team: list):
+    def validate_captain(self, captain: str, players_in_team: list) -> bool:
+        '''Takes team captain handle of type string and a list of players in team, checks if captain is valid,
+        Raises an error if captain is invalid'''
+
         if captain.lower() == "q":
             raise BackButton
         
@@ -43,7 +49,10 @@ class ValidateTeam:
     
         return True
 
-    def validate_web_link(self, web_link: str):
+    def validate_web_link(self, web_link: str) -> bool:
+        '''Takes team link of type string and checks if it is valid,
+        Raises an error if link is invalid'''
+
         if web_link.lower() == "q":
             raise BackButton
         
@@ -53,16 +62,23 @@ class ValidateTeam:
             raise InvalidWebLink
         return True
 
-    def validate_ascii_logo(self, ascii):
+    def validate_ascii_logo(self, ascii: str) -> bool:
+        '''Takes team logo of type string and checks if it is valid,
+        Raises an error if logo is invalid'''
+
         if not ascii:
             raise EmptyInput
+        
         return True
     
-    def validate_number_of_players(self, num_of_players: str):
+    def validate_number_of_players(self, num_of_players: str) -> bool:
+        '''Takes number of players in team of type string and checks if it is valid,
+        Raises an error if number of players is invalid'''
+
         if num_of_players.lower() == "Q":
             raise BackButton
         
-        num_of_players = int(num_of_players)
+        num_of_players: int = int(num_of_players)
         
         if not num_of_players:
             raise EmptyInput
@@ -73,7 +89,11 @@ class ValidateTeam:
         
         return True
     
-    def validate_players_in_team(self, player_to_team: str, players_in_team):
+    def validate_players_in_team(self, player_to_team: str, players_in_team: list[str]) -> bool:
+        '''Takes in a player name of type string and a list of players already in the team, of type string.
+        checks if player is already in team.
+        raises error of player is already in team.'''
+        
         if player_to_team.lower() == "q":
             raise BackButton
         
