@@ -18,7 +18,7 @@ class ValidateClub:
         if not name:
             raise EmptyInput
         
-        club_list = self._data.get_all_clubs()
+        club_list: list [Club] = self._data.get_all_clubs()
 
 
         for club in club_list:
@@ -79,7 +79,7 @@ class ValidateClub:
         return True
 
     
-    def validate_teams_in_club(self, team_to_club: str, teams_in_club: list) -> bool:
+    def validate_teams_in_club(self, team_to_club: str, teams_in_club: list = []) -> bool:
         '''Takes a team name for club of type string and a list of teams already in club, checks if team is already in club,
         Raises an error if team is already in the club'''
 

@@ -29,7 +29,7 @@ class EditTeamUI():
                     return
                 try:
                     state = self._logic.does_team_exists(team_name)
-                except TeamExistsError:
+                except TeamDoesNotExist:
                     print("Team does not exist")
             
 
@@ -91,7 +91,7 @@ class EditTeamUI():
                     return
                 try:
                     state = self._logic.does_team_exists(team_name)
-                except TeamExistsError:
+                except TeamDoesNotExist:
                     print("Team does not exist")
 
 
