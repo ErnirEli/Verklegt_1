@@ -21,6 +21,12 @@ class UIHelper():
     ITALIC = '\033[3m'
     BLINKING = '\033[5m'
 
+    # Lines
+
+    S_LINE = '----------'
+    M_LINE = '-------------------'
+    L_LINE = '-----------------------------'
+
     def clear_screen(self):
         '''Takes in nothing and clears screen from previous things'''
 
@@ -36,12 +42,15 @@ class UIHelper():
         r: str = self.RED
         b: str = self.BLINKING
         re: str = self.RESET
+        bo: str = self.BOLD
+        m: str = self.MAGENTA
 
-        print(f"{bg}{"___":^15}{re}")
-        print(f"{bg}{"|":>6}{r}{b}{"[_]"}{re}{bg}{"|":<6}{re}")
-        print(f"{bg}{"|+ ;|":^15}{re}")
-        print(f"{bg}{"`---'":^15}{re}")
-        print(f"{bg}{"":^15}{re}")
+        print(f"{bg}{" ":^19}{bo}{m}{" _                  _____                                                 _   ":<100}{re}")
+        print(f"{bg}{"___":^19}{bo}{m}{"| |    __ _ _ __   |_   _|__  _   _ _ __ _ __   __ _ _ __ ___   ___ _ __ | |_ ":<100}{re}")
+        print(f"{bg}{"|":>8}{r}{b}{"[_]"}{re}{bg}{"|":<8}{bo}{m}{"| |   / _` | '_ \    | |/ _ \| | | | '__| '_ \ / _` | '_ ` _ \ / _ \ '_ \| __|":<100}{re}")
+        print(f"{bg}{"|+ ;|":^19}{bo}{m}{"| |__| (_| | | | |   | | (_) | |_| | |  | | | | (_| | | | | | |  __/ | | | |_":<100}{re}")
+        print(f"{bg}{"`---'":^19}{bo}{m}{"|_____\__,_|_| |_|   |_|\___/ \__,_|_|  |_| |_|\__,_|_| |_| |_|\___|_| |_|\__|":<100}{re}")
+        print(f"{bg}{" ":^119}{re}\n")
 
     def top_bar(self):
         self.clear_screen()

@@ -30,3 +30,7 @@ class playerNotAvailableError(Exception):
 class CantRemoveCaptainError(Exception):
     '''Raise if user is trying to remove captain from a team'''
     pass
+
+class TeamDoesNotExist(Exception):
+    '''Raise if user is trying to find a team that does not exist'''
+    pass

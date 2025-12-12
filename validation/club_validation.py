@@ -8,7 +8,10 @@ class ValidateClub:
     def __init__(self):
         self._data = DataAPI()
 
-    def name_validation(self, name: str):
+    def name_validation(self, name: str) -> bool:
+        '''Takes a club name of type string and checks if it is valid,
+        Raises an error if name is invalid'''
+
         if name.lower() == "q":
             raise BackButton
         
@@ -24,7 +27,10 @@ class ValidateClub:
             
         return True
 
-    def validate_colors(self, color: str): #colors string eða list?
+    def validate_colors(self, color: str) -> bool:
+        '''Takes a club color of type string and checks if it is valid,
+        Raises an error if color is invalid'''
+
         if color.lower() == "q":
             raise BackButton
         if not color:
@@ -37,7 +43,10 @@ class ValidateClub:
 
         return True
 
-    def validate_hometown(self, hometown: str):
+    def validate_hometown(self, hometown: str) -> bool:
+        '''Takes a club hometown of type string and checks if it is valid,
+        Raises an error if hometown is invalid'''
+
         if hometown.lower() == "q":
             raise BackButton
         if not hometown:
@@ -45,7 +54,10 @@ class ValidateClub:
         return True
 
 
-    def validate_country(self, country: str):
+    def validate_country(self, country: str) -> bool:
+        '''Takes a club country of type string and checks if it is valid,
+        Raises an error if country is invalid'''
+
         if country.lower() == "q":
             raise BackButton
         if not country:
@@ -53,9 +65,13 @@ class ValidateClub:
         
         return True
     
-    def validate_num_of_teams(self, num_of_teams: str):
+    def validate_num_of_teams(self, num_of_teams: str) -> bool:
+        '''Takes number of teams for a club of type string and checks if it is valid,
+        Raises an error if number of teams is invalid'''
+
         if num_of_teams.lower() == "q":
             raise BackButton
+        
         num_of_teams = int(num_of_teams)
         if num_of_teams > 5 or num_of_teams < 1:
             raise InvalidNumOfTeams
@@ -63,7 +79,10 @@ class ValidateClub:
         return True
 
     
-    def validate_teams_in_club(self, team_to_club: str, teams_in_club: list = []):
+    def validate_teams_in_club(self, team_to_club: str, teams_in_club: list) -> bool:
+        '''Takes a team name for club of type string and a list of teams already in club, checks if team is already in club,
+        Raises an error if team is already in the club'''
+
         if team_to_club.lower() == "q":
             raise BackButton
         all_teams = self._data.get_all_teams()
