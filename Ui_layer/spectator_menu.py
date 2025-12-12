@@ -10,18 +10,18 @@ from Error.player_error import *
 from models.player import Player
 
 
-class CaptainUI:
+class SpectatorUI:
     def __init__(self):
         self._logic_api = LogicAPI()
         self._ui = UIHelper()
         self.player_ui = PlayerUi()
 
-    def captain_menu(self):
+    def spectator_menu(self):
         action = "1"
         while action != "9":
             self._ui.top_bar()
             print(f"\n"
-                f"{self._ui.BOLD}{self._ui.RED}{"Captain":^20}\n"
+                f"{self._ui.BOLD}{self._ui.RED}{"Spectator":^20}\n"
                 f"{self._ui.M_LINE}{self._ui.RESET}\n"
                 "1. Player settings\n"
                 "2. Team menu\n"
@@ -34,7 +34,7 @@ class CaptainUI:
             else:
                 action = input("Please select an action: ")
             if action == "1":
-                self.player_ui.captain()
+                self.player_ui.spectator()
                 continue
             if action == "2":
                 pass

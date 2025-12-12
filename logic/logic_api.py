@@ -20,7 +20,7 @@ from validation.tournament_validation import ValidateTournament
 from validation.match_validation import ValidateMatch
 
 
-class logicAPI:
+class LogicAPI:
 
     def __init__(self) -> None:
         self._team_logic = TeamLogic()
@@ -170,12 +170,12 @@ class logicAPI:
     # Player
 
     def create_player(self, name: str, dob: str, address: str, phone: str, email: str,
-                    link: str, handle: str, team_name: str) -> None:
+                    link: str, handle: str) -> None:
         '''Takes in name, date of birth, adress, phone number, email, link, and hadle.
         Creates a player of type "Club" and saves him in the player CSV file.
         Only runs after all Validation checks are valid'''
 
-        self._player_logic.create_player(name, dob, address, phone, email, link, handle, team_name)
+        self._player_logic.create_player(name, dob, address, phone, email, link, handle)
         return
     
     def find_player(self, handle: str) -> Player:
@@ -204,7 +204,7 @@ class logicAPI:
         '''Takes a player name of type string and checks if it is valid,
         Raises an error if name is invalid'''
 
-        return self._player_validation.validate_name()
+        return self._player_validation.validate_name(name)
     
     def validate_player_age(self, dob: str) -> bool: 
         '''Takes a player date of birth of type string and checks if it is valid form and if player is 18 years old,
@@ -212,23 +212,23 @@ class logicAPI:
 
         return self._player_validation.validate_age(dob)
 
-    def validate_player_address(self, adress: str) -> bool:
+    def validate_player_address(self, address: str) -> bool:
         '''Takes a player adress of type string and checks if it is valid form. 
         Raises an error if adress is invalid'''
 
-        return self._player_validation.validate_home_address
+        return self._player_validation.validate_home_address(address)
     
     def validate_player_email(self, email: str) -> bool:
         '''Takes a player email of type string and checks if it is valid form. 
         Raises an error if eamil is invalid'''
 
-        return self._player_validation(email)
+        return self._player_validation.validate_email(email)
     
     def validate_player_number(self, number: str) -> bool:
         '''Takes a player number of type string and checks if it is valid form. 
         Raises an error if number is invalid'''
 
-        return self._player_validation(number)
+        return self._player_validation.validate_number(number)
     
     def validate_player_link(self, link: str) -> bool:
         '''Takes a player link of type string and checks if it is valid form. 
@@ -266,7 +266,7 @@ class logicAPI:
         '''Takes a club hometown of type string and checks if it is valid,
         Raises an error if hometown is invalid'''
 
-        return self._club_validation.validate_hometown
+        return self._club_validation.validate_hometown(hometown)
     
     def validate_club_country(self, country: str) -> bool:
         '''Takes a club country of type string and checks if it is valid,

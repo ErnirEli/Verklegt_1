@@ -1,4 +1,4 @@
-from logic.logic_api import logicAPI
+from logic.logic_api import LogicAPI
 
 from Error.general_error import EmptyInput, DateDoesNotExistError, BackButton
 
@@ -31,20 +31,8 @@ from models.club import Club
 
 class OrganizerUI:
     def __init__(self):
-        self._logic = logicAPI()
+        self._logic = LogicAPI()
         self.ui_helper = UIHelper()
-
-        self.validate_player = ValidatePlayer()  
-        self.player_logic = PlayerLogic()  
-        
-        self.validate_tournament = ValidateTournament()
-        self.tournament_logic = TournamentLogic()
-        
-        self.validate_team = ValidateTeam()
-        self.team_logic = TeamLogic()
-
-        self.validate_club = ValidateClub()
-        self.club_logic = ClubLogic()
 
     def __str__(self):
         return (
@@ -69,240 +57,11 @@ class OrganizerUI:
             print("Invalid choice. Try again.\n")
     
     #Player
-    def player_settings(self) -> str:
-        print(
-            "Player settings: \n\n"
-            "1. Create a Player\n"
-            "2. Edit a Player\n"
-            "3. See all players\n"
-            "4. See player info\n"
-            "9. Go back\n\n"
-        )
-        while True:
-            choice = input("Enter number for action: ").strip()
-
-            if choice in {"1", "2", "3", "4", "9"}:
-                return choice
-        
-            print("Invalid choice. Try again.\n\n")
-            print(
-            "Player settings: \n\n"
-            "1. Create a Player\n"
-            "2. Edit a Player\n"
-            "3. See all players\n"
-            "4. See player info\n"
-            "9. Go back\n\n")
-
-    def create_player(self):
-        '''Creating a player by asking one information at a time and checking it in Validate Player class'''
-
-        print("You are creating a player")
-        print("Press q/Q to quit at anytime")
-
-        #Name
-        state = False 
-        while state == False: 
-            name = input("Name: ")            
-            try: 
-                state = self.validate_player.validate_name(name) 
-
-            except EmptyInput: 
-                print("Player needs to have a name") 
-            except BackButton:
-                return self.player_settings()
-            
-
-
-        #Date of Birth
-        state = False 
-        while state == False: 
-            dob = input("Date of birth: in format(Day-month-year): ") 
-            try: 
-                state = self.validate_player.validate_age(dob) 
-            except EmptyInput:
-                print("Player needs to have a date of birth")
-            except TooYoungError:
-                print("Player is too young") 
-            except TooOldError:
-                print("Player is too old")
-            except InvalidAgeException: 
-                print("Date of birth needs to be in the format: day-month-year") 
-            except DateDoesNotExistError:
-                print("Date does not exist")
-            except BackButton:
-                return self.player_settings()
-
-
-
-        #Home address 
-        state = False 
-        while state == False: 
-            address = input("Address: ") 
-            try: 
-                state = self.validate_player.validate_home_adress(address) 
-            except EmptyInput: 
-                print("Player needs a home address") 
-            except BackButton:
-                return self.player_settings()
-
-        #Phone 
-
-        state = False 
-        while state == False: 
-            number = "354" + input("Phone number: +354 ") 
-            try: 
-                state = self.validate_player.validate_number(number) 
-            except EmptyInput: 
-                print("Player needs a phone number") 
-            except InvalidNumberError: 
-                print("Number is invalid, try again")
-            except BackButton:
-                return self.player_settings() 
-
-
-        #Email 
-
-        state = False 
-        while state == False: 
-            email = input("Email: ") 
-            try: 
-                state = self.validate_player.validate_email(email) 
-            except EmptyInput: 
-                print("Player needs to have an email") 
-            except InvalidEmailException: 
-                print("Email is invalid, try again") 
-            except BackButton:
-                return self.player_settings()
-
-
-        #Link 
-
-        state = False 
-        while state == False: 
-            link = "https://" + input("Link: https://") 
-            try: 
-                state = self.validate_player.validate_link(link) 
-            except EmptyInput: 
-                print("Player neeeds to have a link") 
-            except InvaldlinkException:
-                print("Link has to contain a dot")
-            except BackButton:
-                return self.player_settings()
-            
-
-
-        #Handle 
-
-        state = False 
-        while state == False: 
-            handle = input("Handle: ") 
-            try: 
-                state = self.validate_player.validate_handle(handle) 
-            except EmptyInput: 
-                print("Player needs to have a handle") 
-            except InvalidCharacterHandle: 
-                print("Handle is invalid, try again") 
-            except HandleExistsException: 
-                print("Handle already exists") 
-            except BackButton:
-                return self.player_settings()
-
-        self.player_logic.create_player(name, dob, address, number, email, link, handle)
-        print("You successfully created a player")
-        return self.player_settings() #Returns back to the player settings menu
-
-
-    def edit_player_info(self):
-     
-        state = False
-        while state == False:
-            handle = input("Please provide the handle of the player you want to modify (q/q to quit): ").strip()
-            if handle.lower() == "q":
-                return self.player_settings #Go back if user wants
-            try:
-                state = self.validate_player.does_player_exists(handle)
-            except PlayerNotExist:
-                print("Player does not exist")
-
-        player = self.player_logic.get_full_player_info(handle)
-       
-        print()
-        print("--- Current player info ---")
-        for key, value in player.items():
-            print(f"  {key}: {value}")
-
-        print("\nLeave edit inputs empty if you don't want to change them.\n")
-
-        #New phone
-        while True:
-            raw_phone = "354" + input("New phone (empty to keep current): +354").strip()
-            if raw_phone == "354":
-                new_phone = None
-                break
-
-            try:
-                self.validate_player.validate_number(raw_phone)
-                new_phone = "354" + raw_phone
-                break
-
-            except InvalidNumberError:
-                print("Number is invalid, try again.")
-        
-
-        #New email
-        while True:
-            raw_email = input("New email (empty to keep current): ")
-            if raw_email == "":
-                new_email = None
-                break
-
-            try:
-                self.validate_player.validate_email(raw_email)
-                new_email = raw_email
-                break
-            except InvalidEmailException:
-                print("Email is invalid, try again.")
-
-        #New address
-        raw_address = input("New address (empty to keep current): ")
-        if raw_address == "":
-            new_address = None
-        else:
-            new_address = raw_address
-
-        #New link
-        while True:
-            raw_link = input("New link: https://")
-            if raw_link == "":
-                new_link = None
-                break
-
-            try:
-                self.validate_player.validate_link(raw_link)
-                new_link = "https://" + raw_link
-                break
-
-            except InvalidLinkException:
-                print("Link is invalid, try again (must start with https:// and contain a dot).")
-
-        state = self.player_logic.edit_player_info(
-            handle,
-            new_phone=new_phone,
-            new_email=new_email,
-            new_address=new_address,
-            new_link=new_link,
-        )
-
-        print("Modifications to player info have been made.")
-        
-        return self.player_settings() #Back to the player settings screen
-
-
 
 
 
     def see_all_players(self):
-        all_players: list[Player] = self._logic.get_all_players()
+        all_players: list[Player] = self._logic.list_players()
         print("All players:")
         print(f"{"Name":<30}{"Handle":<32}{"Date of birth":<20}{"Team name":<8}")
         for player in all_players:
@@ -314,7 +73,7 @@ class OrganizerUI:
         while go_back.lower() != "q":
             go_back = input("Press q/q to quit")
             
-        return self.player_settings()
+        return
 
 
 
@@ -758,7 +517,6 @@ class OrganizerUI:
         
         team: Team = self._logic.get_team(team_name)
         player: Player= self._logic.find_player(player_name)
-     
         self._logic.add_player(team, player)
 
         return self.team_menu()

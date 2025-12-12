@@ -50,7 +50,7 @@ class TeamFiles():
 
                     teams.append(Team(name, captain, club, mail,
                                     logo, tour_IDs, tournaments, wins))
-
+                print(teams)
                 return teams
             
         except FileNotFoundError:

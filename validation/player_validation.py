@@ -95,7 +95,7 @@ class ValidatePlayer:
         '''Takes a player number of type string and checks if it is valid form. 
         Raises an error if number is invalid'''
 
-        if number.lower() == "q":
+        if number.lower() == "354q":
             raise BackButton
         
         if number == "354":
@@ -148,7 +148,9 @@ class ValidatePlayer:
         Raises an error if '''
 
         all_players: list[Player] = self._data.get_all_players()
+        print(all_players)
         for player in all_players:
+            print(player.handle, handle)
             if player.handle == handle:
                 return True
         

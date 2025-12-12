@@ -27,4 +27,5 @@ class Match:
 
     
     def __str__(self) -> str:
-        return f"teams playing: {self.team_a} vs {self.team_b}"
+        return f"{self.match_number:^59}\n{self.team_a:<25}{self.a_score:<3} vs {self.b_score:>3}{self.team_b:>25}\n{self.date:^29} {self.time:^29}\n"
+    
