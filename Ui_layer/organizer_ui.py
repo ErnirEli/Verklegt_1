@@ -30,8 +30,10 @@ from models.club import Club
 
 #Match imports
 from models.match import Match
+from Error.match_error import InvalidScores, DrawError
+from validation.match_validation import ValidateMatch
 
-#schedule 
+#schedule imports
 
 
 
@@ -51,6 +53,8 @@ class OrganizerUI:
 
         self.validate_club = ValidateClub()
         self.club_logic = ClubLogic()
+
+        self.validate_match = ValidateMatch()
 
     def __str__(self):
         return (
@@ -308,7 +312,7 @@ class OrganizerUI:
 
 
     def see_all_players(self):
-        all_players: list[Player] = self._logic.get_all_players()
+        all_players: list[Player] = self._logic.list_players()
         print("All players:")
         print(f"{"Name":<30}{"Handle":<32}{"Date of birth":<20}{"Team name":<8}")
         for player in all_players:
@@ -341,7 +345,8 @@ class OrganizerUI:
            
             
     
-        print(f"\n{"-"*30} Player info {"-"*30}")
+        print(f"\n{"-"*29} Player info {"-"*29}")
+        print(f"{"Name:":<25} {player.name:>45}")
         print(f"{"Handle:":<25} {player.handle:>45}")
         print(f"{"Team name:":<25} {player.team_name:>45}")
         print(f"{"Date og birht:":<25} {player.dob:>45}")
@@ -413,7 +418,7 @@ class OrganizerUI:
             except InvalidWebLink:
                 print("Web link needs to contain a dot")
             except BackButton:
-                return self.t()
+                return self.team_menu()
         #ASCII logo
         state = False
         while state == False:
@@ -797,7 +802,7 @@ class OrganizerUI:
             print(f"{"Name:":<25} {team:>45}\n")
         go_back = ""
         while go_back.lower() != "q":
-            input("Press Q/q to quit")
+            go_back = input("Press Q/q to quit")
         return self.see_club_info()
 
     def add_team_to_club(self):
@@ -904,13 +909,12 @@ class OrganizerUI:
             "2. See all tournmanets\n"
             "3. See tournament info\n"
             "4. Input match scores\n"
-            "5. See tournament results\n"
             "9. Go back\n\n"
         )
         while True:
             choice = input("Enter number for action: ").strip()
 
-            if choice in {"1", "2", "3", "4", "5", "6", "9"}:
+            if choice in {"1", "2", "3", "4", "6", "9"}:
                 return choice
         
             print("Invalid choice. Try again.\n")
@@ -1124,7 +1128,7 @@ class OrganizerUI:
         print(f"{"State:":<24} {tournament.state:>45}")
         print(f"{"Servers":<25}{len(tournament.servers):>45}")            
         
-        print(f"\n{self.ui_helper.BOLD}{self.ui_helper.RED}{"-"*27} Matches in tournament {"-"*27}{self.ui_helper.RESET}")
+        print(f"\n{self.ui_helper.BOLD}{self.ui_helper.RED}{"-"*24} Matches in tournament {"-"*24}{self.ui_helper.RESET}")
             
         all_matches: list[Match] = self._logic.list_matches()
       
@@ -1150,28 +1154,50 @@ class OrganizerUI:
             except TournamentNotExistError:
                 print("Tournament does not exist")
                 return self.input_match_scores()
-
-        tournament: Tournament = self._logic.get_tournament(id)
-        
-        all_matches: list[Match] = self._logic.get_active_matches(tournament)
         
 
+        back_button = ""
+        while back_button.lower() != "q":
         
-        for match in all_matches:
-            print(f"Match {match.match_number}")
-            a_score = input(f"(Q/q to quit) {match.team_a} = ")
-            if a_score.lower() == "q":
-                return self.tournament_menu() #Backbutton
-            b_score = input(f"(Q/q to quit) {match.team_b} = ")
-            if b_score.loweer() == "q":
-                return self.tournament_menu()
+            tournament: Tournament = self._logic.get_tournament(id)
+            if tournament.state == True:
+                print("Tournament is finished")
+                return self. input_match_scores()
             
-            self._logic.update_game_results(a_score, b_score)
+            all_matches: list[Match] = self._logic.get_active_matches(tournament)
+        
 
-
-
+            for match in all_matches:
+                if match.state == True:
+                    continue
+                print(f"Match {match.match_number}")
+                state = False
+                while state == False:
+                    a_score = input(f"{match.team_a} = ")
+                    b_score = input(f"(Q/q to quit) {match.team_b} = ")
+                    try:
+                        state = self.validate_match.validate_score(a_score, b_score)
+                    except ValueError:
+                        print("Invalid, scores have to be a number")
+                    except InvalidScores:
+                        print("Invalid, scores can only be from 0-99")
+                    except DrawError:
+                        print("Game ended in a draw")
+                        print("Enter in result after extra time")
+                    except BackButton:
+                        return self.tournament_menu()
+                
+                
+                self._logic.update_game_results(match, a_score, b_score)
             
         
+        
+            back_button = input("\nAll matcehs in this round are done, Press Q/q to quit, Press enter for the next round")
+            
+        return self.tournament_menu()
+
+  
+
 
                 
 

@@ -44,6 +44,7 @@ class MatchLogic:
 
                 break
 
+        self._data_api.write_match(matches)
         self._schedule_logic.update_schedule(match)
 
         # Fininshes tournament if game was a final
