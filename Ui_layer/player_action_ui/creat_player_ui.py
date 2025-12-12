@@ -123,8 +123,8 @@ class PlayerCreationUI:
 
             self._logic_api.create_player(name, dob, address, number, email, link, handle)
             print("Player has been successfully created\n")
-            print(f"{self._ui.RED}{self._ui.M_LINE}{self._ui.BOLD}")
-            print("1. Create another team\n"
+            print(f"{self._ui.RED}{self._ui.M_LINE}{self._ui.BOLD}{self._ui.RESET}")
+            print("1. Create another Player\n"
                         "q. back")
             choice = ""
             while choice not in ("1", "q"):

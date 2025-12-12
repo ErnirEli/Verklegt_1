@@ -16,6 +16,7 @@ from Error.match_error import InvalidScores, DrawError
 from models.tournament import Tournament
 from models.match import Match
 
+
 class EditTournamentUI():
     def __init__(self):
         self._logic = LogicAPI()
