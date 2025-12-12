@@ -50,7 +50,7 @@ class ClubInfoUI():
         
         self._ui.top_bar()
         print()
-        print(f"\n{self._ui.BOLD}{self._ui.RED}{"-"*30} Team info {"-"*30}{self._ui.RESET}")
+        print(f"\n{self._ui.BOLD}{self._ui.RED}{"-"*30} Club info {"-"*30}{self._ui.RESET}")
         print(f"{"Name:":<25} {club.name:>45}")
         print(f"{"Color:":<25} {club.color:>45}")
         print(f"{"hometown:":<25} {club.hometown:>45}")
