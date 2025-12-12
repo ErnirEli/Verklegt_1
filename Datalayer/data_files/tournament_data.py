@@ -52,10 +52,11 @@ class TournamentFiles():
                     mail: str = tournament_info[6]
                     number: int = int(tournament_info[7])
                     servers: int = int(tournament_info[8])
+                    state: bool = tournament_info[9] == "True"
 
                     tournaments.append(Tournament(id, name, venue,
                                                 start_date, end_date, contact,
-                                                mail, number, servers))
+                                                mail, number, servers, state))
                 
                 return tournaments
         

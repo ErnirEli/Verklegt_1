@@ -43,7 +43,7 @@ class ScheduleLogic():
         return
 
 
-    def get_active_matches(self, tournament) -> list[Match, Match]:
+    def get_active_matches(self, tournament) -> list[Match]:
         '''Returns a list of all matches from active round'''
 
         tournament: Tournament

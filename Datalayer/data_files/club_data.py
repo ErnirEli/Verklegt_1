@@ -42,7 +42,6 @@ class ClubFiles():
 
                 for club_info in file_reader:
                     club_info: list
-
                     name: str = club_info[0]
                     colors: str = club_info[1]
                     town: str = club_info[2]

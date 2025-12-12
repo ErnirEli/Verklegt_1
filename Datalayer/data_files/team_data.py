@@ -6,7 +6,7 @@ class TeamFiles():
     FILE_NAME: str = "Datalayer\csv_files\\team_file.csv"
 
 
-    def write_team(self, teams: list):
+    def write_team(self, teams: list[Team]) -> None:
         '''Takes in a list of tems, of type "Team",
         rewrites the team file with all teams in the list'''
 
@@ -14,11 +14,11 @@ class TeamFiles():
             file_writer = csv.writer(file)
 
             for team in teams:
-                team: list = team.team_to_csv()
-                file_writer.writerow(team)
+                csv_team: list = team.team_to_csv()
+                file_writer.writerow(csv_team)
 
 
-    def add_team(self, team: list):
+    def add_team(self, team: Team) -> None:
         '''Takes in a team, of type "Team",
         adds the team to the bottom of team file'''
 
@@ -29,7 +29,7 @@ class TeamFiles():
             file_writer.writerow(csv_team)
 
 
-    def read_team(self):
+    def read_team(self) -> list[Team]:
         '''Returns a list of all tems in team file,
         teams are of type "Team"'''
 
@@ -49,8 +49,7 @@ class TeamFiles():
                     runner_up: int = int(line[8])
 
                     teams.append(Team(name, captain, club, mail,
-                                    logo, tour_IDs, tournaments, wins))
-
+                                    logo, tour_IDs, tournaments, wins, runner_up))
                 return teams
             
         except FileNotFoundError:

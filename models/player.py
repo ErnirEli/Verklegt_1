@@ -14,7 +14,7 @@ class Player:
         self.email = email
         self.link = link
         self.team_name = team_name
-        self.tournaments = tournament
+        self.tournament = tournament
         self.wins = wins
         self.runner_up = runner_up
 
@@ -30,7 +30,7 @@ class Player:
             self.link,
             self.handle,
             self.team_name,
-            self.tournaments,
+            self.tournament,
             self.wins,
             self.runner_up,
             ]

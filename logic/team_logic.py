@@ -2,7 +2,7 @@ from typing import List
 from Datalayer.data_api import DataAPI 
 from models.team import Team
 from models.player import Player
-
+from typing import List
 
 # Requirements:
 # Sama lið bara búið til 1 sinni.
@@ -18,26 +18,18 @@ class TeamLogic:
         self._data_api = DataAPI()
     
     def list_all_teams(self) -> List[Team]:
-        '''Returns a list of all teams'''
+        '''Takes in nothing and returns a list of all existing teams of type Team'''
 
         return self._data_api.get_all_teams()
-    
-    def get_team(self, team_name: str) -> Team:
-        '''Returns a single team based on team name'''
 
-        teams = self._data_api.get_all_teams()
+    def create_team(self, name: str, captain: str, web_link: str, ASCII: str, team_players: list[str]) -> Team:
+        '''Takes in a name, captain handle, web link, ASCII all of string type,
+        also takes in a list of player handles of type string. 
+        Creates a team and adds players to the team.
+        Returns the team of type Team.
+        Only runs after all validation checks are valid.'''
 
-        for team in teams:
-            team: Team
-
-            if team.name == team_name:
-                return team
-
-    def create_team(self, name: str, captain: str, web_link: str = None, ASCII: str = None, team_players: list = []) -> Team:
-        '''Creates a team only if all validation condition have been met'''
-
-        # Create an instance of team
-        team: Team = Team(name, captain, web_link, ASCII)
+        team: Team = Team(name, captain, web_link = web_link, ASCII = ASCII)
 
         # Adds team name to player
         self.add_players(team, team_players)
@@ -47,10 +39,12 @@ class TeamLogic:
 
         return team
         
-
-    
-    def add_players(self, team: Team, new_players: list):
-        '''Adds a selected player to selected team'''
+    def add_players(self, team: Team, new_players: list[str]):
+        '''Takes in a team of type Team, 
+        a list of player handles of type string,
+        adds all players to the team. 
+        Only runs when a team is created and 
+        after all validation checks are valid'''
 
         players = self._data_api.get_all_players()
 
@@ -67,48 +61,53 @@ class TeamLogic:
         return 
     
     def add_player(self, team: Team, wanted_player: Player) -> None:
-        '''Adds a Wanted player to a team'''
-        
-        wanted_player.team_name = team.name
+        '''Takes in a team, of type Team,
+        and a player of type Player,
+        and adds the player to the team.
+        Only runs after all validation checks are valid.'''
 
+        players: list[Player] = self._data_api.get_all_players()
+
+        for player in players:
+            if player.handle == wanted_player.handle:
+                player.team_name = team.name
+    
+        self._data_api.write_players(players)
         return
     
-    
-
     def remove_player(self, unwanted_player: Player) -> None:
-        '''Removes a selected player out of selected team'''
+        '''Takes in a player, of type Player, 
+        and removes him from team'''
 
-        unwanted_player.team_name = "None"
+        players: list[Player] = self._data_api.get_all_players()
 
+        for player in players:
+            if player.handle == unwanted_player.handle:
+                player.team_name = "None"
+
+        self._data_api.write_players(players)
         return 
     
+    def get_team_players(self, team_name: str) -> list[Player]:
+        '''Takes in a team name of type string, returns a list of all players in the team, of type Player'''
 
-    def get_all_players_on_team(self, team: Team) -> list[Player]:
-        '''Returns a list of players handles in a team'''
+        players: list[Player] = self._data_api.get_all_players()
+        team_players: list[Player] = []
 
-        players = DataAPI().get_all_players()
-        team_players = []
-
-        # Adds player handle to list
         for player in players:
-            player: Player
-
-            if player.team_name == team.name:
+            if player.team_name == team_name:
                 team_players.append(player.handle)
 
         return team_players
 
-    def team_info(self, team: Team) -> str:
-        '''Gives all info on team'''
+    def get_team(self, name: str) -> Team:
+        '''Takes in a team name as a string,
+        finds the team with the right name and
+        returns it of type Team'''
 
-        team_players = self.get_all_players_on_team(team)
-        
-        return (
-                f"name: {team.name} \n"
-                f"Captain: {team.captain} \n"
-                f"Club: {team.club}"
-                f"Players: {team_players} \n"
-                f"Web link: {team.web_link} \n"
-                f"ASCIIlogo: {team.ASCII} \n"
-                f"Tournaments played in: {team.tournament} \n"
-                f"Tournaments won: {team.wins}")
+        teams: list[Team] = self._data_api.get_all_teams()
+
+        for team in teams:
+            if team.name == name:
+                return team
+    

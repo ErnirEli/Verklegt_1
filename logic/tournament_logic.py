@@ -14,13 +14,13 @@ class TournamentLogic:
 
 
     def list_all_tournaments(self)-> list[Tournament]:
-        '''Returns a list of all tournaments, of type Tournament'''
+        '''Takes in nothing and returns a list of all existing tournaments of type Tournament'''
 
         return self._data_api.get_all_tournaments()
 
-
     def get_tournament(self, tournament_id: str) -> Tournament:
-        '''Takes in a tournament id, and returns given tournament, of type Tournament'''
+        '''Takes in tournament ID and returns the torunament of type Torunament.
+        Only runs after all validation checks are valid.'''
 
         tournaments: list = self._data_api.get_all_tournaments()
 
@@ -30,28 +30,26 @@ class TournamentLogic:
             if tournament.id == tournament_id:
                 return tournament
 
-
-    def add_teams(self, teams: list, tournament: Tournament) -> Team:
-        '''Adds tournament ID to al teams in tournament'''
+    def add_teams(self, teams: list[str], tournament: Tournament) -> Team:
+        '''Takes in a list of team names, of type string, and takes in a tournament.
+        Adds all teams to the tournament and updates total tournament stats for
+        all teams, players and clubs in tournament.
+        Runs automatically when a tournament is created and after all calidation checks are valid.'''
 
         # Gets a list of all players, teams and clubs
-        all_teams: list = self._data_api.get_all_teams()
-        players: list = self._data_api.get_all_players()
-        clubs: list = self._data_api.get_all_clubs()
+        all_teams: list[Team] = self._data_api.get_all_teams()
+        players: list[Player] = self._data_api.get_all_players()
+        clubs: list[Club] = self._data_api.get_all_clubs()
 
-        tournament_teams = []
+        tournament_teams: list[Team] = []
 
         for team in all_teams:
-            team: Team
 
             if team.name in teams:
-
                 # Gets a list of all teams in the tournament
                 tournament_teams.append(team)
 
-
         for team in tournament_teams:
-            team: Team
 
             # Adds tournament ID to team
             if team.tour_ID == "None":
@@ -63,14 +61,12 @@ class TournamentLogic:
             # Adds 1 to total tournaments of all teams in the tournament
             team.tournament += 1
 
-
             # Adds 1 to total tournaments of all players in the tournament
             for player in players:
                 player: Player
 
                 if player.team_name == team.name:
-                    player.tournaments += 1
-
+                    player.tournament += 1
 
             # Adds 1 to total tournaments of all clubs in the tournament
             for club in clubs:
@@ -80,31 +76,33 @@ class TournamentLogic:
                     club.tournaments += 1
 
         self._data_api.write_teams(all_teams)
+        self._data_api.write_players(players)
+        self._data_api.write_clubs(clubs)
 
         return
         
     def tournament_schedule(self, tournament: Tournament) -> list[Match]:
-        '''Returns a list of all matches in a tournament'''
+        '''Takes in a tournament of type Tournament and returns a list of all matches, of type Match, in that tournament'''
 
-        matches: list = self._data_api.get_all_matches()
+        matches: list[Match] = self._data_api.get_all_matches()
 
-        tournament_matches = []
+        tournament_matches: list[Match] = []
 
         for match in matches:
-            match: Match
-
             # Checks if mathc is in tournament
             if match.tournament_id == tournament.id:
                 tournament_matches.append(match)
 
         return tournament_matches
     
-    def create_a_tournament(self, tournament_id: str, name: str, venue: str, start_date: str,
+    def create_tournament(self, tournament_id: str, name: str, venue: str, start_date: str,
                 end_date: str, contact: str, contact_email:str,
-                contact_number:str, servers: int, team_list: list = None):
-        '''Creates a Torunament'''
-        
-        # Create an instance of the Tournament Class
+                contact_number: str, servers: int, team_list: list[str]) -> Tournament:
+        '''Takes in id, name, venue, start & end dates, contact, mail & number, servers, for a tournament, all of type string.
+        also takes in a list of team names of type string. Creates a tournament using this info and adds all teams from the list to the torunament.
+        Only runs after all validation checks are valid.'''
+
+        # Create an instance of the Tournament Classt = None
         new_tournament = Tournament(tournament_id, name, venue, start_date, end_date,
                                     contact, contact_email, contact_number, servers)
         
@@ -118,23 +116,20 @@ class TournamentLogic:
         self._schedule.create_tournament_schedule(new_tournament)
         return
 
-
-    def tournament_bracket(self):
-        '''?????'''
-        return
-
-    def tournament_results(self, match: Match):
-        '''Finished tournament and updates winners'''
+    def tournament_results(self, match: Match) -> None:
+        '''Takes in a match of type Match. Finishes the tournament the match belongs to,
+        updating the tournament status.
+        Also updates Win and Runer up stats for team, player and Club.
+        returns nothing.'''
 
         # Gets a list of all players, teams, clubs and tournaments
-        players = self._data_api.get_all_players()
-        teams = self._data_api.get_all_teams()
-        clubs = self._data_api.get_all_clubs()
-        tournaments = self._data_api.get_all_tournaments()
+        players: list[Player] = self._data_api.get_all_players()
+        teams: list[Team] = self._data_api.get_all_teams()
+        clubs: list[Club] = self._data_api.get_all_clubs()
+        tournaments: list[Tournament] = self._data_api.get_all_tournaments()
 
         # Updates win and runner up numbers for players
         for player in players:
-            player: Player
 
             if player.team_name == match.team_a or player.team_name == match.team_b:
                 if player.team_name == match.winner:
@@ -146,7 +141,6 @@ class TournamentLogic:
 
         # Updats win and runner up numbers for teams
         for team in teams:
-            team: Team
 
             if team.name == match.team_a or team.name == match.team_b:
                 if team.name == match.winner:
@@ -157,13 +151,11 @@ class TournamentLogic:
 
                 # Updates win and runner up numbers for clubs
                 for club in clubs:
-                        club: Club
 
                         if team.club == club.name:
                             club.wins += 1
 
         for tournament in tournaments:
-            tournament: Tournament
 
             if tournament.id == match.tournament_id:
                 tournament.state = True

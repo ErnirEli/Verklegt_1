@@ -19,6 +19,7 @@ class Schedule():
         self._tournament_days: int = self.get_tournament_days()
         self._slots_per_day: int = self.get_slots_per_day()
         self._slot_times: list[datetime] = self.get_slot_times()
+        self.last_round = ("Final", "Semifinal", "Quarterfinal", "Round of 16", "Round of 32", "Round of 64")[self._number_of_rounds - 1]
         self._game_number: int = 0
         self.create_playoffs()
         self.create_rounds()
@@ -49,6 +50,7 @@ class Schedule():
 
         start = self._tournament.start_date.split("-")
         end = self._tournament.end_date.split("-")
+       
 
         # Turn string date into datetime object
         start_date = date(int(start[2]), int(start[1]), int(start[0]))
@@ -66,11 +68,8 @@ class Schedule():
         num_servers = len(self._tournament.servers)
         games_per_day = math.ceil(self._number_of_games / self._tournament_days)
         server_slots = math.ceil(games_per_day / num_servers)
-        round_slots = math.floor(self._number_of_rounds / self._tournament_days)
+        round_slots = math.ceil(self._number_of_rounds / self._tournament_days)
 
-        print(games_per_day, num_servers, self._number_of_rounds, self._tournament_days)
-        print(server_slots)
-        print(round_slots)
         return server_slots + round_slots
 
     def get_slot_times(self):
@@ -98,6 +97,7 @@ class Schedule():
         '''Generates playoff round if needed'''
 
         self.time_location = 0
+        time_counter = 0
 
         if self._number_of_teams > 2 ** self._number_of_rounds:
             excess = self._number_of_teams - (2 ** self._number_of_rounds)
@@ -108,10 +108,10 @@ class Schedule():
                 
                 team_a: str = self._teams[team]
                 team_b: str = self._teams[team - 1]
-                server: str = self._tournament.servers[(self._game_number % len(self.tournament.servers)) - 1]
+                server: str = self._tournament.servers[(self._game_number % len(self._tournament.servers)) - 1]
 
-                _match = Match(self._game_number + 1, self.tournament.id, "Playoffs", team_a, team_b,
-                            self.current_date, self.slot_times[self.time_location], server,
+                _match = Match(self._game_number + 1, self._tournament.id, "Playoffs", team_a, team_b,
+                            self.current_date, self._slot_times[self.time_location], server,
                             )
 
                 self._data_api.add_match(_match)
@@ -121,20 +121,27 @@ class Schedule():
 
                 self._game_number += 1
 
-                if (self._game_number % len(self._tournament.servers)) == len(self._tournament.servers):
+                if time_counter == len(self._tournament.servers) - 1:
                     if self._slot_times[-1] == self._slot_times[self.time_location]:
                         self.time_location = 0
                         self.current_date = self.current_date + timedelta(days = 1)
 
                     else:
                         self.time_location += 1
+
+                    time_counter = 0
+
+                else:
+                    time_counter += 1
+
+        self.last_round = "Playoffs"
         return
 
     def create_rounds(self):
         '''Generates games for rounds after playoffs, if there is a playoff round'''
 
         rounds = ("Final", "Semifinal", "Quarterfinal", "Round of 16", "Round of 32", "Round of 64")
-        last_round = rounds[self._number_of_rounds - 1]
+        last_round = self.last_round
         time_counter = 0
         self._number_of_teams = len(self._teams)
 
@@ -153,9 +160,14 @@ class Schedule():
                     else:
                         self.time_location += 1
                         time_counter = 0
+                game_round = rounds[self._number_of_rounds - stage - 1]
+                if game_round == "Final":
+                    date = self._tournament.end_date.split("-")
+                    date.reverse()
+                    self.current_date = "-".join(date)
 
                 _match = Match(self._game_number + 1, self._tournament.id,
-                            f"{rounds[self._number_of_rounds - stage - 1]}",
+                            f"{game_round}",
                             team_a, team_b,self.current_date, self._slot_times[self.time_location],
                             self._tournament.servers[(self._game_number % len(self._tournament.servers))]
                             )

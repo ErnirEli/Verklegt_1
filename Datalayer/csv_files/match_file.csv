@@ -10,6 +10,6 @@
 10,1,QF,Chuck Norris Fan Club,Assembly Avengers,06-12-2025,14:00,SRV-CHUCK,2,0,Chuck Norris Fan Club,True
 11,1,QF,StackOverflow Stackers,CacheHit Crusaders,06-12-2025,14:00,SRV-DATALAB,0,2,CacheHit Crusaders,True
 12,1,QF,RaceCondition Racers,Pepsi Max Overflow,06-12-2025,14:00,SRV-BOMBLAB,2,1,RaceCondition Racers,True
-13,1,SF,SegFault Spartans,Chuck Norris Fan Club,07-12-2025,10:00,SRV-PEPSI,0,2,Chuck Norris Fan Club,True
-14,1,SF,CacheHit Crusaders,RaceCondition Racers,07-12-2025,10:00,SRV-CHUCK,1,2,RaceCondition Racers,True
-15,1,Final,Chuck Norris Fan Club,RaceCondition Racers,07-12-2025,13:00,SRV-PEPSI,3,2,Chuck Norris Fan Club,True
+13,1,SF,SegFault Spartans,Chuck Norris Fan Club,07-12-2025,10:00,SRV-PEPSI,99,66,SegFault Spartans,True
+14,1,SF,CacheHit Crusaders,RaceCondition Racers,07-12-2025,10:00,SRV-CHUCK,45,33,CacheHit Crusaders,True
+15,1,Final,SegFault Spartans,CacheHit Crusaders,07-12-2025,13:00,SRV-PEPSI,44,1,SegFault Spartans,True

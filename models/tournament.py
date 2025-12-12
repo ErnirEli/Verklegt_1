@@ -37,7 +37,7 @@ class Tournament:
         '''Creates names for Tournament servers'''
 
         servers = []
-        
+        number_of_servers = int(number_of_servers)
         for number in range(number_of_servers):
 
             servers.append(f"{self.id}_Server_{number + 1}")
