@@ -26,7 +26,7 @@ class TeamMenuUI:
         '''Team UI for Organizer User. Takes in nothing and returns nothing'''
         
         action = "1"
-        while action != "9":
+        while action != "q":
             self._ui.top_bar()
             print(f"\n"
                 f"{self._ui.BOLD}{self._ui.RED}{"Organizer":^20}\n"
@@ -38,9 +38,9 @@ class TeamMenuUI:
                 "3. See team info\n"
                 "4. Add player to team\n"
                 "5. Remove player from team\n"
-                "9. Back\n\n") 
+                "q. Back\n\n") 
         
-            if action not in ("1", "2", "3", "4", "5", "9"):
+            if action not in ("1", "2", "3", "4", "5"):
                 action = input("Please select a valid action: ")
             else:
                 action = input("Please select an action: ")
@@ -59,7 +59,7 @@ class TeamMenuUI:
     def captain(self) -> None:
         '''Player UI for captain User. Takes in nothing and returns nothing'''
         action = "1"
-        while action != "9":
+        while action != "q":
             self._ui.top_bar()
             print(f"\n"
                 f"{self._ui.BOLD}{self._ui.RED}{"Captain":^20}\n"
@@ -71,9 +71,9 @@ class TeamMenuUI:
                 "3. See team info\n"
                 "4. Add player to team\n"
                 "5. Remove player from team\n"
-                "9. Back\n\n") 
+                "q. Back\n\n") 
         
-            if action not in ("1", "2", "3", "4", "5" "9"):
+            if action not in ("1", "2", "3", "4", "5"):
                 action = input("Please select a valid action: ")
             else:
                 action = input("Please select an action: ")
@@ -93,18 +93,18 @@ class TeamMenuUI:
     def spectator(self) -> None:
         '''Player UI for spectator User. Takes in nothing and returns nothing'''
         action = "1"
-        while action != "9":
+        while action != "q":
             self._ui.top_bar()
             print(f"\n"
                 f"{self._ui.BOLD}{self._ui.RED}{"Spectator":^20}\n"
                 f"{self._ui.M_LINE}{self._ui.RESET}\n"
                 f"{"Teams":^20}\n"
                 f"{self._ui.M_LINE}\n"
-                "2. See all teams\n"
-                "3. See team info\n"
-                "9. Back\n\n") 
+                "1. See all teams\n"
+                "2. See team info\n"
+                "q. Back\n\n") 
         
-            if action not in ("1", "2", "9"):
+            if action not in ("1", "2"):
                 action = input("Please select a valid action: ")
             else:
                 action = input("Please select an action: ")
