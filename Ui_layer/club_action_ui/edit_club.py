@@ -80,7 +80,7 @@ class EditClubUI():
             teams_in_club: list[Team] = self._logic.get_club_teams(club)
             
             if len(teams_in_club) < 2:
-                print("The club does not have enough teams to remove one")
+                input("The club does not have enough teams to remove one, press enter to continue")
                 continue
                 
             state = False
