@@ -1,23 +1,16 @@
 from logic.logic_api import LogicAPI
-
-from Error.general_error import EmptyInput, DateDoesNotExistError, BackButton
-
 from Ui_layer.ui_constants import UIHelper
 
-#Player imports
+
+
+#Error imports
 from Error.player_error import *
-from models.player import Player
-
-#Tournaments imports
+from Error.general_error import EmptyInput,  BackButton
 from Error.tournament_error import *
-from models.tournament import Tournament
-
-#team imports
 from Error.team_error import *
-from models.team import Team
-
-#Club imports
 from Error.club_error import *
+
+
 
 
 class CreateClubUI():
