@@ -18,7 +18,7 @@ class TeamDoesNotExistError(Exception):
     pass
 
 class InvalidNumOfTeams(Exception):
-    '''Raise if cllub wants more than 10 teams or less than 1 team'''
+    '''Raise if cllub wants more than 5 teams or less than 1 team'''
     pass
 
 class TeamNotAvailableError(Exception):

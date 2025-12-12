@@ -72,8 +72,7 @@ class ValidateClub:
             raise BackButton
         
         num_of_teams = int(num_of_teams)
-        if num_of_teams > 10 or num_of_teams < 1:
-
+        if num_of_teams > 5 or num_of_teams < 1:
             raise InvalidNumOfTeams
         
         return True

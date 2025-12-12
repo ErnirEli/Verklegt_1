@@ -51,14 +51,26 @@ def organizer_main():
                 
         
         if first_choice == "2":
-            choice = organizer_ui.Team_menu()
+            choice = organizer_ui.team_menu()
             if choice == "1":
                 organizer_ui.create_team()
-        
+            if choice == "2":
+                organizer_ui.see_all_teams()
+            if choice == "3":
+                organizer_ui.see_team_info()
+            if choice == "4":
+                organizer_ui.add_player_to_team()
+            if choice == "5":
+                organizer_ui.remove_player_from_team()
+
         if first_choice == "3":
             choice = organizer_ui.club_menu()
             if choice == "1":
                 organizer_ui.create_club()
+            if choice == "2":
+                organizer_ui.see_all_clubs()
+            if choice == "3":
+                organizer_ui.see_club_info()
         
         if first_choice == "4":
             siggi = organizer_ui.tournament_menu()

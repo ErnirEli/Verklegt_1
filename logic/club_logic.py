@@ -103,3 +103,4 @@ class ClubLogic:
             f"Hometown: {club.hometown}\n"
             f"Country: {club.country}"
         )
+    
