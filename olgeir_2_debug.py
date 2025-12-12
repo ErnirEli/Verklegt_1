@@ -27,7 +27,6 @@ class Main():
         while choice != "9":
             if choice == "1":
                 self._spectator.spectator_menu()
-                
             if choice == "2":
                 self.captain_ui.captain_menu()
             if choice == "3":

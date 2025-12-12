@@ -12,7 +12,7 @@ from Ui_layer.player_action_ui.player_info_ui import PlayerInfoUi
 from Error.player_error import *
 
 
-class PlayerUi:
+class PlayerMenuUI:
     
     def __init__(self):
         self._logic = LogicAPI()
@@ -32,6 +32,8 @@ class PlayerUi:
             print(f"\n"
                 f"{self._ui.BOLD}{self._ui.RED}{"Captain":^20}\n"
                 f"{self._ui.M_LINE}{self._ui.RESET}\n"
+                f"{"Players":^20}\n"
+                f"{self._ui.M_LINE}\n"
                 "1. Create player\n"
                 "2. See player info\n"
                 "3. Edit player info\n"
@@ -60,11 +62,13 @@ class PlayerUi:
             print(f"\n"
                 f"{self._ui.BOLD}{self._ui.RED}{"Spectator":^20}\n"
                 f"{self._ui.M_LINE}{self._ui.RESET}\n"
+                f"{"Players":^20}\n"
+                f"{self._ui.M_LINE}\n"
                 "1. See player info\n"
-                "1. See all players\n"
+                "2. See all players\n"
                 "9. Back\n\n") 
         
-            if action not in ("1", "2", "3", "4", "9"):
+            if action not in ("1", "2", "9"):
                 action = input("Please select a valid action: ")
             else:
                 action = input("Please select an action: ")

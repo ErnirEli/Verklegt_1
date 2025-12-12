@@ -11,6 +11,7 @@ from logic.tournament_logic import TournamentLogic
 from logic.match_logic import MatchLogic
 from logic.club_logic import ClubLogic
 from logic.player_logic import PlayerLogic
+from logic.schedule_logic import ScheduleLogic
 
 # Validations
 from validation.player_validation import ValidatePlayer
@@ -28,6 +29,7 @@ class LogicAPI:
         self._match_logic = MatchLogic()
         self._club_logic = ClubLogic()
         self._player_logic = PlayerLogic()
+        self._schedule_logic = ScheduleLogic()
         self._player_validation = ValidatePlayer()
         self._team_validation = ValidateTeam()
         self._club_validation = ValidateClub()
@@ -40,7 +42,6 @@ class LogicAPI:
 
     def list_teams(self) -> list[Team]:
         '''Takes in nothing and returns a list of all existing teams of type Team'''
-
 
         return self._team_logic.list_all_teams()
     
@@ -95,7 +96,6 @@ class LogicAPI:
         Only runs after all validation checks are valid.'''
 
         return self._tournament_logic.get_tournament(tournament_id)
-         
 
     def create_tournament(self, tournament_id: str, name: str, venue: str,
                         start_date: str, end_date: str, contact: str, contact_email: str,
@@ -107,8 +107,6 @@ class LogicAPI:
         return self._tournament_logic.create_tournament(tournament_id, name, venue, end_date, start_date,
                                                         contact, contact_email, contact_number, servers, team_list)
     
-
-
     # Matches
     
     def list_matches(self) -> list[Match]:
@@ -183,7 +181,7 @@ class LogicAPI:
         '''Takes in a player handle of type string.
         Returns the player with same handle of type "Player".
         Only runs after all Validation checks are valid.'''
-    
+
         return self._player_logic.find_player(handle)
 
     def edit_player_info(self, handle: str, new_phone = None,  new_email = None, new_address = None, new_link = None) -> Player:
@@ -197,9 +195,18 @@ class LogicAPI:
         '''Takes in nothing and returns a list of all players'''
 
         return self._player_logic.get_all_players()
+    
+
+    #Schedule
+    def get_active_matches(self, tournament) -> list[Match]:
+        '''Takes in a tournament of type Tournament and returns a list of all matches in active round'''
+
+        return self._schedule_logic.get_active_matches(tournament)
 
 
 # Validations   
+
+    # Player
 
     def validate_player_name(self, name: str) -> bool:
         '''Takes a player name of type string and checks if it is valid,
@@ -249,6 +256,7 @@ class LogicAPI:
 
         return self._player_validation.does_player_exists(handle)
     
+
     # Club
 
     def validate_club_name(self, name: str) -> bool:
@@ -326,6 +334,18 @@ class LogicAPI:
         raises error of player is already in team.'''
 
         return self._team_validation.validate_players_in_team(player_to_team, players_in_team)
+    
+    def does_team_exists(self, name: str) -> bool:
+        '''Takes in team name of type string and checks if a team with that name exists.
+        raises an error if no team is found'''
+
+        return self._team_validation.does_team_exists(name)
+    
+    def validate_player_to_remove(self, player_handle: str, team: Team):
+        '''Takes in player handle of type str and a team of type Team.
+        Raises an error if player can not be removed'''
+
+        return self._team_validation.validate_player_to_remove(player_handle, team)
     
 
     # Tournament

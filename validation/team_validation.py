@@ -117,6 +117,8 @@ class ValidateTeam:
             raise playerNotAvailableError
         
     def validate_player_to_remove(self, player_handle: str, team: Team):
+        '''Takes in player handle of type str and a team of type Team.
+        Raises an error if player can not be removed'''
         
         all_players = self._data.get_all_players()
 
@@ -139,12 +141,14 @@ class ValidateTeam:
         
         
         
-    def does_team_exists(self, name: str):
+    def does_team_exists(self, name: str) -> bool:
+        '''Takes in team name of type string and checks if a team with that name exists.
+        raises an error if no team is found'''
         all_teams: list[Team] = self._data.get_all_teams()
         for team in all_teams:
             if team.name == name:
                 return True
         
-        raise TeamExistsError
+        raise TeamDoesNotExist
     
    

@@ -148,9 +148,7 @@ class ValidatePlayer:
         Raises an error if '''
 
         all_players: list[Player] = self._data.get_all_players()
-        print(all_players)
         for player in all_players:
-            print(player.handle, handle)
             if player.handle == handle:
                 return True
         

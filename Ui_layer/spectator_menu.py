@@ -2,7 +2,7 @@ from logic.logic_api import LogicAPI
 from Ui_layer.ui_constants import UIHelper
 
 # Ui imports
-from Ui_layer.player_ui import PlayerUi
+from Ui_layer.player_menu_ui import PlayerMenuUI
 from Error.general_error import EmptyInput, DateDoesNotExistError, BackButton
 
 #Player imports
@@ -14,7 +14,7 @@ class SpectatorUI:
     def __init__(self):
         self._logic_api = LogicAPI()
         self._ui = UIHelper()
-        self.player_ui = PlayerUi()
+        self.player_ui = PlayerMenuUI()
 
     def spectator_menu(self):
         action = "1"
