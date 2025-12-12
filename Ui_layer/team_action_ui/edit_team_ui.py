@@ -37,7 +37,7 @@ class EditTeamUI():
             
             
             if len(players_in_team) < 4:
-                print("There are too few players in the team to remove from it")
+                input("There are too few players in the team to remove from it, press enter to continue")
                 continue #go back to the top
                 
             team: Team = self._logic.get_team(team_name)#Goes in validation to check if captain is removed
@@ -57,7 +57,7 @@ class EditTeamUI():
                     print("Captain can not be removed")
                     continue
 
-                player: Player= self._logic.find_player(player_name)
+                player: Player = self._logic.find_player(player_name)
                 if player.handle not in players_in_team:
                     print(player.name)
                     print(players_in_team)
@@ -98,7 +98,7 @@ class EditTeamUI():
             players_in_team = self._logic.get_team_players(team_name)
             
             if len(players_in_team) > 5:
-                print("Team is full")
+                input("Team is full, press enter to continue")
                 continue
                 
             state = False
