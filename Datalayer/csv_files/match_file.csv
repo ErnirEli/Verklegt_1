@@ -13,31 +13,79 @@
 13,1,SF,SegFault Spartans,Chuck Norris Fan Club,07-12-2025,10:00,SRV-PEPSI,99,66,SegFault Spartans,True
 14,1,SF,CacheHit Crusaders,RaceCondition Racers,07-12-2025,10:00,SRV-CHUCK,45,33,CacheHit Crusaders,True
 15,1,Final,SegFault Spartans,CacheHit Crusaders,07-12-2025,13:00,SRV-PEPSI,44,1,SegFault Spartans,True
-1,fifa,Playoffs,Runtime Terror Tigers,SegFault Spartans,2025-12-13,10:10:00,fifa_Server_3,-1,-1,None,False
-2,fifa,Playoffs,ThreadPool Thunder,IndentationError Invaders,2025-12-13,10:10:00,fifa_Server_1,-1,-1,None,False
-3,fifa,Playoffs,Pedos,LogicGate Legends,2025-12-13,10:10:00,fifa_Server_2,-1,-1,None,False
-4,fifa,Playoffs,Chuck Norris Fan Club,Pointer Arithmetic Pirates,2025-12-13,11:40:00,fifa_Server_3,-1,-1,None,False
-5,fifa,Playoffs,Pepsi Max Overflow,Kernel Panic Knights,2025-12-13,11:40:00,fifa_Server_1,-1,-1,None,False
-6,fifa,Playoffs,CacheHit Crusaders,Binary Search Battalion,2025-12-13,11:40:00,fifa_Server_2,-1,-1,None,False
-7,fifa,Playoffs,RaceCondition Racers,Pepsi Max Punishers,2025-12-13,13:10:00,fifa_Server_3,-1,-1,None,False
-8,fifa,Playoffs,NullPointer Ninjas,Opcode Overlords,2025-12-13,13:10:00,fifa_Server_1,-1,-1,None,False
-9,fifa,Playoffs,GarbageCollector Gorillas,WhileTrue Tryhards,2025-12-13,13:10:00,fifa_Server_2,-1,-1,None,False
-10,fifa,Playoffs,SegQueue Stallions,Datalab Dominators,2025-12-13,14:40:00,fifa_Server_3,-1,-1,None,False
-11,fifa,Playoffs,HeapOverflow Heroes,StackOverflow Stackers,2025-12-13,14:40:00,fifa_Server_1,-1,-1,None,False
-12,fifa,Playoffs,LitFlip Bandits,OffByOne Offense,2025-12-13,14:40:00,fifa_Server_2,-1,-1,None,False
-13,fifa,Playoffs,Undefined Behavior United,StackFrame Soldiers,2025-12-13,16:10:00,fifa_Server_3,-1,-1,None,False
-14,fifa,Round of 16,Winner of game 1,Winner of game 2,2025-12-14,10:10:00,fifa_Server_2,-1,-1,None,False
-15,fifa,Round of 16,Winner of game 3,Winner of game 4,2025-12-14,10:10:00,fifa_Server_3,-1,-1,None,False
-16,fifa,Round of 16,Winner of game 5,Winner of game 6,2025-12-14,10:10:00,fifa_Server_1,-1,-1,None,False
-17,fifa,Round of 16,Winner of game 7,Winner of game 8,2025-12-14,11:40:00,fifa_Server_2,-1,-1,None,False
-18,fifa,Round of 16,Winner of game 9,Winner of game 10,2025-12-14,11:40:00,fifa_Server_3,-1,-1,None,False
-19,fifa,Round of 16,Winner of game 11,Winner of game 12,2025-12-14,11:40:00,fifa_Server_1,-1,-1,None,False
-20,fifa,Round of 16,Winner of game 13,Segmentation Foul,2025-12-14,13:10:00,fifa_Server_2,-1,-1,None,False
-21,fifa,Round of 16,Assembly Avengers,Bomblab Bombers,2025-12-14,13:10:00,fifa_Server_3,-1,-1,None,False
-22,fifa,Quarterfinal,Winner of game 14,Winner of game 15,2025-12-14,14:40:00,fifa_Server_1,-1,-1,None,False
-23,fifa,Quarterfinal,Winner of game 16,Winner of game 17,2025-12-14,14:40:00,fifa_Server_2,-1,-1,None,False
-24,fifa,Quarterfinal,Winner of game 18,Winner of game 19,2025-12-14,14:40:00,fifa_Server_3,-1,-1,None,False
-25,fifa,Quarterfinal,Winner of game 20,Winner of game 21,2025-12-14,16:10:00,fifa_Server_1,-1,-1,None,False
-26,fifa,Semifinal,Winner of game 22,Winner of game 23,2025-12-15,10:10:00,fifa_Server_2,-1,-1,None,False
-27,fifa,Semifinal,Winner of game 24,Winner of game 25,2025-12-15,10:10:00,fifa_Server_3,-1,-1,None,False
-28,fifa,Final,Winner of game 26,Winner of game 27,2025-12-15,11:40:00,fifa_Server_1,-1,-1,None,False
+1,fifa,Playoffs,Runtime Terror Tigers,SegFault Spartans,2025-12-13,10:10:00,fifa_Server_3,2,1,Runtime Terror Tigers,True
+2,fifa,Playoffs,ThreadPool Thunder,IndentationError Invaders,2025-12-13,10:10:00,fifa_Server_1,5,4,ThreadPool Thunder,True
+3,fifa,Playoffs,Pedos,LogicGate Legends,2025-12-13,10:10:00,fifa_Server_2,3,1,Pedos,True
+4,fifa,Playoffs,Chuck Norris Fan Club,Pointer Arithmetic Pirates,2025-12-13,11:40:00,fifa_Server_3,2,3,Pointer Arithmetic Pirates,True
+5,fifa,Playoffs,Pepsi Max Overflow,Kernel Panic Knights,2025-12-13,11:40:00,fifa_Server_1,4,3,Pepsi Max Overflow,True
+6,fifa,Playoffs,CacheHit Crusaders,Binary Search Battalion,2025-12-13,11:40:00,fifa_Server_2,2,1,CacheHit Crusaders,True
+7,fifa,Playoffs,RaceCondition Racers,Pepsi Max Punishers,2025-12-13,13:10:00,fifa_Server_3,2,4,Pepsi Max Punishers,True
+8,fifa,Playoffs,NullPointer Ninjas,Opcode Overlords,2025-12-13,13:10:00,fifa_Server_1,1,2,Opcode Overlords,True
+9,fifa,Playoffs,GarbageCollector Gorillas,WhileTrue Tryhards,2025-12-13,13:10:00,fifa_Server_2,4,1,GarbageCollector Gorillas,True
+10,fifa,Playoffs,SegQueue Stallions,Datalab Dominators,2025-12-13,14:40:00,fifa_Server_3,4,2,SegQueue Stallions,True
+11,fifa,Playoffs,HeapOverflow Heroes,StackOverflow Stackers,2025-12-13,14:40:00,fifa_Server_1,1,2,StackOverflow Stackers,True
+12,fifa,Playoffs,LitFlip Bandits,OffByOne Offense,2025-12-13,14:40:00,fifa_Server_2,3,2,LitFlip Bandits,True
+13,fifa,Playoffs,Undefined Behavior United,StackFrame Soldiers,2025-12-13,16:10:00,fifa_Server_3,1,2,StackFrame Soldiers,True
+14,fifa,Round of 16,Runtime Terror Tigers,ThreadPool Thunder,2025-12-14,10:10:00,fifa_Server_2,1,2,ThreadPool Thunder,True
+15,fifa,Round of 16,Pedos,Pointer Arithmetic Pirates,2025-12-14,10:10:00,fifa_Server_3,3,4,Pointer Arithmetic Pirates,True
+16,fifa,Round of 16,Pepsi Max Overflow,CacheHit Crusaders,2025-12-14,10:10:00,fifa_Server_1,5,4,Pepsi Max Overflow,True
+17,fifa,Round of 16,Pepsi Max Punishers,Opcode Overlords,2025-12-14,11:40:00,fifa_Server_2,3,2,Pepsi Max Punishers,True
+18,fifa,Round of 16,GarbageCollector Gorillas,SegQueue Stallions,2025-12-14,11:40:00,fifa_Server_3,1,2,SegQueue Stallions,True
+19,fifa,Round of 16,StackOverflow Stackers,LitFlip Bandits,2025-12-14,11:40:00,fifa_Server_1,4,2,StackOverflow Stackers,True
+20,fifa,Round of 16,StackFrame Soldiers,Segmentation Foul,2025-12-14,13:10:00,fifa_Server_2,1,2,Segmentation Foul,True
+21,fifa,Round of 16,Assembly Avengers,Bomblab Bombers,2025-12-14,13:10:00,fifa_Server_3,4,2,Assembly Avengers,True
+22,fifa,Quarterfinal,ThreadPool Thunder,Pointer Arithmetic Pirates,2025-12-14,14:40:00,fifa_Server_1,1,2,Pointer Arithmetic Pirates,True
+23,fifa,Quarterfinal,Pepsi Max Overflow,Pepsi Max Punishers,2025-12-14,14:40:00,fifa_Server_2,4,2,Pepsi Max Overflow,True
+24,fifa,Quarterfinal,SegQueue Stallions,StackOverflow Stackers,2025-12-14,14:40:00,fifa_Server_3,2,1,SegQueue Stallions,True
+25,fifa,Quarterfinal,Segmentation Foul,Assembly Avengers,2025-12-14,16:10:00,fifa_Server_1,2,4,Assembly Avengers,True
+26,fifa,Semifinal,Pointer Arithmetic Pirates,Pepsi Max Overflow,2025-12-15,10:10:00,fifa_Server_2,3,1,Pointer Arithmetic Pirates,True
+27,fifa,Semifinal,SegQueue Stallions,Assembly Avengers,2025-12-15,10:10:00,fifa_Server_3,3,1,SegQueue Stallions,True
+28,fifa,Final,Pointer Arithmetic Pirates,SegQueue Stallions,2025-12-15,11:40:00,fifa_Server_1,1,2,SegQueue Stallions,True
+1,e,Playoffs,StackFrame Soldiers,LitFlip Bandits,2025-12-12,12:20:00,e_Server_4,-1,-1,None,False
+2,e,Playoffs,Pointer Arithmetic Pirates,Undefined Behavior United,2025-12-12,12:20:00,e_Server_1,-1,-1,None,False
+3,e,Playoffs,CacheHit Crusaders,LogicGate Legends,2025-12-12,12:20:00,e_Server_2,-1,-1,None,False
+4,e,Playoffs,HeapOverflow Heroes,StackOverflow Stackers,2025-12-12,12:20:00,e_Server_3,-1,-1,None,False
+5,e,Playoffs,Binary Search Battalion,NullPointer Ninjas,2025-12-12,13:50:00,e_Server_4,-1,-1,None,False
+6,e,Playoffs,Pepsi Max Overflow,WhileTrue Tryhards,2025-12-12,13:50:00,e_Server_1,-1,-1,None,False
+7,e,Playoffs,IndentationError Invaders,Segmentation Foul,2025-12-12,13:50:00,e_Server_2,-1,-1,None,False
+8,e,Playoffs,GarbageCollector Gorillas,Pepsi Max Punishers,2025-12-12,13:50:00,e_Server_3,-1,-1,None,False
+9,e,Playoffs,Chuck Norris Fan Club,Pedos,2025-12-13,12:20:00,e_Server_4,-1,-1,None,False
+10,e,Playoffs,Runtime Terror Tigers,SegFault Spartans,2025-12-13,12:20:00,e_Server_1,-1,-1,None,False
+11,e,Playoffs,ThreadPool Thunder,Assembly Avengers,2025-12-13,12:20:00,e_Server_2,-1,-1,None,False
+12,e,Playoffs,Bomblab Bombers,SegQueue Stallions,2025-12-13,12:20:00,e_Server_3,-1,-1,None,False
+13,e,Playoffs,RaceCondition Racers,Datalab Dominators,2025-12-13,13:50:00,e_Server_4,-1,-1,None,False
+14,e,Round of 16,Winner of game 1,Winner of game 2,2025-12-14,12:20:00,e_Server_2,-1,-1,None,False
+15,e,Round of 16,Winner of game 3,Winner of game 4,2025-12-14,12:20:00,e_Server_3,-1,-1,None,False
+16,e,Round of 16,Winner of game 5,Winner of game 6,2025-12-14,12:20:00,e_Server_4,-1,-1,None,False
+17,e,Round of 16,Winner of game 7,Winner of game 8,2025-12-14,12:20:00,e_Server_1,-1,-1,None,False
+18,e,Round of 16,Winner of game 9,Winner of game 10,2025-12-14,13:50:00,e_Server_2,-1,-1,None,False
+19,e,Round of 16,Winner of game 11,Winner of game 12,2025-12-14,13:50:00,e_Server_3,-1,-1,None,False
+20,e,Round of 16,Winner of game 13,Opcode Overlords,2025-12-14,13:50:00,e_Server_4,-1,-1,None,False
+21,e,Round of 16,Kernel Panic Knights,OffByOne Offense,2025-12-14,13:50:00,e_Server_1,-1,-1,None,False
+22,e,Quarterfinal,Winner of game 14,Winner of game 15,2025-12-15,13:50:00,e_Server_2,-1,-1,None,False
+23,e,Quarterfinal,Winner of game 16,Winner of game 17,2025-12-15,13:50:00,e_Server_3,-1,-1,None,False
+24,e,Quarterfinal,Winner of game 18,Winner of game 19,2025-12-15,13:50:00,e_Server_4,-1,-1,None,False
+25,e,Quarterfinal,Winner of game 20,Winner of game 21,2025-12-15,13:50:00,e_Server_1,-1,-1,None,False
+26,e,Semifinal,Winner of game 22,Winner of game 23,2025-12-16,13:50:00,e_Server_2,-1,-1,None,False
+27,e,Semifinal,Winner of game 24,Winner of game 25,2025-12-16,13:50:00,e_Server_3,-1,-1,None,False
+28,e,Final,Winner of game 26,Winner of game 27,2025-12-17,12:20:00,e_Server_4,-1,-1,None,False
+1,test,Playoffs,LitFlip Bandits,NullPointer Ninjas,2025-12-12,14:30:00,test_Server_4,-1,-1,None,False
+2,test,Playoffs,SegFault Spartans,Chuck Norris Fan Club,2025-12-12,14:30:00,test_Server_1,-1,-1,None,False
+3,test,Playoffs,Pepsi Max Overflow,RaceCondition Racers,2025-12-12,14:30:00,test_Server_2,-1,-1,None,False
+4,test,Playoffs,Pedos,Datalab Dominators,2025-12-12,14:30:00,test_Server_3,-1,-1,None,False
+5,test,Playoffs,Pepsi Max Punishers,CacheHit Crusaders,2025-12-13,14:30:00,test_Server_4,-1,-1,None,False
+6,test,Round of 16,Winner of game 1,Winner of game 2,2025-12-14,14:30:00,test_Server_2,-1,-1,None,False
+7,test,Round of 16,Winner of game 3,Winner of game 4,2025-12-14,14:30:00,test_Server_3,-1,-1,None,False
+8,test,Round of 16,Winner of game 5,WhileTrue Tryhards,2025-12-14,14:30:00,test_Server_4,-1,-1,None,False
+9,test,Round of 16,Assembly Avengers,Undefined Behavior United,2025-12-14,14:30:00,test_Server_1,-1,-1,None,False
+10,test,Round of 16,Binary Search Battalion,Kernel Panic Knights,2025-12-15,14:30:00,test_Server_2,-1,-1,None,False
+11,test,Round of 16,StackOverflow Stackers,Segmentation Foul,2025-12-15,14:30:00,test_Server_3,-1,-1,None,False
+12,test,Round of 16,IndentationError Invaders,LogicGate Legends,2025-12-15,14:30:00,test_Server_4,-1,-1,None,False
+13,test,Round of 16,HeapOverflow Heroes,OffByOne Offense,2025-12-15,14:30:00,test_Server_1,-1,-1,None,False
+14,test,Quarterfinal,Winner of game 6,Winner of game 7,2025-12-17,14:30:00,test_Server_2,-1,-1,None,False
+15,test,Quarterfinal,Winner of game 8,Winner of game 9,2025-12-17,14:30:00,test_Server_3,-1,-1,None,False
+16,test,Quarterfinal,Winner of game 10,Winner of game 11,2025-12-17,14:30:00,test_Server_4,-1,-1,None,False
+17,test,Quarterfinal,Winner of game 12,Winner of game 13,2025-12-17,14:30:00,test_Server_1,-1,-1,None,False
+18,test,Semifinal,Winner of game 14,Winner of game 15,2025-12-19,14:30:00,test_Server_2,-1,-1,None,False
+19,test,Semifinal,Winner of game 16,Winner of game 17,2025-12-19,14:30:00,test_Server_3,-1,-1,None,False
+20,test,Final,Winner of game 18,Winner of game 19,2025-12-20,14:30:00,test_Server_4,-1,-1,None,False

@@ -15,7 +15,6 @@ from Error.match_error import InvalidScores, DrawError
 #Model imports
 from models.tournament import Tournament
 from models.match import Match
-s
 
 class EditTournamentUI():
     def __init__(self):
@@ -44,7 +43,7 @@ class EditTournamentUI():
         
             tournament: Tournament = self._logic.get_tournament(id)
             if tournament.state == True:
-                print("Tournament is finished")
+                input("Tournament is finished (Q/q to quit)")
                 return
             
             all_matches: list[Match] = self._logic.get_active_matches(tournament)
@@ -59,7 +58,7 @@ class EditTournamentUI():
                     a_score = input(f"{match.team_a} = ")
                     b_score = input(f"(Q/q to quit) {match.team_b} = ")
                     try:
-                        state = self._logic.validatavalidate_match.validate_score(a_score, b_score)
+                        state = self._logic.validate_score(a_score, b_score)
                     except ValueError:
                         print("Invalid, scores have to be a number")
                     except InvalidScores:

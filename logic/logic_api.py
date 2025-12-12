@@ -104,7 +104,7 @@ class LogicAPI:
         also takes in a list of team names of type string. Creates a tournament using this info and adds all teams from the list to the torunament.
         Only runs after all validation checks are valid.'''
 
-        return self._tournament_logic.create_tournament(tournament_id, name, venue, end_date, start_date,
+        return self._tournament_logic.create_tournament(tournament_id, name, venue, start_date, end_date,
                                                         contact, contact_email, contact_number, servers, team_list)
     
     # Matches

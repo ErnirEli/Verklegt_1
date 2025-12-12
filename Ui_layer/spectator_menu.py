@@ -23,7 +23,7 @@ class SpectatorUI:
             print(f"\n"
                 f"{self._ui.BOLD}{self._ui.RED}{"Spectator":^20}\n"
                 f"{self._ui.M_LINE}{self._ui.RESET}\n"
-                "1. Player settings\n"
+                "1. Player menu\n"
                 "2. Team menu\n"
                 "3. Club menu\n"
                 "4. Tournament menu\n"
