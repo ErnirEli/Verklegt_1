@@ -104,7 +104,10 @@ class ValidateClub:
         
         return True
     
-    def does_club_exist(self, club_name: str):
+    def does_club_exist(self, club_name: str) -> bool:
+        '''Takes in a club of string type and validates if it exists.
+        Raises an ClubDoesNotExist if club does not exist.'''
+
         all_clubs: list[Club] = self._data.get_all_clubs()
         for club in all_clubs:
             if club.name == club_name:
@@ -112,10 +115,12 @@ class ValidateClub:
         
         raise ClubDoesNotExist
     
-    def validate_club_to_remove(self, team_name: str):
-        all_teams = self._data.get_all_teams()
+    def validate_club_to_remove(self, team_name: str) -> bool:
+        '''Takes in a team name an validates if it is alowed to be removed from club.
+        Raises an error if it is not valid.'''
+        
+        all_teams: list[Team] = self._data.get_all_teams()
         for team in all_teams:
-            team: Team
             if team.name == team_name:
                 break
         else: 

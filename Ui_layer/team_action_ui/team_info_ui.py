@@ -17,7 +17,10 @@ class TeamInfoUI():
         self._logic = LogicAPI()
         self._ui = UIHelper()
 
-    def see_all_teams(self):
+    def see_all_teams(self) -> None:
+        '''Ui to show all teams, takes in nothing and returns nothing'''
+
+        self._ui.top_bar()
         all_teams: list[Team] = self._logic.list_teams()
         print("\nAll Teams:")
         print(f"{"Name":<30}{"Club":<15}{"Tournaments Played":^23}{"Wins":<4}")
@@ -30,9 +33,11 @@ class TeamInfoUI():
             
         return
 
-    def see_team_info(self):
+    def see_team_info(self) -> None:
+        '''UI to show team info. Takes in nothing and returns nothing'''
         state = False
         while state == False:
+            self._ui.top_bar()
             name = input("Enter team name for information (q/Q to quit): ").strip()
             if name.lower() == "q":
                 return

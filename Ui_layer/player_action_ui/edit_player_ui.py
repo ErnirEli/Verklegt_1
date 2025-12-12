@@ -5,7 +5,6 @@ from Error.general_error import EmptyInput, DateDoesNotExistError, BackButton
 
 #Player imports
 from Error.player_error import *
-from models.player import Player
 
 
 class EditPlayerUI():
@@ -17,6 +16,7 @@ class EditPlayerUI():
         
             state = False
             while state == False:
+                self._ui.top_bar()
                 handle = input("Please provide the handle of the player you want to modify (q/q to quit): ").strip()
                 if handle.lower() == "q":
                     return

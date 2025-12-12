@@ -2,8 +2,11 @@ from logic.logic_api import LogicAPI
 from Ui_layer.ui_constants import UIHelper
 
 # Ui imports
-from Ui_layer.player_menu_ui import PlayerMenuUI
-from Ui_layer.team_menu_ui import TeamMenuUI
+from Ui_layer.menu_ui.player_menu_ui import PlayerMenuUI
+from Ui_layer.menu_ui.team_menu_ui import TeamMenuUI
+from Ui_layer.menu_ui.club_menu_ui import ClubMenuUI
+from Ui_layer.menu_ui.tournament_menu_ui import TournamentMenuUI
+
 from Error.general_error import EmptyInput, DateDoesNotExistError, BackButton
 
 #Player imports
@@ -17,6 +20,8 @@ class CaptainUI:
         self._ui = UIHelper()
         self._player_ui = PlayerMenuUI()
         self._team_ui = TeamMenuUI()
+        self._club_ui = ClubMenuUI()
+        self._torunament_ui = TournamentMenuUI()
 
     def captain_menu(self):
         action = "1"
@@ -25,7 +30,7 @@ class CaptainUI:
             print(f"\n"
                 f"{self._ui.BOLD}{self._ui.RED}{"Captain":^20}\n"
                 f"{self._ui.M_LINE}{self._ui.RESET}\n"
-                "1. Player settings\n"
+                "1. Player menu\n"
                 "2. Team menu\n"
                 "3. Club menu\n"
                 "4. Tournament menu\n"
@@ -40,9 +45,9 @@ class CaptainUI:
             if action == "2":
                 self._team_ui.captain()
             if action == "3":
-                pass
+                self._club_ui.captain()
             if action == "4":
-                pass
+                self._tournament_ui.captain()           
 
             
         return

@@ -22,8 +22,39 @@ class TeamMenuUI:
         self._info = TeamInfoUI()
 
 
-    def organizer():
-        pass
+    def organizer(self):
+        '''Team UI for Organizer User. Takes in nothing and returns nothing'''
+        
+        action = "1"
+        while action != "9":
+            self._ui.top_bar()
+            print(f"\n"
+                f"{self._ui.BOLD}{self._ui.RED}{"Organizer":^20}\n"
+                f"{self._ui.M_LINE}{self._ui.RESET}\n"
+                f"{"Teams":^20}\n"
+                f"{self._ui.M_LINE}\n"
+                "1. Create Team\n"
+                "2. See all teams\n"
+                "3. See team info\n"
+                "4. Add player to team\n"
+                "5. Remove player from team\n"
+                "9. Back\n\n") 
+        
+            if action not in ("1", "2", "3", "4", "5", "9"):
+                action = input("Please select a valid action: ")
+            else:
+                action = input("Please select an action: ")
+            if action == "1":
+                self._create.create_team()
+            if action == "2":
+                self._info.see_all_teams()
+            if action == "3":
+                self._info.see_team_info()
+            if action == "4":
+                self._edit.add_player()
+            if action == "5":
+                self._edit.remove_player()
+        return
 
     def captain(self) -> None:
         '''Player UI for captain User. Takes in nothing and returns nothing'''
@@ -69,20 +100,18 @@ class TeamMenuUI:
                 f"{self._ui.M_LINE}{self._ui.RESET}\n"
                 f"{"Teams":^20}\n"
                 f"{self._ui.M_LINE}\n"
-                "1. Create player\n"
-                "2. See player info\n"
-                "3. Edit player info\n"
-                "4. See all players\n"
+                "2. See all teams\n"
+                "3. See team info\n"
                 "9. Back\n\n") 
         
-            if action not in ("1", "2", "3", "4", "9"):
+            if action not in ("1", "2", "9"):
                 action = input("Please select a valid action: ")
             else:
                 action = input("Please select an action: ")
             if action == "1":
-                self._info.player_info()
+                self._info.see_all_teams()
             if action == "2":
-                self._info.all_players()
+                self._info.see_team_info()
         return
 
     
