@@ -88,6 +88,8 @@ class Main():
                 organizer_ui.see_all_tournaments()
             if choice == "3":
                 organizer_ui.see_tournament_info()
+            if choice == "4":
+                organizer_ui.input_match_scores()
         
         if first_choice == "9":
             return

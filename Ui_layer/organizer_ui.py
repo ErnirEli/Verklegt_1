@@ -20,6 +20,11 @@ from models.team import Team
 from Error.club_error import *
 from models.club import Club
 
+#Match imports
+from models.match import Match
+
+#schedule 
+
 
 
 class OrganizerUI:
@@ -446,23 +451,25 @@ class OrganizerUI:
                 print("Club does not exist")
                 return self.see_club_info()
 
-            club: Club = self._logic.get_club(name)
-            teams: list[Team] = self._logic.get_club_teams(club)#To print teams on the bottom
-            
-            club: Club = self._logic.get_club(name)
+        club: Club = self._logic.get_club(name)
+        teams: list[Team] = self._logic.get_club_teams(club)#To print teams on the bottom
         
-        
-            print(f"\n{self.ui_helper.BOLD}{self.ui_helper.RED}{"-"*30} Team info {"-"*30}{self.ui_helper.RESET}")
-            print(f"{"Name:":<25} {club.name:>45}")
-            print(f"{"Color:":<25} {club.color:>45}")
-            print(f"{"hometown:":<25} {club.hometown:>45}")
-            print(f"{"country:":<10} {club.country:>60}")
-            print(f"{"Tournaments played in:":<25} {club.tournaments:>45}")
-            print(f"{"Total tournaments second places:":<25} {club.runner_up:>38}\n")
-            print(f"\n{self.ui_helper.BOLD}{self.ui_helper.RED}{"-"*27} Teams in club {"-"*27}{self.ui_helper.RESET}")
-            for team in teams:
-                print(f"{"Name:":<25} {team:>45}\n")
+        club: Club = self._logic.get_club(name)
     
+    
+        print(f"\n{self.ui_helper.BOLD}{self.ui_helper.RED}{"-"*30} Team info {"-"*30}{self.ui_helper.RESET}")
+        print(f"{"Name:":<25} {club.name:>45}")
+        print(f"{"Color:":<25} {club.color:>45}")
+        print(f"{"hometown:":<25} {club.hometown:>45}")
+        print(f"{"country:":<10} {club.country:>60}")
+        print(f"{"Tournaments played in:":<25} {club.tournaments:>45}")
+        print(f"{"Total tournaments second places:":<25} {club.runner_up:>38}\n")
+        print(f"\n{self.ui_helper.BOLD}{self.ui_helper.RED}{"-"*27} Teams in club {"-"*27}{self.ui_helper.RESET}")
+        for team in teams:
+            print(f"{"Name:":<25} {team:>45}\n")
+        go_back = ""
+        while go_back.lower() != "q":
+            input("Press Q/q to quit")
         return self.see_club_info()
 
     def add_team_to_club(self):
@@ -774,30 +781,72 @@ class OrganizerUI:
                 print("Tournament does not exist")
                 return self.see_tournament_info()
 
-            tournament: Tournament = self._logic.get_tournament(id)
+        tournament: Tournament = self._logic.get_tournament(id)
+        
+        
+        print(f"\n{self.ui_helper.BOLD}{self.ui_helper.RED}{"-"*27} Tournament info {"-"*27}{self.ui_helper.RESET}")
+        print(f"{"ID:":<25} {tournament.id:>45}")
+        print(f"{"name:":<25} {tournament.name:>45}")
+        print(f"{"venue:":<25} {tournament.venue:>45}")
+        print(f"{"Start date:":<25} {tournament.start_date:>45}")
+        print(f"{"End date:":<25} {tournament.end_date:>45}")
+        print(f"{"Contract:":<25} {tournament.contact:>45}\n")
+        print(f"{"Contact email:":<25} {tournament.contact_email:>45}")
+        print(f"{"Contact Phone number:":<25}{tournament.contact_number:>45}")
+        print(f"{"State:":<24} {tournament.state:>45}")
+        print(f"{"Servers":<25}{len(tournament.servers):>45}")            
+        
+        print(f"\n{self.ui_helper.BOLD}{self.ui_helper.RED}{"-"*27} Matches in tournament {"-"*27}{self.ui_helper.RESET}")
             
-           
-            print(f"\n{self.ui_helper.BOLD}{self.ui_helper.RED}{"-"*27} Tournament info {"-"*27}{self.ui_helper.RESET}")
-            print(f"{"ID:":<25} {tournament.id:>45}")
-            print(f"{"name:":<25} {tournament.name:>45}")
-            print(f"{"venue:":<25} {tournament.venue:>45}")
-            print(f"{"Start date:":<25} {tournament.start_date:>45}")
-            print(f"{"End date:":<25} {tournament.end_date:>45}")
-            print(f"{"Contract:":<25} {tournament.contact:>45}\n")
-            print(f"{"Contact email:":<25} {tournament.contact_email:>45}")
-            print(f"{"Contact Phone number:":<25}{tournament.contact_number:>45}")
-            print(f"{"State:":<24} {tournament.state:>45}")
-            print(f"{"Servers":<25}{len(tournament.servers):>45}")            
-            
-            #print(f"\n{self.ui_helper.BOLD}{self.ui_helper.RED}{"-"*27} Matches in tournament {"-"*27}{self.ui_helper.RESET}")
-            
-        #     for team in teams:
-        #         print(f"{"Name:":<25} {team:>45}\n")
+        all_matches: list[Match] = self._logic.list_matches()
+      
+        for match in all_matches:
+            if match.tournament_id == id:
+                print(match)
 
-            go_back = ""
-            while go_back.lower() != "q":
-                go_back =input("\nPress Q/q to quit")
-            return self.tournament_menu()
+        go_back = ""
+        while go_back.lower() != "q":
+            go_back =input("\nPress Q/q to quit")
+        return self.tournament_menu()
+
+    def input_match_scores(self):
+
+        
+        state = False
+        while state == False:
+            id = input("Enter Tournament ID for inputin match results (q/Q to quit): ").strip()
+            if id.lower() == "q":
+                return self.tournament_menu()
+            try:
+                state = self.validate_tournament.does_tournament_id_exist(id)
+            except TournamentNotExistError:
+                print("Tournament does not exist")
+                return self.input_match_scores()
+
+        tournament: Tournament = self._logic.get_tournament(id)
+        
+        all_matches: list[Match] = self._logic.get_active_matches(tournament)
+        
+
+        
+        for match in all_matches:
+            print(f"Match {match.match_number}")
+            a_score = input(f"(Q/q to quit) {match.team_a} = ")
+            if a_score.lower() == "q":
+                return self.tournament_menu() #Backbutton
+            b_score = input(f"(Q/q to quit) {match.team_b} = ")
+            if b_score.loweer() == "q":
+                return self.tournament_menu()
+            
+            self._logic.update_game_results(a_score, b_score)
+
+
+
+            
+        
+
+                
+
 
         
 
