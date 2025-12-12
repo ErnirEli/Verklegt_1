@@ -18,7 +18,7 @@ class Main():
 
     def main(self):
         
-        choice = self._main_menu.show_main_menu()
+        choice: str = self._main_menu.show_main_menu()
         while choice != "q":
             if choice == "1":
                 self._spectator.spectator_menu()
@@ -27,7 +27,7 @@ class Main():
             if choice == "3":
                 self._organizer.organizer_menu()
             
-            choice = self._main_menu.show_main_menu()
+            choice: str = self._main_menu.show_main_menu()
 
 main = Main()
 main.main()

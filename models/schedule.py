@@ -68,7 +68,7 @@ class Schedule():
         num_servers = len(self._tournament.servers)
         games_per_day = math.ceil(self._number_of_games / self._tournament_days)
         server_slots = math.ceil(games_per_day / num_servers)
-        round_slots = math.floor(self._number_of_rounds / self._tournament_days)
+        round_slots = math.ceil(self._number_of_rounds / self._tournament_days)
 
         return server_slots + round_slots
 
@@ -160,9 +160,14 @@ class Schedule():
                     else:
                         self.time_location += 1
                         time_counter = 0
+                game_round = rounds[self._number_of_rounds - stage - 1]
+                if game_round == "Final":
+                    date = self._tournament.end_date.split("-")
+                    date.reverse()
+                    self.current_date = "-".join(date)
 
                 _match = Match(self._game_number + 1, self._tournament.id,
-                            f"{rounds[self._number_of_rounds - stage - 1]}",
+                            f"{game_round}",
                             team_a, team_b,self.current_date, self._slot_times[self.time_location],
                             self._tournament.servers[(self._game_number % len(self._tournament.servers))]
                             )
