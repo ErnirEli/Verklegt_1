@@ -19,6 +19,7 @@ class Schedule():
         self._tournament_days: int = self.get_tournament_days()
         self._slots_per_day: int = self.get_slots_per_day()
         self._slot_times: list[datetime] = self.get_slot_times()
+        self.last_round = ("Final", "Semifinal", "Quarterfinal", "Round of 16", "Round of 32", "Round of 64")[self._number_of_rounds - 1]
         self._game_number: int = 0
         self.create_playoffs()
         self.create_rounds()
@@ -96,6 +97,7 @@ class Schedule():
         '''Generates playoff round if needed'''
 
         self.time_location = 0
+        time_counter = 0
 
         if self._number_of_teams > 2 ** self._number_of_rounds:
             excess = self._number_of_teams - (2 ** self._number_of_rounds)
@@ -119,20 +121,27 @@ class Schedule():
 
                 self._game_number += 1
 
-                if (self._game_number % len(self._tournament.servers)) == len(self._tournament.servers):
+                if time_counter == len(self._tournament.servers) - 1:
                     if self._slot_times[-1] == self._slot_times[self.time_location]:
                         self.time_location = 0
                         self.current_date = self.current_date + timedelta(days = 1)
 
                     else:
                         self.time_location += 1
+
+                    time_counter = 0
+
+                else:
+                    time_counter += 1
+
+        self.last_round = "Playoffs"
         return
 
     def create_rounds(self):
         '''Generates games for rounds after playoffs, if there is a playoff round'''
 
         rounds = ("Final", "Semifinal", "Quarterfinal", "Round of 16", "Round of 32", "Round of 64")
-        last_round = rounds[self._number_of_rounds - 1]
+        last_round = self.last_round
         time_counter = 0
         self._number_of_teams = len(self._teams)
 

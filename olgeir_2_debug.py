@@ -8,7 +8,7 @@ from Ui_layer.ui_constants import UIHelper
 from Ui_layer.captain_menu import CaptainUI
 from Ui_layer.spectator_menu import SpectatorUI
 
-# organizer_ui = OrganizerUI()
+# self.organizer_ui = OrganizerUI()
 # main_menu = MainMenu()
 # Ui = UIHelper()
 
@@ -36,3 +36,4 @@ class Main():
 
 hehe = Main()
 hehe.main()
+
