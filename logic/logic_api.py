@@ -289,7 +289,7 @@ class LogicAPI:
 
         return self._club_validation.validate_num_of_teams(num_of_teams)
     
-    def validate_teams_in_club(self, team_to_club: str, teams_in_club: list) -> bool:
+    def validate_teams_in_club(self, team_to_club: str, teams_in_club: list = []) -> bool:
         '''Takes a team name for club of type string and a list of teams already in club, checks if team is already in club,
         Raises an error if team is already in the club'''
 
@@ -338,7 +338,7 @@ class LogicAPI:
 
         return self._team_validation.validate_number_of_players(num_of_players)
     
-    def validate_players_in_team(self, player_to_team: str, players_in_team: list[str]) -> bool:
+    def validate_players_in_team(self, player_to_team: str, players_in_team: list[str] = []) -> bool:
         '''Takes in a player name of type string and a list of players already in the team, of type string.
         checks if player is already in team.
         raises error of player is already in team.'''
