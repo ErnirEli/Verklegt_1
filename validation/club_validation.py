@@ -61,7 +61,7 @@ class ValidateClub:
         
         return True
 
-        
+    
     def validate_teams_in_club(self, team_to_club: str, teams_in_club: list):
         if team_to_club.lower() == "q":
             raise BackButton

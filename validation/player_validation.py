@@ -21,7 +21,10 @@ class ValidatePlayer:
     
 
     
-    def validate_name(self, name:str):
+    def validate_name(self, name: str) -> bool:
+        '''Takes a player name of type string and checks if it is valid,
+        Raises an error if name is invalid'''
+
         if name.lower() == "q":
             raise BackButton
         if not name or name.strip() == "":
@@ -30,6 +33,9 @@ class ValidatePlayer:
         return True
     
     def validate_age(self, dob: str):
+        '''Takes a player date of birth of type string and checks if it is valid form and if player is 18 years old,
+        Raises an error if date of birth or age is invalid'''
+
         if dob.lower() == "q":
             raise BackButton
         

@@ -82,16 +82,17 @@ class ClubLogic:
                 break
         return
     
-    def get_club(self, name: str) -> Club:
-        '''Takes in a club name as a string, 
-        finds the club with the right name and
-        returns it of the type Club'''
+    def get_club(self, club_name: str) -> Club:
+        '''Takes in club name of type string and returns club of type Club.
+        Only runs after ale validation checks are valid.'''
 
         clubs: list[Club] = self._data_api.get_all_clubs()
 
         for club in clubs:
-            if club.name == name:
+            if club.name == club_name:
                 return club
+            
+        return
     
     def club_info(self, club: Club):
 
