@@ -428,6 +428,13 @@ class LogicAPI:
         return self._tournament_validation.does_tournament_id_exist(id)
 
     
+    # Matches
+
+    def validate_score(self, team_1_score: str, team_2_score: str) -> bool:
+        '''Takes in two scores from a match of type str and checks if score is valid.
+        raises an error if score is invalid'''
+
+        return self._match_validation.validate_score(team_1_score, team_2_score)
 
 
     
