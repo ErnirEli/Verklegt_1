@@ -354,17 +354,18 @@ class OrganizerUI:
     #Team
     def team_menu(self) -> str:
         print(
-            "Team settings: \n\n"
+            "Team menu: \n\n"
             "1. create team\n"
             "2. See all teams\n"
             "3. See team info\n"
-            "4. Add player/s to a team"
+            "4. Add player to a team\n"
+            "5. Remove a player from a team\n"
             "9. Go back\n\n"
         )
         while True:
             choice = input("Enter number for action: ").strip()
 
-            if choice in {"1", "2", "3", "9"}:
+            if choice in {"1", "2", "3", "4", "5", "9"}:
                 return choice
         
             print("Invalid choice. Try again.\n")
@@ -506,7 +507,7 @@ class OrganizerUI:
                 print(f"{"Tournaments Played in:":<25} {team.tournament:>45}")
                 print(f"{"Tournaments won:":<25} {team.wins:>45}")
                 print(f"{"Total tournaments second places:":<25} {team.runner_up:>38}\n")
-                print(f"\n{self.ui_helper.BOLD}{self.ui_helper.RED}{"-"*30} Players in team {"-"*30}{self.ui_helper.RESET}")
+                print(f"\n{self.ui_helper.BOLD}{self.ui_helper.RED}{"-"*27} Players in team {"-"*27}{self.ui_helper.RESET}")
                 for player in players:
                     print(f"{"Name:":<25} {player.name:>45}")
        
@@ -516,33 +517,70 @@ class OrganizerUI:
         
         team_name = input("Enter team name to add players to (q/Q to quit)")
         if team_name.lower() == "q":
-            return self.team_menu
+            return self.team_menu()
         
-        team: Team = self._logic.get_team(team_name)
 
-        players_in_team = self._logic.get_team_players(team)
+        players_in_team = self._logic.get_team_players(team_name)
+        
         if len(players_in_team) > 5:
             print("Team is full")
             return self.add_player_to_team()
             
         state = False
         while state == False:
-            player_name = input("Enter player name to add to team (q/Q to quit)")
-        try:
-            state = self.validate_team.validate_players_in_team(player_name)
-        except PlayerDoesNotExistError:
-            print("Player does not exist")
-        except PlayerAlreadyInTeamError:
-            print("Player is already in a team")
-        except BackButton:
-            return self.team_menu()
+            player_name = input("Enter player name to add to team (q/Q to quit): ")
+            try:
+                state = self.validate_team.validate_players_in_team(player_name)
+            except PlayerDoesNotExistError:
+                print("Player does not exist")
+            except PlayerAlreadyInTeamError:
+                print("Player is already in a team")
+            except BackButton:
+                return self.team_menu()
         
+        team: Team = self._logic.get_team(team_name)
         player: Player= self._logic.find_player(player_name)
-
+     
         self._logic.add_player(team, player)
+
         return self.team_menu()
 
+    def remove_player_from_team(self):
+        team_name = input("Enter team name to add players to (q/Q to quit): ")
+        if team_name.lower() == "q":
+            return self.team_menu()
+        
+        
 
+        players_in_team = self._logic.get_team_players(team_name)
+        
+        
+        if len(players_in_team) < 4:
+            print("There are too few players in the team to remove from it")
+            return self.remove_player_from_team() #go back to the top
+            
+        state = False
+        while state == False:
+            player_name = input("Enter player name to add to team (q/Q to quit): ")
+            try:
+                state = self.validate_team.validate_player_to_remove(player_name)
+                
+            except PlayerDoesNotExistError:
+                print("Player does not exist")
+            except BackButton:
+                return self.remove_player_from_team()
+        
+        player: Player= self._logic.find_player(player_name)
+        team: Team = self._logic.get_team(team_name)
+        
+        if team.name != player.team_name:
+            print("Player is not in the team")
+            return self.remove_player_from_team()
+    
+    
+        self._logic.remove_player(player)
+
+        return self.team_menu()
 
 #--------------------------------------------------------------------------
 #Club
@@ -552,13 +590,14 @@ class OrganizerUI:
             "1. Create a club\n"
             "2. See all clubs\n"
             "3. See club info\n"
-            "4. Add team/s to a club"
+            "4. Add team/s to a club\n"
+            "5. Remove team/s from a club\n"
             "9. Go back\n\n"
         )
         while True:
             choice = input("Enter number for action: ").strip()
 
-            if choice in {"1", "2", "3", "9"}:
+            if choice in {"1", "2", "3", "4", "5", "9"}:
                 return choice
         
             print("Invalid choice. Try again.\n")
@@ -627,7 +666,7 @@ class OrganizerUI:
             except ValueError:
                 print("Number of teams have to be a digit")
             except InvalidNumOfTeams:
-                print("Club can only have 1-10 teams")
+                print("Club can only have 1-5 teams")
             except BackButton:
                 return self.club_menu()
         num_of_teams = int(num_of_teams)
@@ -692,6 +731,41 @@ class OrganizerUI:
                 print(f"{"Tournaments played in:":<25} {club.tournaments:>45}")
                 print(f"{"Total tournaments second places:":<25} {club.runner_up:>38}\n")
         return self.team_menu()
+
+    def add_team_to_club(self):
+        club_name = input("Enter club name to add teams to (q/Q to quit): ")
+        if club_name.lower() == "q":
+            return self.add_team_to_club()
+        
+
+        players_in_team = self._logic.get_club_teams(club_name)
+        
+        if len(players_in_team) > 5:
+            print("Team is full")
+            return self.add_player_to_team()
+            
+        state = False
+        while state == False:
+            player_name = input("Enter player name to add to team (q/Q to quit): ")
+            try:
+                state = self.validate_team.validate_players_in_team(player_name)
+            except PlayerDoesNotExistError:
+                print("Player does not exist")
+            except PlayerAlreadyInTeamError:
+                print("Player is already in a team")
+            except BackButton:
+                return self.team_menu()
+        
+        team: Team = self._logic.get_team(team_name)
+        player: Player= self._logic.find_player(player_name)
+     
+        self._logic.add_player(team, player)
+
+        return self.team_menu()
+
+
+
+
 #---------------------------------------------------
 
 #Tournament

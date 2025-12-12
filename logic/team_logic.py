@@ -70,9 +70,9 @@ class TeamLogic:
 
         for player in players:
             if player.handle == wanted_player.handle:
-                player.team_name == team.name
-
-        self._data_api.write_teams(players)
+                player.team_name = team.name
+    
+        self._data_api.write_players(players)
         return
     
     def remove_player(self, unwanted_player: Player) -> None:
@@ -83,15 +83,15 @@ class TeamLogic:
 
         for player in players:
             if player.handle == unwanted_player.handle:
-                player.team_name == "None"
+                player.team_name = "None"
 
-        self._data_api.write_teams(players)
+        self._data_api.write_players(players)
         return 
     
     def get_team_players(self, team_name: str) -> list[Player]:
         '''Takes in a team name of type string, returns a list of all players in the team, of type Player'''
 
-        players: list[Player] = list
+        players: list[Player] = self._data_api.get_all_players()
         team_players: list[Player] = []
 
         for player in players:

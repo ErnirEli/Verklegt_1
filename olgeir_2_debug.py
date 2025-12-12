@@ -58,6 +58,10 @@ def organizer_main():
                 organizer_ui.see_all_teams()
             if choice == "3":
                 organizer_ui.see_team_info()
+            if choice == "4":
+                organizer_ui.add_player_to_team()
+            if choice == "5":
+                organizer_ui.remove_player_from_team()
 
         if first_choice == "3":
             choice = organizer_ui.club_menu()

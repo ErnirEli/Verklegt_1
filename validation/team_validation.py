@@ -2,6 +2,7 @@ from Datalayer.data_api import DataAPI
 from Error.team_error import *
 from models.player import Player
 from Error.general_error import EmptyInput, BackButton
+from models.team import Team
 
 
 class ValidateTeam:
@@ -95,8 +96,21 @@ class ValidateTeam:
         if player.team_name != "None":
             raise playerNotAvailableError
         
+    def validate_player_to_remove(self, player_name: str):
         
+        all_players = self._data.get_all_players()
+
+        for player in all_players:
+            player: Player
+
+            if player.handle == player_name:
+                break
         
-        
+        else:
+            raise PlayerDoesNotExistError
+
         return True
+        
+        
+        
         
