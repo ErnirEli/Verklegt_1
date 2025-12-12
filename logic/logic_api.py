@@ -295,7 +295,17 @@ class LogicAPI:
 
         return self._club_validation.validate_teams_in_club(team_to_club, teams_in_club)
     
+    def does_club_exist(self, club_name: str) -> bool:
+        '''Takes in a club of string type and validates if it exists.
+        Raises an ClubDoesNotExist if club does not exist.'''
 
+        return self._club_validation.does_club_exist(club_name)
+
+    def validate_club_to_remove(self, team_name: str) -> bool:
+        '''Takes in a team name an validates if it is alowed to be removed from club.
+        Raises an error if it is not valid.'''
+
+        return self._club_validation.validate_club_to_remove(team_name)
     # Teams
 
     def validate_team_name(self, name: str) -> bool:

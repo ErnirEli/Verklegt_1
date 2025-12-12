@@ -31,10 +31,10 @@ class PlayerInfoUi:
         return
     
     def detailed_player_info(self):
-        #self._ui.top_bar()
+        self._ui.top_bar()
         handle = input("Enter player handle (q/Q to quit): ").strip()
         while handle.lower() != "q":
-            #self._ui.top_bar()
+            self._ui.top_bar()
             player: Player = self._logic.find_player(handle)
             if player is None:
                 print("No player found with that handle.")
@@ -58,10 +58,10 @@ class PlayerInfoUi:
 
         return
     def player_info(self):
-        handle = ""
+        self._ui.top_bar()
+        handle = input("Enter player handle (q/Q to quit): ").strip()
         while handle.lower() != "q":
             self._ui.top_bar()
-            handle = input("Enter player handle (q/Q to quit): ").strip()
             player: Player = self._logic.find_player(handle)
             if player is None:
                 print("No player found with that handle.")
@@ -74,3 +74,5 @@ class PlayerInfoUi:
                 print(f"{"Total tournaments played in:":<50}{player.tournament:>23}")
                 print(f"{"Tournamnets won:":<25}{player.wins:>48}")
                 print()
+
+            handle = input("Enter player handle (q/Q to quit): ").strip()

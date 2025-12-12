@@ -2,7 +2,11 @@ from logic.logic_api import LogicAPI
 from Ui_layer.ui_constants import UIHelper
 
 # Ui imports
-from Ui_layer.player_menu_ui import PlayerMenuUI
+from Ui_layer.menu_ui.player_menu_ui import PlayerMenuUI
+from Ui_layer.menu_ui.team_menu_ui import TeamMenuUI
+from Ui_layer.menu_ui.club_menu_ui import ClubMenuUI
+from Ui_layer.menu_ui.tournament_menu_ui import TournamentMenuUI
+
 from Error.general_error import EmptyInput, DateDoesNotExistError, BackButton
 
 #Player imports
@@ -14,7 +18,10 @@ class SpectatorUI:
     def __init__(self):
         self._logic_api = LogicAPI()
         self._ui = UIHelper()
-        self.player_ui = PlayerMenuUI()
+        self._player_ui = PlayerMenuUI()
+        self._team_ui = TeamMenuUI()
+        self._club_ui = ClubMenuUI()
+        self._torunament_ui = TournamentMenuUI()
 
     def spectator_menu(self):
         action = "1"
@@ -34,14 +41,14 @@ class SpectatorUI:
             else:
                 action = input("Please select an action: ")
             if action == "1":
-                self.player_ui.spectator()
+                self._player_ui.spectator()
                 continue
             if action == "2":
-                pass
+                self._team_ui.spectator()
             if action == "3":
-                pass
+                self._club_ui.spectator()
             if action == "4":
-                pass
+                self._tournament_ui.spectator()
 
             
         return

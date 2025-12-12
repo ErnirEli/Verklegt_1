@@ -23,12 +23,12 @@ class CaptainUI:
         self._club_ui = ClubMenuUI()
         self._torunament_ui = TournamentMenuUI()
 
-    def captain_menu(self):
+    def organizer_menu(self):
         action = "1"
         while action != "9":
             self._ui.top_bar()
             print(f"\n"
-                f"{self._ui.BOLD}{self._ui.RED}{"Captain":^20}\n"
+                f"{self._ui.BOLD}{self._ui.RED}{"Organizer":^20}\n"
                 f"{self._ui.M_LINE}{self._ui.RESET}\n"
                 "1. Player menu\n"
                 "2. Team menu\n"
@@ -41,13 +41,13 @@ class CaptainUI:
             else:
                 action = input("Please select an action: ")
             if action == "1":
-                self._player_ui.captain()
+                self._player_ui.organizer()
             if action == "2":
-                self._team_ui.captain()
+                self._team_ui.organizer()
             if action == "3":
-                self._club_ui.captain()
+                self._club_ui.organizer()
             if action == "4":
-                self._tournament_ui.captain()           
+                self._tournament_ui.organizer()           
 
             
         return

@@ -14,13 +14,16 @@ class PlayerCreationUI:
     def create_player(self):
         '''Creating a player by asking one information at a time and checking it in Validate Player class'''
         self._ui.top_bar()
-        print("You are creating a player")
-        print("Press q/Q to quit at anytime")
+        print(f"{self._ui.RED}{self._ui.BOLD}{"You are creating a player"}")
+        print(f"{self._ui.M_LINE}{self._ui.RESET}")
+        print("Press q/Q to quit at any time")
+        print()
 
         #Name
         while True:
             state = False 
             while state == False: 
+                self._ui.top_bar()
                 name = input("Name: ")            
                 try: 
                     state = self._logic_api.validate_player_name(name)

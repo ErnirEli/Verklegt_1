@@ -25,6 +25,7 @@ class EditTeamUI():
         while True:
             state = False
             while state == False:
+                self._ui.top_bar()
                 team_name = input("Enter team name to remove players from (q/Q to quit): ")
                 if team_name.lower() == "q":
                     return
@@ -86,6 +87,7 @@ class EditTeamUI():
         while True:
             state = False
             while state == False:
+                self._ui.top_bar()
                 team_name = input("Enter team name to add players to (q/Q to quit): ")
                 if team_name.lower() == "q":
                     return
