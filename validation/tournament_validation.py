@@ -3,6 +3,8 @@ from datetime import datetime
 from Error.tournament_error import *
 from datetime import *
 from Error.general_error import EmptyInput, DateDoesNotExistError, BackButton
+from models.tournament import Tournament
+
 
 class ValidateTournament:
     def __init__(self):
@@ -181,4 +183,12 @@ class ValidateTournament:
                 raise InvalidAmountOfDays
 
         return True
+        
+
+    def does_tournament_id_exist(self, id: str):
+        all_tournamnets: list[Tournament] = self._data.get_all_tournaments()
+        for tournament in all_tournamnets:
+             if tournament.id == id:
+                  return True
+        raise TournamentNotExistError
         

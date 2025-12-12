@@ -94,7 +94,8 @@ class LogicAPI:
         '''Takes in tournament ID and returns the torunament of type Torunament.
         Only runs after all validation checks are valid.'''
 
-        self._tournament_logic.get_tournament(tournament_id)
+        return self._tournament_logic.get_tournament(tournament_id)
+         
 
     def create_tournament(self, tournament_id: str, name: str, venue: str,
                         start_date: str, end_date: str, contact: str, contact_email: str,

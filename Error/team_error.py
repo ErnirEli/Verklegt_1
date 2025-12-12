@@ -27,3 +27,6 @@ class CaptainNotInTeamError(Exception):
 class playerNotAvailableError(Exception):
     '''Raised if selected player is already in a team'''
     pass
+class CantRemoveCaptainError(Exception):
+    '''Raise if user is trying to remove captain from a team'''
+    pass
