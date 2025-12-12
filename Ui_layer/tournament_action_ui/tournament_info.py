@@ -1,39 +1,18 @@
 from logic.logic_api import LogicAPI
-
-from Error.general_error import EmptyInput, DateDoesNotExistError, BackButton
-
 from Ui_layer.ui_constants import UIHelper
 
-#Player imports
-from validation.player_validation import ValidatePlayer
-from logic.player_logic import PlayerLogic
-from Error.player_error import *
-from models.player import Player
-
-#Tournaments imports
-from validation.tournament_validation import ValidateTournament
-from logic.tournament_logic import TournamentLogic
+#Error imports
 from Error.tournament_error import *
+from Error.player_error import *
+from Error.team_error import *
+from Error.club_error import *
+
+
+
+#Model imports
+from models.match import Match
 from models.tournament import Tournament
 
-#team imports
-from logic.team_logic import TeamLogic
-from validation.team_validation import ValidateTeam
-from Error.team_error import *
-from models.team import Team
-
-#Club imports
-from logic.club_logic import ClubLogic
-from validation.club_validation import ValidateClub
-from Error.club_error import *
-from models.club import Club
-
-#Match imports
-from models.match import Match
-from Error.match_error import InvalidScores, DrawError
-from validation.match_validation import ValidateMatch
-
-#schedule imports
 
 class TournamentInfoUI():
     def __init__(self):

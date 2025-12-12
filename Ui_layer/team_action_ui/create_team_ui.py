@@ -1,6 +1,6 @@
 from logic.logic_api import LogicAPI
 
-from Error.general_error import EmptyInput, DateDoesNotExistError, BackButton
+from Error.general_error import EmptyInput, BackButton
 
 from Ui_layer.ui_constants import UIHelper
 

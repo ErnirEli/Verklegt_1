@@ -1,39 +1,21 @@
 from logic.logic_api import LogicAPI
 
-from Error.general_error import EmptyInput, DateDoesNotExistError, BackButton
 
 from Ui_layer.ui_constants import UIHelper
 
-#Player imports
-from validation.player_validation import ValidatePlayer
-from logic.player_logic import PlayerLogic
+#Error imports
 from Error.player_error import *
-from models.player import Player
-
-#Tournaments imports
-from validation.tournament_validation import ValidateTournament
-from logic.tournament_logic import TournamentLogic
 from Error.tournament_error import *
-from models.tournament import Tournament
-
-#team imports
-from logic.team_logic import TeamLogic
-from validation.team_validation import ValidateTeam
+from Error.general_error import BackButton
 from Error.team_error import *
-from models.team import Team
-
-#Club imports
-from logic.club_logic import ClubLogic
-from validation.club_validation import ValidateClub
 from Error.club_error import *
-from models.club import Club
-
-#Match imports
-from models.match import Match
 from Error.match_error import InvalidScores, DrawError
-from validation.match_validation import ValidateMatch
 
-#schedule imports
+
+#Model imports
+from models.tournament import Tournament
+from models.match import Match
+s
 
 class EditTournamentUI():
     def __init__(self):
@@ -47,7 +29,7 @@ class EditTournamentUI():
         state = False
         while state == False:
             self._ui.top_bar()
-            id = input("Enter Tournament ID for inputin match results (q/Q to quit): ").strip()
+            id = input("Enter Tournament ID to input match results (q/Q to quit): ").strip()
             if id.lower() == "q":
                 return 
             try:
@@ -77,7 +59,7 @@ class EditTournamentUI():
                     a_score = input(f"{match.team_a} = ")
                     b_score = input(f"(Q/q to quit) {match.team_b} = ")
                     try:
-                        state = self._logic(a_score, b_score)
+                        state = self._logic.validatavalidate_match.validate_score(a_score, b_score)
                     except ValueError:
                         print("Invalid, scores have to be a number")
                     except InvalidScores:
@@ -86,7 +68,7 @@ class EditTournamentUI():
                         print("Game ended in a draw")
                         print("Enter in result after extra time")
                     except BackButton:
-                        return self.tournament_menu()
+                        return
                 
                 
                 self._logic.update_game_results(match, a_score, b_score)
