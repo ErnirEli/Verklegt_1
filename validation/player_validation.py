@@ -110,7 +110,7 @@ class ValidatePlayer:
         '''Takes a player link of type string and checks if it is valid form. 
         Raises an error if link is invalid'''
 
-        if link.lower() == "q":
+        if link.lower() == "https://q":
             raise BackButton
         
         if link.strip() == "https://":

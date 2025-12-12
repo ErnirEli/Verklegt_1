@@ -29,7 +29,7 @@ class CreateClubUI():
         '''UI for creating a class, takes in nothing and returns nothing'''
 
         self._ui.top_bar()
-        print(f"{self._ui.RED}{self._ui.BOLD}{"You are creating a team"}")
+        print(f"{self._ui.RED}{self._ui.BOLD}{"You are creating a club"}")
         print(f"{self._ui.M_LINE}{self._ui.RESET}")
         print("Press q/Q to quit at any time")
         print()

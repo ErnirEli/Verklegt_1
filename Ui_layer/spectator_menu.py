@@ -7,13 +7,6 @@ from Ui_layer.menu_ui.team_menu_ui import TeamMenuUI
 from Ui_layer.menu_ui.club_menu_ui import ClubMenuUI
 from Ui_layer.menu_ui.tournament_menu_ui import TournamentMenuUI
 
-from Error.general_error import EmptyInput, DateDoesNotExistError, BackButton
-
-#Player imports
-from Error.player_error import *
-from models.player import Player
-
-
 class SpectatorUI:
     def __init__(self):
         self._logic_api = LogicAPI()
@@ -25,7 +18,7 @@ class SpectatorUI:
 
     def spectator_menu(self):
         action = "1"
-        while action != "9":
+        while action != "q":
             self._ui.top_bar()
             print(f"\n"
                 f"{self._ui.BOLD}{self._ui.RED}{"Spectator":^20}\n"
@@ -34,9 +27,9 @@ class SpectatorUI:
                 "2. Team menu\n"
                 "3. Club menu\n"
                 "4. Tournament menu\n"
-                "9. Change role\n\n") 
+                "q. Change role\n\n") 
             
-            if action not in ("1", "2", "3", "4", "9"):
+            if action not in ("1", "2", "3", "4"):
                 action = input("Please select a valid action: ")
             else:
                 action = input("Please select an action: ")
@@ -48,7 +41,7 @@ class SpectatorUI:
             if action == "3":
                 self._club_ui.spectator()
             if action == "4":
-                self._tournament_ui.spectator()
+                self._torunament_ui.spectator()
 
             
         return

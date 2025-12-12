@@ -185,10 +185,13 @@ class ValidateTournament:
         return True
         
 
-    def does_tournament_id_exist(self, id: str):
+    def does_tournament_id_exist(self, id: str) -> bool:
+        '''Takes in tournament id of type str and cheks if a tournament with said in exists.
+        Raises an error if tournament does not exist'''
+        
         all_tournamnets: list[Tournament] = self._data.get_all_tournaments()
         for tournament in all_tournamnets:
-             if tournament.id == id:
-                  return True
+            if tournament.id == id:
+                return True
         raise TournamentNotExistError
         

@@ -54,7 +54,7 @@ class ValidateTeam:
         '''Takes team link of type string and checks if it is valid,
         Raises an error if link is invalid'''
 
-        if web_link.lower() == "q":
+        if web_link.lower() == "https://q":
             raise BackButton
         
         if web_link == "https://":
@@ -76,7 +76,7 @@ class ValidateTeam:
         '''Takes number of players in team of type string and checks if it is valid,
         Raises an error if number of players is invalid'''
 
-        if num_of_players.lower() == "Q":
+        if num_of_players.lower() == "q":
             raise BackButton
         
         num_of_players: int = int(num_of_players)
@@ -90,7 +90,7 @@ class ValidateTeam:
         
         return True
     
-    def validate_players_in_team(self, player_to_team: str, players_in_team: list[str]) -> bool:
+    def validate_players_in_team(self, player_to_team: str, players_in_team: list[str] = []) -> bool:
         '''Takes in a player name of type string and a list of players already in the team, of type string.
         checks if player is already in team.
         raises error of player is already in team.'''
@@ -122,6 +122,9 @@ class ValidateTeam:
         
         all_players = self._data.get_all_players()
 
+        if player_handle.lower() == "q":
+            raise BackButton
+        
         for player in all_players:
             player: Player
 
@@ -130,9 +133,6 @@ class ValidateTeam:
         
         else:
             raise PlayerDoesNotExistError
-        
-        if player_handle.lower() == "q":
-            raise BackButton
         
         if team.captain == player_handle:
             raise CantRemoveCaptainError
@@ -151,4 +151,3 @@ class ValidateTeam:
         
         raise TeamDoesNotExist
     
-   

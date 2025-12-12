@@ -1,14 +1,12 @@
 from logic.logic_api import LogicAPI
-
-from Error.general_error import EmptyInput, DateDoesNotExistError, BackButton
-
 from Ui_layer.ui_constants import UIHelper
 
-# Team imports
+# Error imoprts
+from Error.general_error import BackButton
 from Error.team_error import *
-from models.team import Team
 
-# Player imports
+# Model imports
+from models.team import Team
 from models.player import Player
 
 
@@ -31,7 +29,7 @@ class EditTeamUI():
                     return
                 try:
                     state = self._logic.does_team_exists(team_name)
-                except TeamExistsError:
+                except TeamDoesNotExist:
                     print("Team does not exist")
             
 
@@ -71,12 +69,12 @@ class EditTeamUI():
             print("Player has successfully been removed from\n")
             print(f"{self._ui.RED}{self._ui.BOLD}{self._ui.M_LINE}{self._ui.RESET}")
             print("1. Remove another player\n"
-                    "9. back\n")
+                    "q. back\n")
             choice = ""
-            while choice not in ("1", "9"):
+            while choice not in ("1", "q"):
                 choice = input("Action: ")
             
-            if choice == "9":
+            if choice == "q":
                 return
 
 
@@ -93,7 +91,7 @@ class EditTeamUI():
                     return
                 try:
                     state = self._logic.does_team_exists(team_name)
-                except TeamExistsError:
+                except TeamDoesNotExist:
                     print("Team does not exist")
 
 
@@ -122,10 +120,10 @@ class EditTeamUI():
             print("Player has successfully been added to the team\n")
             print(f"{self._ui.RED}{self._ui.BOLD}{self._ui.M_LINE}{self._ui.RESET}")
             print("1. Add another player\n"
-                    "9. back\n")
+                    "q. back\n")
             choice = ""
-            while choice not in ("1", "9"):
+            while choice not in ("1", "q"):
                 choice = input("Action: ")
             
-            if choice == "9":
+            if choice == "q":
                 return
