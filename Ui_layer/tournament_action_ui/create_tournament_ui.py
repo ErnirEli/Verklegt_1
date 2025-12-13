@@ -172,3 +172,4 @@ class CreateTournamentUI():
 
 
         self._logic.create_tournament(id, name, venue, start_date, end_date, contract, contact_email, contact_number, num_of_servers, teams_in_tournament )
+        input("Tournament has been created, press enter to continue")

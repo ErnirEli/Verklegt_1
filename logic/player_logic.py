@@ -9,8 +9,6 @@ class PlayerLogic:
     def __init__(self):
         self._data_api = DataAPI()
 
-    def is_editor(self, role):
-        return role == "organizer" or role == "captain"
 
     def find_player(self, handle: str) -> Player:
         '''Takes in a player handle of type string.
@@ -68,47 +66,5 @@ class PlayerLogic:
         self._data_api.write_players(players)
         return player
 
-    def get_public_player_info(self, handle: str):
-        players = self._data_api.get_all_players()
-        player = self.find_player(players, handle)
-        if player is None:
-            return None
-
-        return {
-            "handle": player.handle,
-            "team_name": player.team_name,
-        }
-            
-
-    def get_full_player_info(self, handle: str):
-        players = self._data_api.get_all_players()
-        player = self.find_player(handle)
-        if player is None:
-            return None
-
-        return {
-            "name": player.name,
-            "dob": player.dob,
-            "address": player.address,
-            "phone": player.phone,
-            "email": player.email,
-            "link": player.link,
-            "handle": player.handle,
-            "team_name": player.team_name,
-            "tournament": player.tournament,
-            "wins": player.wins
-        }
-
-    def list_players_public(self):
-
-        players = self._data_api.get_all_players()
-        result = []
-        for p in players:
-            result.append({
-                "handle": p.handle,
-                "team_name": p.team_name,
-                "tournaments": p.tournament
-            })
-        return result
-
+   
 

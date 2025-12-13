@@ -40,7 +40,7 @@ class EditPlayerUI():
             
         
 
-            print("\nLeave edit inputs empty if you don't want to change them (q/q to quit):\n")
+            print("\nLeave edit inputs empty if you don't want to change them (Q/q to quit): \n")
 
             #New phone
             while True:

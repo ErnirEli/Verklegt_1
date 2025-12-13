@@ -26,7 +26,7 @@ class ClubInfoUI():
             print(f"{club.name:<30}{club.country:<15}{club.tournaments:^23}{club.wins:^4}")
         go_back = ""
         while go_back.lower() != "q":
-            go_back = input("\nPress q/Q to quit")
+            go_back = input("\nPress q/Q to quit ")
             
         return
 
@@ -62,5 +62,5 @@ class ClubInfoUI():
             print(f"{"Name:":<25} {team:>45}\n")
         go_back = ""
         while go_back.lower() != "q":
-            go_back = input("Press Q/q to quit")
+            go_back = input("Press Q/q to quit ")
         return

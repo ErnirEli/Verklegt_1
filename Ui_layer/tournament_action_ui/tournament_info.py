@@ -58,7 +58,7 @@ class TournamentInfoUI():
 
         go_back = ""
         while go_back.lower() != "q":
-            go_back =input("\nPress Q/q to quit")
+            go_back =input("\nPress Q/q to quit ")
         
         return
 
@@ -99,7 +99,7 @@ class TournamentInfoUI():
 
             go_back = ""
             while go_back.lower() != "q":
-                go_back =input("\nPress Q/q to quit")
+                go_back =input("\nPress Q/q to quit ")
             
             return
 
@@ -115,6 +115,6 @@ class TournamentInfoUI():
             
         go_back = ""
         while go_back.lower() != "q":
-            go_back = input("\nPress Q/q to quit")
+            go_back = input("\nPress Q/q to quit ")
             
         return

@@ -44,7 +44,7 @@ class EditTournamentUI():
         
             tournament: Tournament = self._logic.get_tournament(id)
             if tournament.state == True:
-                input("Tournament is finished (Q/q to quit)")
+                input("Tournament is finished (Q/q to quit) ")
                 return
             
             all_matches: list[Match] = self._logic.get_active_matches(tournament)
@@ -75,6 +75,6 @@ class EditTournamentUI():
             
         
         
-            back_button = input("\nAll matcehs in this round are done, Press Q/q to quit, Press enter for the next round")
+            back_button = input("\nAll matcehs in this round are done, Press Q/q to quit, Press enter for the next round ")
             
         return
