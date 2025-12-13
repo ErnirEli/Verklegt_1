@@ -1,4 +1,3 @@
-from logic.logic_api import LogicAPI
 from Ui_layer.ui_constants import UIHelper
 
 # Ui imports
@@ -15,7 +14,6 @@ from Error.team_error import *
 class TeamMenuUI:
     
     def __init__(self):
-        self._logic = LogicAPI()
         self._ui = UIHelper()
         self._create = CreateTeamUI()
         self._edit = EditTeamUI()
