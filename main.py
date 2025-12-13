@@ -17,7 +17,6 @@ class Main():
         self._organizer = OrganizerUI()
 
     def main(self):
-        
         choice: str = self._main_menu.show_main_menu()
         while choice != "q":
             if choice == "1":
