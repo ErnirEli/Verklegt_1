@@ -1,4 +1,3 @@
-from logic.logic_api import LogicAPI
 from Ui_layer.ui_constants import UIHelper
 
 # Ui imports
@@ -9,7 +8,6 @@ from Ui_layer.menu_ui.tournament_menu_ui import TournamentMenuUI
 
 class SpectatorUI:
     def __init__(self):
-        self._logic_api = LogicAPI()
         self._ui = UIHelper()
         self._player_ui = PlayerMenuUI()
         self._team_ui = TeamMenuUI()

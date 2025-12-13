@@ -1,4 +1,3 @@
-from logic.logic_api import LogicAPI
 from Ui_layer.ui_constants import UIHelper
 
 # Ui imports
@@ -15,7 +14,6 @@ from Error.player_error import *
 class PlayerMenuUI:
     
     def __init__(self):
-        self._logic = LogicAPI()
         self._ui = UIHelper()
         self._create = PlayerCreationUI()
         self._edit = EditPlayerUI()

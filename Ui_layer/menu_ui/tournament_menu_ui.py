@@ -1,5 +1,4 @@
 
-from logic.logic_api import LogicAPI
 from Ui_layer.ui_constants import UIHelper
 
 # Ui imports
@@ -14,7 +13,6 @@ from Error.player_error import *
 class TournamentMenuUI:
     
     def __init__(self):
-        self._logic = LogicAPI()
         self._ui = UIHelper()
         self._create = CreateTournamentUI()
         self._edit = EditTournamentUI()

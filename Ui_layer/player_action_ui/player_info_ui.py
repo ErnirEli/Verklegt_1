@@ -11,11 +11,11 @@ from models.player import Player
 
 class PlayerInfoUi:
     def __init__(self):
-        self._logic = LogicAPI()
+        self._logic_api = LogicAPI()
         self._ui = UIHelper()
 
     def all_players(self):
-        all_players: list[Player] = self._logic.list_players()
+        all_players: list[Player] = self._logic_api.list_players()
         self._ui.top_bar()
         print("All players:")
         print(f"{"Handle":<32} {"Team name":<8}")
@@ -35,7 +35,7 @@ class PlayerInfoUi:
         handle = input("Enter player handle (q/Q to quit): ").strip()
         while handle.lower() != "q":
             self._ui.top_bar()
-            player: Player = self._logic.find_player(handle)
+            player: Player = self._logic_api.find_player(handle)
             if player is None:
                 print("No player found with that handle.")
             
@@ -62,7 +62,7 @@ class PlayerInfoUi:
         handle = input("Enter player handle (q/Q to quit): ").strip()
         while handle.lower() != "q":
             self._ui.top_bar()
-            player: Player = self._logic.find_player(handle)
+            player: Player = self._logic_api.find_player(handle)
             if player is None:
                 print("No player found with that handle.")
             
